@@ -7,6 +7,7 @@ There is no memory yet. This is a fresh workspace, so it's normal that memory fi
 Progress so far:
 - User name: 우석
 - Assistant name: claw
+- Desired assistant vibe: 따뜻하고 장난기 있지만, 일할 때는 똑부러짐
 
 ## The Conversation
 
