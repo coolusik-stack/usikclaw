@@ -5,6 +5,7 @@ from zoneinfo import ZoneInfo
 from pathlib import Path
 
 CONFIG_PATH = Path.home() / '.openclaw' / 'automation-config.json'
+OPENCLAW_BIN = '/opt/homebrew/bin/openclaw'
 
 
 def load_config():
@@ -110,7 +111,7 @@ def build_message(events, target_date):
 
 def send_telegram(target, text):
     subprocess.run([
-        'openclaw', 'message', 'send',
+        OPENCLAW_BIN, 'message', 'send',
         '--channel', 'telegram',
         '--target', str(target),
         '--message', text
