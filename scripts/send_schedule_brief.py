@@ -115,7 +115,7 @@ def send_telegram(target, text):
         '--channel', 'telegram',
         '--target', str(target),
         '--message', text
-    ], check=True)
+    ], check=True, env=ENV)
 
 
 def main():
@@ -135,6 +135,12 @@ def main():
         key = (ev['start'].isoformat(), ev['end'].isoformat(), ev['summary'])
         uniq[key] = ev
     message = build_message(sorted(uniq.values(), key=lambda x: x['start']), tomorrow)
+    send_telegram(cfg['telegram_target'], message)
+
+
+if __name__ == '__main__':
+    main()
+)
     send_telegram(cfg['telegram_target'], message)
 
 
