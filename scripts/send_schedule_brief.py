@@ -6,6 +6,9 @@ from pathlib import Path
 
 CONFIG_PATH = Path.home() / '.openclaw' / 'automation-config.json'
 OPENCLAW_BIN = '/opt/homebrew/bin/openclaw'
+ENV = {
+    'PATH': '/opt/homebrew/bin:/opt/homebrew/opt/node@22/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+}
 
 
 def load_config():
@@ -135,12 +138,6 @@ def main():
         key = (ev['start'].isoformat(), ev['end'].isoformat(), ev['summary'])
         uniq[key] = ev
     message = build_message(sorted(uniq.values(), key=lambda x: x['start']), tomorrow)
-    send_telegram(cfg['telegram_target'], message)
-
-
-if __name__ == '__main__':
-    main()
-)
     send_telegram(cfg['telegram_target'], message)
 
 
