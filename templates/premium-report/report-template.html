@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{REPORT_TITLE}} · {{REPORT_PERIOD}}</title>
+  <meta name="description" content="{{REPORT_SUMMARY}}" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css" />
+  <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#0b1020',
+            panel: '#121a2d',
+            line: '#22304f',
+            soft: '#9fb0d0',
+            accent: '#7dd3fc',
+            accent2: '#c4b5fd',
+            paper: '#f6f8fc'
+          },
+          fontFamily: {
+            sans: ['Pretendard', 'Manrope', 'system-ui', 'sans-serif'],
+            display: ['Manrope', 'Pretendard', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            glass: '0 30px 80px rgba(11, 16, 32, 0.28)',
+            card: '0 20px 50px rgba(9, 14, 29, 0.12)'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Pretendard', 'Manrope', system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(125, 211, 252, 0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(196, 181, 253, 0.14), transparent 26%),
+        linear-gradient(180deg, #0b1020 0%, #0f1727 45%, #f6f8fc 45%, #f6f8fc 100%);
+      color: #f8fbff;
+      word-break: keep-all;
+    }
+    .noise::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.045;
+      background-image:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: radial-gradient(circle at center, black, transparent 75%);
+      z-index: 1;
+    }
+    .glass {
+      backdrop-filter: blur(20px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 20px 60px rgba(0,0,0,.24);
+    }
+    .report-card {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(145, 160, 189, 0.22);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+    }
+    .metric-card {
+      background: linear-gradient(180deg, rgba(16, 23, 42, 0.98), rgba(20, 29, 52, 0.96));
+      border: 1px solid rgba(159, 176, 208, 0.16);
+    }
+    .kicker {
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .page-break {
+      break-before: page;
+      page-break-before: always;
+    }
+    @media print {
+      :root { color-scheme: light; }
+      @page {
+        size: A4;
+        margin: 14mm;
+      }
+      html, body {
+        background: #ffffff !important;
+        color: #111827 !important;
+      }
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .noise::before,
+      .hide-on-print {
+        display: none !important;
+      }
+      .print-shell {
+        max-width: none !important;
+        padding: 0 !important;
+      }
+      .glass,
+      .report-card,
+      .metric-card {
+        box-shadow: none !important;
+      }
+      .glass {
+        background: #eef3fb !important;
+        color: #111827 !important;
+        border-color: #d8e0ee !important;
+      }
+      .metric-card {
+        background: #111827 !important;
+        color: #ffffff !important;
+      }
+      .report-card {
+        background: #ffffff !important;
+        border-color: #d6deea !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .print-ink,
+      .print-ink * {
+        color: #111827 !important;
+      }
+      .page-break-mobile {
+        break-before: page;
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body class="noise antialiased">
+  <div class="relative z-10">
+    <header class="hide-on-print sticky top-0 z-40 border-b border-white/10 bg-ink/70 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.24em] text-white/45">Premium Report System</p>
+          <p class="mt-1 text-sm text-white/75">{{ORG_NAME}} · {{REPORT_CATEGORY}}</p>
+        </div>
+        <nav class="hidden items-center gap-3 text-sm text-white/65 md:flex">
+          <a class="rounded-full border border-white/10 px-4 py-2 transition hover:border-white/20 hover:text-white" href="#overview">Overview</a>
+          <a class="rounded-full border border-white/10 px-4 py-2 transition hover:border-white/20 hover:text-white" href="#highlights">Highlights</a>
+          <a class="rounded-full border border-white/10 px-4 py-2 transition hover:border-white/20 hover:text-white" href="#insights">Insights</a>
+          <a class="rounded-full border border-white/10 px-4 py-2 transition hover:border-white/20 hover:text-white" href="#action-plan">Action Plan</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="min-h-[100dvh] px-4 pb-14 pt-10 sm:px-6 lg:px-8 lg:pb-20 lg:pt-12">
+        <div class="print-shell mx-auto max-w-7xl">
+          <div class="grid gap-6 lg:grid-cols-[1.35fr_0.65fr] lg:gap-8">
+            <article class="glass overflow-hidden rounded-[32px] p-7 sm:p-10 lg:p-12">
+              <div class="flex flex-wrap items-center gap-3 text-sm text-white/68">
+                <span class="rounded-full border border-white/15 px-3 py-1">{{REPORT_LABEL}}</span>
+                <span>{{REPORT_PERIOD}}</span>
+                <span>배포일 {{PUBLISH_DATE}}</span>
+              </div>
+              <div class="mt-8 max-w-4xl">
+                <p class="kicker text-xs font-semibold text-accent">{{REPORT_KICKER}}</p>
+                <h1 class="mt-4 break-keep text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
+                  {{REPORT_TITLE}}
+                </h1>
+                <p class="mt-6 max-w-2xl break-keep text-base leading-relaxed text-white/72 sm:text-lg">
+                  {{REPORT_SUMMARY}}
+                </p>
+              </div>
+              <div class="mt-10 grid gap-4 sm:grid-cols-3">
+                <div class="metric-card rounded-[24px] p-5">
+                  <p class="text-sm text-white/58">핵심 지표 A</p>
+                  <p class="mt-3 text-3xl font-bold text-white">{{METRIC_1_VALUE}}</p>
+                  <p class="mt-2 text-sm leading-relaxed text-white/58">{{METRIC_1_DESC}}</p>
+                </div>
+                <div class="metric-card rounded-[24px] p-5">
+                  <p class="text-sm text-white/58">핵심 지표 B</p>
+                  <p class="mt-3 text-3xl font-bold text-white">{{METRIC_2_VALUE}}</p>
+                  <p class="mt-2 text-sm leading-relaxed text-white/58">{{METRIC_2_DESC}}</p>
+                </div>
+                <div class="metric-card rounded-[24px] p-5">
+                  <p class="text-sm text-white/58">핵심 지표 C</p>
+                  <p class="mt-3 text-3xl font-bold text-white">{{METRIC_3_VALUE}}</p>
+                  <p class="mt-2 text-sm leading-relaxed text-white/58">{{METRIC_3_DESC}}</p>
+                </div>
+              </div>
+            </article>
+
+            <aside class="grid gap-6">
+              <div class="glass rounded-[32px] p-7">
+                <p class="text-xs font-semibold uppercase tracking-[0.24em] text-white/45">Prepared For</p>
+                <dl class="mt-5 space-y-4 text-sm text-white/72">
+                  <div>
+                    <dt class="text-white/48">고객 / 부서</dt>
+                    <dd class="mt-1 text-base font-semibold text-white">{{CLIENT_NAME}}</dd>
+                  </div>
+                  <div>
+                    <dt class="text-white/48">작성 책임자</dt>
+                    <dd class="mt-1 text-base font-semibold text-white">{{AUTHOR_NAME}}</dd>
+                  </div>
+                  <div>
+                    <dt class="text-white/48">문서 목적</dt>
+                    <dd class="mt-1 leading-relaxed">{{DOCUMENT_PURPOSE}}</dd>
+                  </div>
+                </dl>
+              </div>
+              <div class="glass rounded-[32px] p-7">
+                <div class="flex items-center gap-3">
+                  <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-xl text-accent">
+                    <iconify-icon icon="solar:file-text-bold"></iconify-icon>
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold text-white">읽는 순서</p>
+                    <p class="text-sm text-white/58">핵심 요약 → 하이라이트 → 인사이트 → 실행안</p>
+                  </div>
+                </div>
+                <ul class="mt-5 space-y-3 text-sm leading-relaxed text-white/68">
+                  <li>• 첫 페이지에 경영진용 핵심 지표를 배치합니다.</li>
+                  <li>• 카드 단위로 메시지를 나눠 PDF 변환 시에도 읽기 쉽습니다.</li>
+                  <li>• 프린트 시 장식 요소를 줄이고 페이지 분리를 안정화합니다.</li>
+                </ul>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="overview" class="px-4 pb-8 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl">
+          <div class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+            <div class="report-card rounded-[28px] p-7 sm:p-8 print-ink">
+              <p class="kicker text-xs font-semibold text-slate-500">Executive Overview</p>
+              <h2 class="mt-3 break-keep font-display text-3xl font-extrabold leading-tight text-slate-950">보고서 핵심 요약</h2>
+              <p class="mt-5 break-keep text-base leading-relaxed text-slate-600">
+                {{EXEC_SUMMARY}}
+              </p>
+              <div class="mt-6 grid gap-3 text-sm text-slate-700">
+                <div class="rounded-2xl bg-slate-50 px-4 py-4">{{SUMMARY_POINT_1}}</div>
+                <div class="rounded-2xl bg-slate-50 px-4 py-4">{{SUMMARY_POINT_2}}</div>
+                <div class="rounded-2xl bg-slate-50 px-4 py-4">{{SUMMARY_POINT_3}}</div>
+              </div>
+            </div>
+            <div class="grid gap-6 sm:grid-cols-2">
+              <article class="report-card rounded-[28px] p-7 print-ink">
+                <div class="flex items-center justify-between">
+                  <p class="text-sm font-semibold text-slate-500">성과</p>
+                  <iconify-icon class="text-2xl text-sky-500" icon="solar:chart-square-bold"></iconify-icon>
+                </div>
+                <p class="mt-5 text-3xl font-bold text-slate-950">{{PERFORMANCE_HEADLINE}}</p>
+                <p class="mt-3 text-sm leading-relaxed text-slate-600">{{PERFORMANCE_BODY}}</p>
+              </article>
+              <article class="report-card rounded-[28px] p-7 print-ink">
+                <div class="flex items-center justify-between">
+                  <p class="text-sm font-semibold text-slate-500">리스크</p>
+                  <iconify-icon class="text-2xl text-violet-500" icon="solar:shield-warning-bold"></iconify-icon>
+                </div>
+                <p class="mt-5 text-3xl font-bold text-slate-950">{{RISK_HEADLINE}}</p>
+                <p class="mt-3 text-sm leading-relaxed text-slate-600">{{RISK_BODY}}</p>
+              </article>
+              <article class="report-card rounded-[28px] p-7 print-ink sm:col-span-2">
+                <p class="text-sm font-semibold text-slate-500">결론</p>
+                <p class="mt-4 break-keep text-lg font-semibold leading-relaxed text-slate-900">{{CONCLUSION_STATEMENT}}</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="highlights" class="px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <div class="mx-auto max-w-7xl">
+          <div class="mb-6 flex items-end justify-between gap-4">
+            <div class="print-ink">
+              <p class="kicker text-xs font-semibold text-slate-500">Highlights</p>
+              <h2 class="mt-3 break-keep font-display text-3xl font-extrabold leading-tight text-slate-950">카드형 하이라이트 섹션</h2>
+            </div>
+            <p class="hidden max-w-xl text-right text-sm leading-relaxed text-slate-500 lg:block">서로 다른 정보 레이어를 한 화면에서 읽기 쉽도록 배치하는 기본 패턴입니다.</p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+            <article class="report-card rounded-[28px] p-7 sm:p-8 print-ink">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <p class="text-sm font-semibold text-slate-500">핵심 인사이트</p>
+                  <h3 class="mt-2 text-2xl font-bold text-slate-950">{{HIGHLIGHT_MAIN_TITLE}}</h3>
+                </div>
+                <span class="rounded-full bg-slate-950 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white">{{HIGHLIGHT_BADGE}}</span>
+              </div>
+              <p class="mt-5 break-keep text-base leading-relaxed text-slate-600">{{HIGHLIGHT_MAIN_BODY}}</p>
+              <div class="mt-8 grid gap-4 sm:grid-cols-3">
+                <div class="rounded-3xl bg-slate-50 p-5">
+                  <p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">01</p>
+                  <p class="mt-4 text-xl font-bold text-slate-950">{{HIGHLIGHT_1_TITLE}}</p>
+                  <p class="mt-2 text-sm leading-relaxed text-slate-600">{{HIGHLIGHT_1_BODY}}</p>
+                </div>
+                <div class="rounded-3xl bg-slate-50 p-5">
+                  <p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">02</p>
+                  <p class="mt-4 text-xl font-bold text-slate-950">{{HIGHLIGHT_2_TITLE}}</p>
+                  <p class="mt-2 text-sm leading-relaxed text-slate-600">{{HIGHLIGHT_2_BODY}}</p>
+                </div>
+                <div class="rounded-3xl bg-slate-50 p-5">
+                  <p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">03</p>
+                  <p class="mt-4 text-xl font-bold text-slate-950">{{HIGHLIGHT_3_TITLE}}</p>
+                  <p class="mt-2 text-sm leading-relaxed text-slate-600">{{HIGHLIGHT_3_BODY}}</p>
+                </div>
+              </div>
+            </article>
+            <aside class="grid gap-6">
+              <article class="report-card rounded-[28px] p-7 print-ink">
+                <p class="text-sm font-semibold text-slate-500">관측 포인트</p>
+                <ul class="mt-5 space-y-4 text-sm leading-relaxed text-slate-700">
+                  <li>• {{OBSERVATION_1}}</li>
+                  <li>• {{OBSERVATION_2}}</li>
+                  <li>• {{OBSERVATION_3}}</li>
+                </ul>
+              </article>
+              <article class="report-card rounded-[28px] p-7 print-ink">
+                <p class="text-sm font-semibold text-slate-500">인용 / 코멘트</p>
+                <blockquote class="mt-4 break-keep text-lg font-semibold leading-relaxed text-slate-900">“{{QUOTE_TEXT}}”</blockquote>
+                <p class="mt-4 text-sm text-slate-500">{{QUOTE_ATTRIBUTION}}</p>
+              </article>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="insights" class="page-break-mobile px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <div class="mx-auto max-w-7xl">
+          <div class="grid gap-6 lg:grid-cols-3">
+            <article class="report-card rounded-[28px] p-7 print-ink lg:col-span-2">
+              <p class="kicker text-xs font-semibold text-slate-500">Deep Dive</p>
+              <h2 class="mt-3 break-keep font-display text-3xl font-extrabold leading-tight text-slate-950">세부 분석</h2>
+              <div class="mt-7 space-y-6">
+                <div class="rounded-3xl bg-slate-50 p-6">
+                  <p class="text-sm font-semibold text-slate-500">분석 축 A</p>
+                  <p class="mt-3 break-keep text-lg font-semibold text-slate-900">{{ANALYSIS_A_TITLE}}</p>
+                  <p class="mt-3 text-sm leading-relaxed text-slate-600">{{ANALYSIS_A_BODY}}</p>
+                </div>
+                <div class="rounded-3xl bg-slate-50 p-6">
+                  <p class="text-sm font-semibold text-slate-500">분석 축 B</p>
+                  <p class="mt-3 break-keep text-lg font-semibold text-slate-900">{{ANALYSIS_B_TITLE}}</p>
+                  <p class="mt-3 text-sm leading-relaxed text-slate-600">{{ANALYSIS_B_BODY}}</p>
+                </div>
+              </div>
+            </article>
+            <article class="report-card rounded-[28px] p-7 print-ink">
+              <p class="text-sm font-semibold text-slate-500">Priority Matrix</p>
+              <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
+                <div class="rounded-3xl bg-emerald-50 p-4 text-emerald-900">
+                  <p class="font-semibold">즉시 실행</p>
+                  <p class="mt-2 leading-relaxed">{{PRIORITY_1}}</p>
+                </div>
+                <div class="rounded-3xl bg-amber-50 p-4 text-amber-900">
+                  <p class="font-semibold">검증 필요</p>
+                  <p class="mt-2 leading-relaxed">{{PRIORITY_2}}</p>
+                </div>
+                <div class="rounded-3xl bg-sky-50 p-4 text-sky-900">
+                  <p class="font-semibold">중기 과제</p>
+                  <p class="mt-2 leading-relaxed">{{PRIORITY_3}}</p>
+                </div>
+                <div class="rounded-3xl bg-rose-50 p-4 text-rose-900">
+                  <p class="font-semibold">리스크 대응</p>
+                  <p class="mt-2 leading-relaxed">{{PRIORITY_4}}</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="action-plan" class="px-4 py-8 pb-16 sm:px-6 lg:px-8 lg:py-10 lg:pb-24">
+        <div class="mx-auto max-w-7xl">
+          <div class="report-card rounded-[32px] overflow-hidden print-ink">
+            <div class="grid lg:grid-cols-[0.9fr_1.1fr]">
+              <div class="bg-slate-950 px-7 py-8 text-white sm:px-9 sm:py-10">
+                <p class="kicker text-xs font-semibold text-sky-300">Action Plan</p>
+                <h2 class="mt-3 break-keep font-display text-3xl font-extrabold leading-tight">다음 분기 실행안</h2>
+                <p class="mt-5 break-keep text-base leading-relaxed text-white/72">{{ACTION_PLAN_SUMMARY}}</p>
+              </div>
+              <div class="grid gap-px bg-slate-200 sm:grid-cols-3">
+                <div class="bg-white p-6">
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Phase 01</p>
+                  <p class="mt-4 text-xl font-bold text-slate-950">{{ACTION_1_TITLE}}</p>
+                  <p class="mt-3 text-sm leading-relaxed text-slate-600">{{ACTION_1_BODY}}</p>
+                </div>
+                <div class="bg-white p-6">
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Phase 02</p>
+                  <p class="mt-4 text-xl font-bold text-slate-950">{{ACTION_2_TITLE}}</p>
+                  <p class="mt-3 text-sm leading-relaxed text-slate-600">{{ACTION_2_BODY}}</p>
+                </div>
+                <div class="bg-white p-6">
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Phase 03</p>
+                  <p class="mt-4 text-xl font-bold text-slate-950">{{ACTION_3_TITLE}}</p>
+                  <p class="mt-3 text-sm leading-relaxed text-slate-600">{{ACTION_3_BODY}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
