@@ -1,0 +1,32 @@
+{
+  "round": 40,
+  "timestamp": "2026-03-01T11:25:19.676Z",
+  "filesEvaluated": 1,
+  "average": 9.2,
+  "minScore": 9.2,
+  "gate": "SHIP",
+  "results": [
+    {
+      "file": "executive-summary-retest.html",
+      "format": "dashboard",
+      "layer2Score": 92,
+      "layer3Score": null,
+      "overall": 9.2,
+      "failedChecks": [
+        {
+          "name": "font-size-hierarchy",
+          "message": "Clear font-size hierarchy: h1 > h2 > h3 > body"
+        },
+        {
+          "name": "no-overflow-375",
+          "message": "No horizontal overflow at 375px viewport width (mobile)"
+        },
+        {
+          "name": "card-padding",
+          "message": "Card elements have sufficient padding (>= 24px)"
+        }
+      ],
+      "consoleErrors": []
+    }
+  ]
+}

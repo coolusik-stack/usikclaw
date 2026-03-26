@@ -1,0 +1,28 @@
+{
+  "round": 48,
+  "timestamp": "2026-03-03T08:14:46.987Z",
+  "filesEvaluated": 1,
+  "average": 9.4,
+  "minScore": 9.4,
+  "gate": "SHIP",
+  "results": [
+    {
+      "file": "customer-acquisition-dashboard-v2.html",
+      "format": "dashboard",
+      "layer2Score": 94,
+      "layer3Score": null,
+      "overall": 9.4,
+      "failedChecks": [
+        {
+          "name": "no-overflow-768",
+          "message": "No horizontal overflow at 768px viewport width (tablet)"
+        },
+        {
+          "name": "no-overflow-375",
+          "message": "No horizontal overflow at 375px viewport width (mobile)"
+        }
+      ],
+      "consoleErrors": []
+    }
+  ]
+}

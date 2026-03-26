@@ -1,0 +1,24 @@
+{
+  "round": 46,
+  "timestamp": "2026-03-02T14:11:51.082Z",
+  "filesEvaluated": 1,
+  "average": 9.7,
+  "minScore": 9.7,
+  "gate": "VIRAL",
+  "results": [
+    {
+      "file": "hospital-diagnosis-dashboard-v2.html",
+      "format": "dashboard",
+      "layer2Score": 97,
+      "layer3Score": null,
+      "overall": 9.7,
+      "failedChecks": [
+        {
+          "name": "no-overflow-375",
+          "message": "No horizontal overflow at 375px viewport width (mobile)"
+        }
+      ],
+      "consoleErrors": []
+    }
+  ]
+}

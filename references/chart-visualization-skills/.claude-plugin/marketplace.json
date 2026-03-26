@@ -1,0 +1,58 @@
+{
+  "name": "visualization-skills",
+  "owner": {
+    "name": "AntV Visualization Team",
+    "email": "pub_antv@antgroup.com"
+  },
+  "metadata": {
+    "description": "Data visualization skills",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "chart-visualization",
+      "description": "A comprehensive chart generation skill powered by AntV that provides 26+ chart types for intelligent data visualization",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/chart-visualization"
+      ]
+    },
+    {
+      "name": "infographic-creator",
+      "description": "Create beautiful infographics based on given text content. Use when users request to create infographics.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/infographic-creator"
+      ]
+    },
+    {
+      "name": "icon-retrieval",
+      "description": "Search and retrieve icon SVG strings from AntV's infographic icon library. Returns top 5 matches by default, allowing customization.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/icon-retrieval"
+      ]
+    },
+    {
+      "name": "narrative-text-visualization",
+      "description": "Generate structured narrative text visualizations from data using T8 Syntax. Creates data interpretation reports with semantic entity annotations using a declarative Markdown-like language.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/narrative-text-visualization"
+      ]
+    },
+    {
+      "name": "antv-s2-expert",
+      "description": "S2 multi-dimensional cross-analysis table development assistant. Use when users need help with S2 pivot tables, table sheets, or any @antv/s2 related development.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/antv-s2-expert"
+      ]
+    }
+  ]
+}

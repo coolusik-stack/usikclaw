@@ -1,0 +1,19 @@
+{
+  "round": 45,
+  "timestamp": "2026-03-02T08:12:33.417Z",
+  "filesEvaluated": 1,
+  "average": 10,
+  "minScore": 10,
+  "gate": "VIRAL",
+  "results": [
+    {
+      "file": "developer-salary-dashboard-v2.html",
+      "format": "dashboard",
+      "layer2Score": 100,
+      "layer3Score": null,
+      "overall": 10,
+      "failedChecks": [],
+      "consoleErrors": []
+    }
+  ]
+}

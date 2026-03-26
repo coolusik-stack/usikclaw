@@ -1,0 +1,168 @@
+{
+  "round": 57,
+  "timestamp": "2026-03-06T02:06:09.525Z",
+  "filesEvaluated": 3,
+  "average": 7.6,
+  "minScore": 7,
+  "gate": "NEEDS WORK",
+  "results": [
+    {
+      "file": "fashion-brand-performance-infographic.html",
+      "format": "infographic",
+      "layer2Score": 80,
+      "layer3Score": null,
+      "overall": 8,
+      "failedChecks": [
+        {
+          "name": "theme-light-defined",
+          "message": ".theme-light class defined in stylesheet"
+        },
+        {
+          "name": "css-custom-properties",
+          "message": "CSS custom properties defined (--bg, --surface, --text, --accent, --border)"
+        },
+        {
+          "name": "menu-element-exists",
+          "message": ".viz-menu element exists in DOM"
+        },
+        {
+          "name": "menu-toggle-exists",
+          "message": ".viz-menu-toggle button exists"
+        },
+        {
+          "name": "download-button-present",
+          "message": "Download PNG button present in menu"
+        },
+        {
+          "name": "print-button-present",
+          "message": "Print/PDF button present in menu"
+        },
+        {
+          "name": "html-to-image-loaded",
+          "message": "html-to-image CDN script loaded"
+        },
+        {
+          "name": "menu-opens-on-click",
+          "message": "Menu dropdown opens when toggle is clicked"
+        },
+        {
+          "name": "print-styles",
+          "message": "@media print styles defined in stylesheet"
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "file": "fw-strategy-presentation.html",
+      "format": "slide-deck",
+      "layer2Score": 78,
+      "layer3Score": null,
+      "overall": 7.8,
+      "failedChecks": [
+        {
+          "name": "theme-light-defined",
+          "message": ".theme-light class defined in stylesheet"
+        },
+        {
+          "name": "css-custom-properties",
+          "message": "CSS custom properties defined (--bg, --surface, --text, --accent, --border)"
+        },
+        {
+          "name": "menu-element-exists",
+          "message": ".viz-menu element exists in DOM"
+        },
+        {
+          "name": "menu-toggle-exists",
+          "message": ".viz-menu-toggle button exists"
+        },
+        {
+          "name": "download-button-present",
+          "message": "Download PNG button present in menu"
+        },
+        {
+          "name": "print-button-present",
+          "message": "Print/PDF button present in menu"
+        },
+        {
+          "name": "html-to-image-loaded",
+          "message": "html-to-image CDN script loaded"
+        },
+        {
+          "name": "menu-opens-on-click",
+          "message": "Menu dropdown opens when toggle is clicked"
+        },
+        {
+          "name": "print-styles",
+          "message": "@media print styles defined in stylesheet"
+        },
+        {
+          "name": "entrance-animations",
+          "message": "Entrance animations present (.animate classes, data-reveal, or @keyframes)"
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "file": "shinsegae-ss26-dashboard.html",
+      "format": "dashboard",
+      "layer2Score": 70,
+      "layer3Score": null,
+      "overall": 7,
+      "failedChecks": [
+        {
+          "name": "theme-light-defined",
+          "message": ".theme-light class defined in stylesheet"
+        },
+        {
+          "name": "css-custom-properties",
+          "message": "CSS custom properties defined (--bg, --surface, --text, --accent, --border)"
+        },
+        {
+          "name": "menu-element-exists",
+          "message": ".viz-menu element exists in DOM"
+        },
+        {
+          "name": "menu-toggle-exists",
+          "message": ".viz-menu-toggle button exists"
+        },
+        {
+          "name": "download-button-present",
+          "message": "Download PNG button present in menu"
+        },
+        {
+          "name": "print-button-present",
+          "message": "Print/PDF button present in menu"
+        },
+        {
+          "name": "html-to-image-loaded",
+          "message": "html-to-image CDN script loaded"
+        },
+        {
+          "name": "menu-opens-on-click",
+          "message": "Menu dropdown opens when toggle is clicked"
+        },
+        {
+          "name": "no-overflow-768",
+          "message": "No horizontal overflow at 768px viewport width (tablet)"
+        },
+        {
+          "name": "no-overflow-375",
+          "message": "No horizontal overflow at 375px viewport width (mobile)"
+        },
+        {
+          "name": "print-styles",
+          "message": "@media print styles defined in stylesheet"
+        },
+        {
+          "name": "chart-animation-disabled",
+          "message": "Chart.defaults.animation is false"
+        },
+        {
+          "name": "entrance-animations",
+          "message": "Entrance animations present (.animate classes, data-reveal, or @keyframes)"
+        }
+      ],
+      "consoleErrors": []
+    }
+  ]
+}

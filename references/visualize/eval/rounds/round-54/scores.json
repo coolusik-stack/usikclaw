@@ -1,0 +1,126 @@
+{
+  "round": 54,
+  "timestamp": "2026-03-05T02:09:47.326Z",
+  "filesEvaluated": 3,
+  "average": 8.77,
+  "minScore": 8.3,
+  "gate": "ACCEPTABLE",
+  "results": [
+    {
+      "file": "fintech-competition-timeline.html",
+      "format": "timeline",
+      "layer2Score": 92,
+      "layer3Score": null,
+      "overall": 9.2,
+      "failedChecks": [
+        {
+          "name": "theme-light-defined",
+          "message": ".theme-light class defined in stylesheet"
+        },
+        {
+          "name": "html-to-image-loaded",
+          "message": "html-to-image CDN script loaded"
+        },
+        {
+          "name": "section-spacing",
+          "message": "Adequate spacing between major sections (>= 48px)"
+        },
+        {
+          "name": "semantic-sections",
+          "message": "Semantic HTML: <section> elements are used"
+        }
+      ],
+      "consoleErrors": []
+    },
+    {
+      "file": "toss-expansion-presentation.html",
+      "format": "slide-deck",
+      "layer2Score": 83,
+      "layer3Score": null,
+      "overall": 8.3,
+      "failedChecks": [
+        {
+          "name": "theme-light-defined",
+          "message": ".theme-light class defined in stylesheet"
+        },
+        {
+          "name": "html-to-image-loaded",
+          "message": "html-to-image CDN script loaded"
+        },
+        {
+          "name": "section-spacing",
+          "message": "Adequate spacing between major sections (>= 48px)"
+        },
+        {
+          "name": "semantic-sections",
+          "message": "Semantic HTML: <section> elements are used"
+        },
+        {
+          "name": "chart-animation-disabled",
+          "message": "Chart.defaults.animation is false"
+        },
+        {
+          "name": "chart-tooltips-enabled",
+          "message": "Chart tooltips are not disabled"
+        },
+        {
+          "name": "chart-container-dimensions",
+          "message": "Chart container has explicit dimensions (height >= 300px)"
+        },
+        {
+          "name": "chart-maintain-aspect-ratio",
+          "message": "maintainAspectRatio is false on chart instances"
+        },
+        {
+          "name": "chart-theme-colors",
+          "message": "Charts use theme-aware colors"
+        }
+      ],
+      "consoleErrors": [
+        "Cannot use import statement outside a module",
+        "Chart is not defined",
+        "Cannot use import statement outside a module",
+        "Chart is not defined"
+      ]
+    },
+    {
+      "file": "toss-payment-funnel-dashboard.html",
+      "format": "dashboard",
+      "layer2Score": 88,
+      "layer3Score": null,
+      "overall": 8.8,
+      "failedChecks": [
+        {
+          "name": "theme-light-defined",
+          "message": ".theme-light class defined in stylesheet"
+        },
+        {
+          "name": "html-to-image-loaded",
+          "message": "html-to-image CDN script loaded"
+        },
+        {
+          "name": "chart-animation-disabled",
+          "message": "Chart.defaults.animation is false"
+        },
+        {
+          "name": "chart-tooltips-enabled",
+          "message": "Chart tooltips are not disabled"
+        },
+        {
+          "name": "chart-maintain-aspect-ratio",
+          "message": "maintainAspectRatio is false on chart instances"
+        },
+        {
+          "name": "chart-theme-colors",
+          "message": "Charts use theme-aware colors"
+        }
+      ],
+      "consoleErrors": [
+        "Cannot use import statement outside a module",
+        "Chart is not defined",
+        "Cannot use import statement outside a module",
+        "Chart is not defined"
+      ]
+    }
+  ]
+}

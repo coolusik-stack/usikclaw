@@ -1,0 +1,93 @@
+{
+  "round": 55,
+  "timestamp": "2026-03-05T08:07:48.552Z",
+  "filesEvaluated": 3,
+  "average": 9.27,
+  "minScore": 8.8,
+  "gate": "SHIP",
+  "results": [
+    {
+      "file": "kaist-ai-performance-dashboard.html",
+      "format": "dashboard",
+      "layer2Score": 90,
+      "layer3Score": null,
+      "overall": 9,
+      "failedChecks": [
+        {
+          "name": "chart-accessibility",
+          "message": "Charts have role=\"img\" and aria-label"
+        },
+        {
+          "name": "chart-animation-disabled",
+          "message": "Chart.defaults.animation is false"
+        },
+        {
+          "name": "chart-tooltips-enabled",
+          "message": "Chart tooltips are not disabled"
+        },
+        {
+          "name": "chart-maintain-aspect-ratio",
+          "message": "maintainAspectRatio is false on chart instances"
+        },
+        {
+          "name": "chart-theme-colors",
+          "message": "Charts use theme-aware colors"
+        }
+      ],
+      "consoleErrors": [
+        "Cannot use import statement outside a module",
+        "Chart is not defined",
+        "Cannot use import statement outside a module",
+        "Chart is not defined"
+      ]
+    },
+    {
+      "file": "korea-ai-roadmap-timeline.html",
+      "format": "infographic",
+      "layer2Score": 100,
+      "layer3Score": null,
+      "overall": 10,
+      "failedChecks": [],
+      "consoleErrors": []
+    },
+    {
+      "file": "parliament-ai-briefing-slides.html",
+      "format": "infographic",
+      "layer2Score": 88,
+      "layer3Score": null,
+      "overall": 8.8,
+      "failedChecks": [
+        {
+          "name": "font-size-hierarchy",
+          "message": "Clear font-size hierarchy: h1 > h2 > h3 > body"
+        },
+        {
+          "name": "chart-accessibility",
+          "message": "Charts have role=\"img\" and aria-label"
+        },
+        {
+          "name": "chart-animation-disabled",
+          "message": "Chart.defaults.animation is false"
+        },
+        {
+          "name": "chart-tooltips-enabled",
+          "message": "Chart tooltips are not disabled"
+        },
+        {
+          "name": "chart-maintain-aspect-ratio",
+          "message": "maintainAspectRatio is false on chart instances"
+        },
+        {
+          "name": "chart-theme-colors",
+          "message": "Charts use theme-aware colors"
+        }
+      ],
+      "consoleErrors": [
+        "Cannot use import statement outside a module",
+        "Chart is not defined",
+        "Cannot use import statement outside a module",
+        "Chart is not defined"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "round": 47,
+  "timestamp": "2026-03-02T20:15:02.277Z",
+  "filesEvaluated": 1,
+  "average": 9.4,
+  "minScore": 9.4,
+  "gate": "SHIP",
+  "results": [
+    {
+      "file": "investor-presentation-slides-v2.html",
+      "format": "dashboard",
+      "layer2Score": 94,
+      "layer3Score": null,
+      "overall": 9.4,
+      "failedChecks": [
+        {
+          "name": "chart-container-dimensions",
+          "message": "Chart container has explicit dimensions (height >= 300px)"
+        },
+        {
+          "name": "chart-maintain-aspect-ratio",
+          "message": "maintainAspectRatio is false on chart instances"
+        },
+        {
+          "name": "chart-theme-colors",
+          "message": "Charts use theme-aware colors"
+        }
+      ],
+      "consoleErrors": []
+    }
+  ]
+}

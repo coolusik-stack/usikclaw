@@ -1,0 +1,40 @@
+{
+  "round": 41,
+  "timestamp": "2026-03-01T14:25:10.374Z",
+  "filesEvaluated": 1,
+  "average": 8.8,
+  "minScore": 8.8,
+  "gate": "ACCEPTABLE",
+  "results": [
+    {
+      "file": "player-engagement-dashboard-v2.html",
+      "format": "dashboard",
+      "layer2Score": 88,
+      "layer3Score": null,
+      "overall": 8.8,
+      "failedChecks": [
+        {
+          "name": "font-size-hierarchy",
+          "message": "Clear font-size hierarchy: h1 > h2 > h3 > body"
+        },
+        {
+          "name": "no-overflow-768",
+          "message": "No horizontal overflow at 768px viewport width (tablet)"
+        },
+        {
+          "name": "no-overflow-375",
+          "message": "No horizontal overflow at 375px viewport width (mobile)"
+        },
+        {
+          "name": "card-padding",
+          "message": "Card elements have sufficient padding (>= 24px)"
+        },
+        {
+          "name": "chart-container-dimensions",
+          "message": "Chart container has explicit dimensions (height >= 300px)"
+        }
+      ],
+      "consoleErrors": []
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "round": 42,
+  "timestamp": "2026-03-01T21:19:25.543Z",
+  "filesEvaluated": 1,
+  "average": 9.3,
+  "minScore": 9.3,
+  "gate": "SHIP",
+  "results": [
+    {
+      "file": "expansion-plan-infographic-v2.html",
+      "format": "timeline",
+      "layer2Score": 93,
+      "layer3Score": null,
+      "overall": 9.3,
+      "failedChecks": [
+        {
+          "name": "theme-toggle-works",
+          "message": "Theme toggle changes html class"
+        },
+        {
+          "name": "menu-opens-on-click",
+          "message": "Menu dropdown opens when toggle is clicked"
+        },
+        {
+          "name": "top-level-var-only",
+          "message": "Top-level JS uses var (no let/const at top scope)"
+        }
+      ],
+      "consoleErrors": []
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "round": 58,
+  "timestamp": "2026-03-06T08:11:58.561Z",
+  "filesEvaluated": 1,
+  "average": 8.7,
+  "minScore": 8.7,
+  "gate": "ACCEPTABLE",
+  "results": [
+    {
+      "file": "fintech-growth-dashboard-v2.html",
+      "format": "dashboard",
+      "layer2Score": 87,
+      "layer3Score": null,
+      "overall": 8.7,
+      "failedChecks": [
+        {
+          "name": "font-size-hierarchy",
+          "message": "Clear font-size hierarchy: h1 > h2 > h3 > body"
+        },
+        {
+          "name": "chart-animation-disabled",
+          "message": "Chart.defaults.animation is false"
+        },
+        {
+          "name": "chart-tooltips-enabled",
+          "message": "Chart tooltips are not disabled"
+        },
+        {
+          "name": "chart-maintain-aspect-ratio",
+          "message": "maintainAspectRatio is false on chart instances"
+        },
+        {
+          "name": "chart-theme-colors",
+          "message": "Charts use theme-aware colors"
+        },
+        {
+          "name": "zero-console-errors",
+          "message": "Zero console errors on page load"
+        }
+      ],
+      "consoleErrors": [
+        "Cannot use import statement outside a module",
+        "Chart is not defined",
+        "Chart.js not loaded",
+        "Chart.js not loaded",
+        "Chart.js not loaded",
+        "Chart.js not loaded",
+        "Cannot use import statement outside a module",
+        "Chart is not defined",
+        "Chart.js not loaded",
+        "Chart.js not loaded",
+        "Chart.js not loaded",
+        "Chart.js not loaded",
+        "Chart.js not loaded",
+        "Chart.js not loaded"
+      ]
+    }
+  ]
+}

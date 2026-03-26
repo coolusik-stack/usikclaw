@@ -1,0 +1,36 @@
+{
+  "round": 44,
+  "timestamp": "2026-03-02T02:12:00.467Z",
+  "filesEvaluated": 1,
+  "average": 8.9,
+  "minScore": 8.9,
+  "gate": "ACCEPTABLE",
+  "results": [
+    {
+      "file": "samsung-brand-analysis-dashboard-v2.html",
+      "format": "dashboard",
+      "layer2Score": 89,
+      "layer3Score": null,
+      "overall": 8.9,
+      "failedChecks": [
+        {
+          "name": "theme-light-defined",
+          "message": ".theme-light class defined in stylesheet"
+        },
+        {
+          "name": "theme-toggle-works",
+          "message": "Theme toggle changes html class"
+        },
+        {
+          "name": "menu-opens-on-click",
+          "message": "Menu dropdown opens when toggle is clicked"
+        },
+        {
+          "name": "no-overflow-375",
+          "message": "No horizontal overflow at 375px viewport width (mobile)"
+        }
+      ],
+      "consoleErrors": []
+    }
+  ]
+}

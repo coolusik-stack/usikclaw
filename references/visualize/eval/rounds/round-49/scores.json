@@ -1,0 +1,24 @@
+{
+  "round": 49,
+  "timestamp": "2026-03-03T20:11:35.958Z",
+  "filesEvaluated": 1,
+  "average": 9.8,
+  "minScore": 9.8,
+  "gate": "VIRAL",
+  "results": [
+    {
+      "file": "executive-presentation-v2.html",
+      "format": "slide-deck",
+      "layer2Score": 98,
+      "layer3Score": null,
+      "overall": 9.8,
+      "failedChecks": [
+        {
+          "name": "chart-container-dimensions",
+          "message": "Chart container has explicit dimensions (height >= 300px)"
+        }
+      ],
+      "consoleErrors": []
+    }
+  ]
+}

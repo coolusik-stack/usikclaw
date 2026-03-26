@@ -1,0 +1,25 @@
+{
+  "name": "careerhackeralex",
+  "owner": {
+    "name": "Career Hacker Alex",
+    "email": "careerhackeralex@gmail.com"
+  },
+  "metadata": {
+    "description": "Visualization skills for Claude Code",
+    "version": "0.4.0"
+  },
+  "plugins": [
+    {
+      "name": "visualize",
+      "source": "./",
+      "description": "Create beautiful, self-contained HTML visualizations from any content or idea. Slide decks, dashboards, infographics, flowcharts, timelines, and more.",
+      "version": "0.4.0",
+      "author": {
+        "name": "Career Hacker Alex"
+      },
+      "license": "MIT",
+      "keywords": ["visualization", "html", "slides", "dashboard", "infographic", "design"],
+      "category": "document-creation"
+    }
+  ]
+}

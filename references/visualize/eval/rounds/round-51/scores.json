@@ -1,0 +1,59 @@
+{
+  "round": 51,
+  "timestamp": "2026-03-04T08:15:19.602Z",
+  "filesEvaluated": 1,
+  "average": 8.3,
+  "minScore": 8.3,
+  "gate": "ACCEPTABLE",
+  "results": [
+    {
+      "file": "clinical-trial-dashboard-v2.html",
+      "format": "dashboard",
+      "layer2Score": 83,
+      "layer3Score": null,
+      "overall": 8.3,
+      "failedChecks": [
+        {
+          "name": "no-overflow-375",
+          "message": "No horizontal overflow at 375px viewport width (mobile)"
+        },
+        {
+          "name": "section-spacing",
+          "message": "Adequate spacing between major sections (>= 48px)"
+        },
+        {
+          "name": "card-padding",
+          "message": "Card elements have sufficient padding (>= 24px)"
+        },
+        {
+          "name": "chart-animation-disabled",
+          "message": "Chart.defaults.animation is false"
+        },
+        {
+          "name": "chart-tooltips-enabled",
+          "message": "Chart tooltips are not disabled"
+        },
+        {
+          "name": "chart-maintain-aspect-ratio",
+          "message": "maintainAspectRatio is false on chart instances"
+        },
+        {
+          "name": "chart-theme-colors",
+          "message": "Charts use theme-aware colors"
+        },
+        {
+          "name": "zero-console-errors",
+          "message": "Zero console errors on page load"
+        }
+      ],
+      "consoleErrors": [
+        "Cannot use import statement outside a module",
+        "Chart.js not loaded - check CDN link in <head>",
+        "Chart.js not available",
+        "Cannot use import statement outside a module",
+        "Chart.js not loaded - check CDN link in <head>",
+        "Chart.js not available"
+      ]
+    }
+  ]
+}
