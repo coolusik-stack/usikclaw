@@ -9,20 +9,20 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0a0a0f;
-    --surface: #13131c;
-    --surface-2: #1a1a28;
-    --surface-3: #202030;
-    --border: rgba(255,255,255,0.06);
-    --text: #e8e8f2;
-    --text-muted: #72728a;
-    --text-dim: #9898b8;
-    --accent: #7c6af7;
-    --accent-glow: rgba(124,106,247,0.15);
-    --accent-2: #4fcfa8;
-    --insight-bg: rgba(124,106,247,0.07);
-    --insight-border: #7c6af7;
-    --tag-bg: rgba(255,255,255,0.06);
+    --bg: #f8f9fc;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+    --text: #111827;
+    --text-body: #374151;
+    --text-muted: #6b7280;
+    --accent: #f97316;
+    --accent-violet: #7c3aed;
+    --navy: #0f172a;
+    --navy-2: #1a1f3a;
+    --insight-bg: #eff6ff;
+    --insight-border: #3b82f6;
+    --shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-hover: 0 4px 12px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.08);
   }
 
   html { scroll-behavior: smooth; }
@@ -38,46 +38,46 @@
 
   /* ── Header ── */
   .hero {
-    position: relative;
-    padding: 72px 24px 56px;
+    background: var(--navy);
+    padding: 64px 24px 52px;
     text-align: center;
-    background: linear-gradient(180deg, #0f0f1e 0%, #0a0a0f 100%);
+    position: relative;
     overflow: hidden;
   }
-  .hero::before {
+  .hero::after {
     content: '';
     position: absolute;
-    top: -80px; left: 50%;
-    transform: translateX(-50%);
-    width: 600px; height: 300px;
-    background: radial-gradient(ellipse, rgba(124,106,247,0.12) 0%, transparent 70%);
-    pointer-events: none;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-violet), var(--accent), var(--accent-violet));
   }
   .hero-eyebrow {
-    font-size: 11px;
-    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 18px;
-    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 16px;
   }
   .hero-title {
-    font-size: clamp(26px, 5vw, 38px);
+    font-size: clamp(28px, 5vw, 40px);
     font-weight: 800;
-    color: #fff;
+    color: #ffffff;
     letter-spacing: -0.5px;
+    line-height: 1.2;
   }
   .hero-title span { color: var(--accent); }
   .hero-date {
-    margin-top: 12px;
-    font-size: 14px;
-    color: var(--text-muted);
+    margin-top: 10px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
     font-weight: 400;
+    letter-spacing: 0.5px;
   }
   .hero-divider {
-    margin: 32px auto 0;
-    width: 48px; height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    margin: 28px auto 0;
+    width: 40px; height: 2px;
+    background: var(--accent);
     border-radius: 2px;
   }
 
@@ -89,33 +89,37 @@
   }
 
   /* ── Section ── */
-  .section { margin-bottom: 56px; }
+  .section { margin-bottom: 60px; }
   .section-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 24px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
+    margin-bottom: 28px;
   }
   .section-icon { font-size: 22px; }
   .section-title {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--text-muted);
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+  .section-header::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--border);
+    margin-left: 8px;
   }
 
   /* ── Source Group ── */
   .source-group { margin-bottom: 32px; }
   .source-label {
     font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--accent-2);
-    margin-bottom: 12px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
     padding-left: 2px;
   }
 
@@ -123,136 +127,149 @@
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 24px;
     margin-bottom: 14px;
-    transition: border-color 0.2s, transform 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s, transform 0.2s;
   }
   .card:hover {
-    border-color: rgba(124,106,247,0.3);
-    transform: translateY(-1px);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
   }
 
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
+  .card-top {
     margin-bottom: 10px;
   }
-  .card-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.4;
-    letter-spacing: -0.2px;
-  }
   .card-tag {
-    flex-shrink: 0;
+    display: inline-block;
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--text-muted);
-    background: var(--tag-bg);
-    border: 1px solid var(--border);
-    padding: 3px 8px;
+    padding: 3px 9px;
     border-radius: 20px;
-    margin-top: 2px;
+    margin-bottom: 10px;
+  }
+  /* Tag color variants */
+  .tag-anthropic {
+    background: #f3e8ff;
+    color: #6d28d9;
+  }
+  .tag-openai {
+    background: #dcfce7;
+    color: #15803d;
+  }
+  .tag-newsletter {
+    background: #fff7ed;
+    color: #c2410c;
+  }
+  .tag-youtube {
+    background: #fee2e2;
+    color: #b91c1c;
+  }
+  .tag-chamath {
+    background: #fef3c7;
+    color: #b45309;
+  }
+  .tag-date {
+    background: #f1f5f9;
+    color: #475569;
   }
 
+  .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.4;
+    letter-spacing: -0.2px;
+    margin-bottom: 10px;
+  }
   .card-body {
     font-size: 14px;
-    color: var(--text-dim);
-    line-height: 1.75;
+    color: var(--text-body);
+    line-height: 1.8;
     margin-bottom: 14px;
   }
+  .card-body:last-child { margin-bottom: 0; }
 
   .insight {
     background: var(--insight-bg);
     border-left: 3px solid var(--insight-border);
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 8px 8px 0;
     padding: 12px 14px;
-    font-size: 13px;
-    color: var(--text-dim);
-    line-height: 1.7;
+    font-size: 13.5px;
+    color: #1e40af;
+    line-height: 1.75;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
   }
-  .insight-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 5px;
-    display: block;
+  .insight-icon {
+    font-size: 15px;
+    flex-shrink: 0;
+    margin-top: 1px;
   }
+  .insight-text { flex: 1; }
 
   /* ── Big Picture ── */
-  .big-picture {
-    margin-top: 64px;
-    position: relative;
-  }
+  .big-picture { margin-top: 16px; }
   .big-picture-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 24px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  .big-picture-header::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--border);
+    margin-left: 8px;
   }
   .big-picture-card {
-    background: linear-gradient(135deg, #13132a 0%, #0e1a22 100%);
-    border: 1px solid rgba(124,106,247,0.25);
-    border-radius: 20px;
-    padding: 36px 32px;
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 40px 36px;
     position: relative;
     overflow: hidden;
   }
   .big-picture-card::before {
     content: '';
     position: absolute;
-    top: -60px; right: -60px;
-    width: 240px; height: 240px;
-    background: radial-gradient(circle, rgba(124,106,247,0.1) 0%, transparent 70%);
+    top: -80px; right: -80px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%);
     pointer-events: none;
   }
   .big-picture-card::after {
     content: '';
     position: absolute;
-    bottom: -40px; left: -40px;
-    width: 180px; height: 180px;
-    background: radial-gradient(circle, rgba(79,207,168,0.08) 0%, transparent 70%);
+    bottom: -60px; left: -60px;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
     pointer-events: none;
   }
   .bp-subtitle {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 14px;
   }
   .bp-title {
-    font-size: clamp(18px, 3vw, 22px);
+    font-size: clamp(20px, 3vw, 26px);
     font-weight: 800;
-    color: #fff;
-    line-height: 1.4;
+    color: #ffffff;
+    line-height: 1.35;
     letter-spacing: -0.3px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
   }
   .bp-body {
     font-size: 15px;
-    color: var(--text-dim);
-    line-height: 1.85;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.9;
     position: relative;
     z-index: 1;
   }
@@ -260,26 +277,25 @@
   /* ── Footer ── */
   .footer {
     text-align: center;
-    padding: 32px 24px;
+    padding: 28px 24px 40px;
     color: var(--text-muted);
     font-size: 12px;
     border-top: 1px solid var(--border);
-    margin-top: 32px;
+    background: var(--surface);
   }
   .footer a {
     color: var(--text-muted);
     text-decoration: none;
+    transition: color 0.2s;
   }
   .footer a:hover { color: var(--accent); }
 
   /* ── Mobile ── */
   @media (max-width: 600px) {
-    .hero { padding: 56px 20px 44px; }
+    .hero { padding: 52px 20px 44px; }
     .container { padding: 36px 16px 72px; }
     .card { padding: 20px; }
-    .big-picture-card { padding: 28px 22px; }
-    .card-header { flex-direction: column; gap: 8px; }
-    .card-tag { align-self: flex-start; }
+    .big-picture-card { padding: 28px 24px; }
   }
 </style>
 </head>
@@ -307,50 +323,50 @@
       <div class="source-label">Anthropic</div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-anthropic">Anthropic</span>
           <div class="card-title">Claude Mythos 유출 — 차세대 최강 모델의 윤곽</div>
-          <span class="card-tag">Anthropic</span>
         </div>
         <p class="card-body">차기 플래그십 모델 코드명 "Claude Mythos"의 세부 정보가 CMS 인적 오류로 유출됨. Opus 4.6을 크게 능가하며, 사이버보안 능력이 너무 강력해 출시 시기를 신중히 검토 중.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          모델 성능 ceiling이 급격히 올라가고 있음. 보안/방어 업계가 AI 능력 통제의 새 전선이 되고 있다는 신호.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">모델 성능 ceiling이 급격히 올라가고 있음. 보안/방어 업계가 AI 능력 통제의 새 전선이 되고 있다는 신호.</span>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-anthropic">Anthropic</span>
           <div class="card-title">국방부 vs Anthropic — 판사가 Anthropic 편</div>
-          <span class="card-tag">Anthropic</span>
         </div>
         <p class="card-body">샌프란시스코 연방 판사가 국방부의 Anthropic 국가안보위협 지정 명령 기각. Anthropic이 자율 살상무기·국내 대규모 감시 목적 Claude 사용을 거부한 것에 대한 보복이었다고 판단.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          AI 기업들이 정부 요구에 "No"라고 말하고, 법적으로 이긴 첫 사례. AI 거버넌스 판례로 역사에 남을 것.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">AI 기업들이 정부 요구에 "No"라고 말하고, 법적으로 이긴 첫 사례. AI 거버넌스 판례로 역사에 남을 것.</span>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-anthropic">Anthropic</span>
           <div class="card-title">Claude Computer Use — 실제 Mac 컨트롤</div>
-          <span class="card-tag">Anthropic</span>
         </div>
         <p class="card-body">Claude Sonnet 4.6이 마우스 클릭, 키보드 입력, 앱 전환 등 실제 운영체제 환경에서 컴퓨터 사용 능력으로 업계 최고 성능 달성.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          에이전트가 "대화 상대"에서 "실제 업무 실행자"로 전환되는 변곡점. Claude Code와 결합하면 개발 워크플로우 전면 자동화 가능.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">에이전트가 "대화 상대"에서 "실제 업무 실행자"로 전환되는 변곡점. Claude Code와 결합하면 개발 워크플로우 전면 자동화 가능.</span>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-anthropic">Anthropic</span>
           <div class="card-title">Anthropic ARR $14B 돌파, 기업가치 $380B</div>
-          <span class="card-tag">Anthropic</span>
         </div>
         <p class="card-body">2026년 초 기준 연간 반복 매출 140억 달러 달성, 전년 대비 10배 이상 성장. 포춘 100대 기업 중 70% 이상이 Claude 공식 도입.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          B2B 시장에서 OpenAI와의 격차를 좁히는 중. 엔터프라이즈 점유율 29%는 이미 업계 리더 수준.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">B2B 시장에서 OpenAI와의 격차를 좁히는 중. 엔터프라이즈 점유율 29%는 이미 업계 리더 수준.</span>
         </div>
       </div>
     </div>
@@ -360,38 +376,38 @@
       <div class="source-label">OpenAI</div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-openai">OpenAI</span>
           <div class="card-title">GPT-5.4 출시 — 100만 토큰 + 컴퓨터 사용</div>
-          <span class="card-tag">OpenAI</span>
         </div>
         <p class="card-body">3월 9일 GPT-5.4 출시. 100만 토큰 컨텍스트, 네이티브 컴퓨터 사용, 추론+코딩 대폭 향상. GPT-5.4 mini/nano는 3월 17일 추가 공개.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          Claude와 GPT가 동시에 컴퓨터 사용 기능 경쟁 진입. 2026년 하반기엔 "에이전트 전쟁"이 본격화될 것.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">Claude와 GPT가 동시에 컴퓨터 사용 기능 경쟁 진입. 2026년 하반기엔 "에이전트 전쟁"이 본격화될 것.</span>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-openai">OpenAI</span>
           <div class="card-title">Sora API 종료 + Disney 파트너십 파기</div>
-          <span class="card-tag">OpenAI</span>
         </div>
         <p class="card-body">비디오 생성 경제성 문제로 Sora 공개 API 완전 종료. Disney와의 $1B 파트너십도 파기.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          AI 비디오 생성이 아직 비즈니스 모델을 못 찾고 있음. "멋진 데모 ≠ 지속 가능한 제품"의 교훈.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">AI 비디오 생성이 아직 비즈니스 모델을 못 찾고 있음. "멋진 데모 ≠ 지속 가능한 제품"의 교훈.</span>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-openai">OpenAI</span>
           <div class="card-title">로보틱스 책임자 사임 + ChatGPT 삭제 295% 급증</div>
-          <span class="card-tag">OpenAI</span>
         </div>
         <p class="card-body">국방부 감시 계약에 반발해 핵심 임원 사임. 계약 발표 직후 ChatGPT 앱 삭제 건수 하루 만에 295% 폭증.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          AI 기업의 군사화에 대한 내부·외부 반발이 동시에 폭발. 유저 신뢰는 한 번 깨지면 회복이 어렵다.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">AI 기업의 군사화에 대한 내부·외부 반발이 동시에 폭발. 유저 신뢰는 한 번 깨지면 회복이 어렵다.</span>
         </div>
       </div>
     </div>
@@ -409,38 +425,38 @@
       <div class="source-label">Lenny's Newsletter</div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-newsletter">Lenny's</span>
           <div class="card-title">"AI 속도가 제품 전략을 앞지를 때"</div>
-          <span class="card-tag">Mar 28</span>
         </div>
         <p class="card-body">Claude Code + Codex 조합 실전 활용기, AI 속도에 전략이 따라가지 못할 때의 대응법 커뮤니티 위즈덤.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          이제 도구가 아니라 "속도에 맞는 조직 구조와 의사결정 방식"이 병목. AI 네이티브 팀 운영에 직결되는 인사이트.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">이제 도구가 아니라 "속도에 맞는 조직 구조와 의사결정 방식"이 병목. AI 네이티브 팀 운영에 직결되는 인사이트.</span>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-newsletter">Lenny's</span>
           <div class="card-title">"AI가 대체 못 하는 단 하나의 스킬 — 영향력"</div>
-          <span class="card-tag">Mar 22</span>
         </div>
         <p class="card-body">Jessica Fain (Webflow). 기술과 AI가 범람하는 시대, 결국 사람을 움직이는 능력만이 차별점.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          AI 네이티브 시대일수록 소프트 스킬의 희소성이 올라간다. 역설적이지만 설득력 있음.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">AI 네이티브 시대일수록 소프트 스킬의 희소성이 올라간다. 역설적이지만 설득력 있음.</span>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-newsletter">Lenny's</span>
           <div class="card-title">"2026 PM 채용 시장 현황"</div>
-          <span class="card-tag">Mar 24</span>
         </div>
         <p class="card-body">PM 채용공고 3년 최고치, AI 관련 역할 급증. AI 통합 능력 가진 PM 수요 폭발.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          AI 네이티브 PM을 어떻게 육성할지가 조직 전략 핵심 과제가 될 것.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">AI 네이티브 PM을 어떻게 육성할지가 조직 전략 핵심 과제가 될 것.</span>
         </div>
       </div>
     </div>
@@ -450,14 +466,14 @@
       <div class="source-label">Sandhill / Ali Afridi</div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-newsletter">Sandhill</span>
           <div class="card-title">#276 "World Models & Physical AI"</div>
-          <span class="card-tag">Mar 22</span>
         </div>
         <p class="card-body">Bessemer, A16Z, Felicis 등 주요 VC들이 본 물리적 AI 혁명. 로봇공학, 자율주행, 산업 자동화를 연결하는 World Model 기술의 투자 논리.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          소프트웨어 AI 다음 물결은 물리 세계. 이미 대형 VC들이 포지션 잡기 시작한 섹터.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">소프트웨어 AI 다음 물결은 물리 세계. 이미 대형 VC들이 포지션 잡기 시작한 섹터.</span>
         </div>
       </div>
     </div>
@@ -467,26 +483,26 @@
       <div class="source-label">Chamath Palihapitiya</div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-chamath">Chamath</span>
           <div class="card-title">"헬스케어 $5조를 움직이는 60년 된 코드"</div>
-          <span class="card-tag">Chamath</span>
         </div>
         <p class="card-body">미국 의료 시스템이 여전히 1960년대 레거시 인프라 위에서 돌아간다는 심층 분석. AI가 이걸 무너뜨릴 첫 번째 진짜 기회.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          헬스케어는 AI 침투율이 가장 낮으면서 TAM이 가장 큰 섹터.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">헬스케어는 AI 침투율이 가장 낮으면서 TAM이 가장 큰 섹터.</span>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-chamath">Chamath</span>
           <div class="card-title">$250M SPAC "American Exceptionalism" 론칭</div>
-          <span class="card-tag">Chamath</span>
         </div>
         <p class="card-body">AI, 방산, 에너지, DeFi 타겟 SPAC 론칭. 주식 토큰화와 탈중앙화 금융 인프라에 강한 베팅.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          DeFi를 $150조 글로벌 주식시장의 다음 인프라로 보고 있다는 강한 신호.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">DeFi를 $150조 글로벌 주식시장의 다음 인프라로 보고 있다는 강한 신호.</span>
         </div>
       </div>
     </div>
@@ -503,26 +519,26 @@
       <div class="source-label">빌더조쉬</div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-youtube">YouTube</span>
           <div class="card-title">"상위 1% AI 네이티브는 '하네스 깎기'에 수백 시간 투자"</div>
-          <span class="card-tag">Mar 22</span>
         </div>
         <p class="card-body">DIO FDE 김지운님 인터뷰. 좋은 AI 결과물은 프롬프트 스킬이 아니라 하네스(에이전트 환경 설계) 품질에서 온다.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          Claude Code 작업 시 AGENTS.md, SKILL.md 같은 하네스 설계가 핵심. 지금 올바른 방향으로 가고 있다는 확인.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">Claude Code 작업 시 AGENTS.md, SKILL.md 같은 하네스 설계가 핵심. 지금 올바른 방향으로 가고 있다는 확인.</span>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-header">
+        <div class="card-top">
+          <span class="card-tag tag-youtube">YouTube</span>
           <div class="card-title">"Vibe Coding — solid 하네스 없인 완성 불가"</div>
-          <span class="card-tag">Mar 21</span>
         </div>
         <p class="card-body">하네스 없이 바이브 코딩만 하면 결국 실패한다는 실전 경험 공유.</p>
         <div class="insight">
-          <span class="insight-label">💡 Insight</span>
-          빠른 프로토타이핑 vs 지속 가능한 에이전트 워크플로우 사이의 균형점.
+          <span class="insight-icon">💡</span>
+          <span class="insight-text">빠른 프로토타이핑 vs 지속 가능한 에이전트 워크플로우 사이의 균형점.</span>
         </div>
       </div>
     </div>
