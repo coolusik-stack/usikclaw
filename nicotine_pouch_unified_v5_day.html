@@ -1,0 +1,3027 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한국 니코틴 파우치 시장 — 2026 Unified Analysis</title>
+  <meta name="description" content="2026 한국 니코틴 파우치 시장 통합 분석 보고서 — Vicky × Momo">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Pretendard Korean Font -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+
+  <!-- Outfit (English Display) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Iconify Solar -->
+  <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+
+  <!-- ECharts -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+
+  <!-- Motion One -->
+  <script src="https://unpkg.com/motion@10.18.0/dist/motion.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Pretendard', 'system-ui', 'sans-serif'],
+            display: ['Outfit', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            emerald: { DEFAULT: '#10b981', 500: '#10b981', 400: '#34d399', 300: '#6ee7b7', 600: '#059669', 900: '#064e3b' },
+            amber: { DEFAULT: '#f59e0b', 500: '#f59e0b', 400: '#fbbf24', 300: '#fcd34d', 600: '#d97706', 900: '#78350f' },
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ===== GLOBAL RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #10b981 #e5e7eb;
+    }
+    html::-webkit-scrollbar { width: 4px; }
+    html::-webkit-scrollbar-track { background: #e5e7eb; }
+    html::-webkit-scrollbar-thumb { background: #10b981; border-radius: 2px; }
+
+    body {
+      background-color: #f8f9fc;
+      color: #111827;
+      font-family: 'Pretendard', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      word-break: keep-all;
+      overflow-x: hidden;
+    }
+
+    /* ===== NOISE TEXTURE OVERLAY ===== */
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      pointer-events: none;
+      opacity: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+
+    /* ===== FONT DISPLAY ===== */
+    .font-display { font-family: 'Outfit', system-ui, sans-serif; }
+
+    /* ===== GLASS CARD ===== */
+    .glass {
+      background: rgba(0,0,0,0.02);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: inset 0 1px 0 rgba(0,0,0,0.04);
+    }
+
+    /* ===== DOUBLE-BEZEL CARD ===== */
+    .double-bezel-outer {
+      background: rgba(0,0,0,0.02);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 1.5rem;
+      padding: 0.375rem;
+    }
+    .double-bezel-inner {
+      background: rgba(0,0,0,0.02);
+      border-radius: calc(1.5rem - 0.375rem);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,0.04);
+      height: 100%;
+    }
+
+    /* ===== AMBIENT ORBS ===== */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+    }
+    .orb-emerald {
+      background: radial-gradient(circle, rgba(16,185,129,0.08) 0%, transparent 70%);
+      animation: float 8s ease-in-out infinite;
+    }
+    .orb-amber {
+      background: radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%);
+      animation: float 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.03); }
+    }
+
+    @keyframes gradientRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(2rem); filter: blur(4px); }
+      to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(2rem);
+      filter: blur(4px);
+    }
+    .reveal.visible {
+      animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .reveal-delay-1 { animation-delay: 80ms; }
+    .reveal-delay-2 { animation-delay: 160ms; }
+    .reveal-delay-3 { animation-delay: 240ms; }
+    .reveal-delay-4 { animation-delay: 320ms; }
+
+    /* ===== NAVIGATION ===== */
+    .nav-glass {
+      background: rgba(248,249,252,0.9);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .nav-link {
+      position: relative;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: rgba(55, 65, 81, 1);
+      transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 0.375rem 0.75rem;
+      border-radius: 0.5rem;
+    }
+    .nav-link:hover { color: #111827; background: rgba(0,0,0,0.05); }
+    .nav-link.active { color: #10b981; }
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+
+    /* ===== KPI CARD ===== */
+    .kpi-card {
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .kpi-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px -15px rgba(16, 185, 129, 0.15);
+    }
+
+    /* ===== EYEBROW BADGE ===== */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      border-radius: 9999px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    .eyebrow-emerald {
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+    .eyebrow-amber {
+      background: rgba(245, 158, 11, 0.1);
+      color: #f59e0b;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    /* ===== HERO GRADIENT TEXT ===== */
+    .gradient-text-emerald {
+      background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ===== COUNTDOWN ===== */
+    .countdown-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .countdown-num {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+      color: #10b981;
+    }
+    .countdown-label {
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(156, 163, 175, 0.7);
+    }
+
+    /* ===== CHART CONTAINERS ===== */
+    .chart-container {
+      width: 100%;
+      min-height: 320px;
+    }
+
+    /* ===== MOBILE NAV ===== */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 45;
+      background: rgba(248,249,252,0.97);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu-link {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: rgba(55, 65, 81, 1);
+      transition: color 0.3s ease;
+    }
+    .mobile-menu-link:hover { color: #10b981; }
+
+    /* ===== BATTLEFIELD CARD ===== */
+    .battlefield-card {
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .battlefield-card:hover {
+      transform: translateY(-6px);
+    }
+
+    /* ===== SECTION DIVIDER ===== */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);
+    }
+
+    /* ===== SCROLLBAR FOR CHARTS ===== */
+    .chart-scroll-x {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Noise Overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- ========================================
+       FIXED NAVIGATION
+  ======================================== -->
+  <header id="main-nav" class="nav-glass fixed top-0 left-0 right-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14">
+
+        <!-- Logo -->
+        <div class="flex items-center gap-2.5 flex-shrink-0">
+          <div class="w-7 h-7 rounded-lg flex items-center justify-center"
+               style="background: linear-gradient(135deg, #10b981, #059669);">
+            <iconify-icon icon="solar:chart-line-duotone" width="16" style="color:#111827;"></iconify-icon>
+          </div>
+          <span class="font-display font-700 text-sm text-gray-900 tracking-tight">NP Report 2026</span>
+        </div>
+
+        <!-- Desktop Nav Links -->
+        <nav class="hidden md:flex items-center gap-1" id="desktop-nav">
+          <a href="#ch1-global" class="nav-link active" data-chapter="ch1">
+            <iconify-icon icon="solar:global-linear" width="14" class="mr-1"></iconify-icon>글로벌
+          </a>
+          <a href="#ch2-brand" class="nav-link" data-chapter="ch2">
+            <iconify-icon icon="solar:tag-linear" width="14" class="mr-1"></iconify-icon>브랜드
+          </a>
+          <a href="#ch3-korea" class="nav-link" data-chapter="ch3">
+            <iconify-icon icon="solar:map-point-linear" width="14" class="mr-1"></iconify-icon>한국
+          </a>
+          <a href="#ch4-regulation" class="nav-link" data-chapter="ch4">
+            <iconify-icon icon="solar:shield-linear" width="14" class="mr-1"></iconify-icon>규제
+          </a>
+          <a href="#ch5-strategy" class="nav-link" data-chapter="ch5">
+            <iconify-icon icon="solar:strategy-linear" width="14" class="mr-1"></iconify-arrow>전략
+          </a>
+        </nav>
+
+        <!-- Vicky × Momo Badge + Hamburger -->
+        <div class="flex items-center gap-3">
+          <div class="hidden sm:flex items-center gap-1.5">
+            <span class="eyebrow eyebrow-emerald text-[10px]">
+              <iconify-icon icon="solar:bolt-circle-linear" width="12"></iconify-icon>Vicky
+            </span>
+            <span class="eyebrow eyebrow-amber text-[10px]">
+              <iconify-icon icon="solar:leaf-linear" width="12"></iconify-icon>Momo
+            </span>
+          </div>
+          <!-- Mobile hamburger -->
+          <button id="hamburger-btn" class="md:hidden flex items-center justify-center w-9 h-9 rounded-lg hover:bg-white shadow-sm transition-colors" aria-label="메뉴">
+            <iconify-icon icon="solar:hamburger-menu-linear" width="20" style="color:#9ca3af;"></iconify-icon>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="모바일 메뉴">
+    <button id="close-menu-btn" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors">
+      <iconify-icon icon="solar:close-circle-linear" width="24" style="color:#9ca3af;"></iconify-icon>
+    </button>
+    <a href="#ch1-global" class="mobile-menu-link" onclick="closeMobileMenu()">
+      <iconify-icon icon="solar:global-linear" width="20" class="mr-2"></iconify-icon>글로벌 시장
+    </a>
+    <a href="#ch2-brand" class="mobile-menu-link" onclick="closeMobileMenu()">
+      <iconify-icon icon="solar:tag-linear" width="20" class="mr-2"></iconify-icon>브랜드 분석
+    </a>
+    <a href="#ch3-korea" class="mobile-menu-link" onclick="closeMobileMenu()">
+      <iconify-icon icon="solar:map-point-linear" width="20" class="mr-2"></iconify-icon>한국 시장
+    </a>
+    <a href="#ch4-regulation" class="mobile-menu-link" onclick="closeMobileMenu()">
+      <iconify-icon icon="solar:shield-linear" width="20" class="mr-2"></iconify-icon>규제 환경
+    </a>
+    <a href="#ch5-strategy" class="mobile-menu-link" onclick="closeMobileMenu()">
+      <iconify-icon icon="solar:strategy-linear" width="20" class="mr-2"></iconify-icon>전략 제언
+    </a>
+  </div>
+
+  <!-- ========================================
+       HERO SECTION
+  ======================================== -->
+  <section id="hero" class="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden pt-14">
+
+    <!-- Ambient Orbs -->
+    <div class="orb orb-emerald absolute top-[15%] left-[10%] w-[500px] h-[500px] opacity-60" aria-hidden="true"></div>
+    <div class="orb orb-amber absolute bottom-[10%] right-[5%] w-[400px] h-[400px] opacity-50" aria-hidden="true"></div>
+    <div class="orb orb-emerald absolute top-[60%] right-[20%] w-[300px] h-[300px] opacity-30" aria-hidden="true"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 w-full">
+
+      <!-- Eyebrow -->
+      <div class="flex items-center gap-3 mb-6 reveal">
+        <span class="eyebrow eyebrow-emerald">
+          <iconify-icon icon="solar:document-text-linear" width="12"></iconify-icon>
+          2026 Unified Analysis
+        </span>
+        <span class="eyebrow eyebrow-amber">
+          <iconify-icon icon="solar:leaf-linear" width="12"></iconify-icon>
+          Vicky × Momo
+        </span>
+      </div>
+
+      <!-- Main Title -->
+      <div class="mb-4 reveal reveal-delay-1">
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-tight" style="word-break:keep-all;">
+          한국<br>
+          <span class="gradient-text-emerald font-display font-900">니코틴 파우치</span><br>
+          시장
+        </h1>
+      </div>
+
+      <!-- Subtitle -->
+      <p class="text-base md:text-lg text-gray-400 leading-relaxed mb-12 max-w-2xl reveal reveal-delay-2" style="word-break:keep-all;">
+        규제 공백, 직수입 폭증, 그리고 글로벌 빅토바코의 한국 진출.
+        2026년 4월, 시장의 판도가 바뀐다.
+      </p>
+
+      <!-- KPI Cards Row -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-12 reveal reveal-delay-3">
+
+        <!-- KPI 1: Global 2030E -->
+        <div class="double-bezel-outer kpi-card">
+          <div class="double-bezel-inner p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <iconify-icon icon="solar:graph-up-linear" width="16" style="color:#10b981;"></iconify-icon>
+              <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium">Global 2030E</span>
+            </div>
+            <div class="font-display font-800 text-3xl md:text-4xl text-gray-900 leading-none mb-1">$22.8B</div>
+            <div class="text-xs text-gray-500">전세계 시장 규모 전망</div>
+          </div>
+        </div>
+
+        <!-- KPI 2: CAGR -->
+        <div class="double-bezel-outer kpi-card">
+          <div class="double-bezel-inner p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <iconify-icon icon="solar:chart-2-linear" width="16" style="color:#10b981;"></iconify-icon>
+              <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium">CAGR</span>
+            </div>
+            <div class="font-display font-800 text-3xl md:text-4xl leading-none mb-1" style="color:#10b981;">34%</div>
+            <div class="text-xs text-gray-500">연평균 복합 성장률</div>
+          </div>
+        </div>
+
+        <!-- KPI 3: 한국 직수입 YoY -->
+        <div class="double-bezel-outer kpi-card">
+          <div class="double-bezel-inner p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <iconify-icon icon="solar:arrow-right-up-linear" width="16" style="color:#f59e0b;"></iconify-icon>
+              <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium">한국 직수입 YoY</span>
+            </div>
+            <div class="font-display font-800 text-3xl md:text-4xl leading-none mb-1" style="color:#f59e0b;">+280%</div>
+            <div class="text-xs text-gray-500">전년 대비 수입 증가율</div>
+          </div>
+        </div>
+
+        <!-- KPI 4: Countdown -->
+        <div class="double-bezel-outer kpi-card" style="border-color:rgba(16,185,129,0.2);">
+          <div class="double-bezel-inner p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <iconify-icon icon="solar:alarm-linear" width="16" style="color:#10b981;"></iconify-icon>
+              <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium">D-Day</span>
+            </div>
+            <div class="flex items-end gap-3 mb-1">
+              <div class="countdown-block">
+                <span id="cd-days" class="countdown-num">--</span>
+                <span class="countdown-label">일</span>
+              </div>
+              <span class="text-gray-600 text-lg mb-1">:</span>
+              <div class="countdown-block">
+                <span id="cd-hours" class="countdown-num">--</span>
+                <span class="countdown-label">시간</span>
+              </div>
+              <span class="text-gray-600 text-lg mb-1">:</span>
+              <div class="countdown-block">
+                <span id="cd-mins" class="countdown-num">--</span>
+                <span class="countdown-label">분</span>
+              </div>
+            </div>
+            <div class="text-xs text-gray-500">2026.04.24 기준</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="flex items-center gap-3 reveal reveal-delay-4">
+        <div class="w-8 h-[1px] bg-emerald-500/50"></div>
+        <span class="text-xs text-gray-500 uppercase tracking-widest">Ch.1 글로벌 시장 개요로 스크롤</span>
+        <iconify-icon icon="solar:arrow-down-linear" width="14" style="color:#6b7280;"></iconify-icon>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section Divider -->
+  <div class="section-divider"></div>
+
+  <!-- ========================================
+       CH.1 GLOBAL MARKET
+  ======================================== -->
+  <section id="ch1-global" class="relative py-24 md:py-32 lg:py-40 overflow-hidden">
+
+    <!-- Background subtle orb -->
+    <div class="orb orb-emerald absolute top-[20%] right-[-10%] w-[600px] h-[600px] opacity-20" aria-hidden="true"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section Header -->
+      <div class="mb-16 reveal">
+        <span class="eyebrow eyebrow-emerald mb-4 inline-flex">
+          <iconify-icon icon="solar:global-linear" width="12"></iconify-icon>
+          Chapter 01
+        </span>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-4" style="word-break:keep-all;">
+          글로벌 시장 개요
+        </h2>
+        <p class="text-xl md:text-2xl font-display font-600 leading-snug max-w-2xl" style="color:#10b981;">
+          $3.95B에서 $22.8B으로. CAGR 34%.
+        </p>
+        <p class="text-base text-gray-400 mt-3 max-w-2xl leading-relaxed" style="word-break:keep-all;">
+          니코틴 파우치는 담배 산업의 다음 챕터다. 연기 없는 편의성과 규제 회피 수요가 맞물리며,
+          빅토바코들이 전례 없는 속도로 시장을 재편하고 있다.
+        </p>
+      </div>
+
+      <!-- KPI Cards Row (Ch.1) -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-16">
+        <!-- $3.95B -->
+        <div class="double-bezel-outer kpi-card reveal" style="--index:0;">
+          <div class="double-bezel-inner p-5">
+            <div class="text-[10px] uppercase tracking-widest text-gray-500 font-medium mb-3">현재 시장 (2024)</div>
+            <div class="font-display font-800 text-2xl md:text-3xl text-gray-900 leading-none mb-1">$3.95B</div>
+            <div class="text-xs text-gray-500">글로벌 시장 규모</div>
+          </div>
+        </div>
+        <!-- $22.8B -->
+        <div class="double-bezel-outer kpi-card reveal reveal-delay-1" style="--index:1;">
+          <div class="double-bezel-inner p-5">
+            <div class="text-[10px] uppercase tracking-widest text-gray-500 font-medium mb-3">목표 시장 (2030E)</div>
+            <div class="font-display font-800 text-2xl md:text-3xl leading-none mb-1" style="color:#10b981;">$22.8B</div>
+            <div class="text-xs text-gray-500">6년 내 5.8× 성장</div>
+          </div>
+        </div>
+        <!-- 34% CAGR -->
+        <div class="double-bezel-outer kpi-card reveal reveal-delay-2" style="--index:2;">
+          <div class="double-bezel-inner p-5">
+            <div class="text-[10px] uppercase tracking-widest text-gray-500 font-medium mb-3">CAGR</div>
+            <div class="font-display font-800 text-2xl md:text-3xl leading-none mb-1" style="color:#10b981;">34%</div>
+            <div class="text-xs text-gray-500">연평균 복합성장률</div>
+          </div>
+        </div>
+        <!-- BAT YoY -->
+        <div class="double-bezel-outer kpi-card reveal reveal-delay-3" style="--index:3;">
+          <div class="double-bezel-inner p-5">
+            <div class="text-[10px] uppercase tracking-widest text-gray-500 font-medium mb-3">BAT NP 성장</div>
+            <div class="font-display font-800 text-2xl md:text-3xl leading-none mb-1" style="color:#f59e0b;">+55%</div>
+            <div class="text-xs text-gray-500">BAT Vuse/Velo YoY</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Row: Line + Donut -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
+
+        <!-- Line Chart: Global Market Growth -->
+        <div class="double-bezel-outer reveal">
+          <div class="double-bezel-inner p-6">
+            <div class="flex items-center gap-2 mb-5">
+              <iconify-icon icon="solar:chart-line-duotone" width="18" style="color:#10b981;"></iconify-icon>
+              <h3 class="font-semibold text-gray-900 text-sm">글로벌 시장 성장 추이</h3>
+              <span class="ml-auto text-[10px] text-gray-500 uppercase tracking-widest">2024–2030E</span>
+            </div>
+            <div id="chart-global-line" class="chart-container" style="height:280px;"></div>
+          </div>
+        </div>
+
+        <!-- Donut Chart: Regional -->
+        <div class="double-bezel-outer reveal reveal-delay-1">
+          <div class="double-bezel-inner p-6">
+            <div class="flex items-center gap-2 mb-5">
+              <iconify-icon icon="solar:pie-chart-2-linear" width="18" style="color:#f59e0b;"></iconify-icon>
+              <h3 class="font-semibold text-gray-900 text-sm">지역별 시장 점유율</h3>
+              <span class="ml-auto text-[10px] text-gray-500 uppercase tracking-widest">2024</span>
+            </div>
+            <div id="chart-regional-donut" class="chart-container" style="height:280px;"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- World Battlefield Section -->
+      <div class="mb-16">
+        <div class="mb-8 reveal">
+          <span class="eyebrow eyebrow-emerald mb-3 inline-flex">
+            <iconify-icon icon="solar:map-linear" width="12"></iconify-icon>
+            Battlefield
+          </span>
+          <h3 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight" style="word-break:keep-all;">
+            세계 4대 전장
+          </h3>
+          <p class="text-sm text-gray-400 mt-2" style="word-break:keep-all;">
+            니코틴 파우치 전쟁이 벌어지는 4개 지역 — 각각의 진입 단계와 특징
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+          <!-- Sweden -->
+          <div class="double-bezel-outer battlefield-card reveal" style="--index:0;">
+            <div class="double-bezel-inner p-5 flex flex-col gap-3">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                   style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.2);">
+                <iconify-icon icon="solar:flag-linear" width="20" style="color:#10b981;"></iconify-icon>
+              </div>
+              <div>
+                <div class="text-[10px] uppercase tracking-widest text-gray-500 mb-1">Stage 1 — Origin</div>
+                <h4 class="font-bold text-gray-900 text-base mb-2">스웨덴</h4>
+                <p class="text-xs text-gray-400 leading-relaxed" style="word-break:keep-all;">
+                  Snus 문화의 본고장. 성인 남성 흡연율 5%대로 세계 최저.
+                  니코틴 파우치의 글로벌 확산 원형 — ZYN의 탄생지.
+                </p>
+              </div>
+              <div class="mt-auto">
+                <span class="text-[10px] font-semibold px-2 py-1 rounded-md"
+                      style="background:rgba(16,185,129,0.1); color:#10b981;">성숙 시장</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- USA -->
+          <div class="double-bezel-outer battlefield-card reveal reveal-delay-1" style="--index:1;">
+            <div class="double-bezel-inner p-5 flex flex-col gap-3">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                   style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.2);">
+                <iconify-icon icon="solar:dollar-minimalistic-linear" width="20" style="color:#10b981;"></iconify-icon>
+              </div>
+              <div>
+                <div class="text-[10px] uppercase tracking-widest text-gray-500 mb-1">Stage 2 — Explosion</div>
+                <h4 class="font-bold text-gray-900 text-base mb-2">미국</h4>
+                <p class="text-xs text-gray-400 leading-relaxed" style="word-break:keep-all;">
+                  FDA 규제 강화 이후 오히려 폭발 성장. ZYN 점유율 65%+.
+                  PM·BAT·Altria 3파전. 합성니코틴으로 규제 우회 경쟁.
+                </p>
+              </div>
+              <div class="mt-auto">
+                <span class="text-[10px] font-semibold px-2 py-1 rounded-md"
+                      style="background:rgba(16,185,129,0.1); color:#10b981;">고성장 중</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Korea -->
+          <div class="double-bezel-outer battlefield-card reveal reveal-delay-2"
+               style="--index:2; border-color:rgba(16,185,129,0.3);">
+            <div class="double-bezel-inner p-5 flex flex-col gap-3"
+                 style="background:rgba(16,185,129,0.05);">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                   style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3);">
+                <iconify-icon icon="solar:fire-linear" width="20" style="color:#10b981;"></iconify-icon>
+              </div>
+              <div>
+                <div class="text-[10px] uppercase tracking-widest mb-1" style="color:#10b981;">Stage 3 — NOW</div>
+                <h4 class="font-bold text-gray-900 text-base mb-2">한국
+                  <span class="text-[10px] ml-1 px-1.5 py-0.5 rounded"
+                        style="background:rgba(16,185,129,0.2); color:#10b981;">HOT</span>
+                </h4>
+                <p class="text-xs text-gray-400 leading-relaxed" style="word-break:keep-all;">
+                  직수입 +280% YoY. 규제 공백 상태. 2026.04.24 이후 분기점.
+                  글로벌 브랜드의 공식 진출 vs 회색지대 지속 여부.
+                </p>
+              </div>
+              <div class="mt-auto">
+                <span class="text-[10px] font-semibold px-2 py-1 rounded-md"
+                      style="background:rgba(16,185,129,0.15); color:#10b981;">분기점 도래</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Next -->
+          <div class="double-bezel-outer battlefield-card reveal reveal-delay-3" style="--index:3;">
+            <div class="double-bezel-inner p-5 flex flex-col gap-3">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                   style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.2);">
+                <iconify-icon icon="solar:telescope-linear" width="20" style="color:#f59e0b;"></iconify-icon>
+              </div>
+              <div>
+                <div class="text-[10px] uppercase tracking-widest text-gray-500 mb-1">Stage 4 — Next</div>
+                <h4 class="font-bold text-gray-900 text-base mb-2">동남아 · 인도</h4>
+                <p class="text-xs text-gray-400 leading-relaxed" style="word-break:keep-all;">
+                  인구 35억의 다음 전장. 구전통 담배 문화와 신제품의 충돌.
+                  빅토바코의 APAC 전략 거점 구축 중.
+                </p>
+              </div>
+              <div class="mt-auto">
+                <span class="text-[10px] font-semibold px-2 py-1 rounded-md"
+                      style="background:rgba(245,158,11,0.1); color:#f59e0b;">부상 예고</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 4 Growth Drivers -->
+      <div class="mb-16">
+        <div class="mb-8 reveal">
+          <span class="eyebrow eyebrow-emerald mb-3 inline-flex">
+            <iconify-icon icon="solar:rocket-linear" width="12"></iconify-icon>
+            Growth Drivers
+          </span>
+          <h3 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight" style="word-break:keep-all;">
+            4대 성장 동력
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+          <!-- Driver 1 -->
+          <div class="double-bezel-outer reveal" style="--index:0;">
+            <div class="double-bezel-inner p-6">
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4"
+                   style="background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(16,185,129,0.05)); border:1px solid rgba(16,185,129,0.2);">
+                <iconify-icon icon="solar:shield-check-linear" width="24" style="color:#10b981;"></iconify-icon>
+              </div>
+              <h4 class="font-bold text-gray-900 text-sm mb-2">규제 회피 수요</h4>
+              <p class="text-xs text-gray-400 leading-relaxed" style="word-break:keep-all;">
+                공공장소 흡연 금지 강화로 연기 없는 니코틴 소비 수요 급증.
+                냄새 없음, 타르 없음, 재 없음 — 3無 제품의 매력.
+              </p>
+            </div>
+          </div>
+
+          <!-- Driver 2 -->
+          <div class="double-bezel-outer reveal reveal-delay-1" style="--index:1;">
+            <div class="double-bezel-inner p-6">
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4"
+                   style="background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(16,185,129,0.05)); border:1px solid rgba(16,185,129,0.2);">
+                <iconify-icon icon="solar:users-group-two-rounded-linear" width="24" style="color:#10b981;"></iconify-icon>
+              </div>
+              <h4 class="font-bold text-gray-900 text-sm mb-2">Z세대 니코틴 입문</h4>
+              <p class="text-xs text-gray-400 leading-relaxed" style="word-break:keep-all;">
+                담배 경험 없는 Z세대의 니코틴 파우치 직접 진입.
+                디지털 네이티브 세대의 소셜미디어 확산 효과.
+              </p>
+            </div>
+          </div>
+
+          <!-- Driver 3 -->
+          <div class="double-bezel-outer reveal reveal-delay-2" style="--index:2;">
+            <div class="double-bezel-inner p-6">
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4"
+                   style="background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(245,158,11,0.05)); border:1px solid rgba(245,158,11,0.2);">
+                <iconify-icon icon="solar:buildings-linear" width="24" style="color:#f59e0b;"></iconify-icon>
+              </div>
+              <h4 class="font-bold text-gray-900 text-sm mb-2">Big Tobacco R&D</h4>
+              <p class="text-xs text-gray-400 leading-relaxed" style="word-break:keep-all;">
+                PM·BAT·Altria 등 글로벌 담배 공룡들의 수십억 달러 R&D 집중 투자.
+                제품 품질 고도화와 유통망 확보 가속.
+              </p>
+            </div>
+          </div>
+
+          <!-- Driver 4 -->
+          <div class="double-bezel-outer reveal reveal-delay-3" style="--index:3;">
+            <div class="double-bezel-inner p-6">
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-4"
+                   style="background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(245,158,11,0.05)); border:1px solid rgba(245,158,11,0.2);">
+                <iconify-icon icon="solar:test-tube-minimalistic-linear" width="24" style="color:#f59e0b;"></iconify-icon>
+              </div>
+              <h4 class="font-bold text-gray-900 text-sm mb-2">합성 니코틴</h4>
+              <p class="text-xs text-gray-400 leading-relaxed" style="word-break:keep-all;">
+                담뱃잎 비파생 합성 니코틴으로 기존 담배 규제 완전 우회.
+                미국 FDA 규제망 밖에서 운영 가능한 법적 회색지대.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Global Precedent Patterns -->
+      <div class="mb-8">
+        <div class="mb-8 reveal">
+          <span class="eyebrow eyebrow-amber mb-3 inline-flex">
+            <iconify-icon icon="solar:book-bookmark-linear" width="12"></iconify-icon>
+            Precedent Analysis
+          </span>
+          <h3 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight" style="word-break:keep-all;">
+            글로벌 선례 3개 패턴
+          </h3>
+          <p class="text-sm text-gray-400 mt-2" style="word-break:keep-all;">
+            한국이 참고해야 할 선행 시장의 궤적
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- Sweden: Snus → Pouch -->
+          <div class="double-bezel-outer reveal" style="--index:0;">
+            <div class="double-bezel-inner p-6">
+              <div class="flex items-start gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                     style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.2);">
+                  <iconify-icon icon="solar:check-circle-linear" width="20" style="color:#10b981;"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-[10px] uppercase tracking-widest text-gray-500 mb-1">Sweden</div>
+                  <h4 class="font-bold text-gray-900 text-sm">Snus → Pouch 전환</h4>
+                </div>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></div>
+                  <span class="text-xs text-gray-400" style="word-break:keep-all;">50년 Snus 문화 → 파우치 자연 전환</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></div>
+                  <span class="text-xs text-gray-400" style="word-break:keep-all;">흡연율 세계 최저 5% 달성 — 대체재 효과 입증</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></div>
+                  <span class="text-xs text-gray-400" style="word-break:keep-all;">ZYN·Lyft 등 글로벌 브랜드의 발원지</span>
+                </div>
+                <div class="mt-4 pt-4 border-t border-gray-100">
+                  <div class="text-[10px] uppercase tracking-widest text-emerald-500 mb-1">한국 함의</div>
+                  <p class="text-xs text-gray-400" style="word-break:keep-all;">
+                    규제 용인 + 대체재 포지셔닝 시 흡연율 감소와 시장 성장 동시 달성 가능
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- USA: 규제→폭발 -->
+          <div class="double-bezel-outer reveal reveal-delay-1" style="--index:1;">
+            <div class="double-bezel-inner p-6">
+              <div class="flex items-start gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                     style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.2);">
+                  <iconify-icon icon="solar:bolt-circle-linear" width="20" style="color:#10b981;"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-[10px] uppercase tracking-widest text-gray-500 mb-1">USA</div>
+                  <h4 class="font-bold text-gray-900 text-sm">규제 → 폭발 역설</h4>
+                </div>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></div>
+                  <span class="text-xs text-gray-400" style="word-break:keep-all;">FDA PMTA 규제 강화 이후 오히려 시장 폭발</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></div>
+                  <span class="text-xs text-gray-400" style="word-break:keep-all;">ZYN 단독 점유율 65%+ — 1강 구도 형성</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></div>
+                  <span class="text-xs text-gray-400" style="word-break:keep-all;">합성 니코틴으로 규제 우회 경로 개척</span>
+                </div>
+                <div class="mt-4 pt-4 border-t border-gray-100">
+                  <div class="text-[10px] uppercase tracking-widest text-emerald-500 mb-1">한국 함의</div>
+                  <p class="text-xs text-gray-400" style="word-break:keep-all;">
+                    규제 방식에 따라 시장 구조 결정 — 진입 장벽 설계가 선점 브랜드 결정
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Japan: 경고 -->
+          <div class="double-bezel-outer reveal reveal-delay-2" style="--index:2;">
+            <div class="double-bezel-inner p-6">
+              <div class="flex items-start gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                     style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.2);">
+                  <iconify-icon icon="solar:danger-triangle-linear" width="20" style="color:#f59e0b;"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-[10px] uppercase tracking-widest text-gray-500 mb-1">Japan</div>
+                  <h4 class="font-bold text-gray-900 text-sm">규제 공백의 경고</h4>
+                </div>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0"></div>
+                  <span class="text-xs text-gray-400" style="word-break:keep-all;">HNB(가열담배) 규제 공백 → IQOS 시장 독점</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0"></div>
+                  <span class="text-xs text-gray-400" style="word-break:keep-all;">규제 없는 빠른 확산 후 소비자 보호 사각지대 형성</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0"></div>
+                  <span class="text-xs text-gray-400" style="word-break:keep-all;">뒤늦은 규제로 기득권 구조 고착화</span>
+                </div>
+                <div class="mt-4 pt-4 border-t border-gray-100">
+                  <div class="text-[10px] uppercase tracking-widest text-amber-500 mb-1">한국 함의</div>
+                  <p class="text-xs text-gray-400" style="word-break:keep-all;">
+                    2026.04.24 이전 선제적 규제 틀 확립 없으면 일본식 독점 구조 반복 위험
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================
+       CHAPTER 02 — 브랜드 경쟁 지형도
+       ========================================= -->
+  <div class="section-divider"></div>
+
+  <section id="ch2-brand" class="relative py-24 md:py-32 lg:py-40 overflow-hidden">
+
+    <!-- Ambient orbs -->
+    <div class="orb orb-amber" style="width:700px;height:700px;top:-200px;right:-200px;opacity:0.5;" aria-hidden="true"></div>
+    <div class="orb orb-emerald" style="width:500px;height:500px;bottom:-100px;left:-150px;opacity:0.4;" aria-hidden="true"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <!-- Section header -->
+      <div class="mb-14 reveal">
+        <span class="eyebrow eyebrow-amber mb-5 inline-flex">
+          <iconify-icon icon="solar:buildings-3-linear" width="12"></iconify-icon>
+          Chapter 02
+        </span>
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 leading-tight" style="word-break:keep-all;">
+          브랜드 경쟁 <span style="background:linear-gradient(135deg,#f59e0b,#fbbf24,#fcd34d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">지형도</span>
+        </h2>
+        <p class="text-gray-400 text-lg max-w-2xl leading-relaxed" style="word-break:keep-all;">
+          Big Tobacco 4개사가 판을 장악 중. PMI·BAT·Altria·JTI의 자본력과 KT&amp;G의 한국 배급망이 만나는 지점이 핵심 변수다.
+        </p>
+      </div>
+
+      <!-- ── KPI CARDS ── -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+
+        <!-- KPI 1: ZYN cans -->
+        <div class="double-bezel-outer reveal reveal-delay-1">
+          <div class="double-bezel-inner p-5 rounded-[calc(1.5rem-0.75rem)] kpi-card">
+            <div class="flex items-center gap-2 mb-3">
+              <iconify-icon icon="solar:box-minimalistic-linear" width="16" style="color:#10b981;"></iconify-icon>
+              <span class="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">ZYN 미국 판매</span>
+            </div>
+            <div class="font-display text-3xl md:text-4xl font-black text-gray-900 leading-none mb-1">581<span class="text-xl text-gray-400 font-semibold ml-0.5">M</span></div>
+            <div class="text-xs text-gray-400 mb-2">캔 (2024년)</div>
+            <div class="text-[10px] text-emerald-400 font-medium leading-snug">PMI · FDA PMTA 승인<br>Jan 2025</div>
+          </div>
+        </div>
+
+        <!-- KPI 2: ZYN revenue -->
+        <div class="double-bezel-outer reveal reveal-delay-2">
+          <div class="double-bezel-inner p-5 rounded-[calc(1.5rem-0.75rem)] kpi-card">
+            <div class="flex items-center gap-2 mb-3">
+              <iconify-icon icon="solar:dollar-minimalistic-linear" width="16" style="color:#10b981;"></iconify-icon>
+              <span class="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">ZYN 매출</span>
+            </div>
+            <div class="font-display text-3xl md:text-4xl font-black text-gray-900 leading-none mb-1"><span class="text-xl text-gray-400 font-semibold">$</span>1.88<span class="text-xl text-gray-400 font-semibold ml-0.5">B</span></div>
+            <div class="text-xs text-gray-400 mb-2">2024년</div>
+            <div class="text-[10px] text-emerald-400 font-medium leading-snug">미국 시장 점유율<br><span class="text-emerald-300 font-black text-sm">74%</span></div>
+          </div>
+        </div>
+
+        <!-- KPI 3: VELO pouches -->
+        <div class="double-bezel-outer reveal reveal-delay-3">
+          <div class="double-bezel-inner p-5 rounded-[calc(1.5rem-0.75rem)] kpi-card">
+            <div class="flex items-center gap-2 mb-3">
+              <iconify-icon icon="solar:leaf-linear" width="16" style="color:#f59e0b;"></iconify-icon>
+              <span class="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">VELO 파우치</span>
+            </div>
+            <div class="font-display text-3xl md:text-4xl font-black text-gray-900 leading-none mb-1">8.3<span class="text-xl text-gray-400 font-semibold ml-0.5">B</span></div>
+            <div class="text-xs text-gray-400 mb-2">BAT, 2024년</div>
+            <div class="text-[10px] text-amber-400 font-medium leading-snug">YoY 매출 성장<br><span class="text-amber-300 font-black text-sm">+46.6%</span></div>
+          </div>
+        </div>
+
+        <!-- KPI 4: KT&G ASF acquisition -->
+        <div class="double-bezel-outer reveal reveal-delay-4">
+          <div class="double-bezel-inner p-5 rounded-[calc(1.5rem-0.75rem)] kpi-card">
+            <div class="flex items-center gap-2 mb-3">
+              <iconify-icon icon="solar:hand-money-linear" width="16" style="color:#f59e0b;"></iconify-icon>
+              <span class="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">KT&amp;G ASF 인수</span>
+            </div>
+            <div class="font-display text-3xl md:text-4xl font-black text-gray-900 leading-none mb-1"><span class="text-lg text-gray-400 font-semibold">SEK </span>1.76<span class="text-xl text-gray-400 font-semibold ml-0.5">B</span></div>
+            <div class="text-xs text-gray-400 mb-2">인수금액</div>
+            <div class="text-[10px] text-amber-400 font-medium leading-snug">Loop 브랜드<br>Altria 협력</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── CHARTS ROW ── -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+
+        <!-- Pie Chart: US Market Share -->
+        <div class="double-bezel-outer reveal">
+          <div class="double-bezel-inner p-6 rounded-[calc(1.5rem-0.75rem)]">
+            <div class="flex items-center gap-2 mb-1">
+              <iconify-icon icon="solar:pie-chart-2-linear" width="16" style="color:#10b981;"></iconify-icon>
+              <h3 class="font-display font-bold text-gray-900 text-base">미국 니코틴 파우치 시장 점유율</h3>
+            </div>
+            <p class="text-xs text-gray-500 mb-4">2024년 기준</p>
+            <div id="ch2-pie-chart" style="width:100%;height:280px;"></div>
+          </div>
+        </div>
+
+        <!-- Positioning Matrix -->
+        <div class="double-bezel-outer reveal reveal-delay-2">
+          <div class="double-bezel-inner p-6 rounded-[calc(1.5rem-0.75rem)]">
+            <div class="flex items-center gap-2 mb-1">
+              <iconify-icon icon="solar:target-linear" width="16" style="color:#f59e0b;"></iconify-icon>
+              <h3 class="font-display font-bold text-gray-900 text-base">브랜드 포지셔닝 매트릭스</h3>
+            </div>
+            <p class="text-xs text-gray-500 mb-4">가격대 × 니코틴 강도 — 버블에 커서를 올려보세요</p>
+            <div id="ch2-matrix-wrap" class="relative select-none" style="width:100%;height:280px;">
+              <svg id="ch2-matrix-svg" width="100%" height="100%" viewBox="0 0 440 280" style="overflow:visible;">
+                <!-- Grid lines -->
+                <defs>
+                  <pattern id="ch2-grid" x="0" y="0" width="44" height="28" patternUnits="userSpaceOnUse">
+                    <path d="M 44 0 L 0 0 0 28" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+                  </pattern>
+                </defs>
+                <rect width="440" height="280" fill="url(#ch2-grid)"/>
+
+                <!-- Axes -->
+                <line x1="50" y1="240" x2="420" y2="240" stroke="rgba(0,0,0,0.05)" stroke-width="1.5"/>
+                <line x1="50" y1="240" x2="50" y2="20" stroke="rgba(0,0,0,0.05)" stroke-width="1.5"/>
+
+                <!-- Axis labels -->
+                <text x="235" y="270" text-anchor="middle" fill="rgba(156,163,175,0.8)" font-size="10" font-family="Outfit,sans-serif">가격 (저가 → 고가)</text>
+                <text x="18" y="130" text-anchor="middle" fill="rgba(156,163,175,0.8)" font-size="10" font-family="Outfit,sans-serif" transform="rotate(-90,18,130)">니코틴 강도 (약 → 강)</text>
+
+                <!-- Axis ticks -->
+                <text x="80" y="255" text-anchor="middle" fill="rgba(107,114,128,0.7)" font-size="8.5">저가</text>
+                <text x="235" y="255" text-anchor="middle" fill="rgba(107,114,128,0.7)" font-size="8.5">중간가</text>
+                <text x="390" y="255" text-anchor="middle" fill="rgba(107,114,128,0.7)" font-size="8.5">고가</text>
+                <text x="44" y="235" text-anchor="end" fill="rgba(107,114,128,0.7)" font-size="8.5">약</text>
+                <text x="44" y="160" text-anchor="end" fill="rgba(107,114,128,0.7)" font-size="8.5">중간</text>
+                <text x="44" y="55" text-anchor="end" fill="rgba(107,114,128,0.7)" font-size="8.5">강</text>
+
+                <!-- Brand bubbles: cx=price, cy=nicotine strength (inverted y) -->
+                <!-- ZYN: 중간가/약 -->
+                <circle class="ch2-bubble" cx="210" cy="210" r="22" fill="rgba(16,185,129,0.25)" stroke="#10b981" stroke-width="1.5" data-brand="ZYN" data-info="PMI(Swedish Match) · 미국 점유율 74% · 3mg/6mg"/>
+                <text x="210" y="214" text-anchor="middle" fill="#10b981" font-size="9" font-family="Outfit,sans-serif" font-weight="700" pointer-events="none">ZYN</text>
+
+                <!-- on!: 중간가/약 (slightly offset) -->
+                <circle class="ch2-bubble" cx="195" cy="228" r="18" fill="rgba(245,158,11,0.2)" stroke="#f59e0b" stroke-width="1.5" data-brand="on!" data-info="Altria(Helix) · 미국 점유율 8.7% · 2mg/4mg/8mg"/>
+                <text x="195" y="232" text-anchor="middle" fill="#f59e0b" font-size="9" font-family="Outfit,sans-serif" font-weight="700" pointer-events="none">on!</text>
+
+                <!-- VELO: 중간가/중간 -->
+                <circle class="ch2-bubble" cx="240" cy="155" r="24" fill="rgba(99,102,241,0.25)" stroke="#818cf8" stroke-width="1.5" data-brand="VELO" data-info="BAT · 글로벌 점유율 급증 · 4mg/6mg/10mg · +46.6% YoY"/>
+                <text x="240" y="159" text-anchor="middle" fill="#a5b4fc" font-size="9" font-family="Outfit,sans-serif" font-weight="700" pointer-events="none">VELO</text>
+
+                <!-- Nomad KR: 저가/중간 -->
+                <circle class="ch2-bubble" cx="90" cy="150" r="20" fill="rgba(236,72,153,0.2)" stroke="#f472b6" stroke-width="1.5" data-brand="Nomad KR" data-info="BAT Korea · 한국 합성니코틴 · 4mg/6mg · ₩8,000–10,000"/>
+                <text x="90" y="154" text-anchor="middle" fill="#f9a8d4" font-size="8" font-family="Outfit,sans-serif" font-weight="700" pointer-events="none">Nomad KR</text>
+
+                <!-- Nordic Spirit: 고가/중간 -->
+                <circle class="ch2-bubble" cx="370" cy="145" r="19" fill="rgba(14,165,233,0.2)" stroke="#38bdf8" stroke-width="1.5" data-brand="Nordic Spirit" data-info="JTI · 유럽/UK · 6mg/9mg · ₩12,000–16,000"/>
+                <text x="370" y="149" text-anchor="middle" fill="#7dd3fc" font-size="8" font-family="Outfit,sans-serif" font-weight="700" pointer-events="none">Nordic Spirit</text>
+
+                <!-- Lyft: 중간가/강 -->
+                <circle class="ch2-bubble" cx="255" cy="60" r="20" fill="rgba(168,85,247,0.2)" stroke="#c084fc" stroke-width="1.5" data-brand="Lyft" data-info="BAT · 스칸디나비아 · 6mg/11mg · ₩11,000–14,000"/>
+                <text x="255" y="64" text-anchor="middle" fill="#d8b4fe" font-size="9" font-family="Outfit,sans-serif" font-weight="700" pointer-events="none">Lyft</text>
+
+                <!-- Loop/ASF: TBD/강 -->
+                <circle class="ch2-bubble" cx="310" cy="48" r="22" fill="rgba(245,158,11,0.3)" stroke="#f59e0b" stroke-width="2" data-brand="Loop/ASF" data-info="KT&G 인수 · 스웨덴 · 10mg/14mg · SEK 1.76B 인수 · 한국 배급 예정"/>
+                <text x="310" y="52" text-anchor="middle" fill="#fcd34d" font-size="8.5" font-family="Outfit,sans-serif" font-weight="700" pointer-events="none">Loop/ASF</text>
+
+                <!-- Tooltip -->
+                <g id="ch2-tooltip" style="display:none;" pointer-events="none">
+                  <rect id="ch2-tt-bg" rx="8" ry="8" fill="rgba(248,249,252,0.97)" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+                  <text id="ch2-tt-brand" x="0" y="0" fill="#111827" font-size="11" font-family="Outfit,sans-serif" font-weight="700"/>
+                  <text id="ch2-tt-info" x="0" y="0" fill="rgba(156,163,175,0.9)" font-size="9.5" font-family="Pretendard,sans-serif"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── BRAND SPEC TABLE ── -->
+      <div class="double-bezel-outer reveal mb-16">
+        <div class="double-bezel-inner p-6 rounded-[calc(1.5rem-0.75rem)]">
+          <div class="flex items-center gap-2 mb-5">
+            <iconify-icon icon="solar:list-check-linear" width="16" style="color:#10b981;"></iconify-icon>
+            <h3 class="font-display font-bold text-gray-900 text-base">브랜드 스펙 비교</h3>
+          </div>
+          <div class="overflow-x-auto chart-scroll-x -mx-2">
+            <table class="w-full min-w-[860px] text-sm border-collapse">
+              <thead>
+                <tr>
+                  <th class="text-left py-2.5 px-3 text-[10px] uppercase tracking-widest text-gray-500 font-semibold border-b border-gray-100">브랜드</th>
+                  <th class="text-left py-2.5 px-3 text-[10px] uppercase tracking-widest text-gray-500 font-semibold border-b border-gray-100">모회사</th>
+                  <th class="text-left py-2.5 px-3 text-[10px] uppercase tracking-widest text-gray-500 font-semibold border-b border-gray-100">출시</th>
+                  <th class="text-left py-2.5 px-3 text-[10px] uppercase tracking-widest text-gray-500 font-semibold border-b border-gray-100">주요 시장</th>
+                  <th class="text-left py-2.5 px-3 text-[10px] uppercase tracking-widest text-gray-500 font-semibold border-b border-gray-100">니코틴 강도</th>
+                  <th class="text-left py-2.5 px-3 text-[10px] uppercase tracking-widest text-gray-500 font-semibold border-b border-gray-100">가격대</th>
+                  <th class="text-left py-2.5 px-3 text-[10px] uppercase tracking-widest text-gray-500 font-semibold border-b border-gray-100">FDA 상태</th>
+                  <th class="text-left py-2.5 px-3 text-[10px] uppercase tracking-widest text-gray-500 font-semibold border-b border-gray-100">한국 접근성</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- ZYN -->
+                <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                  <td class="py-3 px-3">
+                    <span class="font-display font-bold text-emerald-400">ZYN</span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-300 text-xs">PMI (Swedish Match)</td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">2014</td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">미국, 스웨덴, 유럽</td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center gap-1 text-xs text-gray-300">
+                      <iconify-icon icon="solar:bolt-linear" width="11" style="color:#10b981;"></iconify-icon>3mg / 6mg
+                    </span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-300 text-xs">₩12,000–15,000</td>
+                  <td class="py-3 px-3">
+                    <span class="eyebrow eyebrow-emerald text-[9px] py-0.5 px-2">PMTA 승인</span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">직구 가능</td>
+                </tr>
+                <!-- VELO -->
+                <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                  <td class="py-3 px-3">
+                    <span class="font-display font-bold text-indigo-400">VELO</span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-300 text-xs">BAT</td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">2019</td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">스웨덴 #1, 글로벌</td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center gap-1 text-xs text-gray-300">
+                      <iconify-icon icon="solar:bolt-linear" width="11" style="color:#818cf8;"></iconify-icon>4mg / 6mg / 10mg
+                    </span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-300 text-xs">₩10,000–13,000</td>
+                  <td class="py-3 px-3">
+                    <span class="eyebrow text-[9px] py-0.5 px-2" style="background:rgba(107,114,128,0.1);color:#9ca3af;border:1px solid rgba(107,114,128,0.2);">미신청</span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">직구 가능</td>
+                </tr>
+                <!-- on! -->
+                <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                  <td class="py-3 px-3">
+                    <span class="font-display font-bold text-amber-400">on!</span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-300 text-xs">Altria (Helix)</td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">2018</td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">미국</td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center gap-1 text-xs text-gray-300">
+                      <iconify-icon icon="solar:bolt-linear" width="11" style="color:#f59e0b;"></iconify-icon>2mg / 4mg / 8mg
+                    </span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-300 text-xs">₩11,000–14,000</td>
+                  <td class="py-3 px-3">
+                    <span class="eyebrow eyebrow-amber text-[9px] py-0.5 px-2">on!PLUS 승인</span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">제한</td>
+                </tr>
+                <!-- Loop/ASF -->
+                <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors" style="background:rgba(245,158,11,0.03);">
+                  <td class="py-3 px-3">
+                    <span class="font-display font-bold text-amber-300">Loop / ASF</span>
+                  </td>
+                  <td class="py-3 px-3 text-amber-400/80 text-xs font-semibold">KT&amp;G (인수)</td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">2019</td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">스웨덴, 유럽</td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center gap-1 text-xs text-amber-300 font-semibold">
+                      <iconify-icon icon="solar:bolt-linear" width="11" style="color:#f59e0b;"></iconify-icon>10mg / 14mg
+                    </span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">TBD</td>
+                  <td class="py-3 px-3">
+                    <span class="eyebrow text-[9px] py-0.5 px-2" style="background:rgba(107,114,128,0.1);color:#9ca3af;border:1px solid rgba(107,114,128,0.2);">해당없음</span>
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="text-amber-400 text-xs font-semibold">KT&amp;G 배급</span>
+                  </td>
+                </tr>
+                <!-- Nordic Spirit -->
+                <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                  <td class="py-3 px-3">
+                    <span class="font-display font-bold text-sky-400">Nordic Spirit</span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-300 text-xs">JTI</td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">2019</td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">유럽, UK</td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center gap-1 text-xs text-gray-300">
+                      <iconify-icon icon="solar:bolt-linear" width="11" style="color:#38bdf8;"></iconify-icon>6mg / 9mg
+                    </span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-300 text-xs">₩12,000–16,000</td>
+                  <td class="py-3 px-3">
+                    <span class="eyebrow text-[9px] py-0.5 px-2" style="background:rgba(107,114,128,0.1);color:#9ca3af;border:1px solid rgba(107,114,128,0.2);">미신청</span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">직구 가능</td>
+                </tr>
+                <!-- Lyft -->
+                <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                  <td class="py-3 px-3">
+                    <span class="font-display font-bold text-purple-400">Lyft</span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-300 text-xs">BAT</td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">2017</td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">스칸디나비아</td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center gap-1 text-xs text-purple-300 font-semibold">
+                      <iconify-icon icon="solar:bolt-linear" width="11" style="color:#c084fc;"></iconify-icon>6mg / 11mg
+                    </span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-300 text-xs">₩11,000–14,000</td>
+                  <td class="py-3 px-3">
+                    <span class="eyebrow text-[9px] py-0.5 px-2" style="background:rgba(107,114,128,0.1);color:#9ca3af;border:1px solid rgba(107,114,128,0.2);">미신청</span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">직구 가능</td>
+                </tr>
+                <!-- BAT Nomad KR -->
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="py-3 px-3">
+                    <span class="font-display font-bold text-pink-400">BAT Nomad</span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-300 text-xs">BAT Korea</td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">2024 Nov</td>
+                  <td class="py-3 px-3 text-gray-400 text-xs">한국 (합성니코틴)</td>
+                  <td class="py-3 px-3">
+                    <span class="inline-flex items-center gap-1 text-xs text-gray-300">
+                      <iconify-icon icon="solar:bolt-linear" width="11" style="color:#f472b6;"></iconify-icon>4mg / 6mg
+                    </span>
+                  </td>
+                  <td class="py-3 px-3 text-gray-300 text-xs">₩8,000–10,000</td>
+                  <td class="py-3 px-3">
+                    <span class="eyebrow text-[9px] py-0.5 px-2" style="background:rgba(107,114,128,0.1);color:#9ca3af;border:1px solid rgba(107,114,128,0.2);">해당없음</span>
+                  </td>
+                  <td class="py-3 px-3">
+                    <span class="text-emerald-400 text-xs font-semibold">온라인 판매중</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── KOREA WILDCARD CARD ── -->
+      <div class="reveal">
+        <div class="double-bezel-outer" style="border-color:rgba(245,158,11,0.3);">
+          <div class="double-bezel-inner p-6 md:p-8 rounded-[calc(1.5rem-0.75rem)]" style="background:rgba(245,158,11,0.06);">
+            <div class="flex flex-col md:flex-row md:items-start gap-5">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(245,158,11,0.25),rgba(245,158,11,0.1));border:1px solid rgba(245,158,11,0.3);">
+                  <iconify-icon icon="solar:star-shine-linear" width="22" style="color:#f59e0b;"></iconify-icon>
+                </div>
+              </div>
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="eyebrow eyebrow-amber text-[10px]">
+                    <iconify-icon icon="solar:map-point-wave-linear" width="11"></iconify-icon>
+                    Korea Wildcard
+                  </span>
+                </div>
+                <h4 class="font-display text-xl md:text-2xl font-black text-gray-900 mb-3 leading-snug" style="word-break:keep-all;">
+                  KT&amp;G × Altria × ASF — 게임 체인저
+                </h4>
+                <p class="text-gray-300 leading-relaxed text-sm md:text-base" style="word-break:keep-all;">
+                  KT&amp;G가 Altria와 함께 스웨덴 <strong class="text-amber-300">ASF(Loop 브랜드)</strong>를 <strong class="text-amber-300">SEK 1.76B</strong>에 인수 —
+                  한국 담배 시장 점유율 <strong class="text-amber-300">66.7%</strong> + HTP <strong class="text-amber-300">45.9%</strong>의
+                  배급 파워가 니코틴 파우치에 합류할 경우 게임 체인저.
+                </p>
+                <div class="flex flex-wrap gap-3 mt-4">
+                  <div class="glass rounded-lg px-3 py-2 text-center">
+                    <div class="font-display font-black text-amber-300 text-lg leading-none">66.7%</div>
+                    <div class="text-[9px] text-gray-500 mt-0.5 uppercase tracking-wide">한국 담배 점유율</div>
+                  </div>
+                  <div class="glass rounded-lg px-3 py-2 text-center">
+                    <div class="font-display font-black text-amber-300 text-lg leading-none">45.9%</div>
+                    <div class="text-[9px] text-gray-500 mt-0.5 uppercase tracking-wide">HTP 점유율</div>
+                  </div>
+                  <div class="glass rounded-lg px-3 py-2 text-center">
+                    <div class="font-display font-black text-amber-300 text-lg leading-none">SEK 1.76B</div>
+                    <div class="text-[9px] text-gray-500 mt-0.5 uppercase tracking-wide">ASF 인수금액</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Ch.2 Scripts -->
+  <script>
+  (function() {
+    // ── PIE CHART ──
+    function initCh2Pie() {
+      var el = document.getElementById('ch2-pie-chart');
+      if (!el || !window.echarts) return;
+      var chart = echarts.init(el, null, { renderer: 'canvas' });
+      chart.setOption({
+        backgroundColor: 'transparent',
+        tooltip: {
+          trigger: 'item',
+          backgroundColor: 'rgba(248,249,252,0.97)',
+          borderColor: 'rgba(0,0,0,0.04)',
+          borderWidth: 1,
+          textStyle: { color: '#374151', fontSize: 12, fontFamily: 'Pretendard, sans-serif' },
+          formatter: function(p) {
+            return '<strong>' + p.name + '</strong><br/>점유율 ' + p.value + '%';
+          }
+        },
+        legend: {
+          orient: 'horizontal',
+          bottom: '2%',
+          textStyle: { color: '#374151', fontSize: 11, fontFamily: 'Pretendard, sans-serif' },
+          itemWidth: 10, itemHeight: 10
+        },
+        series: [{
+          type: 'pie',
+          radius: ['42%', '68%'],
+          center: ['50%', '44%'],
+          avoidLabelOverlap: true,
+          itemStyle: { borderColor: 'rgba(248,249,252,0.9)', borderWidth: 2, borderRadius: 4 },
+          label: {
+            show: true,
+            position: 'outside',
+            color: 'rgba(209,213,219,0.9)',
+            fontSize: 11,
+            fontFamily: 'Outfit, sans-serif',
+            fontWeight: '600',
+            formatter: '{b}\n{d}%'
+          },
+          labelLine: { lineStyle: { color: 'rgba(0,0,0,0.05)' } },
+          emphasis: {
+            itemStyle: { shadowBlur: 20, shadowOffsetX: 0, shadowColor: 'rgba(16,185,129,0.3)' }
+          },
+          data: [
+            { value: 74,   name: 'ZYN (PMI)',   itemStyle: { color: '#10b981' } },
+            { value: 8.7,  name: 'on! (Altria)', itemStyle: { color: '#f59e0b' } },
+            { value: 17.3, name: '기타',          itemStyle: { color: '#334155' } }
+          ]
+        }]
+      });
+      window.addEventListener('resize', function() { chart.resize(); });
+    }
+
+    // ── MATRIX BUBBLE TOOLTIP ──
+    function initCh2Matrix() {
+      var bubbles = document.querySelectorAll('.ch2-bubble');
+      var tooltip = document.getElementById('ch2-tooltip');
+      var ttBg = document.getElementById('ch2-tt-bg');
+      var ttBrand = document.getElementById('ch2-tt-brand');
+      var ttInfo = document.getElementById('ch2-tt-info');
+      if (!tooltip) return;
+
+      bubbles.forEach(function(bubble) {
+        bubble.style.cursor = 'pointer';
+        bubble.style.transition = 'r 0.2s ease, opacity 0.2s ease';
+
+        bubble.addEventListener('mouseenter', function(e) {
+          var svgEl = document.getElementById('ch2-matrix-svg');
+          var rect = svgEl.getBoundingClientRect();
+          var cx = parseFloat(bubble.getAttribute('cx'));
+          var cy = parseFloat(bubble.getAttribute('cy'));
+          var brand = bubble.getAttribute('data-brand');
+          var info = bubble.getAttribute('data-info');
+
+          // Measure text
+          ttBrand.textContent = brand;
+          ttInfo.textContent = info;
+
+          var maxInfoLen = Math.max(brand.length, info.length);
+          var bw = Math.max(brand.length * 7.5, info.length * 6.5) + 24;
+          var bh = 44;
+          var tx = cx + 28;
+          var ty = cy - 28;
+          if (tx + bw > 440) tx = cx - bw - 8;
+          if (ty < 0) ty = cy + 10;
+
+          ttBg.setAttribute('x', tx);
+          ttBg.setAttribute('y', ty);
+          ttBg.setAttribute('width', bw);
+          ttBg.setAttribute('height', bh);
+          ttBrand.setAttribute('x', tx + 10);
+          ttBrand.setAttribute('y', ty + 17);
+          ttInfo.setAttribute('x', tx + 10);
+          ttInfo.setAttribute('y', ty + 34);
+
+          tooltip.style.display = '';
+          bubble.setAttribute('opacity', '0.8');
+        });
+
+        bubble.addEventListener('mouseleave', function() {
+          tooltip.style.display = 'none';
+          bubble.setAttribute('opacity', '1');
+        });
+      });
+    }
+
+    // Init after DOM ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(initCh2Pie, 300);
+        initCh2Matrix();
+      });
+    } else {
+      setTimeout(initCh2Pie, 300);
+      initCh2Matrix();
+    }
+  })();
+  </script>
+
+  <div class="section-divider"></div>
+
+  <!-- ========================================
+       CH.3 — 한국 시장
+  ======================================== -->
+  <section id="ch3-korea" class="relative py-24 md:py-32 lg:py-40 overflow-hidden">
+
+    <!-- Ambient orbs -->
+    <div class="orb orb-amber absolute top-[15%] left-[-8%] w-[560px] h-[560px] opacity-15" aria-hidden="true"></div>
+    <div class="orb orb-emerald absolute bottom-[10%] right-[-5%] w-[480px] h-[480px] opacity-10" aria-hidden="true"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- ── Section Header ── -->
+      <div class="mb-16 reveal">
+        <span class="eyebrow eyebrow-emerald mb-4 inline-flex">
+          <iconify-icon icon="solar:map-point-linear" width="12"></iconify-icon>
+          Chapter 03
+        </span>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-4" style="word-break:keep-all;">
+          한국 시장
+        </h2>
+        <p class="text-xl md:text-2xl font-display font-600 leading-snug max-w-3xl" style="color:#f59e0b; word-break:keep-all;">
+          전 세계 4위 HTP 강국이 니코틴 파우치 앞에서 다시 갈림길에 섰다.
+        </p>
+        <p class="text-base text-gray-400 mt-3 max-w-2xl leading-relaxed" style="word-break:keep-all;">
+          5만 개 편의점은 아직 잠자고 있다.
+        </p>
+      </div>
+
+      <!-- ── KPI Cards ── -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-16">
+
+        <!-- ₩4조 -->
+        <div class="double-bezel-outer kpi-card reveal" style="--index:0;">
+          <div class="double-bezel-inner p-5">
+            <div class="text-[10px] uppercase tracking-widest text-gray-500 font-medium mb-3">한국 HTP 시장 규모</div>
+            <div class="font-display font-800 text-2xl md:text-3xl leading-none mb-1" style="color:#f59e0b;">₩4조</div>
+            <div class="text-xs text-gray-500">전체 담배 시장의 18.4% · 세계 4위</div>
+          </div>
+        </div>
+
+        <!-- +280% -->
+        <div class="double-bezel-outer kpi-card reveal reveal-delay-1" style="--index:1;">
+          <div class="double-bezel-inner p-5">
+            <div class="text-[10px] uppercase tracking-widest text-gray-500 font-medium mb-3">니코틴 파우치 직수입 YoY</div>
+            <div class="font-display font-800 text-2xl md:text-3xl text-gray-900 leading-none mb-1">+280%</div>
+            <div class="text-xs text-gray-500">아직 소규모지만 방향성은 명확</div>
+          </div>
+        </div>
+
+        <!-- $30–50M -->
+        <div class="double-bezel-outer kpi-card reveal reveal-delay-2" style="--index:2;">
+          <div class="double-bezel-inner p-5">
+            <div class="text-[10px] uppercase tracking-widest text-gray-500 font-medium mb-3">현재 추정 시장 규모</div>
+            <div class="font-display font-800 text-2xl md:text-3xl text-gray-900 leading-none mb-1">$30–50M</div>
+            <div class="text-xs text-gray-500">글로벌 대비 0.75–1.26%에 불과</div>
+          </div>
+        </div>
+
+        <!-- 50,000 -->
+        <div class="double-bezel-outer kpi-card reveal reveal-delay-3" style="--index:3;">
+          <div class="double-bezel-inner p-5">
+            <div class="text-[10px] uppercase tracking-widest text-gray-500 font-medium mb-3">편의점 미입점 상태</div>
+            <div class="font-display font-800 text-2xl md:text-3xl leading-none mb-1" style="color:#f59e0b;">50,000</div>
+            <div class="text-xs text-gray-500">GS25, CU, 세븐일레븐 — 아직 전무</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── Charts Row: Distribution Donut + 2028 Scenario Bar ── -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
+
+        <!-- Donut: Distribution Channels -->
+        <div class="double-bezel-outer reveal">
+          <div class="double-bezel-inner p-6">
+            <div class="flex items-center gap-2 mb-5">
+              <iconify-icon icon="solar:pie-chart-2-linear" width="18" style="color:#f59e0b;"></iconify-icon>
+              <h3 class="font-semibold text-gray-900 text-sm">유통 채널 현황</h3>
+              <span class="ml-auto text-[10px] text-gray-500 uppercase tracking-widest">2025 추정</span>
+            </div>
+            <div id="ch3-donut-chart" style="width:100%;height:280px;"></div>
+            <!-- Legend -->
+            <div class="flex flex-wrap gap-x-4 gap-y-2 mt-4">
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#10b981;"></span><span class="text-xs text-gray-400">직구(해외) 40%</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#34d399;"></span><span class="text-xs text-gray-400">국내 온라인 30%</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#6ee7b7;"></span><span class="text-xs text-gray-400">면세점 15%</span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full ring-1" style="background:#f59e0b; ring-color:#f59e0b;"></span><span class="text-xs" style="color:#f59e0b;">편의점 8% <span class="text-gray-500">(미지수)</span></span></div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:rgba(156,163,175,0.35);"></span><span class="text-xs text-gray-500">기타 7%</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bar: 2028 Scenario -->
+        <div class="double-bezel-outer reveal reveal-delay-1">
+          <div class="double-bezel-inner p-6">
+            <div class="flex items-center gap-2 mb-5">
+              <iconify-icon icon="solar:chart-2-linear" width="18" style="color:#10b981;"></iconify-icon>
+              <h3 class="font-semibold text-gray-900 text-sm">2028 시장 규모 시나리오</h3>
+              <span class="ml-auto text-[10px] text-gray-500 uppercase tracking-widest">KRW 기준</span>
+            </div>
+            <div id="ch3-bar-chart" style="width:100%;height:280px;"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── HTP vs NP Comparison Table ── -->
+      <div class="mb-16 reveal">
+        <div class="mb-6">
+          <span class="eyebrow eyebrow-emerald mb-3 inline-flex">
+            <iconify-icon icon="solar:chart-square-linear" width="12"></iconify-icon>
+            비교 분석
+          </span>
+          <h3 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight" style="word-break:keep-all;">
+            HTP vs 니코틴 파우치
+          </h3>
+        </div>
+
+        <div class="double-bezel-outer">
+          <div class="double-bezel-inner overflow-x-auto">
+            <table class="w-full text-sm min-w-[640px]">
+              <thead>
+                <tr style="border-bottom:1px solid rgba(0,0,0,0.07);">
+                  <th class="text-left p-4 text-[10px] uppercase tracking-widest text-gray-500 font-medium w-[22%]">항목</th>
+                  <th class="text-left p-4 text-[10px] uppercase tracking-widest text-gray-500 font-medium w-[26%]">HTP</th>
+                  <th class="text-left p-4 text-[10px] uppercase tracking-widest text-gray-500 font-medium w-[26%]">니코틴 파우치</th>
+                  <th class="text-left p-4 text-[10px] uppercase tracking-widest text-gray-500 font-medium w-[26%]">비고</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- 연기/냄새 — emerald -->
+                <tr style="border-bottom:1px solid rgba(0,0,0,0.04);" class="hover:bg-gray-50 transition-colors">
+                  <td class="p-4 text-gray-300 font-medium">연기 / 냄새</td>
+                  <td class="p-4 text-gray-400">연기 없음, 냄새 일부</td>
+                  <td class="p-4 text-gray-400">완전 무취 · 무연</td>
+                  <td class="p-4">
+                    <span class="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full" style="background:rgba(16,185,129,0.1);color:#10b981;border:1px solid rgba(16,185,129,0.2);">
+                      <iconify-icon icon="solar:alt-arrow-up-linear" width="11"></iconify-icon>파우치 우위
+                    </span>
+                  </td>
+                </tr>
+                <!-- 사용 장소 — neutral -->
+                <tr style="border-bottom:1px solid rgba(0,0,0,0.04);" class="hover:bg-gray-50 transition-colors">
+                  <td class="p-4 text-gray-300 font-medium">사용 장소</td>
+                  <td class="p-4 text-gray-400">금연구역 불가</td>
+                  <td class="p-4 text-gray-400">금연구역도 불가 (규제 후)</td>
+                  <td class="p-4">
+                    <span class="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full" style="background:rgba(156,163,175,0.08);color:#9ca3af;border:1px solid rgba(156,163,175,0.15);">
+                      <iconify-icon icon="solar:minus-circle-linear" width="11"></iconify-icon>동일 제한
+                    </span>
+                  </td>
+                </tr>
+                <!-- 기기 필요 — emerald -->
+                <tr style="border-bottom:1px solid rgba(0,0,0,0.04);" class="hover:bg-gray-50 transition-colors">
+                  <td class="p-4 text-gray-300 font-medium">기기 필요</td>
+                  <td class="p-4 text-gray-400">디바이스 필수</td>
+                  <td class="p-4 text-gray-400">디바이스 불필요</td>
+                  <td class="p-4">
+                    <span class="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full" style="background:rgba(16,185,129,0.1);color:#10b981;border:1px solid rgba(16,185,129,0.2);">
+                      <iconify-icon icon="solar:alt-arrow-up-linear" width="11"></iconify-icon>파우치 우위
+                    </span>
+                  </td>
+                </tr>
+                <!-- 한국 시장 규모 — amber -->
+                <tr style="border-bottom:1px solid rgba(0,0,0,0.04);" class="hover:bg-gray-50 transition-colors">
+                  <td class="p-4 text-gray-300 font-medium">한국 시장 규모</td>
+                  <td class="p-4 text-gray-400">₩4조 (18.4%)</td>
+                  <td class="p-4 text-gray-400">$30–50M (초기)</td>
+                  <td class="p-4">
+                    <span class="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full" style="background:rgba(245,158,11,0.1);color:#f59e0b;border:1px solid rgba(245,158,11,0.2);">
+                      <iconify-icon icon="solar:alt-arrow-up-linear" width="11"></iconify-icon>HTP 압도적
+                    </span>
+                  </td>
+                </tr>
+                <!-- 소비자 인지도 — amber -->
+                <tr style="border-bottom:1px solid rgba(0,0,0,0.04);" class="hover:bg-gray-50 transition-colors">
+                  <td class="p-4 text-gray-300 font-medium">소비자 인지도</td>
+                  <td class="p-4 text-gray-400">높음</td>
+                  <td class="p-4 text-gray-400">낮음</td>
+                  <td class="p-4">
+                    <span class="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full" style="background:rgba(245,158,11,0.1);color:#f59e0b;border:1px solid rgba(245,158,11,0.2);">
+                      <iconify-icon icon="solar:alt-arrow-up-linear" width="11"></iconify-icon>HTP 우위
+                    </span>
+                  </td>
+                </tr>
+                <!-- 니코틴 흡수 — amber -->
+                <tr style="border-bottom:1px solid rgba(0,0,0,0.04);" class="hover:bg-gray-50 transition-colors">
+                  <td class="p-4 text-gray-300 font-medium">니코틴 흡수</td>
+                  <td class="p-4 text-gray-400">빠름 (흡입)</td>
+                  <td class="p-4 text-gray-400">느림 (잇몸 흡수)</td>
+                  <td class="p-4">
+                    <span class="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full" style="background:rgba(245,158,11,0.1);color:#f59e0b;border:1px solid rgba(245,158,11,0.2);">
+                      <iconify-icon icon="solar:alt-arrow-up-linear" width="11"></iconify-icon>HTP 우위
+                    </span>
+                  </td>
+                </tr>
+                <!-- 피트니스/스포츠 — emerald -->
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="p-4 text-gray-300 font-medium">피트니스 / 스포츠</td>
+                  <td class="p-4 text-gray-400">불가 (연기)</td>
+                  <td class="p-4 text-gray-400">가능 (무연)</td>
+                  <td class="p-4">
+                    <span class="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full" style="background:rgba(16,185,129,0.1);color:#10b981;border:1px solid rgba(16,185,129,0.2);">
+                      <iconify-icon icon="solar:alt-arrow-up-linear" width="11"></iconify-icon>파우치 우위
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Vicky vs Momo ── -->
+      <div class="mb-16">
+        <div class="mb-8 reveal">
+          <span class="eyebrow eyebrow-emerald mb-3 inline-flex">
+            <iconify-icon icon="solar:user-speak-rounded-linear" width="12"></iconify-icon>
+            Analyst Debate
+          </span>
+          <h3 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight" style="word-break:keep-all;">
+            한국 시장 전망 — Vicky vs Momo
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+          <!-- Vicky — Emerald -->
+          <div class="double-bezel-outer battlefield-card reveal" style="border-color:rgba(16,185,129,0.35);">
+            <div class="double-bezel-inner p-6" style="border-color:rgba(16,185,129,0.15);">
+              <div class="flex items-center gap-3 mb-5">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                     style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3);">
+                  <iconify-icon icon="solar:bolt-circle-linear" width="20" style="color:#10b981;"></iconify-icon>
+                </div>
+                <div>
+                  <div class="font-display font-700 text-gray-900 text-base leading-tight">Vicky</div>
+                  <div class="text-[10px] uppercase tracking-widest mt-0.5" style="color:#10b981;">Bullish</div>
+                </div>
+              </div>
+
+              <div class="mb-4 pb-4" style="border-bottom:1px solid rgba(16,185,129,0.12);">
+                <div class="text-[10px] uppercase tracking-widest text-gray-500 mb-1.5">테제</div>
+                <p class="font-display font-600 text-gray-900 text-base leading-snug" style="word-break:keep-all;">
+                  "한국 2030년 $300M 베이스, $800M 낙관 가능"
+                </p>
+              </div>
+
+              <div class="mb-4 pb-4" style="border-bottom:1px solid rgba(16,185,129,0.08);">
+                <div class="text-[10px] uppercase tracking-widest text-gray-500 mb-1.5">핵심 주장</div>
+                <p class="text-sm font-semibold leading-snug" style="color:#10b981; word-break:keep-all;">
+                  "골든 윈도우 — 지금이 마지막 기회"
+                </p>
+              </div>
+
+              <p class="text-sm text-gray-400 leading-relaxed" style="word-break:keep-all;">
+                2026 규제 정비로 공식 시장이 탄생한다. ZYN처럼 74% 점유율을 선점이 가져간다.
+              </p>
+            </div>
+          </div>
+
+          <!-- Momo — Amber -->
+          <div class="double-bezel-outer battlefield-card reveal reveal-delay-1" style="border-color:rgba(245,158,11,0.35);">
+            <div class="double-bezel-inner p-6" style="border-color:rgba(245,158,11,0.15);">
+              <div class="flex items-center gap-3 mb-5">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                     style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.25);">
+                  <iconify-icon icon="solar:leaf-linear" width="20" style="color:#f59e0b;"></iconify-icon>
+                </div>
+                <div>
+                  <div class="font-display font-700 text-gray-900 text-base leading-tight">Momo</div>
+                  <div class="text-[10px] uppercase tracking-widest mt-0.5" style="color:#f59e0b;">Cautious</div>
+                </div>
+              </div>
+
+              <div class="mb-4 pb-4" style="border-bottom:1px solid rgba(245,158,11,0.12);">
+                <div class="text-[10px] uppercase tracking-widest text-gray-500 mb-1.5">테제</div>
+                <p class="font-display font-600 text-gray-900 text-base leading-snug" style="word-break:keep-all;">
+                  "숫자 커밋 거부. 어반 니치가 현실적 포지션"
+                </p>
+              </div>
+
+              <div class="mb-4 pb-4" style="border-bottom:1px solid rgba(245,158,11,0.08);">
+                <div class="text-[10px] uppercase tracking-widest text-gray-500 mb-1.5">핵심 주장</div>
+                <p class="text-sm font-semibold leading-snug" style="color:#f59e0b; word-break:keep-all;">
+                  "다음 왕좌가 아니라 다음 옵션"
+                </p>
+              </div>
+
+              <p class="text-sm text-gray-400 leading-relaxed" style="word-break:keep-all;">
+                HTP가 이미 ₩4조. 구강 포맷 생소함 극복에 최소 3–5년. 소비자 전환 우선순위가 복잡하다.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Consumer Priority Ranking ── -->
+      <div class="reveal">
+        <div class="mb-8">
+          <span class="eyebrow eyebrow-amber mb-3 inline-flex">
+            <iconify-icon icon="solar:users-group-rounded-linear" width="12"></iconify-icon>
+            Target Segments
+          </span>
+          <h3 class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight" style="word-break:keep-all;">
+            소비자 전환 우선순위
+          </h3>
+          <p class="text-sm text-gray-400 mt-2" style="word-break:keep-all;">
+            한국 시장 진입 시 집중해야 할 세그먼트 — 우선순위 순
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-3">
+
+          <!-- 01 HTP 병용층 -->
+          <div class="double-bezel-outer battlefield-card reveal">
+            <div class="double-bezel-inner p-5 flex items-start gap-5">
+              <div class="font-display font-800 text-3xl leading-none flex-shrink-0" style="color:#10b981; min-width:2.5rem;">01</div>
+              <div>
+                <div class="font-semibold text-gray-900 text-sm mb-1">HTP 병용층</div>
+                <p class="text-sm text-gray-400 leading-relaxed" style="word-break:keep-all;">
+                  비연소 포맷 이미 수용. 전환 마찰 최소. 가장 즉각적인 수요 풀.
+                </p>
+              </div>
+              <div class="ml-auto flex-shrink-0 self-center">
+                <span class="eyebrow eyebrow-emerald text-[10px]">최우선</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 02 직장 상황형 -->
+          <div class="double-bezel-outer battlefield-card reveal reveal-delay-1">
+            <div class="double-bezel-inner p-5 flex items-start gap-5">
+              <div class="font-display font-800 text-3xl leading-none flex-shrink-0" style="color:#10b981; min-width:2.5rem;">02</div>
+              <div>
+                <div class="font-semibold text-gray-900 text-sm mb-1">직장 상황형 사용자</div>
+                <p class="text-sm text-gray-400 leading-relaxed" style="word-break:keep-all;">
+                  냄새 회피 + 흡연구역 이동 생략. 업무 중 사용 가능성이 전환 동기.
+                </p>
+              </div>
+              <div class="ml-auto flex-shrink-0 self-center">
+                <span class="eyebrow eyebrow-emerald text-[10px]">2순위</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 03 전자담배 유저 -->
+          <div class="double-bezel-outer battlefield-card reveal reveal-delay-2">
+            <div class="double-bezel-inner p-5 flex items-start gap-5">
+              <div class="font-display font-800 text-3xl leading-none flex-shrink-0" style="color:#f59e0b; min-width:2.5rem;">03</div>
+              <div>
+                <div class="font-semibold text-gray-900 text-sm mb-1">전자담배 유저</div>
+                <p class="text-sm text-gray-400 leading-relaxed" style="word-break:keep-all;">
+                  플레이버 경험 익숙하나 흡입 → 구강 전환 필요. 마찰 존재하나 포맷 친화성은 있음.
+                </p>
+              </div>
+              <div class="ml-auto flex-shrink-0 self-center">
+                <span class="eyebrow eyebrow-amber text-[10px]">3순위</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- X 비흡연 신규 고객 -->
+          <div class="double-bezel-outer reveal reveal-delay-3" style="opacity:0.55;">
+            <div class="double-bezel-inner p-5 flex items-start gap-5">
+              <div class="font-display font-800 text-3xl leading-none flex-shrink-0 text-gray-600 min-width:2.5rem;">X</div>
+              <div>
+                <div class="font-semibold text-gray-500 text-sm mb-1 line-through decoration-gray-600">비흡연 신규 고객</div>
+                <p class="text-sm text-gray-600 leading-relaxed" style="word-break:keep-all;">
+                  의도적 제외. 청소년 이슈 리스크 및 규제 역풍 가능성.
+                </p>
+              </div>
+              <div class="ml-auto flex-shrink-0 self-center">
+                <span class="eyebrow text-[10px]" style="background:rgba(156,163,175,0.08);color:#6b7280;border:1px solid rgba(156,163,175,0.15);">제외</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /max-w -->
+  </section>
+
+  <!-- ECharts Init: Ch.3 -->
+  <script>
+    (function() {
+      function initCh3Charts() {
+
+        // ── Donut: Distribution Channels ──
+        const donutEl = document.getElementById('ch3-donut-chart');
+        if (donutEl && !donutEl._echartInited) {
+          donutEl._echartInited = true;
+          const donut = echarts.init(donutEl, null, { renderer: 'svg' });
+          donut.setOption({
+            backgroundColor: 'transparent',
+            tooltip: {
+              trigger: 'item',
+              backgroundColor: 'rgba(248,249,252,0.97)',
+              borderColor: 'rgba(0,0,0,0.04)',
+              textStyle: { color: '#374151', fontFamily: 'Pretendard, sans-serif', fontSize: 13 },
+              formatter: '{b}: {d}%'
+            },
+            series: [{
+              type: 'pie',
+              radius: ['42%', '70%'],
+              center: ['50%', '50%'],
+              avoidLabelOverlap: true,
+              padAngle: 3,
+              itemStyle: { borderRadius: 6, borderColor: '#ffffff', borderWidth: 2 },
+              label: {
+                show: true,
+                position: 'outside',
+                color: 'rgba(156,163,175,0.8)',
+                fontSize: 11,
+                fontFamily: 'Pretendard, sans-serif',
+                formatter: '{d}%'
+              },
+              labelLine: { lineStyle: { color: 'rgba(156,163,175,0.3)' } },
+              emphasis: {
+                label: { show: true, fontSize: 16, fontWeight: '700', fontFamily: 'Outfit, sans-serif', color: '#fff' },
+                itemStyle: { shadowBlur: 20, shadowColor: 'rgba(0,0,0,0.5)' }
+              },
+              data: [
+                { value: 40, name: '직구(해외)', itemStyle: { color: '#10b981' } },
+                { value: 30, name: '국내 온라인', itemStyle: { color: '#34d399' } },
+                { value: 15, name: '면세점',     itemStyle: { color: '#6ee7b7' } },
+                { value: 8,  name: '편의점',     itemStyle: { color: '#f59e0b' } },
+                { value: 7,  name: '기타',       itemStyle: { color: 'rgba(156,163,175,0.3)' } }
+              ]
+            }]
+          });
+          window.addEventListener('resize', () => donut.resize());
+        }
+
+        // ── Bar: 2028 Scenario ──
+        const barEl = document.getElementById('ch3-bar-chart');
+        if (barEl && !barEl._echartInited) {
+          barEl._echartInited = true;
+          const bar = echarts.init(barEl, null, { renderer: 'svg' });
+          bar.setOption({
+            backgroundColor: 'transparent',
+            tooltip: {
+              trigger: 'axis',
+              backgroundColor: 'rgba(248,249,252,0.97)',
+              borderColor: 'rgba(0,0,0,0.04)',
+              textStyle: { color: '#374151', fontFamily: 'Pretendard, sans-serif', fontSize: 13 }
+            },
+            grid: { left: 16, right: 16, top: 20, bottom: 60, containLabel: true },
+            xAxis: {
+              type: 'category',
+              data: ['하단 시나리오', '베이스 시나리오', '상단 시나리오'],
+              axisLine: { lineStyle: { color: 'rgba(0,0,0,0.06)' } },
+              axisTick: { show: false },
+              axisLabel: {
+                color: 'rgba(156,163,175,0.7)',
+                fontSize: 11,
+                fontFamily: 'Pretendard, sans-serif',
+                interval: 0
+              }
+            },
+            yAxis: {
+              type: 'value',
+              axisLine: { show: false },
+              axisTick: { show: false },
+              splitLine: { lineStyle: { color: 'rgba(0,0,0,0.05)' } },
+              axisLabel: {
+                color: 'rgba(156,163,175,0.6)',
+                fontSize: 10,
+                fontFamily: 'Outfit, sans-serif',
+                formatter: (v) => v >= 1000 ? (v/100) + '억' : v + '억'
+              }
+            },
+            series: [{
+              type: 'bar',
+              barWidth: '42%',
+              itemStyle: { borderRadius: [6, 6, 0, 0] },
+              label: {
+                show: true,
+                position: 'top',
+                color: '#fff',
+                fontSize: 12,
+                fontFamily: 'Outfit, sans-serif',
+                fontWeight: '700',
+                formatter: (p) => {
+                  const labels = ['₩190억', '₩580억', '₩1,390억'];
+                  return labels[p.dataIndex];
+                }
+              },
+              data: [
+                { value: 190, itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: '#ef4444' }, { offset: 1, color: '#b91c1c' }]) } },
+                { value: 580, itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: '#f59e0b' }, { offset: 1, color: '#d97706' }]) } },
+                { value: 1390, itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: '#10b981' }, { offset: 1, color: '#059669' }]) } }
+              ]
+            }]
+          });
+
+          // Condition text under bars
+          const conditions = ['규제 경직 + 문화 저항', '점진적 정비 + 편의점 입점', '빠른 합법화 + 글로벌 브랜드 진입'];
+          const colors = ['#ef4444', '#f59e0b', '#10b981'];
+          // Render via chart subtitle area — use graphic
+          bar.setOption({
+            graphic: conditions.map((text, i) => ({
+              type: 'text',
+              z: 5,
+              style: {
+                text,
+                fill: colors[i],
+                fontSize: 9,
+                fontFamily: 'Pretendard, sans-serif',
+                opacity: 0.75
+              },
+              bottom: i === 0 ? 14 : i === 1 ? 14 : 14,
+              // We'll position via xAxis
+            }))
+          });
+          window.addEventListener('resize', () => bar.resize());
+        }
+      }
+
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            initCh3Charts();
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.1 });
+
+      const sec = document.getElementById('ch3-korea');
+      if (sec) obs.observe(sec);
+    })();
+  </script>
+
+  <div class="section-divider"></div>
+
+  <!-- ========================================
+       CHAPTER 4 — 규제 타임라인
+  ======================================== -->
+  <section id="ch4" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <span class="eyebrow eyebrow-amber mb-4 inline-flex">
+          <iconify-icon icon="solar:shield-check-linear" width="12"></iconify-icon>
+          Chapter 04
+        </span>
+        <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4" style="word-break:keep-all;">규제 타임라인</h2>
+        <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto" style="word-break:keep-all;">
+          1988년 담배사업법 제정 이후 가장 큰 변화. 2026년 4월 24일, 합성 니코틴도 담배다.
+        </p>
+      </div>
+
+      <!-- Vertical Timeline -->
+      <div class="relative mb-20">
+        <!-- Timeline line -->
+        <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" style="transform: translateX(-50%);"></div>
+
+        <!-- Timeline items -->
+        <div class="space-y-8">
+
+          <!-- 1988 -->
+          <div class="relative flex items-start gap-6 md:gap-0">
+            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center z-10 md:absolute md:left-1/2 md:transform md:-translate-x-1/2"
+                 style="background:rgba(107,114,128,0.15); border:1px solid rgba(107,114,128,0.3);">
+              <iconify-icon icon="solar:document-text-linear" width="20" style="color:#6b7280;"></iconify-icon>
+            </div>
+            <div class="card-double-bezel p-5 flex-1 md:ml-auto md:w-5/12 md:mr-[calc(50%+2rem)]">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="font-display font-800 text-gray-400 text-lg">1988</span>
+                <span class="eyebrow text-[10px] border-gray-600/50 text-gray-500">담배사업법 제정</span>
+              </div>
+              <p class="text-sm text-gray-400" style="word-break:keep-all;">담배 = "담배 잎"으로 정의. 합성 니코틴 예상 못함. 회색지대의 씨앗이 심어지다.</p>
+            </div>
+          </div>
+
+          <!-- 2017–2019 -->
+          <div class="relative flex items-start gap-6 md:gap-0 md:flex-row-reverse">
+            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center z-10 md:absolute md:left-1/2 md:transform md:-translate-x-1/2"
+                 style="background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.25);">
+              <iconify-icon icon="solar:fire-linear" width="20" style="color:#f59e0b;"></iconify-icon>
+            </div>
+            <div class="card-double-bezel p-5 flex-1 md:mr-auto md:w-5/12 md:ml-[calc(50%+2rem)]">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="font-display font-800 text-amber-400 text-lg">2017–2019</span>
+                <span class="eyebrow eyebrow-amber text-[10px]">HTP 폭발 성장</span>
+              </div>
+              <p class="text-sm text-gray-400" style="word-break:keep-all;">IQOS · glo · 릴 출시. 담배세 논쟁 후 세금 부과 결론. 신형태 니코틴 과세 선례 수립.</p>
+            </div>
+          </div>
+
+          <!-- 2024 Nov -->
+          <div class="relative flex items-start gap-6 md:gap-0">
+            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center z-10 md:absolute md:left-1/2 md:transform md:-translate-x-1/2"
+                 style="background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.35);">
+              <iconify-icon icon="solar:danger-triangle-linear" width="20" style="color:#f59e0b;"></iconify-icon>
+            </div>
+            <div class="card-double-bezel p-5 flex-1 md:ml-auto md:w-5/12 md:mr-[calc(50%+2rem)]">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="font-display font-800 text-amber-400 text-lg">2024 Nov</span>
+                <span class="eyebrow eyebrow-amber text-[10px]">회색지대 개막</span>
+              </div>
+              <p class="text-sm text-gray-300 font-semibold mb-1" style="word-break:keep-all;">BAT Nomad 출시</p>
+              <p class="text-sm text-gray-400" style="word-break:keep-all;">합성 니코틴으로 담배법 회피. 온라인 판매, 세금 없음. 제도적 공백의 시작.</p>
+            </div>
+          </div>
+
+          <!-- 2025 Sep -->
+          <div class="relative flex items-start gap-6 md:gap-0 md:flex-row-reverse">
+            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center z-10 md:absolute md:left-1/2 md:transform md:-translate-x-1/2"
+                 style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.25);">
+              <iconify-icon icon="solar:buildings-linear" width="20" style="color:#10b981;"></iconify-icon>
+            </div>
+            <div class="card-double-bezel p-5 flex-1 md:mr-auto md:w-5/12 md:ml-[calc(50%+2rem)]">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="font-display font-800 text-emerald-400 text-lg">2025 Sep</span>
+                <span class="eyebrow eyebrow-emerald text-[10px]">국회 기재위 통과</span>
+              </div>
+              <p class="text-sm text-gray-400" style="word-break:keep-all;">담배 정의를 "담배 잎 또는 니코틴"으로 확대. 6개월 유예기간 부여.</p>
+            </div>
+          </div>
+
+          <!-- 2026.04.24 D-DAY -->
+          <div class="relative flex items-start gap-6 md:gap-0">
+            <div class="flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center z-10 md:absolute md:left-1/2 md:transform md:-translate-x-1/2"
+                 style="background:linear-gradient(135deg,#059669,#10b981); box-shadow:0 0 24px rgba(16,185,129,0.5);">
+              <iconify-icon icon="solar:calendar-mark-bold-duotone" width="24" style="color:#111827;"></iconify-icon>
+            </div>
+            <div class="flex-1 md:ml-auto md:w-5/12 md:mr-[calc(50%+2rem)]"
+                 style="background:linear-gradient(135deg,rgba(5,150,105,0.15),rgba(16,185,129,0.08)); border:1px solid rgba(16,185,129,0.4); border-radius:12px; padding:20px; box-shadow:0 0 32px rgba(16,185,129,0.12);">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="font-display font-900 text-emerald-400 text-xl">2026.04.24</span>
+                <span class="eyebrow eyebrow-emerald text-[10px]" style="background:rgba(16,185,129,0.2);">D-DAY</span>
+              </div>
+              <p class="text-sm font-semibold text-gray-900 mb-3" style="word-break:keep-all;">규제 전면 시행</p>
+              <div class="grid grid-cols-2 gap-2 mb-3">
+                <div class="flex items-center gap-1.5 text-xs text-gray-300">
+                  <iconify-icon icon="solar:bill-check-linear" width="12" style="color:#10b981;flex-shrink:0;"></iconify-icon>
+                  담배세 부과
+                </div>
+                <div class="flex items-center gap-1.5 text-xs text-gray-300">
+                  <iconify-icon icon="solar:slash-circle-linear" width="12" style="color:#10b981;flex-shrink:0;"></iconify-icon>
+                  온라인 판매 금지
+                </div>
+                <div class="flex items-center gap-1.5 text-xs text-gray-300">
+                  <iconify-icon icon="solar:document-add-linear" width="12" style="color:#10b981;flex-shrink:0;"></iconify-icon>
+                  경고 문구 의무화
+                </div>
+                <div class="flex items-center gap-1.5 text-xs text-gray-300">
+                  <iconify-icon icon="solar:forbidden-linear" width="12" style="color:#10b981;flex-shrink:0;"></iconify-icon>
+                  금연구역 사용 금지
+                </div>
+              </div>
+              <div class="pt-2 border-t border-emerald-500/20">
+                <p class="text-xs text-emerald-400 font-semibold" style="word-break:keep-all;">
+                  <iconify-icon icon="solar:arrow-right-linear" width="12" style="vertical-align:-2px;"></iconify-icon>
+                  공식 유통망 진입 가능성 열림
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2026 Q3 -->
+          <div class="relative flex items-start gap-6 md:gap-0 md:flex-row-reverse">
+            <div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center z-10 md:absolute md:left-1/2 md:transform md:-translate-x-1/2"
+                 style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.2); border-style:dashed;">
+              <iconify-icon icon="solar:shop-2-linear" width="20" style="color:#10b981;"></iconify-icon>
+            </div>
+            <div class="card-double-bezel p-5 flex-1 md:mr-auto md:w-5/12 md:ml-[calc(50%+2rem)]" style="border-style:dashed; opacity:0.85;">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="font-display font-800 text-emerald-400 text-lg">2026 Q3</span>
+                <span class="eyebrow eyebrow-emerald text-[10px]">예상</span>
+              </div>
+              <p class="text-sm text-gray-400" style="word-break:keep-all;">편의점 입점 논의 본격화. Vicky 예측 시점.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Vicky vs Momo Debate -->
+      <div class="mb-20">
+        <h3 class="text-center text-xl font-bold text-gray-900 mb-8" style="word-break:keep-all;">
+          규제 해석 대립
+        </h3>
+        <div class="grid grid-cols-1 gap-3 max-w-3xl mx-auto">
+
+          <div class="flex gap-3 items-start">
+            <div class="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center"
+                 style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3);">
+              <iconify-icon icon="solar:bolt-circle-bold" width="14" style="color:#10b981;"></iconify-icon>
+            </div>
+            <div class="card-double-bezel p-4 flex-1" style="border-color:rgba(16,185,129,0.25);">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-bold text-emerald-400">Vicky</span>
+              </div>
+              <p class="text-sm text-gray-300" style="word-break:keep-all;">"2026 Q3 편의점 개방 예상 — 시장 10배 성장 가능"</p>
+            </div>
+          </div>
+
+          <div class="flex gap-3 items-start flex-row-reverse">
+            <div class="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center"
+                 style="background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.3);">
+              <iconify-icon icon="solar:leaf-bold" width="14" style="color:#f59e0b;"></iconify-icon>
+            </div>
+            <div class="card-double-bezel p-4 flex-1" style="border-color:rgba(245,158,11,0.25);">
+              <div class="flex items-center gap-2 mb-1 justify-end">
+                <span class="text-xs font-bold text-amber-400">Momo</span>
+              </div>
+              <p class="text-sm text-gray-300 text-right" style="word-break:keep-all;">"입점 자체가 핵심 불확실 변수 — 편의점 본사 승인·청소년 우려"</p>
+            </div>
+          </div>
+
+          <div class="flex gap-3 items-start">
+            <div class="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center"
+                 style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3);">
+              <iconify-icon icon="solar:bolt-circle-bold" width="14" style="color:#10b981;"></iconify-icon>
+            </div>
+            <div class="card-double-bezel p-4 flex-1" style="border-color:rgba(16,185,129,0.25);">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-bold text-emerald-400">Vicky</span>
+              </div>
+              <p class="text-sm text-gray-300" style="word-break:keep-all;">"규제 = 공식 시장 오픈 신호"</p>
+            </div>
+          </div>
+
+          <div class="flex gap-3 items-start flex-row-reverse">
+            <div class="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center"
+                 style="background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.3);">
+              <iconify-icon icon="solar:leaf-bold" width="14" style="color:#f59e0b;"></iconify-icon>
+            </div>
+            <div class="card-double-bezel p-4 flex-1" style="border-color:rgba(245,158,11,0.25);">
+              <div class="flex items-center gap-2 mb-1 justify-end">
+                <span class="text-xs font-bold text-amber-400">Momo</span>
+              </div>
+              <p class="text-sm text-gray-300 text-right" style="word-break:keep-all;">"청소년 이슈 터지면 전면 급랭"</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Global Regulation Grid -->
+      <div>
+        <h3 class="text-center text-xl font-bold text-gray-900 mb-8" style="word-break:keep-all;">
+          글로벌 규제 비교
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+          <div class="card-double-bezel p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xl">&#127482;&#127480;</span>
+              <span class="font-bold text-sm text-gray-900">미국</span>
+            </div>
+            <p class="text-xs text-gray-400" style="word-break:keep-all;">PMTA 심사 후 승인. ZYN · on!PLUS 정식 허가.</p>
+          </div>
+
+          <div class="card-double-bezel p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xl">&#127480;&#127466;</span>
+              <span class="font-bold text-sm text-gray-900">스웨덴</span>
+            </div>
+            <p class="text-xs text-gray-400" style="word-break:keep-all;">완전 합법. 성인 전용 판매. snus 문화 기반.</p>
+          </div>
+
+          <div class="card-double-bezel p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xl">&#127468;&#127463;</span>
+              <span class="font-bold text-sm text-gray-900">영국</span>
+            </div>
+            <p class="text-xs text-gray-400" style="word-break:keep-all;">합법(일반 소비재). 편의점 판매 가능.</p>
+          </div>
+
+          <div class="card-double-bezel p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xl">&#127465;&#127466;</span>
+              <span class="font-bold text-sm text-gray-900">독일·EU</span>
+            </div>
+            <p class="text-xs text-gray-400" style="word-break:keep-all;">국가별 상이. 일부 제한. EU 공통 기준 논의 중.</p>
+          </div>
+
+          <div class="card-double-bezel p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xl">&#127462;&#127482;</span>
+              <span class="font-bold text-sm text-gray-900">호주</span>
+            </div>
+            <p class="text-xs text-gray-400" style="word-break:keep-all;">처방전 필요. 사실상 금지에 가까운 규제.</p>
+          </div>
+
+          <div class="card-double-bezel p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xl">&#127471;&#127477;</span>
+              <span class="font-bold text-sm text-gray-900">일본</span>
+            </div>
+            <p class="text-xs text-gray-400" style="word-break:keep-all;">규제 불명확. 회색지대. 주요 브랜드 비공식 유통.</p>
+          </div>
+
+          <div class="sm:col-span-2 lg:col-span-1 xl:col-span-2"
+               style="background:linear-gradient(135deg,rgba(5,150,105,0.15),rgba(16,185,129,0.08)); border:1px solid rgba(16,185,129,0.4); border-radius:12px; padding:16px;">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xl">&#127472;&#127479;</span>
+              <span class="font-bold text-sm text-emerald-400">한국 (2026.04)</span>
+              <span class="eyebrow eyebrow-emerald text-[9px]">신규</span>
+            </div>
+            <p class="text-xs text-gray-300" style="word-break:keep-all;">담배세 부과 + 온라인 판매 금지. 공식 유통망으로 전환 — 새로운 시장의 시작.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ========================================
+       CHAPTER 5 — 시나리오 & 전략
+  ======================================== -->
+  <section id="ch5" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <span class="eyebrow eyebrow-emerald mb-4 inline-flex">
+          <iconify-icon icon="solar:chart-square-linear" width="12"></iconify-icon>
+          Chapter 05
+        </span>
+        <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4" style="word-break:keep-all;">시나리오 &amp; 전략</h2>
+        <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto" style="word-break:keep-all;">
+          세 가지 미래. Vicky와 Momo의 시각이 가장 극명하게 갈리는 공간.
+        </p>
+      </div>
+
+      <!-- 3 Scenarios -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+
+        <!-- Bear -->
+        <div class="card-double-bezel p-6 flex flex-col" style="border-color:rgba(239,68,68,0.3);">
+          <div class="flex items-center gap-2 mb-1">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3);">
+              <iconify-icon icon="solar:graph-down-linear" width="16" style="color:#ef4444;"></iconify-icon>
+            </div>
+            <span class="font-display font-900 text-red-400 text-lg">Bear</span>
+          </div>
+          <div class="font-display font-900 text-3xl text-red-400 mb-3">$50M↓</div>
+          <p class="text-sm text-gray-300 mb-4 flex-1" style="word-break:keep-all;">편의점 입점 실패. 청소년 이슈로 추가 규제.</p>
+          <div class="border-t border-red-500/20 pt-4 mb-4">
+            <p class="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">발동 조건</p>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-1.5 text-xs text-gray-400">
+                <iconify-icon icon="solar:close-circle-linear" width="12" style="color:#ef4444;flex-shrink:0;"></iconify-icon>
+                편의점 본사 입점 전면 거절
+              </li>
+              <li class="flex items-center gap-1.5 text-xs text-gray-400">
+                <iconify-icon icon="solar:close-circle-linear" width="12" style="color:#ef4444;flex-shrink:0;"></iconify-icon>
+                청소년 사용 이슈 언론 보도
+              </li>
+              <li class="flex items-center gap-1.5 text-xs text-gray-400">
+                <iconify-icon icon="solar:close-circle-linear" width="12" style="color:#ef4444;flex-shrink:0;"></iconify-icon>
+                추가 금지법 발의·통과
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <iconify-icon icon="solar:leaf-bold" width="12" style="color:#f59e0b;"></iconify-icon>
+            <span class="text-xs text-amber-400 font-semibold">Momo 우려 시나리오</span>
+          </div>
+        </div>
+
+        <!-- Base -->
+        <div class="card-double-bezel p-6 flex flex-col" style="border-color:rgba(245,158,11,0.35); box-shadow:0 0 24px rgba(245,158,11,0.06);">
+          <div class="flex items-center gap-2 mb-1">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.3);">
+              <iconify-icon icon="solar:graph-linear" width="16" style="color:#f59e0b;"></iconify-icon>
+            </div>
+            <span class="font-display font-900 text-amber-400 text-lg">Base</span>
+          </div>
+          <div class="font-display font-900 text-3xl text-amber-400 mb-3">$150–300M</div>
+          <p class="text-sm text-gray-300 mb-4 flex-1" style="word-break:keep-all;">편의점 일부 입점. 도심 니치 정착.</p>
+          <div class="border-t border-amber-500/20 pt-4 mb-4">
+            <p class="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">발동 조건</p>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-1.5 text-xs text-gray-400">
+                <iconify-icon icon="solar:check-circle-linear" width="12" style="color:#f59e0b;flex-shrink:0;"></iconify-icon>
+                GS25·CU 중 1개 이상 입점
+              </li>
+              <li class="flex items-center gap-1.5 text-xs text-gray-400">
+                <iconify-icon icon="solar:check-circle-linear" width="12" style="color:#f59e0b;flex-shrink:0;"></iconify-icon>
+                담배세 부과 후 직구 수요 내수 전환
+              </li>
+              <li class="flex items-center gap-1.5 text-xs text-gray-400">
+                <iconify-icon icon="solar:check-circle-linear" width="12" style="color:#f59e0b;flex-shrink:0;"></iconify-icon>
+                청소년 이슈 없이 규제 안착
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <iconify-icon icon="solar:bolt-circle-bold" width="12" style="color:#10b981;"></iconify-icon>
+            <span class="text-xs text-emerald-400 font-semibold">Vicky 베이스 시나리오</span>
+          </div>
+        </div>
+
+        <!-- Bull -->
+        <div class="p-6 flex flex-col rounded-xl" style="background:linear-gradient(135deg,rgba(5,150,105,0.15),rgba(16,185,129,0.08)); border:1px solid rgba(16,185,129,0.4); box-shadow:0 0 32px rgba(16,185,129,0.1);">
+          <div class="flex items-center gap-2 mb-1">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:rgba(16,185,129,0.2); border:1px solid rgba(16,185,129,0.4);">
+              <iconify-icon icon="solar:graph-up-bold" width="16" style="color:#10b981;"></iconify-icon>
+            </div>
+            <span class="font-display font-900 text-emerald-400 text-lg">Bull</span>
+          </div>
+          <div class="font-display font-900 text-3xl text-emerald-400 mb-3">$800M+</div>
+          <p class="text-sm text-gray-300 mb-4 flex-1" style="word-break:keep-all;">전 편의점 입점. MZ 대규모 진입.</p>
+          <div class="border-t border-emerald-500/20 pt-4 mb-4">
+            <p class="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">발동 조건</p>
+            <ul class="space-y-1.5">
+              <li class="flex items-center gap-1.5 text-xs text-gray-400">
+                <iconify-icon icon="solar:check-circle-bold" width="12" style="color:#10b981;flex-shrink:0;"></iconify-icon>
+                GS25·CU·세븐일레븐 동시 입점
+              </li>
+              <li class="flex items-center gap-1.5 text-xs text-gray-400">
+                <iconify-icon icon="solar:check-circle-bold" width="12" style="color:#10b981;flex-shrink:0;"></iconify-icon>
+                KT&amp;G Loop 대규모 출시
+              </li>
+              <li class="flex items-center gap-1.5 text-xs text-gray-400">
+                <iconify-icon icon="solar:check-circle-bold" width="12" style="color:#10b981;flex-shrink:0;"></iconify-icon>
+                SNS 바이럴 + MZ 트렌드 결합
+              </li>
+              <li class="flex items-center gap-1.5 text-xs text-gray-400">
+                <iconify-icon icon="solar:check-circle-bold" width="12" style="color:#10b981;flex-shrink:0;"></iconify-icon>
+                HTP 헤비유저 대규모 전환
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <iconify-icon icon="solar:bolt-circle-bold" width="12" style="color:#10b981;"></iconify-icon>
+            <span class="text-xs text-emerald-400 font-semibold">Vicky 낙관 시나리오</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Checklist -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+
+        <!-- DO NOW -->
+        <div class="card-double-bezel p-6" style="border-color:rgba(16,185,129,0.3);">
+          <div class="flex items-center gap-2 mb-5">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:rgba(16,185,129,0.2); border:1px solid rgba(16,185,129,0.4);">
+              <iconify-icon icon="solar:rocket-2-bold" width="16" style="color:#10b981;"></iconify-icon>
+            </div>
+            <h4 class="font-bold text-base text-emerald-400">DO NOW</h4>
+          </div>
+          <div class="space-y-4">
+            <div class="flex gap-3">
+              <span class="flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold text-emerald-400" style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3);">01</span>
+              <div>
+                <p class="text-sm font-semibold text-gray-900 mb-0.5" style="word-break:keep-all;">편의점 바이어 사전 접촉</p>
+                <p class="text-xs text-gray-500" style="word-break:keep-all;">규제 시행 전 GS25·CU 입점 논의 선점</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <span class="flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold text-emerald-400" style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3);">02</span>
+              <div>
+                <p class="text-sm font-semibold text-gray-900 mb-0.5" style="word-break:keep-all;">온라인 브랜드 커뮤니티 구축</p>
+                <p class="text-xs text-gray-500" style="word-break:keep-all;">4/24 전 충성 유저 확보</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <span class="flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold text-emerald-400" style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3);">03</span>
+              <div>
+                <p class="text-sm font-semibold text-gray-900 mb-0.5" style="word-break:keep-all;">성인 인증 시스템 사전 개발</p>
+                <p class="text-xs text-gray-500" style="word-break:keep-all;">청소년 리스크 선제 차단</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WATCH & WAIT -->
+        <div class="card-double-bezel p-6" style="border-color:rgba(245,158,11,0.25);">
+          <div class="flex items-center gap-2 mb-5">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.3);">
+              <iconify-icon icon="solar:eye-linear" width="16" style="color:#f59e0b;"></iconify-icon>
+            </div>
+            <h4 class="font-bold text-base text-amber-400">WATCH &amp; WAIT</h4>
+          </div>
+          <div class="space-y-4">
+            <div class="flex gap-3">
+              <span class="flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold text-amber-400" style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.25);">04</span>
+              <div>
+                <p class="text-sm font-semibold text-gray-900 mb-0.5" style="word-break:keep-all;">KT&amp;G 파트너십 협상</p>
+                <p class="text-xs text-gray-500" style="word-break:keep-all;">Loop 브랜드 출시 방식 확인 후</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <span class="flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold text-amber-400" style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.25);">05</span>
+              <div>
+                <p class="text-sm font-semibold text-gray-900 mb-0.5" style="word-break:keep-all;">대규모 광고 캠페인</p>
+                <p class="text-xs text-gray-500" style="word-break:keep-all;">담배 광고 규제 범위 확정 전까지 보류</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <span class="flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold text-amber-400" style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.25);">06</span>
+              <div>
+                <p class="text-sm font-semibold text-gray-900 mb-0.5" style="word-break:keep-all;">Price Point 최종 확정</p>
+                <p class="text-xs text-gray-500" style="word-break:keep-all;">담배세 실제 부과 금액 확인 후</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SWOT 2x2 -->
+      <div class="mb-20">
+        <h3 class="text-center text-xl font-bold text-gray-900 mb-8">SWOT 분석</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+          <div class="card-double-bezel p-5" style="border-color:rgba(16,185,129,0.3);">
+            <div class="flex items-center gap-2 mb-3">
+              <iconify-icon icon="solar:shield-check-bold" width="16" style="color:#10b981;"></iconify-icon>
+              <h4 class="font-bold text-sm text-emerald-400 uppercase tracking-wider">강점 Strengths</h4>
+            </div>
+            <ul class="space-y-1.5">
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:point-on-map-bold" width="10" style="color:#10b981;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">완전 무취·무연 — 실내 사용 우위</span></li>
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:point-on-map-bold" width="10" style="color:#10b981;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">디바이스 불필요 — 진입 장벽 최저</span></li>
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:point-on-map-bold" width="10" style="color:#10b981;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">Big Tobacco 자본력 + 글로벌 R&amp;D</span></li>
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:point-on-map-bold" width="10" style="color:#10b981;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">KT&amp;G 66.7% 배급망 활용 가능</span></li>
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:point-on-map-bold" width="10" style="color:#10b981;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">검증된 글로벌 포맷</span></li>
+            </ul>
+          </div>
+
+          <div class="card-double-bezel p-5" style="border-color:rgba(239,68,68,0.25);">
+            <div class="flex items-center gap-2 mb-3">
+              <iconify-icon icon="solar:danger-triangle-bold" width="16" style="color:#ef4444;"></iconify-icon>
+              <h4 class="font-bold text-sm text-red-400 uppercase tracking-wider">약점 Weaknesses</h4>
+            </div>
+            <ul class="space-y-1.5">
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:minus-circle-bold" width="10" style="color:#ef4444;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">구강 포맷 문화적 생소함</span></li>
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:minus-circle-bold" width="10" style="color:#ef4444;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">니코틴 흡수 속도 느림</span></li>
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:minus-circle-bold" width="10" style="color:#ef4444;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">직구/온라인 의존 구조</span></li>
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:minus-circle-bold" width="10" style="color:#ef4444;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">소비자 인지도 제로</span></li>
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:minus-circle-bold" width="10" style="color:#ef4444;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">규제 후 온라인 채널 붕괴 리스크</span></li>
+            </ul>
+          </div>
+
+          <div class="card-double-bezel p-5" style="border-color:rgba(16,185,129,0.2);">
+            <div class="flex items-center gap-2 mb-3">
+              <iconify-icon icon="solar:rocket-2-bold" width="16" style="color:#34d399;"></iconify-icon>
+              <h4 class="font-bold text-sm text-emerald-300 uppercase tracking-wider">기회 Opportunities</h4>
+            </div>
+            <ul class="space-y-1.5">
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:add-circle-bold" width="10" style="color:#34d399;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">5만 편의점 미개척 시장</span></li>
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:add-circle-bold" width="10" style="color:#34d399;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">2026 공식 시장화 전환점</span></li>
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:add-circle-bold" width="10" style="color:#34d399;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">HTP 헤비유저 전환 잠재력</span></li>
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:add-circle-bold" width="10" style="color:#34d399;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">피트니스 채널 선점 기회</span></li>
+            </ul>
+          </div>
+
+          <div class="card-double-bezel p-5" style="border-color:rgba(245,158,11,0.25);">
+            <div class="flex items-center gap-2 mb-3">
+              <iconify-icon icon="solar:tornado-linear" width="16" style="color:#f59e0b;"></iconify-icon>
+              <h4 class="font-bold text-sm text-amber-400 uppercase tracking-wider">위협 Threats</h4>
+            </div>
+            <ul class="space-y-1.5">
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:danger-bold" width="10" style="color:#f59e0b;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">청소년 이슈 → 추가 금지법</span></li>
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:danger-bold" width="10" style="color:#f59e0b;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">HTP와의 강한 경쟁</span></li>
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:danger-bold" width="10" style="color:#f59e0b;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">편의점 입점 거절</span></li>
+              <li class="flex items-start gap-1.5 text-xs text-gray-400"><iconify-icon icon="solar:danger-bold" width="10" style="color:#f59e0b;flex-shrink:0;margin-top:3px;"></iconify-icon><span style="word-break:keep-all;">세금으로 직구 메리트 소멸</span></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 3 Strategic Action Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-20">
+
+        <div class="card-double-bezel p-5" style="border-color:rgba(16,185,129,0.3);">
+          <div class="font-display font-900 text-4xl text-emerald-500/20 mb-2">01</div>
+          <div class="flex items-center gap-2 mb-2">
+            <iconify-icon icon="solar:shop-2-bold" width="18" style="color:#10b981;"></iconify-icon>
+            <h4 class="font-bold text-sm text-gray-900" style="word-break:keep-all;">편의점 입점 준비</h4>
+          </div>
+          <p class="text-xs text-gray-500" style="word-break:keep-all;">2026 Q3 선제 대응. 바이어 접촉, 진열 전략, 성인 인증 시스템 구축.</p>
+        </div>
+
+        <div class="card-double-bezel p-5" style="border-color:rgba(16,185,129,0.25);">
+          <div class="font-display font-900 text-4xl text-emerald-500/20 mb-2">02</div>
+          <div class="flex items-center gap-2 mb-2">
+            <iconify-icon icon="solar:dumbbell-bold" width="18" style="color:#10b981;"></iconify-icon>
+            <h4 class="font-bold text-sm text-gray-900" style="word-break:keep-all;">피트니스·오피스 버티컬 공략</h4>
+          </div>
+          <p class="text-xs text-gray-500" style="word-break:keep-all;">니치 선점. 무취·무연 강점으로 운동·업무 공간 집중 공략.</p>
+        </div>
+
+        <div class="card-double-bezel p-5" style="border-color:rgba(245,158,11,0.25);">
+          <div class="font-display font-900 text-4xl text-amber-500/20 mb-2">03</div>
+          <div class="flex items-center gap-2 mb-2">
+            <iconify-icon icon="solar:shield-user-bold" width="18" style="color:#f59e0b;"></iconify-icon>
+            <h4 class="font-bold text-sm text-gray-900" style="word-break:keep-all;">청소년 안전 선제 대응</h4>
+          </div>
+          <p class="text-xs text-gray-500" style="word-break:keep-all;">Momo 리스크 헤지. 성인 인증, 포장 규제 준수, 사회적 책임 선언.</p>
+        </div>
+
+      </div>
+
+      <!-- Final Consensus Card -->
+      <div class="rounded-2xl p-8 md:p-10" style="background:linear-gradient(135deg,rgba(5,150,105,0.12),rgba(248,249,252,0.8),rgba(120,85,0,0.12)); border:1px solid transparent; background-clip:padding-box; position:relative;">
+        <div style="position:absolute; inset:0; border-radius:16px; padding:1px; background:linear-gradient(135deg,rgba(16,185,129,0.6),rgba(248,249,252,0.3),rgba(245,158,11,0.6)); -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none;"></div>
+
+        <div class="text-center mb-8">
+          <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2" style="word-break:keep-all;">최종 합의</h3>
+          <p class="text-sm text-gray-500">Vicky × Momo</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div class="flex gap-3">
+            <div class="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(16,185,129,0.2); border:1px solid rgba(16,185,129,0.4);">
+              <iconify-icon icon="solar:bolt-circle-bold-duotone" width="18" style="color:#10b981;"></iconify-icon>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-emerald-400 mb-1">Vicky 최종</p>
+              <p class="text-sm text-gray-300" style="word-break:keep-all;">"골든 윈도우는 열려 있다. 지금 진입하지 않으면 영원히 늦는다."</p>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <div class="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(245,158,11,0.2); border:1px solid rgba(245,158,11,0.4);">
+              <iconify-icon icon="solar:leaf-bold-duotone" width="18" style="color:#f59e0b;"></iconify-icon>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-amber-400 mb-1">Momo 최종</p>
+              <p class="text-sm text-gray-300" style="word-break:keep-all;">"다음 왕좌가 아니라 다음 옵션. 가능성은 크지만 확신은 금물."</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center border-t border-gray-200 pt-6 mb-6">
+          <p class="text-base md:text-lg font-semibold text-gray-900" style="word-break:keep-all;">
+            "2026.04.24 이후 6개월이 한국 니코틴 파우치의 향후 5년을 결정한다"
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="flex items-center gap-2 p-3 rounded-lg" style="background:rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.06);">
+            <iconify-icon icon="solar:shop-2-linear" width="14" style="color:#10b981;flex-shrink:0;"></iconify-icon>
+            <p class="text-xs text-gray-400" style="word-break:keep-all;">편의점 첫 입점 발표</p>
+          </div>
+          <div class="flex items-center gap-2 p-3 rounded-lg" style="background:rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.06);">
+            <iconify-icon icon="solar:calendar-date-linear" width="14" style="color:#10b981;flex-shrink:0;"></iconify-icon>
+            <p class="text-xs text-gray-400" style="word-break:keep-all;">KT&amp;G Loop 공식 출시일</p>
+          </div>
+          <div class="flex items-center gap-2 p-3 rounded-lg" style="background:rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.06);">
+            <iconify-icon icon="solar:graph-down-linear" width="14" style="color:#f59e0b;flex-shrink:0;"></iconify-icon>
+            <p class="text-xs text-gray-400" style="word-break:keep-all;">규제 후 온라인 시장 위축 속도</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================
+       인디의 실제 승리 경로
+  ======================================== -->
+  <section id="indie-path" class="py-24 md:py-32" style="background: linear-gradient(180deg, #f8f9fc 0%, #f1f5f9 100%);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="mb-12 reveal">
+        <span class="inline-block text-xs font-bold tracking-[3px] uppercase text-emerald-400 mb-3">Strategy Framework</span>
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style="font-family:'Outfit',sans-serif; letter-spacing:-1px;">인디의 실제 승리 경로</h2>
+        <p class="text-gray-500 text-lg max-w-2xl">메이저가 광고비로 이길 때, 인디가 앞서야 하는 4개 축</p>
+      </div>
+
+      <!-- 축 1: 채널 순서 맵 -->
+      <div class="mb-16 reveal">
+        <h3 class="text-xl font-bold text-gray-700 mb-6 flex items-center gap-2">
+          <iconify-icon icon="solar:map-point-bold" class="text-emerald-400 text-2xl"></iconify-icon>
+          축 1 — 채널 진입 순서
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="bg-white shadow-sm ring-1 ring-gray-200 p-1.5 rounded-2xl">
+            <div class="bg-[#f8f9fc] rounded-[10px] p-6 h-full">
+              <div class="text-xs font-bold text-emerald-400 mb-2 tracking-widest uppercase">Step 1 · 2026 Q2~Q3</div>
+              <div class="text-lg font-bold text-gray-900 mb-4">성인 전문 채널 선점</div>
+              <ul class="space-y-3 text-sm text-gray-500">
+                <li class="flex gap-2 items-start"><iconify-icon icon="solar:smoke-bold" class="text-emerald-400 mt-0.5 flex-shrink-0 text-base"></iconify-icon>담배·시가 전문점 (컴플라이언스 이미 익숙)</li>
+                <li class="flex gap-2 items-start"><iconify-icon icon="solar:running-bold" class="text-emerald-400 mt-0.5 flex-shrink-0 text-base"></iconify-icon>피트니스센터·크로스핏 (무연 USP 최강 환경)</li>
+                <li class="flex gap-2 items-start"><iconify-icon icon="solar:scissors-bold" class="text-emerald-400 mt-0.5 flex-shrink-0 text-base"></iconify-icon>남성 그루밍샵·바버샵 (반복 방문, 성인 집중)</li>
+                <li class="flex gap-2 items-start"><iconify-icon icon="solar:cup-hot-bold" class="text-emerald-400 mt-0.5 flex-shrink-0 text-base"></iconify-icon>골프 클럽하우스·비즈니스 라운지 (냄새 민감)</li>
+              </ul>
+              <div class="mt-4 pt-4 border-t border-gray-200 text-xs text-gray-300">목표: 50~100개 점포 · 주당 회전 검증</div>
+            </div>
+          </div>
+          <div class="bg-white shadow-sm ring-1 ring-amber-500/20 p-1.5 rounded-2xl">
+            <div class="bg-[#f8f9fc] rounded-[10px] p-6 h-full">
+              <div class="text-xs font-bold text-amber-400 mb-2 tracking-widest uppercase">Step 2 · 2026 Q4~2027 Q1</div>
+              <div class="text-lg font-bold text-gray-900 mb-4">재구매율 검증 후 확장</div>
+              <ul class="space-y-3 text-sm text-gray-500">
+                <li class="flex gap-2 items-start"><iconify-icon icon="solar:chart-2-bold" class="text-amber-400 mt-0.5 flex-shrink-0 text-base"></iconify-icon><span><strong class="text-amber-300">60일 재구매율 50% 이상</strong> 점포만 확장</span></li>
+                <li class="flex gap-2 items-start"><iconify-icon icon="solar:buildings-bold" class="text-amber-400 mt-0.5 flex-shrink-0 text-base"></iconify-icon>25개 도시 전문채널 네트워크 구축</li>
+                <li class="flex gap-2 items-start"><iconify-icon icon="solar:document-bold" class="text-amber-400 mt-0.5 flex-shrink-0 text-base"></iconify-icon>컴플라이언스 키트 + 소매점 교육 SOP 완성</li>
+              </ul>
+              <div class="mt-4 pt-4 border-t border-gray-200 text-xs text-gray-300">목표: 점포당 주당 3캔 이상 회전</div>
+            </div>
+          </div>
+          <div class="bg-white shadow-sm ring-1 ring-gray-100 p-1.5 rounded-2xl opacity-80">
+            <div class="bg-[#f8f9fc] rounded-[10px] p-6 h-full">
+              <div class="text-xs font-bold text-gray-400 mb-2 tracking-widest uppercase">Step 3 · 2027 Q2+</div>
+              <div class="text-lg font-bold text-gray-900 mb-4">검증된 재구매 들고 편의점</div>
+              <ul class="space-y-3 text-sm text-gray-500">
+                <li class="flex gap-2 items-start"><iconify-icon icon="solar:shop-bold" class="text-gray-300 mt-0.5 flex-shrink-0 text-base"></iconify-icon>편의점은 "폭발 기대"가 아니라 검증된 재구매 들고 진입</li>
+                <li class="flex gap-2 items-start"><iconify-icon icon="solar:handshake-bold" class="text-gray-300 mt-0.5 flex-shrink-0 text-base"></iconify-icon>KT&G 파트너십 — Loop 출시 방식 확인 후 협상</li>
+              </ul>
+              <div class="mt-4 pt-4 border-t border-gray-200 text-xs text-gray-300">목표: 전국 편의점 점진적 입점</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 축 2: SKU 집중 -->
+      <div class="mb-16 reveal">
+        <h3 class="text-xl font-bold text-gray-700 mb-6 flex items-center gap-2">
+          <iconify-icon icon="solar:box-bold" class="text-emerald-400 text-2xl"></iconify-icon>
+          축 2 — SKU 집중 전략
+        </h3>
+        <div class="bg-white shadow-sm ring-1 ring-gray-200 p-1.5 rounded-2xl overflow-hidden">
+          <div class="bg-[#f8f9fc] rounded-[10px] overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-gray-200">
+                  <th class="text-left p-4 text-gray-400 font-semibold text-xs tracking-widest uppercase">단계</th>
+                  <th class="text-left p-4 text-gray-400 font-semibold text-xs tracking-widest uppercase">SKU</th>
+                  <th class="text-left p-4 text-gray-400 font-semibold text-xs tracking-widest uppercase">이유</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-100">
+                  <td class="p-4"><span class="text-xs font-bold text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded-full">런칭</span></td>
+                  <td class="p-4 text-gray-900 font-medium">민트/쿨링 미디엄 6mg × 1</td>
+                  <td class="p-4 text-gray-500">한국 선호도 1위, 재구매 안정</td>
+                </tr>
+                <tr class="border-b border-gray-100">
+                  <td class="p-4"><span class="text-xs font-bold text-amber-400 bg-amber-400/10 px-2 py-1 rounded-full">+3개월</span></td>
+                  <td class="p-4 text-gray-900 font-medium">쿨링 스트롱 10mg × 1</td>
+                  <td class="p-4 text-gray-500">HTP 헤비유저 전환용</td>
+                </tr>
+                <tr class="border-b border-gray-100">
+                  <td class="p-4"><span class="text-xs font-bold text-gray-300 bg-white shadow-sm px-2 py-1 rounded-full">+6개월</span></td>
+                  <td class="p-4 text-gray-500">과일향 → 규제 후 판단</td>
+                  <td class="p-4 text-gray-500">가향 규제 불확실성 확인 후 결정</td>
+                </tr>
+                <tr>
+                  <td class="p-4"><span class="text-xs font-bold text-red-400 bg-red-400/10 px-2 py-1 rounded-full">절대 금지</span></td>
+                  <td class="p-4 text-red-400/70 font-medium">청소년 연상 디자인·표현</td>
+                  <td class="p-4 text-gray-500">규제 표적 자초 — 카테고리 전체 리스크</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 축 3: 소싱 이원화 -->
+      <div class="mb-16 reveal">
+        <h3 class="text-xl font-bold text-gray-700 mb-6 flex items-center gap-2">
+          <iconify-icon icon="solar:global-bold" class="text-amber-400 text-2xl"></iconify-icon>
+          축 3 — 소싱 이원화 <span class="text-xs font-bold text-amber-400 bg-amber-400/10 px-2 py-1 rounded-full ml-2">필수 조건</span>
+        </h3>
+        <div class="bg-amber-500/5 ring-1 ring-amber-500/30 p-1.5 rounded-2xl">
+          <div class="bg-[#f8f9fc] rounded-[10px] p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+              <div class="flex gap-3">
+                <div class="w-9 h-9 rounded-full bg-emerald-400/10 flex items-center justify-center flex-shrink-0">
+                  <iconify-icon icon="solar:check-circle-bold" class="text-emerald-400 text-lg"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-sm font-bold text-gray-900 mb-1">1차: 유럽 검증 제조사</div>
+                  <div class="text-xs text-gray-500">컴플라이언스 강점 · 타이밍 윈도우 6~18개월</div>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <div class="w-9 h-9 rounded-full bg-amber-400/10 flex items-center justify-center flex-shrink-0">
+                  <iconify-icon icon="solar:shield-warning-bold" class="text-amber-400 text-lg"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-sm font-bold text-gray-900 mb-1">2차: 스칸디나비아 또는 동유럽</div>
+                  <div class="text-xs text-gray-500">EU 금지법 리스크 헤지 · 권장이 아니라 필수</div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-amber-500/20 pt-4 space-y-2">
+              <div class="flex gap-2 text-xs text-amber-300/70 items-start">
+                <iconify-icon icon="solar:danger-triangle-bold" class="text-amber-400 flex-shrink-0 mt-0.5"></iconify-icon>
+                프랑스가 2025년 EU에 구강용 니코틴 금지안 통보 — 유럽 단일 소싱은 리스크
+              </div>
+              <div class="flex gap-2 text-xs text-red-300/70 items-start">
+                <iconify-icon icon="solar:danger-triangle-bold" class="text-red-400 flex-shrink-0 mt-0.5"></iconify-icon>
+                중국 의존 금지: 2026년 1월 국가담배전매국이 니코틴 파우치를 전매체계에 편입
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 축 4: 컴플라이언스 세일즈 툴 -->
+      <div class="mb-16 reveal">
+        <h3 class="text-xl font-bold text-gray-700 mb-6 flex items-center gap-2">
+          <iconify-icon icon="solar:shield-check-bold" class="text-emerald-400 text-2xl"></iconify-icon>
+          축 4 — 컴플라이언스를 세일즈 툴로
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div class="bg-white shadow-sm ring-1 ring-gray-200 rounded-xl p-4"><iconify-icon icon="solar:lock-keyhole-bold" class="text-emerald-400 text-xl mb-2 block"></iconify-icon><div class="text-gray-700 font-medium text-sm mb-1">아동보호 포장</div><div class="text-gray-400 text-xs">Child-resistant 기본 탑재</div></div>
+          <div class="bg-white shadow-sm ring-1 ring-gray-200 rounded-xl p-4"><iconify-icon icon="solar:user-check-bold" class="text-emerald-400 text-xl mb-2 block"></iconify-icon><div class="text-gray-700 font-medium text-sm mb-1">연령확인 SOP</div><div class="text-gray-400 text-xs">성인 인증 프로토콜 표준화</div></div>
+          <div class="bg-white shadow-sm ring-1 ring-gray-200 rounded-xl p-4"><iconify-icon icon="solar:document-text-bold" class="text-emerald-400 text-xl mb-2 block"></iconify-icon><div class="text-gray-700 font-medium text-sm mb-1">경고표시 자동화</div><div class="text-gray-400 text-xs">소매점 경고 키트 일괄 제공</div></div>
+          <div class="bg-white shadow-sm ring-1 ring-gray-200 rounded-xl p-4"><iconify-icon icon="solar:box-minimalistic-bold" class="text-emerald-400 text-xl mb-2 block"></iconify-icon><div class="text-gray-700 font-medium text-sm mb-1">로트 추적</div><div class="text-gray-400 text-xs">클레임 대응 24시간 내</div></div>
+          <div class="bg-white shadow-sm ring-1 ring-gray-200 rounded-xl p-4"><iconify-icon icon="solar:calculator-bold" class="text-emerald-400 text-xl mb-2 block"></iconify-icon><div class="text-gray-700 font-medium text-sm mb-1">세금 정산 흐름</div><div class="text-gray-400 text-xs">g당 세금 자동 계산 문서화</div></div>
+          <div class="bg-emerald-500/10 ring-1 ring-emerald-500/30 rounded-xl p-4"><iconify-icon icon="solar:star-bold" class="text-emerald-400 text-xl mb-2 block"></iconify-icon><div class="text-emerald-300 font-bold text-sm mb-1">핵심</div><div class="text-emerald-400/60 text-xs">"이 브랜드는 사고 안 난다" — 리테일러가 이렇게 인식하는 순간 세일즈가 된다</div></div>
+        </div>
+      </div>
+
+      <!-- 세금 정상화 경고 -->
+      <div class="bg-amber-500/5 ring-2 ring-amber-500/40 p-1.5 rounded-2xl reveal">
+        <div class="bg-[#f8f9fc] rounded-[10px] p-6 md:p-8">
+          <div class="flex items-start gap-4 mb-6">
+            <iconify-icon icon="solar:danger-triangle-bold" class="text-amber-400 text-3xl flex-shrink-0 mt-1"></iconify-icon>
+            <div>
+              <div class="text-amber-400 font-bold text-xl mb-2">2년 감면이 끝난 뒤에도 남는 구조인가?</div>
+              <div class="text-gray-500 text-sm">합성니코틴 50% 세금 감면은 2년 한시. 종료 후 g당 세금 구조:</div>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-3 mb-5">
+            <div class="bg-white shadow-sm rounded-xl p-4 text-center"><div class="text-amber-400 font-bold text-xl">215원/g</div><div class="text-gray-400 text-xs mt-1">개별소비세</div></div>
+            <div class="bg-white shadow-sm rounded-xl p-4 text-center"><div class="text-amber-400 font-bold text-xl">364원/g</div><div class="text-gray-400 text-xs mt-1">담배소비세</div></div>
+            <div class="bg-white shadow-sm rounded-xl p-4 text-center"><div class="text-amber-400 font-bold text-xl">534.5원/g</div><div class="text-gray-400 text-xs mt-1">국민건강증진부담금</div></div>
+          </div>
+          <div class="bg-amber-500/10 rounded-xl p-4 text-sm text-amber-300/80">
+            <iconify-icon icon="solar:forbidden-circle-bold" class="text-amber-400 mr-2"></iconify-icon>
+            <strong>감면 종료 후 공헌이익률 20% 미만이면 전국 확장 금지.</strong> 이 사업의 진짜 승부처는 초도 판매가 아니다. 세금 정상화 후에도 남는 재구매가 답이다. 유럽 소싱 우위의 타이밍 윈도우는 6~18개월 — 그 안에 오프라인 재구매를 증명해야 한다.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-100 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-6 h-6 rounded-lg flex items-center justify-center"
+               style="background: linear-gradient(135deg, #10b981, #059669);">
+            <iconify-icon icon="solar:chart-line-duotone" width="14" style="color:#111827;"></iconify-icon>
+          </div>
+          <span class="font-display font-600 text-sm text-gray-900">NP Report 2026 v5</span>
+        </div>
+        <p class="text-xs text-gray-600">
+          NP Report 2026 v5 · Vicky × Momo · Made by claw
+        </p>
+        <div class="flex items-center gap-3">
+          <span class="eyebrow eyebrow-emerald text-[9px]">
+            <iconify-icon icon="solar:bolt-circle-linear" width="10"></iconify-icon>Vicky
+          </span>
+          <span class="eyebrow eyebrow-amber text-[9px]">
+            <iconify-icon icon="solar:leaf-linear" width="10"></iconify-icon>Momo
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================
+       SCRIPTS
+  ======================================== -->
+  <script>
+    // ===== COUNTDOWN TIMER =====
+    function updateCountdown() {
+      const target = new Date('2026-04-24T00:00:00+09:00');
+      const now = new Date();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        document.getElementById('cd-days').textContent = '0';
+        document.getElementById('cd-hours').textContent = '00';
+        document.getElementById('cd-mins').textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+      document.getElementById('cd-days').textContent = days;
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+
+    // ===== MOBILE MENU =====
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+
+    function openMobileMenu() {
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    hamburgerBtn.addEventListener('click', openMobileMenu);
+    closeMenuBtn.addEventListener('click', closeMobileMenu);
+
+    // ===== SCROLL REVEAL (IntersectionObserver) =====
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ===== ACTIVE NAV ON SCROLL =====
+    const sections = ['ch1-global', 'ch2-brand', 'ch3-korea', 'ch4-regulation', 'ch5-strategy'];
+    const navLinks = document.querySelectorAll('[data-chapter]');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + id) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) sectionObserver.observe(el);
+    });
+
+    // ===== ECHARTS: GLOBAL LINE CHART =====
+    function initCharts() {
+      // Line Chart
+      const lineChart = echarts.init(document.getElementById('chart-global-line'), null, { renderer: 'canvas' });
+
+      const lineOption = {
+        backgroundColor: 'transparent',
+        grid: { top: 20, right: 20, bottom: 40, left: 50, containLabel: false },
+        tooltip: {
+          trigger: 'axis',
+          backgroundColor: 'rgba(248,249,252,0.97)',
+          borderColor: 'rgba(16,185,129,0.3)',
+          borderWidth: 1,
+          textStyle: { color: '#374151', fontFamily: 'Pretendard, system-ui', fontSize: 12 },
+          formatter: (params) => {
+            const p = params[0];
+            return `<span style="color:#9ca3af;font-size:11px;">${p.name}</span><br><span style="color:#10b981;font-weight:700;font-size:16px;font-family:Outfit;">$${p.value}B</span>`;
+          }
+        },
+        xAxis: {
+          type: 'category',
+          data: ['2024', '2025E', '2026E', '2027E', '2028E', '2029E', '2030E'],
+          axisLine: { lineStyle: { color: 'rgba(0,0,0,0.04)' } },
+          axisTick: { show: false },
+          axisLabel: {
+            color: 'rgba(156,163,175,0.7)',
+            fontFamily: 'Outfit, system-ui',
+            fontSize: 11
+          }
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: { show: false },
+          axisTick: { show: false },
+          splitLine: { lineStyle: { color: 'rgba(0,0,0,0.05)', type: 'dashed' } },
+          axisLabel: {
+            color: 'rgba(156,163,175,0.7)',
+            fontFamily: 'Outfit, system-ui',
+            fontSize: 10,
+            formatter: (v) => `$${v}B`
+          }
+        },
+        series: [{
+          data: [3.95, 5.3, 7.1, 9.5, 12.7, 17.1, 22.8],
+          type: 'line',
+          smooth: true,
+          symbol: 'circle',
+          symbolSize: 6,
+          itemStyle: { color: '#10b981' },
+          lineStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+              { offset: 0, color: '#059669' },
+              { offset: 1, color: '#34d399' }
+            ]),
+            width: 2.5
+          },
+          areaStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: 'rgba(16,185,129,0.25)' },
+              { offset: 1, color: 'rgba(16,185,129,0.01)' }
+            ])
+          },
+          markPoint: {
+            data: [
+              { type: 'max', name: 'Max',
+                label: { color: '#10b981', fontFamily: 'Outfit', fontWeight: 700, fontSize: 12 },
+                itemStyle: { color: 'rgba(16,185,129,0.2)', borderColor: '#10b981', borderWidth: 1.5 }
+              }
+            ]
+          }
+        }]
+      };
+
+      lineChart.setOption(lineOption);
+
+      // Donut Chart
+      const donutChart = echarts.init(document.getElementById('chart-regional-donut'), null, { renderer: 'canvas' });
+
+      const donutOption = {
+        backgroundColor: 'transparent',
+        tooltip: {
+          trigger: 'item',
+          backgroundColor: 'rgba(248,249,252,0.97)',
+          borderColor: 'rgba(0,0,0,0.04)',
+          borderWidth: 1,
+          textStyle: { color: '#374151', fontFamily: 'Pretendard, system-ui', fontSize: 12 },
+          formatter: (params) => {
+            return `<span style="color:#9ca3af;font-size:11px;">${params.name}</span><br><span style="color:${params.color};font-weight:700;font-size:16px;font-family:Outfit;">${params.value}%</span>`;
+          }
+        },
+        legend: {
+          orient: 'vertical',
+          right: 10,
+          top: 'center',
+          textStyle: { color: '#374151', fontFamily: 'Pretendard, system-ui', fontSize: 11 },
+          itemGap: 12,
+          icon: 'circle',
+          itemWidth: 8,
+          itemHeight: 8
+        },
+        series: [{
+          type: 'pie',
+          radius: ['42%', '68%'],
+          center: ['38%', '50%'],
+          avoidLabelOverlap: false,
+          padAngle: 3,
+          itemStyle: { borderRadius: 6, borderColor: '#ffffff', borderWidth: 2 },
+          label: { show: false },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: 18,
+              fontWeight: '700',
+              fontFamily: 'Outfit, system-ui',
+              color: '#fff'
+            },
+            itemStyle: { shadowBlur: 20, shadowColor: 'rgba(0,0,0,0.5)' }
+          },
+          data: [
+            { value: 40, name: '유럽', itemStyle: { color: '#10b981' } },
+            { value: 30, name: '북미', itemStyle: { color: '#34d399' } },
+            { value: 17, name: 'APAC', itemStyle: { color: '#f59e0b' } },
+            { value: 13, name: '기타', itemStyle: { color: 'rgba(156,163,175,0.4)' } }
+          ]
+        }]
+      };
+
+      donutChart.setOption(donutOption);
+
+      // Responsive
+      window.addEventListener('resize', () => {
+        lineChart.resize();
+        donutChart.resize();
+      });
+    }
+
+    // Init charts when in view
+    const chartObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          initCharts();
+          chartObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const chartSection = document.getElementById('ch1-global');
+    if (chartSection) chartObserver.observe(chartSection);
+
+  </script>
+
+</body>
+</html>
