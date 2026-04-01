@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOOL 입점 제안서 — 전자담배점 전용</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --o:#FF4500;--ol:#FF6B35;--r:#E63946;
+  --d0:#080808;--d1:#0F0F0F;--d2:#171717;--d3:#1F1F1F;--d4:#2A2A2A;
+  --g0:#555;--g1:#888;--g2:#AAA;--g3:#CCC;
+  --w:#fff;
+}
+body{background:var(--d0);color:var(--w);font-family:'Noto Sans KR',sans-serif;overflow-x:hidden;line-height:1.6}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:200;padding:14px 40px;background:rgba(8,8,8,0.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,69,0,0.12);display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--o);letter-spacing:5px}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-cd{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--g2)}
+.nav-cd span{color:var(--o);font-weight:700}
+.nav-cta{font-size:12px;font-weight:700;background:var(--o);color:#fff;padding:8px 18px;border-radius:6px;text-decoration:none;letter-spacing:0.5px;transition:background 0.2s}
+.nav-cta:hover{background:var(--ol)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 40px 80px;text-align:center}
+.hero-orb{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(255,69,0,0.14) 0%,transparent 65%);pointer-events:none}
+.hero-orb2{position:absolute;bottom:-10%;right:-10%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(230,57,70,0.07) 0%,transparent 65%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,69,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,69,0,0.03) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:860px}
+.h-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:3px;color:var(--o);border:1px solid rgba(255,69,0,0.35);padding:6px 16px;border-radius:20px;margin-bottom:28px;text-transform:uppercase}
+.h-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--o);animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.h-title{font-size:clamp(34px,6.5vw,76px);font-weight:900;line-height:1.08;margin-bottom:20px;letter-spacing:-1px}
+.h-title em{color:var(--o);font-style:normal}
+.h-sub{font-size:clamp(14px,1.8vw,18px);color:var(--g2);line-height:1.75;max-width:600px;margin:0 auto 44px}
+.h-sub strong{color:var(--w)}
+
+/* BIG COUNTDOWN */
+.big-cd{display:inline-flex;align-items:stretch;gap:0;background:var(--d2);border:1px solid rgba(255,69,0,0.25);border-radius:14px;overflow:hidden;margin-bottom:44px}
+.bcd-cell{padding:20px 28px;text-align:center;border-right:1px solid rgba(255,69,0,0.15)}
+.bcd-cell:last-of-type{border-right:none}
+.bcd-num{font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700;color:var(--o);line-height:1;display:block}
+.bcd-label{font-size:10px;letter-spacing:2px;color:var(--g1);margin-top:6px;text-transform:uppercase}
+.bcd-tag{padding:20px 22px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;border-left:1px solid rgba(255,69,0,0.15)}
+.bcd-tag p{font-size:11px;font-weight:700;color:var(--o);letter-spacing:1px;line-height:1.5}
+
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-p{background:var(--o);color:#fff;border:none;padding:16px 36px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;transition:all 0.2s;letter-spacing:0.3px}
+.btn-p:hover{background:var(--ol);transform:translateY(-2px)}
+.btn-g{background:transparent;color:var(--w);border:1px solid rgba(255,255,255,0.18);padding:16px 36px;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;text-decoration:none;transition:all 0.2s}
+.btn-g:hover{border-color:var(--o);color:var(--o)}
+
+/* URGENCY STRIP */
+.strip{background:rgba(255,69,0,0.08);border-top:1px solid rgba(255,69,0,0.2);border-bottom:1px solid rgba(255,69,0,0.2);padding:14px 40px;display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
+.strip-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}
+.strip-dot{width:6px;height:6px;border-radius:50%;background:var(--o);flex-shrink:0}
+
+/* SECTIONS */
+.sec{padding:96px 40px;max-width:1080px;margin:0 auto}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--o);text-transform:uppercase;margin-bottom:14px}
+.sec-title{font-size:clamp(26px,3.8vw,46px);font-weight:900;line-height:1.15;margin-bottom:18px}
+.sec-desc{font-size:16px;color:var(--g2);max-width:540px;line-height:1.8;margin-bottom:52px}
+.divider{max-width:1080px;margin:0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(255,69,0,0.18),transparent)}
+
+/* WHY NOW — SPLIT LAYOUT */
+.why-split{display:grid;grid-template-columns:1fr 1fr;gap:3px;border-radius:16px;overflow:hidden}
+.why-card{background:var(--d2);padding:38px 34px;transition:background 0.2s}
+.why-card:hover{background:var(--d3)}
+.why-card.span2{grid-column:span 2;background:linear-gradient(135deg,rgba(255,69,0,0.09),rgba(255,69,0,0.04));border:1px solid rgba(255,69,0,0.2)}
+.wc-icon{width:42px;height:42px;border-radius:10px;background:rgba(255,69,0,0.1);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:18px}
+.wc-big{font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:700;color:var(--o);line-height:1;margin-bottom:6px}
+.wc-title{font-size:17px;font-weight:700;margin-bottom:10px}
+.wc-desc{font-size:13px;color:var(--g2);line-height:1.75}
+
+/* PROFIT CALCULATOR */
+.calc-wrap{background:var(--d2);border:1px solid rgba(255,69,0,0.2);border-radius:16px;overflow:hidden}
+.calc-header{padding:28px 36px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.calc-header h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.calc-header p{font-size:13px;color:var(--g2)}
+.calc-body{padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.calc-col h4{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--g1);text-transform:uppercase;margin-bottom:20px}
+.calc-table{width:100%;border-collapse:collapse}
+.calc-table td{padding:12px 0;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.calc-table td:last-child{text-align:right;font-weight:700}
+.calc-table tr:last-child td{border-bottom:none}
+.calc-table .highlight td{color:var(--o);font-size:16px}
+.calc-assumption{font-size:12px;color:var(--g1);margin-top:16px;line-height:1.6}
+.calc-side{display:flex;flex-direction:column;gap:16px}
+.calc-box{background:var(--d3);border-radius:10px;padding:20px 22px}
+.calc-box .val{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700;color:var(--o);line-height:1}
+.calc-box .unit{font-size:14px;color:var(--g2);margin-top:6px}
+.calc-box.accent{background:rgba(255,69,0,0.1);border:1px solid rgba(255,69,0,0.25)}
+.calc-box.accent .val{font-size:40px}
+
+/* VAPE REASONS */
+.vr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.vr-card{background:var(--d2);border:1px solid rgba(255,255,255,0.05);border-radius:14px;padding:30px 26px;position:relative;overflow:hidden;transition:all 0.25s}
+.vr-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--o),transparent);opacity:0;transition:opacity 0.25s}
+.vr-card:hover{border-color:rgba(255,69,0,0.25);transform:translateY(-3px)}
+.vr-card:hover::after{opacity:1}
+.vr-num{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--o);margin-bottom:14px}
+.vr-title{font-size:16px;font-weight:700;margin-bottom:10px}
+.vr-desc{font-size:13px;color:var(--g2);line-height:1.7}
+
+/* MARKET STATS */
+.ms-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:36px}
+.ms-card{background:var(--d2);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:26px 20px;text-align:center}
+.ms-val{font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:var(--o);line-height:1;margin-bottom:8px}
+.ms-label{font-size:12px;color:var(--g1);line-height:1.5}
+.ms-bar-wrap{background:var(--d2);border-radius:14px;padding:32px 36px;border:1px solid rgba(255,255,255,0.06)}
+.ms-bar-title{font-size:13px;font-weight:700;color:var(--g2);margin-bottom:24px}
+.ms-bar-row{margin-bottom:18px}
+.ms-bar-labels{display:flex;justify-content:space-between;font-size:12px;margin-bottom:7px}
+.ms-bar-labels span:first-child{color:var(--w);font-weight:500}
+.ms-bar-labels span:last-child{color:var(--o);font-weight:700}
+.ms-track{height:5px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden}
+.ms-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--o),var(--ol));width:0;transition:width 1.6s cubic-bezier(0.4,0,0.2,1)}
+
+/* TIMELINE */
+.tl-wrap{position:relative}
+.tl-line{position:absolute;left:22px;top:0;bottom:0;width:2px;background:linear-gradient(var(--o),rgba(255,69,0,0.1))}
+.tl-item{display:flex;gap:28px;margin-bottom:32px;padding-left:0}
+.tl-dot-wrap{flex-shrink:0;width:44px;display:flex;justify-content:center;padding-top:4px;position:relative}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--d2);border:2px solid var(--g0);margin-top:4px}
+.tl-dot.active{background:var(--o);border-color:var(--o);box-shadow:0 0 14px rgba(255,69,0,0.6);width:14px;height:14px;margin-top:2px;animation:tdglow 1.6s infinite}
+@keyframes tdglow{0%,100%{box-shadow:0 0 14px rgba(255,69,0,0.6)}50%{box-shadow:0 0 28px rgba(255,69,0,1)}}
+.tl-content{}
+.tl-date{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:var(--g1);letter-spacing:1px;margin-bottom:6px}
+.tl-date.hot{color:var(--o);font-size:15px;letter-spacing:0}
+.tl-text strong{display:block;font-size:17px;font-weight:700;margin-bottom:4px}
+.tl-text p{font-size:13px;color:var(--g2);line-height:1.7}
+.tl-badge{display:inline-block;margin-top:10px;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;background:rgba(255,69,0,0.12);color:var(--o);letter-spacing:1px}
+
+/* PRODUCTS */
+.prod-intro{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px}
+.prod-story{background:var(--d2);border-radius:14px;padding:32px;border:1px solid rgba(255,255,255,0.06)}
+.prod-story h3{font-size:16px;font-weight:700;margin-bottom:12px}
+.prod-story p{font-size:13px;color:var(--g2);line-height:1.75}
+.prod-flow{display:flex;flex-direction:column;gap:10px}
+.pf-step{background:var(--d3);border-radius:10px;padding:16px 18px;display:flex;align-items:center;gap:14px}
+.pf-step.active{background:rgba(255,69,0,0.08);border:1px solid rgba(255,69,0,0.2)}
+.pf-num{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;color:var(--o);letter-spacing:1px;min-width:24px}
+.pf-text{font-size:13px;line-height:1.5}
+.pf-text strong{display:block;margin-bottom:2px}
+.pf-text span{color:var(--g2);font-size:12px}
+.pf-arrow{margin-left:auto;color:var(--o);font-size:18px;flex-shrink:0}
+.prod-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.pc{background:var(--d2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:22px 14px;text-align:center;transition:all 0.25s;position:relative}
+.pc:hover{border-color:rgba(255,69,0,0.35);transform:translateY(-3px)}
+.pc-icon{font-size:32px;margin-bottom:12px;display:block}
+.pc-name{font-size:13px;font-weight:700;margin-bottom:6px}
+.pc-mg{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;color:var(--o)}
+.pc-mg span{font-size:12px;font-weight:400;color:var(--g1)}
+.pc-price{font-size:11px;color:var(--g1);margin-top:6px}
+.pc-tag{position:absolute;top:10px;right:10px;font-size:9px;font-weight:700;letter-spacing:1px;padding:2px 7px;border-radius:8px;background:rgba(255,69,0,0.15);color:var(--o)}
+
+/* BENEFITS */
+.ben-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ben-col{background:var(--d2);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:32px}
+.ben-col.hot{background:rgba(255,69,0,0.07);border-color:rgba(255,69,0,0.2)}
+.ben-col-head{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--g1);margin-bottom:22px}
+.ben-col.hot .ben-col-head{color:var(--o)}
+.ben-list{list-style:none}
+.ben-list li{display:flex;gap:10px;align-items:flex-start;padding:13px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px;line-height:1.6;color:var(--g3)}
+.ben-list li:last-child{border-bottom:none}
+.ben-list li::before{content:'→';color:var(--o);font-weight:900;flex-shrink:0;margin-top:1px}
+.ben-stat{margin-top:20px;background:var(--d3);border-radius:10px;padding:18px 20px;text-align:center}
+.ben-stat .n{font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:var(--o);line-height:1}
+.ben-stat .l{font-size:12px;color:var(--g1);margin-top:5px}
+
+/* CTA */
+.cta-wrap{background:var(--d2);border:1px solid rgba(255,69,0,0.18);border-radius:20px;padding:60px 48px;text-align:center;position:relative;overflow:hidden}
+.cta-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,69,0,0.1),transparent 65%);pointer-events:none}
+.cta-badge{display:inline-block;background:rgba(255,69,0,0.12);border:1px solid rgba(255,69,0,0.3);color:var(--o);font-size:11px;font-weight:700;letter-spacing:2px;padding:6px 16px;border-radius:20px;margin-bottom:22px;text-transform:uppercase;position:relative}
+.cta-title{font-size:clamp(22px,4vw,42px);font-weight:900;line-height:1.15;margin-bottom:14px;position:relative}
+.cta-sub{font-size:15px;color:var(--g2);margin-bottom:36px;position:relative}
+.cta-boxes{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:36px;position:relative}
+.cta-box{background:var(--d3);border-radius:10px;padding:18px 24px;text-align:center;min-width:160px}
+.cta-box .lbl{font-size:10px;letter-spacing:2px;color:var(--g1);text-transform:uppercase;margin-bottom:7px}
+.cta-box .val{font-size:16px;font-weight:700}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+.btn-lg{padding:17px 42px;font-size:15px;font-weight:700;border-radius:9px;text-decoration:none;transition:all 0.2s;letter-spacing:0.3px;cursor:pointer}
+.btn-lg.p{background:var(--o);color:#fff;border:none}
+.btn-lg.p:hover{background:var(--ol);transform:translateY(-2px)}
+.btn-lg.g{background:transparent;color:var(--w);border:1px solid rgba(255,255,255,0.2)}
+.btn-lg.g:hover{border-color:var(--o);color:var(--o)}
+.cta-note{font-size:12px;color:var(--g0);margin-top:20px;position:relative}
+
+/* FOOTER */
+footer{border-top:1px solid rgba(255,255,255,0.06);padding:36px 40px;text-align:center;font-size:12px;color:var(--g0);line-height:1.9}
+
+/* FADE UP */
+.fu{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fu.in{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:14px 20px}
+  .nav-cd{display:none}
+  .sec{padding:64px 20px}
+  .why-split,.prod-intro,.calc-body,.ben-grid{grid-template-columns:1fr}
+  .why-card.span2{grid-column:span 1}
+  .vr-grid{grid-template-columns:1fr 1fr}
+  .ms-grid{grid-template-columns:1fr 1fr}
+  .prod-grid{grid-template-columns:repeat(3,1fr)}
+  .big-cd{flex-wrap:wrap}
+  .hero{padding:100px 20px 60px}
+  .cta-wrap{padding:40px 22px}
+  .strip{padding:12px 20px;gap:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">BOOL</div>
+  <div class="nav-right">
+    <div class="nav-cd">4/24 규제까지 <span id="nav-days">--</span>일 남았습니다</div>
+    <a href="#cta" class="nav-cta">입점 문의</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="h-eyebrow"><span class="h-eyebrow-dot"></span>전자담배점 점주 전용 입점 제안서</div>
+    <h1 class="h-title">
+      4월 24일,<br>
+      온라인이 막힙니다.<br>
+      <em>그 날부터 당신 매장이 답입니다.</em>
+    </h1>
+    <p class="h-sub">
+      규제 이후 소비자는 <strong>오프라인 전문점</strong>만 찾게 됩니다.<br>
+      지금 진열대를 채운 점포가 이 시장을 가져갑니다.
+    </p>
+    <div class="big-cd">
+      <div class="bcd-cell"><span class="bcd-num" id="cd-d">--</span><div class="bcd-label">일</div></div>
+      <div class="bcd-cell"><span class="bcd-num" id="cd-h">--</span><div class="bcd-label">시간</div></div>
+      <div class="bcd-cell"><span class="bcd-num" id="cd-m">--</span><div class="bcd-label">분</div></div>
+      <div class="bcd-tag"><p>2026.04.24<br>온라인 판매 금지<br>시행까지</p></div>
+    </div>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-p">지금 입점 문의하기</a>
+      <a href="#why" class="btn-g">왜 지금인가 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCY STRIP -->
+<div class="strip">
+  <div class="strip-item"><div class="strip-dot"></div>온라인 판매 전면 금지 임박</div>
+  <div class="strip-item"><div class="strip-dot"></div>편의점 5만 곳 아직 미입점</div>
+  <div class="strip-item"><div class="strip-dot"></div>직수입 YoY +280% 급증 중</div>
+  <div class="strip-item"><div class="strip-dot"></div>국산 유일 — 빠른 재고 · 직접 CS</div>
+</div>
+
+<!-- WHY NOW -->
+<section class="sec" id="why">
+  <div class="fu">
+    <div class="sec-label">지금이어야 하는 이유</div>
+    <h2 class="sec-title">규제가 오히려<br>오프라인 전문점의 기회입니다</h2>
+    <p class="sec-desc">일본 IQOS, 미국 ZYN 모두 마찬가지였습니다. 규제 직전에 진열대를 채운 점포가 시장을 가져갔습니다.</p>
+  </div>
+  <div class="why-split fu">
+    <div class="why-card span2">
+      <div class="wc-icon">⚡</div>
+      <div class="wc-big">D-DAY</div>
+      <div class="wc-title">2026.04.24 — 온라인 판매 전면 금지, 오프라인 독점 시작</div>
+      <div class="wc-desc">쿠팡·네이버·직구 플랫폼 모두 차단됩니다. 그 날부터 파우치를 사려는 소비자는 <strong>오프라인 전문점만 찾습니다.</strong> 전자담배점은 이미 파우치 핵심 타겟(전담 유저)이 드나드는 공간입니다. 새 고객을 만들 필요도 없습니다.</div>
+    </div>
+    <div class="why-card">
+      <div class="wc-icon">📈</div>
+      <div class="wc-big">+280%</div>
+      <div class="wc-title">규제 전임에도 폭발하는 수요</div>
+      <div class="wc-desc">온라인이 열려있는 지금도 직수입이 전년 대비 280% 증가했습니다. 온라인이 막히면 이 수요 전체가 오프라인으로 쏟아집니다.</div>
+    </div>
+    <div class="why-card">
+      <div class="wc-icon">🏪</div>
+      <div class="wc-big">0</div>
+      <div class="wc-title">편의점 5만 곳, 아직 전부 비어있음</div>
+      <div class="wc-desc">GS25·CU·세븐일레븐 전국 5만 곳이 아직 미입점입니다. 전문점이 지금 선점하면 편의점이 따라올 때까지 경쟁 없는 시장을 갖습니다.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROFIT CALCULATOR -->
+<section class="sec">
+  <div class="fu">
+    <div class="sec-label">수익 시뮬레이션</div>
+    <h2 class="sec-title">진열대 한 칸이<br>매달 얼마를 만드나</h2>
+    <p class="sec-desc">파우치는 소모품입니다. 기기와 달리 한 번 온 고객이 매주 돌아옵니다.</p>
+  </div>
+  <div class="calc-wrap fu">
+    <div class="calc-header">
+      <h3>월 매출 시뮬레이션 — 보수적 추정 기준</h3>
+      <p>소비자가 파우치 캔 1개를 평균 1~2주 사용 | 전담 유저 전환율 10% 가정</p>
+    </div>
+    <div class="calc-body">
+      <div>
+        <h4>월 매출 구조</h4>
+        <table class="calc-table">
+          <tr><td>일 방문 전담 고객</td><td>30명</td></tr>
+          <tr><td>파우치 관심 전환율</td><td>~10%</td></tr>
+          <tr><td>파우치 구매 고객/일</td><td>약 3명</td></tr>
+          <tr><td>1회 구매 단가</td><td>16,000원</td></tr>
+          <tr><td>월 구매 횟수 (2주 주기)</td><td>2회</td></tr>
+          <tr class="highlight"><td>월 매출 추정</td><td>약 290,000원</td></tr>
+        </table>
+        <p class="calc-assumption">※ 마진율 30~40% 기준 | 유동 고객 추가시 상향 가능 | 성수기 및 입점 초기 관심도 감안 未포함</p>
+      </div>
+      <div class="calc-side">
+        <div class="calc-box">
+          <div class="val"><span class="counter" data-target="290">0</span>K</div>
+          <div class="unit">월 예상 매출 (보수적)</div>
+        </div>
+        <div class="calc-box">
+          <div class="val"><span class="counter" data-target="87">0</span>K</div>
+          <div class="unit">월 예상 마진 (30%)</div>
+        </div>
+        <div class="calc-box accent">
+          <div class="val"><span class="counter" data-target="12">0</span>배</div>
+          <div class="unit">진열대 한 칸 → 연 100만원+ 기대</div>
+        </div>
+        <p style="font-size:12px;color:var(--g1);line-height:1.6">고객 1명이 파우치에 익숙해지면 <strong style="color:var(--w)">매주 or 격주</strong> 재방문. 기기 판매와 달리 지속 수익.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY VAPE SHOPS -->
+<section class="sec">
+  <div class="fu">
+    <div class="sec-label">왜 전자담배점인가</div>
+    <h2 class="sec-title">이미 당신 매장에<br>파우치 고객이 있습니다</h2>
+    <p class="sec-desc">새 고객을 만들 필요가 없습니다. 기존 고객이 가장 먼저 파우치를 찾습니다.</p>
+  </div>
+  <div class="vr-grid fu">
+    <div class="vr-card">
+      <div class="vr-num">01 — 기존 고객</div>
+      <div class="vr-title">전담 유저 = 파우치 1순위 타겟</div>
+      <div class="vr-desc">비연소 니코틴에 이미 익숙한 전담 고객. 파우치로의 전환 마찰이 가장 낮고, 기기 없어도 되니 결제 결정도 즉각적입니다.</div>
+    </div>
+    <div class="vr-card">
+      <div class="vr-num">02 — 신규 유입</div>
+      <div class="vr-title">규제 이후 검색하면 전문점이 나온다</div>
+      <div class="vr-desc">온라인 구매가 막힌 소비자가 "파우치 어디서 사지?"를 검색합니다. 전자담배·시가 전문점이 가장 먼저 뜹니다.</div>
+    </div>
+    <div class="vr-card">
+      <div class="vr-num">03 — 보관·진열</div>
+      <div class="vr-title">세팅 10분, 진열대 한 칸이면 충분</div>
+      <div class="vr-desc">소형 캔, 냉장 불필요, 유통기한 충분. 기기 관련 AS나 설명 필요 없음. 가장 관리가 쉬운 상품입니다.</div>
+    </div>
+    <div class="vr-card">
+      <div class="vr-num">04 — 객단가</div>
+      <div class="vr-title">기기는 한 번, 파우치는 매주</div>
+      <div class="vr-desc">기기 판매는 일회성이지만, 파우치는 소모품입니다. 고객 한 명이 정착하면 안정적인 반복 구매가 만들어집니다.</div>
+    </div>
+    <div class="vr-card">
+      <div class="vr-num">05 — 공급망</div>
+      <div class="vr-title">국산 브랜드 — 바로 연락, 빠른 재고</div>
+      <div class="vr-desc">직수입 브랜드는 재고 불확실, CS 어려움. BOOL은 국내 생산, 한국어 소통, 즉각적 CS 대응, 빠른 재입고.</div>
+    </div>
+    <div class="vr-card">
+      <div class="vr-num">06 — 선점</div>
+      <div class="vr-title">편의점이 들어오기 전에 자리 잡기</div>
+      <div class="vr-desc">6개월 후 편의점이 따라올 때, 이미 "파우치 전문점"으로 자리 잡은 점포가 가격 경쟁 없이 충성 고객을 유지합니다.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MARKET DATA -->
+<section class="sec">
+  <div class="fu">
+    <div class="sec-label">시장 데이터</div>
+    <h2 class="sec-title">이미 검증된<br>글로벌 성장 공식</h2>
+  </div>
+  <div class="ms-grid fu">
+    <div class="ms-card"><div class="ms-val"><span class="counter" data-target="22">0</span>.8B$</div><div class="ms-label">2030년 글로벌 예상 시장</div></div>
+    <div class="ms-card"><div class="ms-val"><span class="counter" data-target="34">0</span>%</div><div class="ms-label">연평균 복합 성장률</div></div>
+    <div class="ms-card"><div class="ms-val">+<span class="counter" data-target="280">0</span>%</div><div class="ms-label">한국 직수입 전년 대비</div></div>
+    <div class="ms-card"><div class="ms-val"><span class="counter" data-target="50000">0</span></div><div class="ms-label">편의점 미입점 현황</div></div>
+  </div>
+  <div class="ms-bar-wrap fu">
+    <div class="ms-bar-title">규제 이후 유통 채널 이동 예측</div>
+    <div class="ms-bar-row">
+      <div class="ms-bar-labels"><span>전자담배·시가 전문점</span><span>↑ 급증</span></div>
+      <div class="ms-track"><div class="ms-fill" data-w="78"></div></div>
+    </div>
+    <div class="ms-bar-row">
+      <div class="ms-bar-labels"><span>편의점 (미입점 → 논의 중)</span><span>Q3~</span></div>
+      <div class="ms-track"><div class="ms-fill" data-w="22" style="background:rgba(255,255,255,0.3)"></div></div>
+    </div>
+    <div class="ms-bar-row">
+      <div class="ms-bar-labels"><span>온라인·직구</span><span>규제 → 0%</span></div>
+      <div class="ms-track"><div class="ms-fill" data-w="0" style="background:rgba(255,255,255,0.1)"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TIMELINE -->
+<section class="sec">
+  <div class="fu">
+    <div class="sec-label">규제 타임라인</div>
+    <h2 class="sec-title">지금 안 하면<br>다음 기회는 없습니다</h2>
+  </div>
+  <div class="tl-wrap fu">
+    <div class="tl-line"></div>
+    <div class="tl-item">
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <div class="tl-date">2024년 11월</div>
+        <div class="tl-text"><strong>합성 니코틴 파우치 등장</strong><p>BAT Nomad 출시. 온라인 판매, 세금 없음. 회색지대의 시작.</p></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <div class="tl-date">2025년 9월</div>
+        <div class="tl-text"><strong>국회 기재위 통과</strong><p>담배 정의 확대. 합성 니코틴도 담배. 6개월 유예기간 부여.</p></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot-wrap"><div class="tl-dot active"></div></div>
+      <div class="tl-content">
+        <div class="tl-date hot">2026.04.24 — D-DAY</div>
+        <div class="tl-text"><strong>온라인 판매 금지 + 담배세 시행</strong><p>전문점이 유일한 판매 채널이 되는 날. 지금 입점 완료된 점포가 독점 구조를 갖습니다.</p></div>
+        <span class="tl-badge">지금 준비해야 하는 시점</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-content">
+        <div class="tl-date">2026년 Q3 예상</div>
+        <div class="tl-text"><strong>편의점 입점 논의 본격화</strong><p>그 시점엔 전문점이 이미 충성 고객을 확보한 상태여야 합니다.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRODUCTS -->
+<section class="sec">
+  <div class="fu">
+    <div class="sec-label">BOOL 제품 라인업</div>
+    <h2 class="sec-title">입문부터 업셀링까지<br>한 번에 커버</h2>
+  </div>
+  <div class="prod-intro fu">
+    <div class="prod-story">
+      <h3>점주가 알아야 할 판매 스토리</h3>
+      <p>파우치 처음 접하는 고객은 낮은 강도로 시작하고, 익숙해지면 높은 강도로 업셀됩니다. BOOL은 이 흐름을 커버하는 2가지 강도 라인업을 갖추고 있어요. 두 강도를 함께 진열하면 재구매율과 업셀링 모두 잡을 수 있습니다.</p>
+    </div>
+    <div class="prod-flow">
+      <div class="pf-step active">
+        <div class="pf-num">STEP 1</div>
+        <div class="pf-text"><strong>첫 구매 — 12mg</strong><span>파우치 입문, 강도 낮음</span></div>
+        <div class="pf-arrow">→</div>
+      </div>
+      <div class="pf-step active">
+        <div class="pf-num">STEP 2</div>
+        <div class="pf-text"><strong>재구매 — 20mg</strong><span>익숙해진 고객 업셀링</span></div>
+        <div class="pf-arrow">↑</div>
+      </div>
+      <div class="pf-step">
+        <div class="pf-num">RESULT</div>
+        <div class="pf-text"><strong>단가 UP + 반복 구매</strong><span>고객이 자연스럽게 올라감</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="prod-grid fu">
+    <div class="pc">
+      <span class="pc-icon">🍉</span>
+      <div class="pc-name">불 수박</div>
+      <div class="pc-mg">20<span>mg</span></div>
+      <div class="pc-price">3캔 48,000원</div>
+      <span class="pc-tag">Strong</span>
+    </div>
+    <div class="pc">
+      <span class="pc-icon">🫐</span>
+      <div class="pc-name">불 베리</div>
+      <div class="pc-mg">20<span>mg</span></div>
+      <div class="pc-price">3캔 48,000원</div>
+      <span class="pc-tag">Strong</span>
+    </div>
+    <div class="pc">
+      <span class="pc-icon">🌿</span>
+      <div class="pc-name">불 민트</div>
+      <div class="pc-mg">20<span>mg</span></div>
+      <div class="pc-price">3캔 48,000원</div>
+      <span class="pc-tag">Strong</span>
+    </div>
+    <div class="pc">
+      <span class="pc-icon">🎨</span>
+      <div class="pc-name">불 믹스</div>
+      <div class="pc-mg">12<span>mg</span></div>
+      <div class="pc-price">3캔 48,000원</div>
+      <span class="pc-tag">Starter</span>
+    </div>
+    <div class="pc">
+      <span class="pc-icon">🔥</span>
+      <div class="pc-name">불 믹스</div>
+      <div class="pc-mg">20<span>mg</span></div>
+      <div class="pc-price">3캔 48,000원</div>
+      <span class="pc-tag">Strong</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BENEFITS -->
+<section class="sec">
+  <div class="fu">
+    <div class="sec-label">입점 혜택</div>
+    <h2 class="sec-title">BOOL이 점주에게<br>드리는 것들</h2>
+  </div>
+  <div class="ben-grid fu">
+    <div class="ben-col hot">
+      <div class="ben-col-head">초도 입점 점포 혜택</div>
+      <ul class="ben-list">
+        <li>소량 테스트 입점 가능 — 대량 선구매 없이 시작</li>
+        <li>초도 입점 점포 전용 조건 협의 가능</li>
+        <li>POP·진열 도구 무상 제공</li>
+        <li>전담 CS 담당자 직접 연결</li>
+        <li>4/24 규제 대응 가이드라인 선제 공유</li>
+        <li>판매 데이터 기반 발주 최적화 지원</li>
+      </ul>
+      <div class="ben-stat">
+        <div class="n">국산</div>
+        <div class="l">직수입 대비 빠른 재고 · 즉각 CS · 한국어 소통</div>
+      </div>
+    </div>
+    <div class="ben-col">
+      <div class="ben-col-head">제품이 가진 강점</div>
+      <ul class="ben-list">
+        <li>완전 무취·무연 — 매장 어디서든 설명 가능</li>
+        <li>기기 불필요 — 구매 결정 즉각적, AS 없음</li>
+        <li>소형 캔 — 진열대 공간 최소화</li>
+        <li>냉장 불필요 — 보관 관리 제로</li>
+        <li>2가지 강도 — 입문부터 업셀링까지 한 번에</li>
+        <li>합성 니코틴 — 국내 규제 완전 대응 완료</li>
+      </ul>
+      <div class="ben-stat">
+        <div class="n">5종</div>
+        <div class="l">수박 · 베리 · 민트 · 믹스 12mg · 믹스 20mg</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="sec" id="cta">
+  <div class="cta-wrap fu">
+    <div class="cta-glow"></div>
+    <div class="cta-badge">초도 입점 점포 모집 중</div>
+    <h2 class="cta-title">4월 24일 전에<br><span style="color:var(--o)">진열대를 채워두세요</span></h2>
+    <p class="cta-sub">먼저 들어온 점포가 이 시장을 가져갑니다. 지금 연락하면 초도 입점 조건으로 시작하실 수 있습니다.</p>
+    <div class="cta-boxes">
+      <div class="cta-box">
+        <div class="lbl">전화 문의</div>
+        <div class="val">0507-1422-0951</div>
+      </div>
+      <div class="cta-box">
+        <div class="lbl">브랜드 사이트</div>
+        <div class="val">boolkorea.com</div>
+      </div>
+      <div class="cta-box">
+        <div class="lbl">소재지</div>
+        <div class="val">서울 강남구 대치동</div>
+      </div>
+    </div>
+    <div class="cta-btns">
+      <a href="tel:050714220951" class="btn-lg p">지금 바로 전화하기</a>
+      <a href="https://boolkorea.com" target="_blank" class="btn-lg g">브랜드 사이트 →</a>
+    </div>
+    <p class="cta-note">만 19세 이상 성인 전용 제품 · 본 자료는 전자담배점 점주 대상 입점 제안서입니다</p>
+  </div>
+</section>
+
+<footer>
+  <div>BOOL Korea (자이언) · 사업자등록번호 484-27-01295 · 서울특별시 강남구 역삼로70길 19-14, 301호(대치동)</div>
+  <div style="margin-top:6px;color:var(--g0)">통신판매신고번호 2021-서울강남-00905 · 문의 0507-1422-0951</div>
+</footer>
+
+<script>
+// Countdown
+function tick(){
+  const t=new Date('2026-04-24T00:00:00+09:00')-new Date();
+  if(t<=0){['cd-d','cd-h','cd-m'].forEach(id=>document.getElementById(id).textContent='0');return}
+  const d=Math.floor(t/864e5),h=Math.floor(t%864e5/36e5),m=Math.floor(t%36e5/6e4);
+  document.getElementById('cd-d').textContent=d;
+  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+  document.getElementById('nav-days').textContent=d;
+}
+tick();setInterval(tick,6e4);
+
+// Scroll animations
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add('in');
+    // counters
+    e.target.querySelectorAll('.counter').forEach(el=>{
+      const target=+el.dataset.target,isLarge=target>1000;
+      let cur=0;
+      const step=Math.max(1,Math.ceil(target/(isLarge?80:50)));
+      const t=setInterval(()=>{
+        cur=Math.min(cur+step,target);
+        el.textContent=isLarge?cur.toLocaleString():cur;
+        if(cur>=target)clearInterval(t);
+      },isLarge?10:30);
+    });
+    // bars
+    e.target.querySelectorAll('.ms-fill[data-w]').forEach(b=>{
+      setTimeout(()=>{b.style.width=b.dataset.w+'%'},200);
+    });
+  });
+},{threshold:0.12});
+document.querySelectorAll('.fu').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
