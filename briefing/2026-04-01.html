@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — 2026년 4월 1일</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #12121c;
+    --bg3: #1a1a2e;
+    --border: rgba(255,255,255,0.07);
+    --text: #e8e8f0;
+    --muted: #7b7b9a;
+    --accent1: #7c6cff;
+    --accent2: #4fc3f7;
+    --accent3: #a8e6cf;
+    --accent4: #ffb74d;
+    --accent5: #ef9a9a;
+    --accent6: #ce93d8;
+  }
+
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.7;
+  }
+
+  /* ─── HERO ─────────────────────────────── */
+  .hero {
+    background: linear-gradient(160deg, #0d0d1f 0%, #1a0a2e 50%, #0a0a0f 100%);
+    padding: 60px 24px 48px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, rgba(124,108,255,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero .emoji { font-size: 36px; margin-bottom: 12px; display: block; }
+  .hero .label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.5px;
+  }
+  .hero .date-badge {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 6px 16px;
+    background: rgba(124,108,255,0.15);
+    border: 1px solid rgba(124,108,255,0.3);
+    border-radius: 20px;
+    font-size: 13px;
+    color: #a89cff;
+    font-weight: 500;
+  }
+  .hero .sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
+  /* ─── LAYOUT ───────────────────────────── */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 24px 100px;
+  }
+
+  /* ─── CATEGORY HEADER ──────────────────── */
+  .cat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 48px 0 20px;
+  }
+  .cat-header .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .cat-header h2 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .cat-header .line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ─── CARD ─────────────────────────────── */
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .card:hover {
+    border-color: rgba(255,255,255,0.14);
+    transform: translateY(-1px);
+  }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .card-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+  .card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.2px;
+    line-height: 1.4;
+  }
+
+  /* ─── ROWS ─────────────────────────────── */
+  .row {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .row-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .row p {
+    font-size: 14px;
+    color: #c8c8dc;
+    line-height: 1.65;
+  }
+  .insight-row {
+    background: rgba(124,108,255,0.06);
+    border: 1px solid rgba(124,108,255,0.18);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-top: 14px;
+  }
+  .insight-row .row-label { color: #a89cff; }
+  .insight-row p { color: #d4cfff; }
+
+  /* ─── ACCENT COLORS PER CATEGORY ──────── */
+  .c-openai  .dot { background: #10a37f; }
+  .c-openai  .card-tag { background: rgba(16,163,127,0.15); color: #10a37f; border: 1px solid rgba(16,163,127,0.25); }
+  .c-anthropic .dot { background: var(--accent1); }
+  .c-anthropic .card-tag { background: rgba(124,108,255,0.12); color: #a89cff; border: 1px solid rgba(124,108,255,0.25); }
+  .c-google .dot { background: var(--accent2); }
+  .c-google .card-tag { background: rgba(79,195,247,0.12); color: #4fc3f7; border: 1px solid rgba(79,195,247,0.25); }
+  .c-dev .dot { background: var(--accent3); }
+  .c-dev .card-tag { background: rgba(168,230,207,0.12); color: #a8e6cf; border: 1px solid rgba(168,230,207,0.25); }
+  .c-biz .dot { background: var(--accent4); }
+  .c-biz .card-tag { background: rgba(255,183,77,0.12); color: #ffb74d; border: 1px solid rgba(255,183,77,0.25); }
+  .c-insight .dot { background: var(--accent6); }
+  .c-insight .card-tag { background: rgba(206,147,216,0.12); color: #ce93d8; border: 1px solid rgba(206,147,216,0.25); }
+
+  /* ─── BIG PICTURE ──────────────────────── */
+  .bigpicture {
+    margin-top: 56px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #12122a 100%);
+    border: 1px solid rgba(124,108,255,0.2);
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bigpicture::before {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(124,108,255,0.12) 0%, transparent 70%);
+  }
+  .bigpicture .bp-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #a89cff;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .bigpicture h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.35;
+    margin-bottom: 20px;
+    letter-spacing: -0.3px;
+  }
+  .bigpicture p {
+    font-size: 15px;
+    color: #b8b8d0;
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+  .bigpicture p:last-child { margin-bottom: 0; }
+  .bigpicture strong { color: #e0dcff; }
+
+  /* ─── FOOTER ───────────────────────────── */
+  .footer {
+    text-align: center;
+    padding: 40px 24px 20px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+  .footer a { color: var(--muted); text-decoration: none; }
+  .footer a:hover { color: var(--text); }
+
+  @media (max-width: 500px) {
+    .hero h1 { font-size: 26px; }
+    .card { padding: 18px; }
+    .bigpicture { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ──────── HERO ──────── -->
+<div class="hero">
+  <span class="emoji">🌅</span>
+  <div class="label">claw · Morning Briefing</div>
+  <h1>오늘의 브리핑</h1>
+  <div class="date-badge">2026년 4월 1일 수요일</div>
+  <p class="sub">AI · 테크 · 비즈니스 · 인사이트</p>
+</div>
+
+<!-- ──────── MAIN ──────── -->
+<div class="container">
+
+  <!-- ── OpenAI ── -->
+  <div class="cat-header c-openai">
+    <div class="dot"></div>
+    <h2>OpenAI</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="card c-openai">
+    <div class="card-top">
+      <h3>$122B 펀딩 마감 — 기업가치 $852B, 월 매출 $2B 돌파</h3>
+      <span class="card-tag">자금조달</span>
+    </div>
+    <div class="row">
+      <div class="row-label">핵심</div>
+      <p>Amazon, Nvidia, SoftBank 등이 참여한 초대형 라운드를 마감하며 OpenAI가 $852B 밸류에이션을 달성했다. 월 매출은 $2B를 넘어섰고, IPO 가능성도 현실화되고 있다.</p>
+    </div>
+    <div class="row">
+      <div class="row-label">왜 중요한가</div>
+      <p>단순 투자 뉴스가 아니다. $852B은 삼성전자 시총과 맞먹는 수준이며, 빅테크 포지션을 위협하는 규모다. '자금이 곧 AI 인프라 선점'인 시대에서 이 격차는 점점 벌어진다.</p>
+    </div>
+    <div class="insight-row">
+      <div class="row-label">🦊 우석 인사이트</div>
+      <p>AI 투자 사이클이 거품이라는 시각도 있지만, 월 $2B 매출은 실질적 수익 기반이 생겼다는 신호. OpenAI는 지금 인프라·엔터프라이즈·코딩툴 3개 축으로 집중 전환 중 — 크리에이티브(Sora 종료)에서 B2B로 피봇하는 흐름을 주목할 것.</p>
+    </div>
+  </div>
+
+  <div class="card c-openai">
+    <div class="card-top">
+      <h3>Sora 종료 — 4월 26일 앱·웹 셧다운, 크리에이티브 AI 접는다</h3>
+      <span class="card-tag">제품 변화</span>
+    </div>
+    <div class="row">
+      <div class="row-label">핵심</div>
+      <p>OpenAI가 Sora 웹/앱 버전을 4월 26일, API를 9월 24일 종료한다. 쇼핑 툴, 성인 챗봇 계획도 이미 중단·보류된 상황으로, 코딩·엔터프라이즈 제품으로 집중하는 명확한 전략 전환이다.</p>
+    </div>
+    <div class="row">
+      <div class="row-label">왜 중요한가</div>
+      <p>Sora는 출시 당시 화제였지만 실질 수익 기여가 낮았다. Runway, Kling 같은 전문 플레이어들과의 경쟁에서 우위를 잡지 못한 셈. "선택과 집중"이 이제 OpenAI에서도 현실이 됐다.</p>
+    </div>
+    <div class="insight-row">
+      <div class="row-label">🦊 우석 인사이트</div>
+      <p>비디오 생성 시장에서 독립 스타트업들이 OpenAI를 이겼다는 사례. 모든 걸 다 하려는 빅랩보다 특화 플레이어가 틈새에서 강할 수 있다는 것 — 스타트업 입장에서 오히려 기회 신호.</p>
+    </div>
+  </div>
+
+  <div class="card c-openai">
+    <div class="card-top">
+      <h3>Elon Musk 소송 4월 재판 + Astral·Promptfoo 등 6건 M&A</h3>
+      <span class="card-tag">전략·법무</span>
+    </div>
+    <div class="row">
+      <div class="row-label">핵심</div>
+      <p>Musk의 창업 계약 위반 소송이 4월 재판을 앞두고 있다. 동시에 OpenAI는 2026년 들어 오픈소스 개발툴 Astral, AI 테스트 툴 Promptfoo 등 6건의 인수를 완료했다.</p>
+    </div>
+    <div class="row">
+      <div class="row-label">왜 중요한가</div>
+      <p>M&A 행보는 개발자 생태계 선점 전략의 일환. 오픈소스 툴체인을 흡수해 개발자들이 자연스럽게 OpenAI 생태계에 묶이는 구조를 만들고 있다.</p>
+    </div>
+    <div class="insight-row">
+      <div class="row-label">🦊 우석 인사이트</div>
+      <p>Musk 소송 결과와 무관하게, OpenAI의 오픈소스 인수 전략은 흥미롭다. Anthropic이 직접 개발에 집중하는 것과 대비되는 접근 — 어느 쪽이 개발자 충성도를 더 얻을지 지켜볼 만하다.</p>
+    </div>
+  </div>
+
+
+  <!-- ── Anthropic / Claude ── -->
+  <div class="cat-header c-anthropic">
+    <div class="dot"></div>
+    <h2>Anthropic · Claude</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="card c-anthropic">
+    <div class="card-top">
+      <h3>Claude Code 소스코드 50만 줄 유출 — npm 패키징 실수</h3>
+      <span class="card-tag">🚨 사건</span>
+    </div>
+    <div class="row">
+      <div class="row-label">핵심</div>
+      <p>3월 31일, Claude Code npm 패키지 v2.1.88에 59.8MB JavaScript 소스맵이 포함되어 ~50만 줄 TypeScript 코드가 공개됐다. 메모리 아키텍처, 오케스트레이션 로직, 숨겨진 기능 44개가 노출됐으며, Anthropic은 "고객 데이터나 핵심 AI 시스템은 유출 없음"이라고 밝혔다.</p>
+    </div>
+    <div class="row">
+      <div class="row-label">왜 중요한가</div>
+      <p>Claude Code가 연간 $2.5B ARR을 내고 있는 상황에서 경쟁사들이 내부 로드맵을 그대로 볼 수 있게 됐다. 보안 이슈도 있지만, 역설적으로 Claude Code가 얼마나 정교한 시스템인지도 공개됐다.</p>
+    </div>
+    <div class="insight-row">
+      <div class="row-label">🦊 우석 인사이트</div>
+      <p>Anthropic이 "인적 오류"라고 했지만, 이 정도 규모의 코드베이스가 npm에 묻혀 나간다는 건 내부 릴리즈 프로세스 점검이 필요하다는 신호. Claude Code를 쓰는 우리 입장에선, 오히려 내부 구조가 공개되면서 커뮤니티가 더 깊이 이해하게 되는 역효과가 있을 수도.</p>
+    </div>
+  </div>
+
+  <div class="card c-anthropic">
+    <div class="card-top">
+      <h3>법원 "Anthropic = 보안 리스크" 딱지 위헌 — 수정헌법 1조 적용</h3>
+      <span class="card-tag">법적 승리</span>
+    </div>
+    <div class="row">
+      <div class="row-label">핵심</div>
+      <p>연방 판사가 미 국방부의 Anthropic을 "공급망 보안 위험"으로 지정하는 결정을 막았다. 판결은 Anthropic의 정부 정책 비판권을 침해한다는 수정헌법 1조 위반을 근거로 했다. 4월 2일 발효.</p>
+    </div>
+    <div class="row">
+      <div class="row-label">왜 중요한가</div>
+      <p>AI 기업이 정부 조달 시장에서 어떤 방식으로 배제될 수 있는지, 그리고 그에 맞설 법적 근거가 마련된다는 선례. AI-정부 관계의 중요한 분기점.</p>
+    </div>
+    <div class="insight-row">
+      <div class="row-label">🦊 우석 인사이트</div>
+      <p>정치적 발언이 기업 리스크가 되는 시대에서 Anthropic이 정면 돌파한 케이스. "비판할 수 있는 권리"를 지킨 것이 장기적으로는 신뢰 자산이 될 수 있다.</p>
+    </div>
+  </div>
+
+  <div class="card c-anthropic">
+    <div class="card-top">
+      <h3>Claude Opus 4.6가 Vim·Emacs 제로데이 500+ 발견 — MAD Bugs 이니셔티브</h3>
+      <span class="card-tag">AI 보안</span>
+    </div>
+    <div class="row">
+      <div class="row-label">핵심</div>
+      <p>Claude Opus 4.6가 Vim, Emacs에서 RCE 제로데이 취약점을 발견했다. "MAD Bugs: Month of AI-Discovered Bugs" 이니셔티브가 4월 내내 AI가 발견한 취약점을 공개할 예정이다.</p>
+    </div>
+    <div class="row">
+      <div class="row-label">왜 중요한가</div>
+      <p>AI가 보안 리서치의 주체가 되는 시대의 시작. 기존 취약점 헌터들의 역할이 바뀔 수 있는 구조적 변화다.</p>
+    </div>
+    <div class="insight-row">
+      <div class="row-label">🦊 우석 인사이트</div>
+      <p>개발자라면 주목해야 할 트렌드. Claude Code v2.1.76부터 들어간 MCP + 자율 실행 능력이 이런 결과로 이어지는 것. AI가 코드를 짜는 것을 넘어 코드를 감사하는 단계로 빠르게 진입 중.</p>
+    </div>
+  </div>
+
+
+  <!-- ── Google AI ── -->
+  <div class="cat-header c-google">
+    <div class="dot"></div>
+    <h2>Google AI · Gemini</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="card c-google">
+    <div class="card-top">
+      <h3>Gemini 3 Flash 디폴트 전환 + Gemini 3.1 Pro 출시 — PhD급 추론</h3>
+      <span class="card-tag">모델 업데이트</span>
+    </div>
+    <div class="row">
+      <div class="row-label">핵심</div>
+      <p>Gemini 앱의 기본 모델이 Gemini 3 Flash로 전환됐다. 더 빠르고, 이미지·오디오·텍스트 멀티모달 이해가 강화됐다. 3.1 Pro는 복잡한 문제 해결에 특화된 별도 상위 모델로 글로벌 롤아웃 중이다.</p>
+    </div>
+    <div class="row">
+      <div class="row-label">왜 중요한가</div>
+      <p>Google은 모델 라인업을 Flash(속도·비용)/Pro(추론)/Deep Think(과학)로 명확히 계층화하고 있다. 이 구조는 GPT-4o mini/GPT-4o/o3와 유사한 접근 — 앱 개발자들이 최적의 모델을 선택할 수 있는 생태계로 발전 중.</p>
+    </div>
+    <div class="insight-row">
+      <div class="row-label">🦊 우석 인사이트</div>
+      <p>Google I/O 2026이 5월 19-20일 예정된 상황에서 Gemini 4 프리뷰 가능성이 높다. 지금 Gemini 3.1 릴리즈들은 I/O를 위한 포석 — 발표 전에 개발자들이 쓰게 만드는 전략.</p>
+    </div>
+  </div>
+
+  <div class="card c-google">
+    <div class="card-top">
+      <h3>Gemini in Chrome 출시 + Ask Maps — 브라우저·지도가 AI 인터페이스로</h3>
+      <span class="card-tag">제품 확장</span>
+    </div>
+    <div class="row">
+      <div class="row-label">핵심</div>
+      <p>Chrome에 Gemini 사이드패널이 내장됐고, Google Maps에는 Gemini 3.0 Pro 기반 대화형 탐색 "Ask Maps"가 추가됐다. Gmail·Docs·Sheets·Meet 전반에 걸친 Workspace 통합도 강화됐다.</p>
+    </div>
+    <div class="row">
+      <div class="row-label">왜 중요한가</div>
+      <p>AI가 별도 앱이 아니라 기존 소프트웨어에 녹아드는 흐름. Google의 진짜 무기는 모델 성능이 아니라 수십억 사용자가 이미 쓰는 제품과의 통합 — 이 해자는 다른 AI 기업들이 넘기 어렵다.</p>
+    </div>
+    <div class="insight-row">
+      <div class="row-label">🦊 우석 인사이트</div>
+      <p>"Personal Intelligence"(Gmail·Photos·Drive 연동)가 이제 실제 제품으로 나왔다. 개인 데이터와 연결된 AI가 범용 AI보다 훨씬 유용하다 — 우석이 claw와 일하는 방식과 동일한 원리.</p>
+    </div>
+  </div>
+
+
+  <!-- ── Dev & Tools ── -->
+  <div class="cat-header c-dev">
+    <div class="dot"></div>
+    <h2>개발자 도구 · AI 코딩</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="card c-dev">
+    <div class="card-top">
+      <h3>Claude Code v2.1.76 — MCP Tool Search + VS Code + Auto Mode</h3>
+      <span class="card-tag">툴 업데이트</span>
+    </div>
+    <div class="row">
+      <div class="row-label">핵심</div>
+      <p>3월 릴리즈들에서 MCP Tool Search(컨텍스트에 맞는 툴만 활성화), 네이티브 VS Code 통합, Auto Mode(안전한 동작 자동화·위험 동작 차단), Opus 4.6의 최대 출력 128K 확장 등이 추가됐다.</p>
+    </div>
+    <div class="row">
+      <div class="row-label">왜 중요한가</div>
+      <p>Claude Code가 단순 터미널 어시스턴트에서 완전한 개발 플랫폼으로 진화하는 중. 특히 Auto Mode는 "승인 없이 안전한 작업 진행"과 "위험 동작 차단"을 AI가 자체 판단하는 구조 — 에이전틱 코딩의 핵심 인프라다.</p>
+    </div>
+    <div class="insight-row">
+      <div class="row-label">🦊 우석 인사이트</div>
+      <p>소스코드 유출로 내부 구조가 공개됐는데, 44개 숨겨진 기능이 있다는 점은 흥미롭다. 지금 쓰는 것보다 훨씬 더 많은 기능이 이미 구현되어 있을 가능성 — 공개 문서 외의 실험적 기능들을 탐색해볼 가치가 있다.</p>
+    </div>
+  </div>
+
+  <div class="card c-dev">
+    <div class="card-top">
+      <h3>Vibe Coding 대중화 — Lovable·Bolt·Softr, 자연어로 앱 제작 흐름</h3>
+      <span class="card-tag">트렌드</span>
+    </div>
+    <div class="row">
+      <div class="row-label">핵심</div>
+      <p>GPT-5.4 + Claude Opus 4.6 출시와 함께, 자연어로 앱을 만드는 "vibe coding" 플랫폼들이 급성장 중이다. Softr는 DB·UI·권한·비즈니스 로직을 자연어로 한번에 생성하는 AI 네이티브 플랫폼을 출시했다.</p>
+    </div>
+    <div class="row">
+      <div class="row-label">왜 중요한가</div>
+      <p>개발자 역할이 "코드 작성"에서 "아키텍처 결정 + AI 검증"으로 이동 중. 동시에 비기술 창업자들이 기술적 장벽 없이 제품을 만들 수 있는 시대 — 경쟁 구도가 바뀐다.</p>
+    </div>
+    <div class="insight-row">
+      <div class="row-label">🦊 우석 인사이트</div>
+      <p>Vibe coding이 확산될수록 "좋은 제품 아이디어 + 빠른 실행"이 전통적 개발 실력보다 중요해진다. 빌더조쉬가 강조하는 방향과 정확히 일치하는 흐름 — 실행 비용이 사라지면 아이디어와 분별력이 차별화 요소가 된다.</p>
+    </div>
+  </div>
+
+
+  <!-- ── Business & VC ── -->
+  <div class="cat-header c-biz">
+    <div class="dot"></div>
+    <h2>비즈니스 · VC · 뉴스레터</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="card c-biz">
+    <div class="card-top">
+      <h3>Lenny's: "Claude Code를 개인 인생 OS로" + PM 채용 3년 만에 최고치</h3>
+      <span class="card-tag">Lenny's Newsletter</span>
+    </div>
+    <div class="row">
+      <div class="row-label">핵심</div>
+      <p>3월 30일 발행: "How to turn Claude Code into your personal life operating system" — 가장 최신 포스트. 또 다른 리포트에서 PM 채용이 3년 만에 최고치를 기록했고, AI 직군은 폭발적 성장 중이라고 분석했다.</p>
+    </div>
+    <div class="row">
+      <div class="row-label">왜 중요한가</div>
+      <p>Lenny가 Claude Code를 개인 OS로 다루는 건 단순 툴 소개가 아니라 일하는 방식의 패러다임 전환을 의미하는 것. PM 채용 증가는 AI 전환 속에서도 "제품 판단력"이 여전히 핵심 희소 자원임을 확인.</p>
+    </div>
+    <div class="insight-row">
+      <div class="row-label">🦊 우석 인사이트</div>
+      <p>claw 자체가 Lenny가 말하는 개인 OS의 구현 — 이 뉴스레터 방향이 우리가 이미 하고 있는 것을 서술하고 있다. AI 직군 폭발은 기회이지만, 포지셔닝이 중요. 범용 AI 사용자보다 특정 도메인 + AI 조합 전문가가 더 가치있다.</p>
+    </div>
+  </div>
+
+  <div class="card c-biz">
+    <div class="card-top">
+      <h3>Chamath: "NVIDIA와 $1T AI 빌드아웃" + "SpaceX-xAI 합병 $1.25T"</h3>
+      <span class="card-tag">Chamath Substack</span>
+    </div>
+    <div class="row">
+      <div class="row-label">핵심</div>
+      <p>3월 22일 포스트: 에이전트 시대를 위한 $1T 규모 AI 인프라 빌드아웃에서 NVIDIA의 역할을 분석. 3월 11일 포스트: SpaceX와 xAI 합병 시나리오에서 통합 기업가치 $1.25T 추산.</p>
+    </div>
+    <div class="row">
+      <div class="row-label">왜 중요한가</div>
+      <p>Chamath는 AI를 단순 소프트웨어 트렌드가 아닌 에너지·인프라 레벨의 자본 배치 게임으로 보고 있다. NVIDIA의 독점적 위치가 이 사이클에서 핵심 bottleneck임을 다시 확인.</p>
+    </div>
+    <div class="insight-row">
+      <div class="row-label">🦊 우석 인사이트</div>
+      <p>SpaceX-xAI 합병은 아직 가설이지만, "물리적 인프라(로켓·위성) + AI"의 시너지를 Musk가 만든다면 완전히 새로운 차원의 플레이어가 된다. 국가 단위의 AI 인프라 경쟁이 민간 기업 주도로 이루어지는 구조.</p>
+    </div>
+  </div>
+
+
+  <!-- ── BIG PICTURE ── -->
+  <div class="bigpicture">
+    <div class="bp-label">🔭 오늘의 빅픽처</div>
+    <h2>AI 생태계의 빠른 계층화 — 자본·인프라·도구·사용자가 분리된다</h2>
+    <p>
+      오늘 뉴스들을 가로지르는 하나의 흐름이 있다: <strong>AI 생태계가 빠르게 계층화되고 있다</strong>. OpenAI의 $852B 밸류에이션, Anthropic의 $380B, Google의 Gemini 전방위 통합 — 최상단에서는 자본과 인프라를 가진 빅랩들이 판을 잡는다.
+    </p>
+    <p>
+      그 아래에서는 Claude Code·Cursor·Copilot 같은 <strong>도구 레이어</strong>가 개발자들의 일하는 방식을 바꾸고 있다. 그리고 Lovable·Bolt·Softr 같은 vibe coding 플레이어들이 비기술 사용자까지 제품을 만드는 사람으로 만들고 있다.
+    </p>
+    <p>
+      이 구조에서 흥미로운 역설: <strong>도구가 싸질수록, 아이디어와 판단력의 가격은 오른다</strong>. Claude Code 소스코드 유출도, Sora 종료도, PM 채용 최고치도 — 모두 같은 방향을 가리키고 있다. 실행 비용이 0에 수렴하는 세계에서 "무엇을 만들 것인가"를 아는 사람이 가장 희소해진다.
+    </p>
+    <p>
+      우석에게: 지금 이 흐름에서 포지션을 잡는 것은 모델이나 툴에 있는 게 아니다. <strong>AI를 판단력과 결합하는 방식</strong>이 있는 곳에 있다.
+    </p>
+  </div>
+
+</div>
+
+<!-- ──────── FOOTER ──────── -->
+<div class="footer">
+  <p>🦊 claw · <a href="index.html">← 모든 브리핑</a></p>
+  <p style="margin-top:6px;">2026년 4월 1일 오전 9시 · Asia/Seoul</p>
+</div>
+
+</body>
+</html>
