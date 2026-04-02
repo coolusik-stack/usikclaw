@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BOOL 입점 제안서 v3 — 전자담배점 점주용</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5f1;
+  --paper:#ffffff;
+  --ink:#111111;
+  --muted:#666666;
+  --line:#e8e2d8;
+  --orange:#ff5a1f;
+  --orange-dark:#e24712;
+  --orange-soft:#fff1ea;
+  --shadow:0 18px 60px rgba(17,17,17,.08);
+  --radius:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Noto Sans KR',sans-serif;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:1160px;margin:0 auto;padding:0 28px}
+.section{padding:110px 0}
+.kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  color:var(--orange);margin-bottom:18px;
+}
+.kicker::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--orange)}
+.h2{font-size:clamp(30px,4.5vw,56px);line-height:1.12;font-weight:900;letter-spacing:-.02em;margin-bottom:18px}
+.sub{font-size:17px;color:var(--muted);max-width:670px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.tag{
+  display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;
+  background:var(--orange-soft);color:var(--orange-dark);font-size:12px;font-weight:700;
+}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:54px;padding:0 28px;border-radius:14px;font-weight:800;font-size:15px;
+  transition:.2s ease;cursor:pointer;border:1px solid transparent;
+}
+.btn.primary{background:var(--orange);color:#fff;box-shadow:0 14px 32px rgba(255,90,31,.18)}
+.btn.primary:hover{transform:translateY(-2px);background:var(--orange-dark)}
+.btn.ghost{background:transparent;border-color:#d7cdc0;color:var(--ink)}
+.btn.ghost:hover{border-color:var(--orange);color:var(--orange)}
+
+/* NAV */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  backdrop-filter:blur(16px);
+  background:rgba(247,245,241,.86);
+  border-bottom:1px solid rgba(232,226,216,.8);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;min-height:72px}
+.logo{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;letter-spacing:5px;color:var(--orange)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.count-mini{font-size:13px;color:var(--muted);font-weight:600}
+.count-mini strong{color:var(--orange-dark);font-family:'Space Grotesk',sans-serif}
+
+/* HERO */
+.hero{padding:122px 0 50px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.03fr .97fr;gap:28px;align-items:stretch}
+.hero-copy.card{padding:52px 48px;position:relative;overflow:hidden}
+.hero-copy.card::after{
+  content:'';position:absolute;inset:auto -120px -120px auto;width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle, rgba(255,90,31,.13) 0%, rgba(255,90,31,0) 70%);
+}
+.hero-title{font-size:clamp(36px,6vw,76px);line-height:1.02;font-weight:900;letter-spacing:-.04em;margin-bottom:22px}
+.hero-title .accent{color:var(--orange)}
+.hero-desc{font-size:18px;color:var(--muted);max-width:580px;margin-bottom:30px}
+.hero-bullets{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.hero-bullets span{
+  padding:8px 14px;border-radius:999px;background:#faf7f2;border:1px solid #eee4d7;
+  font-size:13px;font-weight:700;color:#5b4b43;
+}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px}
+.hero-stat{padding:18px 18px;background:#fcfbf8;border:1px solid #efe6da;border-radius:18px}
+.hero-stat .n{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700;color:var(--orange-dark);line-height:1;margin-bottom:6px}
+.hero-stat .l{font-size:12px;color:var(--muted);line-height:1.45}
+
+.hero-media.card{overflow:hidden;display:flex;flex-direction:column}
+.hero-media img{width:100%;height:100%;object-fit:cover;min-height:100%}
+.hero-media-top{position:relative;flex:1;min-height:640px}
+.hero-badge{
+  position:absolute;top:24px;left:24px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+  padding:12px 16px;border-radius:16px;border:1px solid rgba(0,0,0,.04);box-shadow:0 10px 30px rgba(0,0,0,.08)
+}
+.hero-badge .s{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--orange);text-transform:uppercase}
+.hero-badge .b{font-size:22px;font-weight:900;line-height:1.1;margin-top:5px}
+.hero-float{
+  position:absolute;right:22px;bottom:22px;background:#111;color:#fff;padding:16px 18px;border-radius:18px;max-width:250px;
+  box-shadow:0 18px 40px rgba(0,0,0,.24)
+}
+.hero-float .t{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#ffb497;font-weight:800;margin-bottom:6px}
+.hero-float p{font-size:14px;line-height:1.5;color:#f0f0f0}
+
+/* COUNT STRIP */
+.strip{padding:16px 20px;border-radius:20px;margin-top:24px;background:linear-gradient(90deg,#fff5ee,#fff,#fff8f4);border:1px solid #f1dfcf;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:12px;align-items:center}
+.strip-item{padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.78);border:1px solid #f2e4d7}
+.strip-item strong{display:block;font-size:13px;margin-bottom:3px}
+.strip-item span{font-size:12px;color:var(--muted)}
+.strip-main{padding:12px 14px}
+.strip-main .label{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--orange);text-transform:uppercase;margin-bottom:6px}
+.strip-main .value{font-size:28px;font-weight:900;line-height:1.1}
+.strip-main .value em{font-style:normal;color:var(--orange-dark)}
+
+/* PROBLEM > SOLUTION */
+.problem-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:28px;align-items:stretch}
+.problem-media.card{overflow:hidden}
+.problem-media img{width:100%;height:100%;object-fit:cover;min-height:580px}
+.problem-copy.card{padding:42px 40px}
+.problem-list{display:grid;gap:14px;margin-top:24px}
+.problem-item{padding:18px 18px 18px 52px;position:relative;border-radius:18px;background:#fbfaf7;border:1px solid #eee6dc}
+.problem-item::before{
+  content:'✓';position:absolute;left:18px;top:18px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:var(--orange);color:#fff;font-size:12px;font-weight:900
+}
+.problem-item strong{display:block;font-size:17px;margin-bottom:6px}
+.problem-item p{font-size:14px;color:var(--muted)}
+.solution-banner{margin-top:24px;padding:22px 22px;border-radius:18px;background:#111;color:#fff}
+.solution-banner strong{display:block;font-size:22px;margin-bottom:8px}
+.solution-banner p{font-size:14px;color:#e7e7e7}
+
+/* MARGIN SECTION */
+.margin-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.margin-card{padding:38px}
+.margin-card h3{font-size:22px;font-weight:900;margin-bottom:12px}
+.margin-card p{font-size:15px;color:var(--muted)}
+.margin-metric{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.metric-box{background:#faf7f2;border:1px solid #efe3d6;border-radius:18px;padding:20px 18px}
+.metric-box .k{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--orange);font-weight:800;margin-bottom:8px}
+.metric-box .v{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700;line-height:1.05;color:#161616}
+.metric-box .v small{font-size:15px;font-weight:500;color:var(--muted)}
+.metric-box .d{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.45}
+.margin-calc{margin-top:24px;padding:24px;border-radius:18px;background:linear-gradient(135deg,#fff6ef,#fff);border:1px solid #f1dece}
+.margin-calc h4{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--orange-dark);margin-bottom:14px}
+.calc-table{display:grid;gap:10px}
+.calc-row{display:flex;justify-content:space-between;gap:16px;font-size:15px;padding-bottom:10px;border-bottom:1px dashed #eadfce}
+.calc-row:last-child{border-bottom:none;padding-bottom:0}
+.calc-row strong:last-child{color:var(--orange-dark)}
+
+/* WHY RETAILER */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.why-card2{padding:28px;border-radius:22px;background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow)}
+.why-card2 .num{font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:2px;color:var(--orange);font-weight:700;margin-bottom:14px}
+.why-card2 h4{font-size:18px;line-height:1.3;margin-bottom:10px}
+.why-card2 p{font-size:14px;color:var(--muted)}
+
+/* PRODUCT FLOW */
+.product-top{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch;margin-bottom:22px}
+.product-panel{padding:34px}
+.flow-steps{display:grid;gap:12px;margin-top:20px}
+.flow-step{display:flex;gap:16px;align-items:flex-start;padding:16px 18px;border-radius:18px;background:#faf7f2;border:1px solid #efe3d6}
+.flow-step .n{font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:2px;color:var(--orange);font-weight:700;min-width:58px;padding-top:2px}
+.flow-step strong{display:block;font-size:16px;margin-bottom:4px}
+.flow-step span{font-size:13px;color:var(--muted)}
+.product-media.card{overflow:hidden}
+.product-media img{width:100%;height:100%;object-fit:cover;min-height:460px}
+.product-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.pcard{padding:22px 16px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}
+.picon{font-size:30px;margin-bottom:10px}
+.pname{font-size:14px;font-weight:800;margin-bottom:4px}
+.pmg{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;color:var(--orange-dark);line-height:1}
+.pmg small{font-size:12px;font-weight:500;color:var(--muted)}
+.pprice{font-size:12px;color:var(--muted);margin-top:8px}
+
+/* MOMENTS */
+.moment-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px}
+.moment-copy.card{padding:40px}
+.moment-copy ul{list-style:none;display:grid;gap:14px;margin-top:24px}
+.moment-copy li{padding:16px 18px 16px 48px;border-radius:16px;background:#fbfaf7;border:1px solid #efe7dc;position:relative}
+.moment-copy li::before{content:'●';position:absolute;left:18px;top:15px;color:var(--orange);font-size:16px}
+.moment-copy strong{display:block;font-size:16px;margin-bottom:4px}
+.moment-copy span{font-size:13px;color:var(--muted)}
+.moment-media.card{overflow:hidden}
+.moment-media img{width:100%;height:100%;object-fit:cover;min-height:480px}
+
+/* CTA */
+.cta{position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;top:-120px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(255,90,31,.12),transparent 70%)}
+.cta-inner{padding:54px 48px;position:relative}
+.cta-title{font-size:clamp(32px,4.6vw,58px);line-height:1.08;font-weight:900;letter-spacing:-.03em;margin:18px 0 14px}
+.cta-sub{font-size:17px;color:var(--muted);max-width:660px}
+.cta-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:30px 0 26px}
+.cta-box{padding:20px 18px;border-radius:18px;background:#faf7f2;border:1px solid #efe3d6}
+.cta-box .k{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);font-weight:800;margin-bottom:8px}
+.cta-box .v{font-size:18px;font-weight:900}
+.cta-actions{display:flex;flex-wrap:wrap;gap:12px}
+.note{font-size:12px;color:var(--muted);margin-top:18px}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:all .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:980px){
+  .hero-grid,.problem-grid,.margin-wrap,.product-top,.moment-grid{grid-template-columns:1fr}
+  .strip{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .product-grid{grid-template-columns:repeat(3,1fr)}
+  .cta-row{grid-template-columns:1fr}
+  .hero-media-top{min-height:460px}
+}
+@media (max-width:640px){
+  .container{padding:0 18px}
+  .section{padding:76px 0}
+  .hero{padding-top:102px}
+  .hero-copy.card,.problem-copy.card,.margin-card,.product-panel,.moment-copy.card,.cta-inner{padding:28px 22px}
+  .hero-stat .n{font-size:28px}
+  .hero-stats,.margin-metric{grid-template-columns:1fr}
+  .strip{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .product-grid{grid-template-columns:1fr 1fr}
+  .nav-right{gap:10px}
+  .count-mini{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <div class="logo">BOOL</div>
+    <div class="nav-right">
+      <div class="count-mini">4/24 규제까지 <strong id="navDays">--</strong>일</div>
+      <a href="#cta" class="btn primary" style="min-height:44px;padding:0 18px;font-size:13px">입점 문의</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy card reveal">
+        <div class="kicker">전자담배점 점주용 입점 제안서</div>
+        <h1 class="hero-title">
+          <span class="accent">냄새없고, 기기없고, 어디서든.</span><br>
+          그래서 <span class="accent">팔기 쉽습니다.</span>
+        </h1>
+        <p class="hero-desc">
+          2026년 4월 24일 이후 온라인 판매가 막히면, 니코틴 파우치는 <strong>오프라인 전문점 중심</strong>으로 재편됩니다.<br>
+          BOOL은 그 전환기에 맞춰 전자담배점이 가장 먼저 테스트해볼 수 있는, <strong>마진 좋고 설명 쉬운</strong> 제품입니다.
+        </p>
+        <div class="hero-bullets">
+          <span>무취 · 무연</span>
+          <span>기기 불필요</span>
+          <span>실내·차 안·업무 중 사용 니즈</span>
+          <span>캔당 9,400원 마진</span>
+        </div>
+        <div class="hero-actions">
+          <a href="#cta" class="btn primary">초도 입점 문의하기</a>
+          <a href="#margin" class="btn ghost">마진 구조 보기</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="n">+280%</div>
+            <div class="l">한국 직수입<br>전년 대비 증가</div>
+          </div>
+          <div class="hero-stat">
+            <div class="n">9,400원</div>
+            <div class="l">캔당 점주 마진<br>(도매 6,600원 / 소비자 16,000원)</div>
+          </div>
+          <div class="hero-stat">
+            <div class="n">58.8%</div>
+            <div class="l">소비자가 기준<br>거친 마진율</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-media card reveal">
+        <div class="hero-media-top">
+          <img src="https://cdn-optimized.imweb.me/upload/S202602112687547ef6f50/b7a1575cfb27a.jpg?w=1536" alt="BOOL 메인 비주얼" />
+          <div class="hero-badge">
+            <div class="s">4.24 이후</div>
+            <div class="b">온라인 금지 →<br>오프라인 기회</div>
+          </div>
+          <div class="hero-float">
+            <div class="t">Point for Retailers</div>
+            <p>카운터 옆 한 칸. 설명 30초. 기기 없이 바로 결제. 그게 BOOL의 판매 구조입니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="strip reveal">
+      <div class="strip-main">
+        <div class="label">D-Day</div>
+        <div class="value"><em id="daysBig">--</em>일 후 온라인 판매 금지</div>
+      </div>
+      <div class="strip-item"><strong>지금 필요한 이유</strong><span>편의점보다 먼저 전문점이 고객 인식을 선점할 타이밍</span></div>
+      <div class="strip-item"><strong>팔기 쉬운 이유</strong><span>냄새 없음 · 기기 없음 · 사용 상황이 명확함</span></div>
+      <div class="strip-item"><strong>남는 이유</strong><span>도매 6,600원 / 소비자 16,000원 / 캔당 9,400원</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="problem-media card reveal">
+        <img src="https://cdn-optimized.imweb.me/upload/S202602112687547ef6f50/c8643063ab64d.jpg?w=1920" alt="BOOL 사용 고민 섹션" />
+      </div>
+      <div class="problem-copy card reveal">
+        <div class="kicker">왜 이 카테고리가 먹히는가</div>
+        <h2 class="h2">담배를 줄이고 싶지만,<br>니코틴은 유지하고 싶은 고객</h2>
+        <p class="sub">니코틴 파우치는 “새로운 취향”보다 “기존 불편 해결”에서 반응합니다. 점주가 이 포인트만 정확히 잡아도 판매가 쉬워집니다.</p>
+        <div class="problem-list">
+          <div class="problem-item">
+            <strong>실내·차 안·업무 중에도 눈치 덜 보는 포맷</strong>
+            <p>연기와 냄새가 없으니, HTP·전담 유저가 상황형 대체재로 관심을 갖기 쉽습니다.</p>
+          </div>
+          <div class="problem-item">
+            <strong>기기 없는 니코틴 = 설명이 쉽다</strong>
+            <p>배터리, 코일, 액상 설명이 필요 없습니다. “입 안에 넣는 니코틴 파우치” 한 줄 설명이면 끝납니다.</p>
+          </div>
+          <div class="problem-item">
+            <strong>기존 전담 고객층과 자연스럽게 맞닿아 있다</strong>
+            <p>이미 비연소 니코틴 포맷을 받아들인 고객층이라 전환 허들이 낮습니다.</p>
+          </div>
+        </div>
+        <div class="solution-banner">
+          <strong>점주 관점 핵심 한 줄</strong>
+          <p>BOOL은 “새로운 카테고리”가 아니라, 기존 전담 고객에게 추가 제안할 수 있는 <strong>가볍고 마진 좋은 보조 매출 제품</strong>입니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section" id="margin">
+  <div class="container">
+    <div class="reveal">
+      <div class="kicker">점주가 먼저 보는 숫자</div>
+      <h2 class="h2">이건 카테고리 제안이 아니라,<br>마진 제안입니다</h2>
+      <p class="sub">우석이 알려준 실제 가격 기준으로 재계산했습니다. 숫자가 보여야 점주가 움직입니다.</p>
+    </div>
+    <div class="margin-wrap" style="margin-top:28px">
+      <div class="card margin-card reveal">
+        <h3>실제 판매 마진 구조</h3>
+        <p>소비자가 16,000원, 도매가 6,600원 기준. 캔당 남는 금액이 명확해서 점주 입장에서 테스트할 이유가 충분합니다.</p>
+        <div class="margin-metric">
+          <div class="metric-box">
+            <div class="k">Wholesale</div>
+            <div class="v">6,600<small>원</small></div>
+            <div class="d">도매가 기준</div>
+          </div>
+          <div class="metric-box">
+            <div class="k">Retail</div>
+            <div class="v">16,000<small>원</small></div>
+            <div class="d">소비자 판매가</div>
+          </div>
+          <div class="metric-box">
+            <div class="k">Gross Margin</div>
+            <div class="v">9,400<small>원</small></div>
+            <div class="d">캔당 직접 남는 금액</div>
+          </div>
+        </div>
+        <div class="margin-calc">
+          <h4>현장 체감 계산</h4>
+          <div class="calc-table">
+            <div class="calc-row"><span>하루 1캔 판매</span><strong>월 약 282,000원 마진</strong></div>
+            <div class="calc-row"><span>하루 2캔 판매</span><strong>월 약 564,000원 마진</strong></div>
+            <div class="calc-row"><span>하루 3캔 판매</span><strong>월 약 846,000원 마진</strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="card margin-card reveal">
+        <h3>왜 점주 입장에서 ‘나쁘지 않은’ 수준이냐</h3>
+        <p>액상/기기처럼 설명 피로도가 높지 않고, 소형이라 진열 공간도 거의 안 먹습니다. 즉, <strong>적은 운영 부담 대비 남는 돈이 분명한 상품</strong>이라는 뜻입니다.</p>
+        <div class="problem-list" style="margin-top:22px">
+          <div class="problem-item" style="background:#fff8f3">
+            <strong>설명 시간이 짧다</strong>
+            <p>“냄새 없고, 기기 없고, 어디서든” — 이 한 문장으로 설명이 끝납니다.</p>
+          </div>
+          <div class="problem-item" style="background:#fff8f3">
+            <strong>진열대 부담이 적다</strong>
+            <p>캔 제품이라 공간을 거의 차지하지 않아 카운터 앞 테스트 배치가 쉽습니다.</p>
+          </div>
+          <div class="problem-item" style="background:#fff8f3">
+            <strong>업셀링 구조가 있다</strong>
+            <p>12mg 입문 → 20mg 업셀링 구조로 반복 매출 흐름을 만들기 좋습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="kicker">왜 전자담배점이 먼저여야 하나</div>
+      <h2 class="h2">편의점보다 전자담배점이<br>먼저 먹는 이유</h2>
+      <p class="sub">이 카테고리는 “누가 더 크냐”보다 “누가 먼저 고객 인식을 잡느냐”가 중요합니다.</p>
+    </div>
+    <div class="why-grid" style="margin-top:30px">
+      <div class="why-card2 reveal">
+        <div class="num">01</div>
+        <h4>기존 고객 풀이 이미 맞아 있다</h4>
+        <p>전담·HTP 고객은 “비연소 니코틴”에 대한 거부감이 적습니다. 파우치는 그 다음 옵션이 되기 쉽습니다.</p>
+      </div>
+      <div class="why-card2 reveal">
+        <div class="num">02</div>
+        <h4>온라인 금지 이후 소비자는 전문점을 찾는다</h4>
+        <p>규제 이후 온라인이 막히면, 고객은 파우치를 직접 볼 수 있는 전문점을 찾게 됩니다.</p>
+      </div>
+      <div class="why-card2 reveal">
+        <div class="num">03</div>
+        <h4>편의점이 들어오기 전 선점 구간이 있다</h4>
+        <p>5만 편의점은 아직 비어 있습니다. 그 전에 “파우치 취급점”으로 포지셔닝할 수 있습니다.</p>
+      </div>
+      <div class="why-card2 reveal">
+        <div class="num">04</div>
+        <h4>카운터 앞 테스트 판매에 적합하다</h4>
+        <p>작고 가볍고 즉시 결제되는 구조라, 메인 진열보다 카운터 앞 전환 상품으로 잘 맞습니다.</p>
+      </div>
+      <div class="why-card2 reveal">
+        <div class="num">05</div>
+        <h4>국산 브랜드는 소통이 빠르다</h4>
+        <p>직수입 브랜드보다 재고, 문의, CS, 피드백 반영이 훨씬 빠릅니다. 점주 입장에선 중요한 차이입니다.</p>
+      </div>
+      <div class="why-card2 reveal">
+        <div class="num">06</div>
+        <h4>작아 보여도 반복 구매 구조가 있다</h4>
+        <p>파우치는 기기보다 재구매 리듬이 빠릅니다. 잘 맞는 고객 10명만 생겨도 의미 있는 매출 축이 됩니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="kicker">제품 구성</div>
+      <h2 class="h2">입문부터 업셀링까지,<br>진열 논리가 만들어져 있습니다</h2>
+      <p class="sub">단순히 맛 5종이 아니라, 점주가 판매 흐름을 만들 수 있게 강도 구조까지 설계돼 있습니다.</p>
+    </div>
+
+    <div class="product-top" style="margin-top:28px">
+      <div class="card product-panel reveal">
+        <h3 style="font-size:24px;font-weight:900;margin-bottom:12px">점주가 이해해야 할 판매 흐름</h3>
+        <p style="font-size:15px;color:var(--muted)">처음엔 12mg으로 부담을 낮추고, 익숙해지면 20mg으로 자연스럽게 업셀링됩니다. 이 흐름이 있어야 반복 매출이 생깁니다.</p>
+        <div class="flow-steps">
+          <div class="flow-step">
+            <div class="n">STEP 1</div>
+            <div><strong>입문용 제안</strong><span>BOOL 믹스 12mg으로 첫 구매 부담을 낮춤</span></div>
+          </div>
+          <div class="flow-step">
+            <div class="n">STEP 2</div>
+            <div><strong>재구매 업셀링</strong><span>적응된 고객은 믹스 20mg 또는 민트/수박/베리 20mg으로 이동</span></div>
+          </div>
+          <div class="flow-step">
+            <div class="n">RESULT</div>
+            <div><strong>단가 상승 + 재방문</strong><span>한 번 맞는 고객이 생기면 반복 구매 구조 형성</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="product-media card reveal">
+        <img src="https://cdn-optimized.imweb.me/upload/S202602112687547ef6f50/3a9eef296f678.jpg?w=1920" alt="BOOL 제품 가치 이미지" />
+      </div>
+    </div>
+
+    <div class="product-grid" style="margin-top:18px">
+      <div class="pcard reveal"><div class="picon">🍉</div><div class="pname">불 수박</div><div class="pmg">20<small>mg</small></div><div class="pprice">소비자가 16,000원</div></div>
+      <div class="pcard reveal"><div class="picon">🫐</div><div class="pname">불 베리</div><div class="pmg">20<small>mg</small></div><div class="pprice">소비자가 16,000원</div></div>
+      <div class="pcard reveal"><div class="picon">🌿</div><div class="pname">불 민트</div><div class="pmg">20<small>mg</small></div><div class="pprice">소비자가 16,000원</div></div>
+      <div class="pcard reveal"><div class="picon">🎯</div><div class="pname">불 믹스</div><div class="pmg">12<small>mg</small></div><div class="pprice">입문용 제안</div></div>
+      <div class="pcard reveal"><div class="picon">🔥</div><div class="pname">불 믹스</div><div class="pmg">20<small>mg</small></div><div class="pprice">업셀링 제안</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="container">
+    <div class="moment-grid">
+      <div class="moment-copy card reveal">
+        <div class="kicker">핵심 메시지</div>
+        <h2 class="h2">냄새없고,<br>기기없고,<br>어디서든.</h2>
+        <p class="sub" style="margin-bottom:0">이 세 문장을 점주 교육용 핵심 문구로 쓰면 됩니다. 복잡한 제품 설명보다 훨씬 강합니다.</p>
+        <ul>
+          <li><strong>냄새없고</strong><span>연기·냄새가 없어 HTP/전담이 불편한 순간의 대체 포맷으로 설명하기 좋습니다.</span></li>
+          <li><strong>기기없고</strong><span>배터리, 액상, 코일 설명이 필요 없습니다. 기기 판매와 전혀 다른 쉬운 결제 구조입니다.</span></li>
+          <li><strong>어디서든</strong><span>차 안, 이동 중, 업무 중 등 ‘상황형 수요’가 명확해서 고객이 바로 이해합니다.</span></li>
+        </ul>
+      </div>
+      <div class="moment-media card reveal">
+        <img src="https://cdn-optimized.imweb.me/upload/S202602112687547ef6f50/ee0320e7dddfa.jpg?w=1920" alt="BOOL 핵심 가치 이미지" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="container">
+    <div class="card cta reveal" id="cta">
+      <div class="cta-inner">
+        <div class="tag">초도 입점 점포 테스트 모집 중</div>
+        <h2 class="cta-title">4월 24일 전에,<br>카운터 옆 한 칸을 먼저 선점하세요</h2>
+        <p class="cta-sub">BOOL은 대단한 설명이 필요한 제품이 아닙니다. 잘 맞는 고객에게는 바로 팔리고, 점주에겐 마진이 남습니다. 지금 필요한 건 거대한 투자보다 <strong>빠른 테스트 입점</strong>입니다.</p>
+        <div class="cta-row">
+          <div class="cta-box">
+            <div class="k">문의</div>
+            <div class="v">0507-1422-0951</div>
+          </div>
+          <div class="cta-box">
+            <div class="k">브랜드</div>
+            <div class="v">BOOL Korea</div>
+          </div>
+          <div class="cta-box">
+            <div class="k">추천 운영</div>
+            <div class="v">소량 테스트 입점</div>
+          </div>
+        </div>
+        <div class="cta-actions">
+          <a href="tel:050714220951" class="btn primary">지금 바로 입점 문의</a>
+          <a href="https://boolkorea.com/?idx=9" target="_blank" class="btn ghost">상세페이지 보기</a>
+          <a href="https://boolkorea.com/main/?idx=22" target="_blank" class="btn ghost">라인업 보기</a>
+        </div>
+        <p class="note">BOOL Korea (자이언) · 서울특별시 강남구 역삼로70길 19-14, 301호(대치동) · 만 19세 이상 성인 전용 제품</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function updateCountdown(){
+  const target = new Date('2026-04-24T00:00:00+09:00');
+  const now = new Date();
+  const diff = target - now;
+  const days = Math.max(0, Math.floor(diff / (1000*60*60*24)));
+  const el1=document.getElementById('navDays');
+  const el2=document.getElementById('daysBig');
+  if(el1) el1.textContent = days;
+  if(el2) el2.textContent = days;
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach((entry)=>{
+    if(entry.isIntersecting) entry.target.classList.add('in');
+  });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
