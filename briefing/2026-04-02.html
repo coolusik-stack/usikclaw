@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — 2026년 4월 2일</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0c12;
+    --bg2: #121725;
+    --bg3: #171d2d;
+    --border: rgba(255,255,255,0.08);
+    --text: #edf2ff;
+    --muted: #98a2b3;
+    --openai: #58d68d;
+    --anthropic: #b388ff;
+    --google: #63d2ff;
+    --workflow: #ffbf69;
+    --market: #ff8fab;
+  }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: radial-gradient(circle at top, rgba(99,210,255,0.10), transparent 30%), linear-gradient(180deg, #0b1020 0%, var(--bg) 25%);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.72;
+  }
+  a { color: inherit; text-decoration: none; }
+  .hero {
+    padding: 64px 24px 44px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(160deg, #0b1020 0%, #12122a 50%, #0a0c12 100%);
+  }
+  .hero .emoji { font-size: 36px; display: block; margin-bottom: 12px; }
+  .hero .label {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+  }
+  .hero h1 { font-size: 34px; font-weight: 800; color: #fff; letter-spacing: -0.4px; }
+  .hero .date-badge {
+    display: inline-block; margin-top: 14px; padding: 7px 16px; border-radius: 999px;
+    background: rgba(99,210,255,0.12); border: 1px solid rgba(99,210,255,0.22); color: #aeeaff; font-size: 13px;
+  }
+  .hero .sub { margin-top: 12px; font-size: 15px; color: var(--muted); }
+  .container { max-width: 860px; margin: 0 auto; padding: 42px 24px 96px; }
+  .summary {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 22px; padding: 26px; margin-bottom: 34px;
+  }
+  .summary h2 { font-size: 12px; color: #b8cbff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+  .summary p { color: #d8deeb; font-size: 15px; }
+  .summary ul { margin-top: 14px; padding-left: 18px; color: #d8deeb; }
+  .summary li { margin: 8px 0; }
+  .cat-header { display: flex; align-items: center; gap: 10px; margin: 42px 0 18px; }
+  .cat-header .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .cat-header h2 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .cat-header .line { flex: 1; height: 1px; background: var(--border); }
+  .card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 18px; padding: 24px; margin-bottom: 16px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+  }
+  .tag {
+    display: inline-block; padding: 5px 10px; border-radius: 999px; font-size: 10px; font-weight: 700;
+    letter-spacing: 1.3px; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .card h3 { font-size: 20px; line-height: 1.4; color: #fff; letter-spacing: -0.2px; }
+  .source { margin-top: 10px; font-size: 13px; color: var(--muted); }
+  .row { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+  .row-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 7px; }
+  .row p { font-size: 14px; color: #d7ddee; }
+  .insight {
+    margin-top: 14px; padding: 14px 16px; border-radius: 14px;
+    background: rgba(124,156,255,0.08); border: 1px solid rgba(124,156,255,0.18);
+  }
+  .insight .row-label { color: #c4d2ff; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .link {
+    display: inline-block; padding: 8px 11px; border-radius: 999px; background: var(--bg3);
+    border: 1px solid var(--border); font-size: 13px; color: #e2e8f8;
+  }
+  .openai .dot { background: var(--openai); }
+  .openai .tag { color: var(--openai); border: 1px solid rgba(88,214,141,0.24); background: rgba(88,214,141,0.10); }
+  .anthropic .dot { background: var(--anthropic); }
+  .anthropic .tag { color: var(--anthropic); border: 1px solid rgba(179,136,255,0.24); background: rgba(179,136,255,0.10); }
+  .google .dot { background: var(--google); }
+  .google .tag { color: var(--google); border: 1px solid rgba(99,210,255,0.24); background: rgba(99,210,255,0.10); }
+  .workflow .dot { background: var(--workflow); }
+  .workflow .tag { color: var(--workflow); border: 1px solid rgba(255,191,105,0.24); background: rgba(255,191,105,0.10); }
+  .market .dot { background: var(--market); }
+  .market .tag { color: var(--market); border: 1px solid rgba(255,143,171,0.24); background: rgba(255,143,171,0.10); }
+  .bigpicture {
+    margin-top: 52px; padding: 30px; border-radius: 22px;
+    background: linear-gradient(135deg, rgba(99,210,255,0.10), rgba(179,136,255,0.08));
+    border: 1px solid rgba(124,156,255,0.20);
+  }
+  .bigpicture h2 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #d6e2ff; margin-bottom: 14px; }
+  .bigpicture p { color: #eef2ff; font-size: 15px; margin-top: 10px; }
+  .foot { margin-top: 16px; color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <span class="emoji">🌅</span>
+    <div class="label">Morning Briefing</div>
+    <h1>2026년 4월 2일 아침 브리핑</h1>
+    <div class="date-badge">직접 확인한 최근 공개 콘텐츠 기준</div>
+    <div class="sub">AI · 개발도구 · 워크플로우 · 투자 관점에서 오늘 중요한 흐름만 골랐어요.</div>
+  </div>
+
+  <div class="container">
+    <section class="summary">
+      <h2>오늘 먼저 볼 것</h2>
+      <p>오늘의 핵심은 꽤 선명해요. 경쟁의 중심이 “누가 더 좋은 모델을 내느냐”에서 “누가 에이전트를 실제 일하는 흐름에 더 깊게 심느냐”로 이동하고 있습니다.</p>
+      <ul>
+        <li><strong>OpenAI</strong>는 Astral 인수와 대규모 자금 조달로 개발 인프라 중심축을 먹으려는 그림을 더 분명히 드러냈어요.</li>
+        <li><strong>Anthropic</strong>은 Claude를 더 오래 일하고, 더 큰 코드베이스를 다루고, 팀 단위 에이전트로 움직이는 쪽으로 밀고 있어요.</li>
+        <li><strong>현장 사례</strong>를 보면 병목은 이제 모델 자체보다 리뷰 체계, 권한 설계, 클라우드 실행환경 같은 운영 구조예요.</li>
+      </ul>
+    </section>
+
+    <section class="openai">
+      <div class="cat-header"><span class="dot"></span><h2>Platform Moves</h2><div class="line"></div></div>
+
+      <article class="card">
+        <div class="tag">OpenAI</div>
+        <h3>OpenAI, Astral 인수로 Codex를 “코드 생성기”에서 개발 워크플로우 엔진으로 끌어올리려는 그림</h3>
+        <div class="source">소스: OpenAI — OpenAI to acquire Astral</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>OpenAI는 Astral을 인수해 uv, Ruff, ty 같은 대표적인 Python 오픈소스 개발 툴을 Codex 생태계로 가져오겠다고 밝혔어요. 발표문에서 Codex는 올해 들어 사용자 3배, 사용량 5배 증가, 주간 활성 200만+를 기록했다고 설명합니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>이건 단순 M&A가 아니라 AI가 개발자 툴체인 한가운데로 들어가겠다는 신호예요. 모델이 코드만 생성하는 수준을 넘어서 env 관리, lint, 타입체크, 수정·검증까지 연결되는 쪽이 훨씬 큰 잠금 효과를 만듭니다.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>우석 기준으로는 “어느 모델이 더 똑똑한가”보다 repo·lint·테스트·배포 흐름에 얼마나 자연스럽게 녹아드느냐가 더 중요해요. 워크플로우를 잘 잡아두면 나중에 모델을 바꿔도 운영 이득이 남습니다.</p>
+        </div>
+        <div class="links"><a class="link" href="https://openai.com/index/openai-to-acquire-astral/">원문 보기</a></div>
+      </article>
+
+      <article class="card">
+        <div class="tag">OpenAI</div>
+        <h3>OpenAI, 1,220억 달러 조달로 “앱 회사”보다 “AI 인프라 회사” 정체성을 더 강하게 선언</h3>
+        <div class="source">소스: OpenAI — OpenAI raises $122 billion to accelerate the next phase of AI</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>OpenAI는 1,220억 달러 자금 조달과 기업가치 8,520억 달러를 발표하면서, ChatGPT의 대규모 사용자 기반·기업 배포·API·Codex·컴퓨트가 하나의 플라이휠을 만든다고 설명했어요. 월 매출 20억 달러 규모도 함께 강조했습니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>이건 단순히 돈이 많아졌다는 뉴스가 아니에요. OpenAI가 소비자 앱, 기업 소프트웨어, 개발 플랫폼, 컴퓨트 레이어를 한꺼번에 쥐는 구조를 만들겠다는 뜻에 가깝습니다.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>개인 생산성 관점에서도 포인트는 비슷해요. 최고의 모델을 쫓는 것보다 반복 업무를 붙잡고 자동화해두는 쪽이 누적 가치가 더 큽니다. 결국 일상에서 자주 돌리는 워크플로우가 자산이 돼요.</p>
+        </div>
+        <div class="links"><a class="link" href="https://openai.com/index/accelerating-the-next-phase-ai/">원문 보기</a></div>
+      </article>
+    </section>
+
+    <section class="anthropic">
+      <div class="cat-header"><span class="dot"></span><h2>Anthropic</h2><div class="line"></div></div>
+
+      <article class="card">
+        <div class="tag">Anthropic</div>
+        <h3>Claude Opus 4.6, 긴 작업·큰 코드베이스·에이전트 팀 운영 쪽으로 더 명확하게 이동</h3>
+        <div class="source">소스: Anthropic — Claude Opus 4.6</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>Anthropic은 Opus 4.6이 더 신중한 계획, 더 긴 agentic task 지속력, 더 큰 코드베이스 안정성, 더 나은 코드 리뷰·디버깅을 제공한다고 설명해요. 1M 토큰 컨텍스트 베타, Claude Code의 agent teams, compaction, adaptive thinking도 함께 강조했습니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>Anthropic의 포지션은 점점 “질문 잘 답하는 모델”이 아니라 “오래 일하고 자기 점검하는 지식 노동 에이전트”로 이동하고 있어요. 성능 경쟁이 세션 지속성과 실행 품질 경쟁으로 옮겨간다는 의미입니다.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>우석이 Claude Code를 계속 쓴다면 프롬프트 문구보다 역할 분리, effort 규칙, 검수 단계 설계가 훨씬 중요해져요. 좋은 하네스 하나가 모델 업그레이드보다 체감 효율을 더 크게 만들 수 있습니다.</p>
+        </div>
+        <div class="links"><a class="link" href="https://www.anthropic.com/news/claude-opus-4-6">원문 보기</a></div>
+      </article>
+    </section>
+
+    <section class="google">
+      <div class="cat-header"><span class="dot"></span><h2>Google</h2><div class="line"></div></div>
+
+      <article class="card">
+        <div class="tag">Google</div>
+        <h3>Search Live 글로벌 확장: 검색이 링크 목록에서 실시간 멀티모달 대화 인터페이스로 진화</h3>
+        <div class="source">소스: Google Blog — Search Live is expanding globally</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>Google은 Search Live를 AI Mode 제공 지역 전체로 넓히고, Gemini 3.1 Flash Live 기반으로 음성과 카메라를 활용한 실시간 검색 대화를 200개국 이상으로 확장했어요.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>검색이 더 이상 키워드 입력 후 링크를 누르는 경험이 아니라, 현장에서 바로 묻고 보여주고 해결받는 인터페이스로 가고 있다는 뜻이에요. 생활형 문제 해결 영역에서 UX 기준이 크게 바뀔 수 있습니다.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>개인 비서나 현실 연동형 에이전트를 생각할 때 이 흐름이 중요해요. 사용자는 점점 “검색해줘”보다 “지금 이 상황을 이해하고 바로 도와줘”를 기대하게 될 거예요.</p>
+        </div>
+        <div class="links"><a class="link" href="https://blog.google/products-and-platforms/products/search/search-live-global-expansion/">원문 보기</a></div>
+      </article>
+    </section>
+
+    <section class="workflow">
+      <div class="cat-header"><span class="dot"></span><h2>Workflow & Creator Signals</h2><div class="line"></div></div>
+
+      <article class="card">
+        <div class="tag">Lenny's / Stripe</div>
+        <h3>Stripe 사례: AI 코딩 에이전트가 주 1,300개 PR을 만들지만, 진짜 병목은 코딩이 아니라 리뷰와 운영 설계</h3>
+        <div class="source">소스: Lenny's Newsletter — How Stripe built “minions”</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>Stripe는 Slack 이모지 같은 가벼운 트리거로 AI 코딩 에이전트를 실행하고, 클라우드 개발환경에서 병렬로 돌리며, 주간 약 1,300개 AI 작성 PR을 처리한다고 설명해요. 동시에 리뷰·테스트·배포·롤백 체계가 여전히 핵심 안전장치라고 강조합니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>AI 활용의 병목이 모델 성능이 아니라 개발자 경험, 문서화, 클라우드 실행환경, 리뷰 체계라는 점을 가장 현실적으로 보여주는 사례예요. “에이전트 잘 쓰는 회사”는 사실 “운영 시스템이 잘 정리된 회사”입니다.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>우석 쪽 자동화도 똑같아요. 에이전트를 더 늘리기 전에 시작 신호, 검증 기준, 최종 승인 지점을 먼저 정리하면 품질이 훨씬 안정됩니다.</p>
+        </div>
+        <div class="links"><a class="link" href="https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-how-stripe">원문 보기</a></div>
+      </article>
+
+      <article class="card">
+        <div class="tag">Builder Josh</div>
+        <h3>빌더조쉬 최신 영상: Claude Code를 “도구”가 아니라 “일하는 방식”으로 조직에 심는 사례</h3>
+        <div class="source">소스: Builder Josh YouTube — 2026-04-01 업로드</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>최신 영상은 델타소사이어티 사례를 통해 Claude Code를 사내 전체의 업무 습관으로 흡수하는 흐름을 다뤄요. 설명란에서도 AI를 단순 툴이 아니라 의사결정·파일 구조·업무 순환 방식까지 바꾸는 레이어로 설명합니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>개인 고수 한두 명보다 조직 차원의 실행 규약이 생길 때 생산성 격차가 커집니다. 이제 AI 활용 경쟁은 프롬프트 팁 모음보다 팀 차원의 습관 설계 경쟁에 가까워요.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>우석도 이미 좋은 프롬프트보다 좋은 하네스에 더 감이 있어요. claw, 브리핑, 코딩 자동화가 따로 움직이기보다 하나의 생활 운영체제로 엮이는 방향이 더 큰 그림입니다.</p>
+        </div>
+        <div class="links"><a class="link" href="https://www.youtube.com/watch?v=VcL_N_csw0s">영상 보기</a></div>
+      </article>
+
+      <article class="card">
+        <div class="tag">OpenAI / Ramp</div>
+        <h3>Ramp의 Codex 활용 사례: 복잡한 운영성 코딩 작업을 사람 대신 떠안는 파트너 포지셔닝</h3>
+        <div class="source">소스: OpenAI YouTube — What Codex Unlocks for Ramp</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>OpenAI 채널의 최신 고객 사례 영상에서 Ramp는 Codex와 GPT 5.4를 활용해 온콜 헬퍼를 만들고 있으며, 복잡한 문제를 엔지니어가 직접 다 끌어안지 않아도 되는 수준이라고 설명해요.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>코드 생성 데모보다 운영 부담을 덜어주는 사례가 더 중요합니다. 실전에서 가장 귀찮은 건 창의적 구현보다 반복적인 유지보수와 복잡도 관리이기 때문이에요.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>우석 입장에서도 자동화 우선순위는 ‘멋진 것’보다 ‘귀찮은 것’이에요. 반복 점검, 정리, 브리핑, 운영성 작업을 먼저 넘기는 편이 체감 효용이 큽니다.</p>
+        </div>
+        <div class="links"><a class="link" href="https://www.youtube.com/watch?v=ZXEAuZOSLs0">영상 보기</a></div>
+      </article>
+    </section>
+
+    <section class="market">
+      <div class="cat-header"><span class="dot"></span><h2>Market & Investor Lens</h2><div class="line"></div></div>
+
+      <article class="card">
+        <div class="tag">SandHill</div>
+        <h3>SandHill #277: 투자자 시선이 모델 성능보다 보안·서비스화·신뢰 레이어로 이동 중</h3>
+        <div class="source">소스: SandHill.io — #277 | Securing AI Agents, AI-Native Services, Contrarian Theses, & more</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>최신 다이제스트 상단에 ‘Securing AI agents’, ‘AI‑Native Services’, ‘Software Is the New SMB’, ‘The only moat is trust’ 류의 글들이 전진 배치돼 있어요. 시장의 관심이 모델 그 자체보다 실제 배치와 방어 가능성 쪽으로 옮겨갔다는 뜻입니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>VC와 운영자들이 이제 “누가 더 강한 모델을 만들까”보다는 “누가 안전하게 배치하고 고객 신뢰를 확보할까”에 더 큰 가치를 둔다는 신호예요.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>우석이 만드는 자동화도 경쟁력은 화려한 기능보다 신뢰, 권한 통제, 꾸준함에서 나옵니다. 작더라도 ‘믿고 맡길 수 있는 경험’을 만드는 쪽이 오래 갑니다.</p>
+        </div>
+        <div class="links"><a class="link" href="https://www.sandhill.io/p/277-securing-ai-agents-ai-native">원문 보기</a></div>
+      </article>
+
+      <article class="card">
+        <div class="tag">Chamath</div>
+        <h3>Chamath가 집은 이번 주 포인트: 방산 자율화·추론비 절감·과학적 인터페이스의 확대</h3>
+        <div class="source">소스: Chamath Substack — Shield AI Air Force Deal, Google's TurboQuant, and Meta's Brain-Predictive AI</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>최신 글은 Shield AI의 미 공군 계약, Google의 TurboQuant, Meta의 뇌 반응 예측 모델을 함께 묶어요. 공통점은 “더 똑똑한 챗봇”이 아니라 자율 시스템 실전 배치와 추론비 최적화, 특수 목적 AI의 확장입니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>AI의 다음 돈은 순수 모델 경쟁만으로 설명되지 않아요. 국방, 인프라 효율화, 과학·의료 인터페이스 같은 고부가 영역이 빠르게 커지고 있다는 신호입니다.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>특히 TurboQuant 얘기는 중요해요. 앞으로는 성능 향상만큼 비용과 지연 최적화가 중요해져서, 개인 에이전트도 “얼마나 똑똑한가”와 함께 “얼마나 가볍게 오래 돌 수 있는가”가 핵심이 됩니다.</p>
+        </div>
+        <div class="links"><a class="link" href="https://chamath.substack.com/p/what-i-read-this-week-177">원문 보기</a></div>
+      </article>
+    </section>
+
+    <section class="bigpicture">
+      <h2>Big picture comment</h2>
+      <p>오늘의 빅픽처는 이거예요. <strong>AI의 다음 승부처는 모델 자체보다 운영 구조</strong>예요. 툴체인 통합, 권한 설계, 검수 루프, 비용 최적화, 신뢰가 점점 더 큰 차이를 만듭니다.</p>
+      <p>우석 기준으로 해석하면, 지금 가장 가치 있는 일은 새 모델을 쫓는 것보다 <strong>claw가 반복 업무를 안정적으로 처리하는 작은 운영체제</strong>를 계속 다듬는 거예요. 브리핑, 리서치, 코딩, 알림 같은 루틴을 재현 가능한 플로우로 고정하면 모델이 바뀌어도 생산성은 누적됩니다.</p>
+      <p>한 줄 요약: <strong>2026년 봄의 승자는 가장 똑똑한 모델을 가진 팀보다, AI가 오래 일해도 안 무너지는 구조를 가진 팀일 가능성이 큽니다.</strong></p>
+      <div class="foot">Checked against directly fetched public source pages and channel/video pages available at briefing time.</div>
+    </section>
+  </div>
+</body>
+</html>
