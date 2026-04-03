@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOOL — 전담점 입점 제안</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+  <style>
+    :root {
+      --ink:   #0e0e0e;
+      --paper: #fcfaf7;
+      --ember: #ff5a1f;
+      --mist:  #888480;
+      --line:  #2a2a2a;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--ink); color: #ffffff; word-break: keep-all; font-family: 'Pretendard', system-ui, sans-serif; }
+
+    /* ── 타이포 ── */
+    .display {
+      font-size: clamp(3rem, 9vw, 8rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+    }
+    .heading {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+    }
+    .kicker {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ember);
+    }
+
+    /* ── 버튼 ── */
+    .btn-primary {
+      background: var(--ember);
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.9rem 2rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-ghost {
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.9rem 2rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--ember); color: var(--ember); }
+
+    /* ── 섹션 ── */
+    .section { padding: 7rem 0; }
+    .section-light { background: var(--paper); color: var(--ink); }
+
+    /* ── reveal ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 768px) {
+      .section { padding: 4.5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-[#0e0e0e]/90 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 lg:px-8">
+      <span class="font-black tracking-[0.3em] text-[var(--ember)] text-xl">BOOL</span>
+      <div class="flex items-center gap-5">
+        <span class="hidden md:block text-sm text-[var(--mist)]">4/24까지 <strong class="text-[var(--ember)]" id="navDays">--</strong>일</span>
+        <a href="#cta" class="btn-primary py-2 px-5 text-sm">입점 문의</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════════════════
+         01. HERO — 풀블리드 다크
+    ══════════════════════════════════ -->
+    <section class="relative min-h-screen flex flex-col justify-end overflow-hidden">
+
+      <!-- 배경 이미지 -->
+      <div class="absolute inset-0">
+        <img
+          src="https://cdn-optimized.imweb.me/upload/S202602112687547ef6f50/b7a1575cfb27a.jpg?w=1536"
+          alt="BOOL hero"
+          class="w-full h-full object-cover object-center"
+        >
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/70 to-[#0e0e0e]/20"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0e0e0e]/80 via-transparent to-transparent"></div>
+      </div>
+
+      <!-- 콘텐츠 -->
+      <div class="relative mx-auto max-w-6xl px-5 lg:px-8 pb-20 pt-40 w-full">
+
+        <div class="reveal mb-5">
+          <span class="kicker">전담점 입점 제안 · 2026</span>
+        </div>
+
+        <h1 class="display reveal text-white max-w-4xl mb-8">
+          전자담배를<br>
+          못 피우는<br>
+          <span class="text-[var(--ember)]">그 순간.</span>
+        </h1>
+
+        <p class="reveal text-lg leading-8 text-white/60 max-w-xl mb-10">
+          사무실, 차 안, 카페 — 매일 있는 그 빈틈이<br>
+          전담점의 추가 매출입니다.<br>
+          기기 없이, 설명 30초, 카운터 한 칸.
+        </p>
+
+        <!-- 숫자 3개 -->
+        <div class="reveal flex flex-wrap gap-8 mb-12">
+          <div>
+            <p class="text-4xl font-black text-[var(--ember)]">7,200원</p>
+            <p class="text-sm text-white/50 mt-1">캔당 점주 마진</p>
+          </div>
+          <div class="border-l border-white/10 pl-8">
+            <p class="text-4xl font-black text-[var(--ember)]">45%</p>
+            <p class="text-sm text-white/50 mt-1">소비자가 기준 마진율</p>
+          </div>
+          <div class="border-l border-white/10 pl-8">
+            <p class="text-4xl font-black text-[var(--ember)]">+280%</p>
+            <p class="text-sm text-white/50 mt-1">전년 대비 한국 직수입</p>
+          </div>
+        </div>
+
+        <div class="reveal flex flex-wrap gap-3">
+          <a href="#why" class="btn-primary">왜 전담점인지 보기</a>
+          <a href="#margin" class="btn-ghost">마진 계산 보기</a>
+        </div>
+      </div>
+
+      <!-- D-Day 배지 -->
+      <div class="absolute top-24 right-8 hidden md:flex flex-col items-end">
+        <div class="reveal rounded-2xl border border-[var(--ember)]/30 bg-[var(--ember)]/10 px-5 py-4 text-right">
+          <p class="text-xs font-bold tracking-widest text-[var(--ember)] uppercase">4/24 규제까지</p>
+          <p class="text-5xl font-black text-white mt-1"><span id="heroDays">--</span></p>
+          <p class="text-xs text-white/40 mt-1">일 남음</p>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         02. 브랜드 소재 카드 (전체 폭)
+    ══════════════════════════════════ -->
+    <section class="py-4 px-4 lg:px-8">
+      <div class="mx-auto max-w-6xl">
+        <div class="reveal rounded-[28px] overflow-hidden">
+          <img
+            src="https://coolusik-stack.github.io/usikclaw/bool_scene_card2.webp"
+            alt="언제 어디서나 당신의 방식대로"
+            class="w-full h-auto block"
+          >
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         03. 에디토리얼 인사이트 (라이트)
+    ══════════════════════════════════ -->
+    <section class="section section-light">
+      <div class="mx-auto max-w-6xl px-5 lg:px-8">
+
+        <div class="grid gap-12 lg:grid-cols-2 items-center">
+
+          <div class="reveal space-y-6">
+            <span class="kicker">이 상품이 팔리는 이유</span>
+            <h2 class="heading text-[var(--ink)]">
+              점주는 새 카테고리를<br>
+              교육할 필요가 없습니다.
+            </h2>
+            <p class="text-xl font-black text-[var(--ember)] leading-tight">
+              기존 고객의 빈 시간을<br>
+              상품화하면 됩니다.
+            </p>
+          </div>
+
+          <div class="reveal space-y-5">
+            <p class="text-lg leading-8 text-[var(--mist)]" style="color:#555">
+              전담점 고객은 이미 비연소 니코틴에 익숙합니다.
+              그 고객이 <strong style="color:#111">사무실 회의 전, 카페에서 커피 마시며, 차에 타자마자</strong>
+              전자담배를 꺼내지 못하는 순간이 있습니다.
+              BOOL은 그 순간에 바로 팔 수 있는 상품입니다.
+            </p>
+
+            <div class="space-y-3 pt-2">
+              <div class="flex gap-4 items-start">
+                <span class="text-[var(--ember)] font-black text-xl leading-none mt-1">→</span>
+                <p style="color:#111">고객이 이미 니코틴 사용자라 설명이 짧습니다</p>
+              </div>
+              <div class="flex gap-4 items-start">
+                <span class="text-[var(--ember)] font-black text-xl leading-none mt-1">→</span>
+                <p style="color:#111">전자담배 매출을 잠식하지 않습니다 — 다른 상황을 커버합니다</p>
+              </div>
+              <div class="flex gap-4 items-start">
+                <span class="text-[var(--ember)] font-black text-xl leading-none mt-1">→</span>
+                <p style="color:#111">기기, 액상, 충전 관련 설명이 없어 직원 부담이 낮습니다</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         04. 왜 전담점인가 (다크)
+    ══════════════════════════════════ -->
+    <section id="why" class="section">
+      <div class="mx-auto max-w-6xl px-5 lg:px-8">
+
+        <div class="reveal mb-14">
+          <span class="kicker block mb-4">왜 전담점에서 팔리는가</span>
+          <h2 class="heading text-white">세 가지만<br>확인하면 됩니다.</h2>
+        </div>
+
+        <div class="grid gap-px bg-white/5 border border-white/5 rounded-[28px] overflow-hidden md:grid-cols-3">
+
+          <div class="reveal bg-[#141414] p-8 space-y-5">
+            <p class="text-5xl font-black text-[var(--ember)] leading-none">01</p>
+            <h3 class="text-xl font-black text-white leading-tight">같은 고객,<br>다른 상황</h3>
+            <p class="text-sm leading-7 text-white/50">
+              추가 유입이 필요 없습니다. 카운터 앞 고객에게 "사무실에서는 이걸 쓰세요" 한 마디면 됩니다.
+            </p>
+          </div>
+
+          <div class="reveal bg-[#141414] p-8 space-y-5">
+            <p class="text-5xl font-black text-[var(--ember)] leading-none">02</p>
+            <h3 class="text-xl font-black text-white leading-tight">카운터에서<br>30초 설명</h3>
+            <p class="text-sm leading-7 text-white/50">
+              배터리, 코일, 액상 설명이 없습니다. "냄새 없고 기기 없이 어디서든" — 이게 첫 설명의 전부입니다.
+            </p>
+          </div>
+
+          <div class="reveal bg-[#141414] p-8 space-y-5">
+            <p class="text-5xl font-black text-[var(--ember)] leading-none">03</p>
+            <h3 class="text-xl font-black text-white leading-tight">카운터 한 칸,<br>소량 시작</h3>
+            <p class="text-sm leading-7 text-white/50">
+              재고 부담 없이 테스트. 안 나가면 바로 접고, 나가면 SKU 늘리면 됩니다.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- 인용 -->
+        <div class="reveal mt-6 rounded-[28px] border border-[var(--ember)]/20 bg-[var(--ember)]/5 p-10 md:p-14">
+          <p class="text-xs font-bold tracking-widest text-[var(--ember)] uppercase mb-6">Point of view</p>
+          <p class="heading text-white max-w-3xl">
+            "설명이 필요한 상품이 아닙니다.<br>
+            <span class="text-[var(--ember)]">손님이 이미 아는 불편함에<br>이름을 붙여주는 겁니다."</span>
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         05. 마진 (라이트)
+    ══════════════════════════════════ -->
+    <section id="margin" class="section section-light">
+      <div class="mx-auto max-w-6xl px-5 lg:px-8">
+
+        <div class="reveal mb-14">
+          <span class="kicker block mb-4">리테일 숫자</span>
+          <h2 class="heading" style="color:#111">숫자만 보면 됩니다.</h2>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-2">
+
+          <!-- 마진 구조 -->
+          <div class="reveal rounded-[28px] bg-[var(--ink)] text-white p-8 space-y-6">
+            <p class="kicker">마진 구조</p>
+            <div class="space-y-4">
+              <div class="flex justify-between items-end border-b border-white/10 pb-4">
+                <span class="text-white/50">도매가</span>
+                <span class="text-2xl font-black">8,800원</span>
+              </div>
+              <div class="flex justify-between items-end border-b border-white/10 pb-4">
+                <span class="text-white/50">소비자가</span>
+                <span class="text-2xl font-black">16,000원</span>
+              </div>
+              <div class="flex justify-between items-end">
+                <span class="font-bold">캔당 마진</span>
+                <span class="text-4xl font-black text-[var(--ember)]">7,200원</span>
+              </div>
+            </div>
+            <div class="rounded-[20px] bg-white/5 p-5 space-y-3">
+              <p class="kicker">하루 기준 시뮬레이션</p>
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between"><span class="text-white/40">하루 1캔</span><strong>월 약 21.6만원</strong></div>
+                <div class="flex justify-between"><span class="text-white/40">하루 2캔</span><strong>월 약 43.2만원</strong></div>
+                <div class="flex justify-between"><span class="text-white/40">하루 3캔</span><strong class="text-[var(--ember)]">월 약 64.8만원</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 비교형 -->
+          <div class="reveal space-y-4">
+            <p class="kicker">다른 상품과 비교하면</p>
+
+            <div class="rounded-[20px] border border-gray-200 p-6 space-y-2">
+              <p class="font-black" style="color:#111">공간 차지</p>
+              <p class="text-sm leading-6" style="color:#555">작은 캔 5종 = 카운터 한 칸. 냉장고나 별도 진열대 불필요. 액상·디바이스와 비교할 수 없을 만큼 작습니다.</p>
+            </div>
+
+            <div class="rounded-[20px] border border-gray-200 p-6 space-y-2">
+              <p class="font-black" style="color:#111">설명 시간</p>
+              <p class="text-sm leading-6" style="color:#555">코일 호환, 니코틴 농도, 브랜드 설명 없이 30초 안에 끝납니다. 액상 1병 설명 시간과 비교하면 답이 나옵니다.</p>
+            </div>
+
+            <div class="rounded-[20px] border border-gray-200 p-6 space-y-2">
+              <p class="font-black" style="color:#111">테스트 리스크</p>
+              <p class="text-sm leading-6" style="color:#555">소량 입점으로 시작. 반응 없으면 바로 접고, 나가면 그때 SKU 늘리면 됩니다.</p>
+            </div>
+
+            <!-- 이미지 -->
+            <div class="rounded-[20px] overflow-hidden aspect-[16/7]">
+              <img
+                src="https://cdn-optimized.imweb.me/upload/S202602112687547ef6f50/c8643063ab64d.jpg?w=1920"
+                alt="BOOL"
+                class="w-full h-full object-cover"
+              >
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         06. 도입 운영안 (다크)
+    ══════════════════════════════════ -->
+    <section class="section">
+      <div class="mx-auto max-w-6xl px-5 lg:px-8">
+
+        <div class="reveal mb-14">
+          <span class="kicker block mb-4">도입 운영안</span>
+          <h2 class="heading text-white">입점 다음날부터<br>바로 팔 수 있습니다.</h2>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2">
+
+          <div class="reveal rounded-[28px] bg-[#141414] border border-white/5 p-7 space-y-4">
+            <p class="kicker">초도 입점 구성</p>
+            <ul class="space-y-3 text-sm leading-7">
+              <li><strong class="text-white">BOOL 믹스 12mg</strong><span class="text-white/40 ml-2">— 입문용, 설명 가장 짧음</span></li>
+              <li><strong class="text-white">BOOL 민트 20mg</strong><span class="text-white/40 ml-2">— 재구매 가능성 최고</span></li>
+              <li><strong class="text-white">BOOL 믹스 20mg</strong><span class="text-white/40 ml-2">— 자연스러운 업셀링 라인</span></li>
+              <li class="text-white/30 text-xs pt-1">수박·베리는 2차 발주 때 취향 분산용</li>
+            </ul>
+          </div>
+
+          <div class="reveal rounded-[28px] bg-[#141414] border border-white/5 p-7 space-y-4">
+            <p class="kicker">권장 진열 위치</p>
+            <p class="text-sm leading-7 text-white/50">
+              계산대 옆 카운터 상단. 손님이 계산 대기 중 눈에 띄는 위치가 가장 좋습니다. 액상 진열대 끝자리나 디바이스 옆 병행도 됩니다.
+            </p>
+          </div>
+
+          <div class="reveal md:col-span-2 rounded-[28px] bg-[var(--ember)] p-7 md:p-10">
+            <p class="text-xs font-bold tracking-widest text-white/60 uppercase mb-4">직원 권장 멘트</p>
+            <p class="text-xl md:text-2xl font-black text-white leading-snug max-w-3xl">
+              "사무실이나 차에서 전자담배 못 피우실 때 이거 쓰세요.<br>
+              냄새 없고 기기 없이 그냥 입에 넣으면 됩니다."
+            </p>
+            <p class="mt-4 text-sm text-white/60">이 한 문장으로 첫 판매 진입 가능. 추가 설명 없어도 대부분 이해합니다.</p>
+          </div>
+
+          <div class="reveal rounded-[28px] bg-[#141414] border border-white/5 p-7 space-y-4">
+            <p class="kicker">리오더 기준</p>
+            <p class="text-sm leading-7 text-white/50">
+              2주 안에 1종이라도 3캔 이상 나가면 해당 SKU 중심으로 리오더. 반응 없으면 멘트 방식 먼저 바꿔보고 판단.
+            </p>
+          </div>
+
+          <div class="reveal rounded-[28px] overflow-hidden">
+            <img
+              src="https://cdn-optimized.imweb.me/upload/S202602112687547ef6f50/3a9eef296f678.jpg?w=1920"
+              alt="BOOL 제품"
+              class="w-full h-full object-cover min-h-[200px]"
+            >
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════
+         07. CTA (풀블리드 다크)
+    ══════════════════════════════════ -->
+    <section id="cta" class="section border-t border-white/5">
+      <div class="mx-auto max-w-6xl px-5 lg:px-8">
+
+        <div class="reveal mb-12">
+          <span class="kicker block mb-5">4/24 이후 오프라인만 남습니다</span>
+          <h2 class="display text-white max-w-4xl">
+            먼저 잡은<br>
+            전담점이<br>
+            <span class="text-[var(--ember)]">선점합니다.</span>
+          </h2>
+        </div>
+
+        <div class="reveal max-w-2xl mb-12">
+          <p class="text-lg leading-8 text-white/50">
+            대규모 발주가 필요 없습니다. 카운터 한 칸으로 먼저 테스트하면 됩니다.<br>
+            안 나가면 바로 접고, 반응 오면 그때 SKU 늘리면 됩니다.
+          </p>
+        </div>
+
+        <div class="reveal grid gap-5 md:grid-cols-[1fr_auto] items-center rounded-[28px] border border-white/10 bg-[#141414] p-8">
+          <div class="space-y-2">
+            <p class="kicker">BOOL Korea (자이언)</p>
+            <p class="text-3xl font-black text-white">0507-1422-0951</p>
+            <p class="text-sm text-white/40">서울 강남구 역삼로70길 19-14, 301호 · 만 19세 이상 성인 전용</p>
+          </div>
+          <div class="flex flex-col gap-3">
+            <a href="tel:050714220951" class="btn-primary">지금 문의하기 →</a>
+            <a href="https://boolkorea.com/?idx=9" target="_blank" class="btn-ghost justify-center text-sm">상세페이지</a>
+          </div>
+        </div>
+
+        <!-- D-Day -->
+        <div class="reveal mt-5 flex items-center gap-5 rounded-[28px] border border-[var(--ember)]/20 bg-[var(--ember)]/5 p-6">
+          <div class="shrink-0">
+            <p class="kicker">D-DAY</p>
+            <p class="text-5xl font-black text-white mt-1"><span id="ctaDays">--</span><span class="text-2xl text-white/40 ml-1">일</span></p>
+          </div>
+          <p class="text-sm leading-6 text-white/40">
+            2026년 4월 24일부터 전자담배 관련 온라인 판매가 금지됩니다.<br>
+            오프라인 전담점이 유일한 구매 경로가 됩니다. 지금이 선점 시점입니다.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-white/5 py-8">
+    <div class="mx-auto max-w-6xl px-5 lg:px-8 flex flex-wrap items-center justify-between gap-4">
+      <span class="font-black tracking-[0.3em] text-[var(--ember)]">BOOL</span>
+      <p class="text-xs text-white/20">BOOL Korea (자이언) · 만 19세 이상 성인 전용 · 과도한 니코틴 사용은 건강에 해롭습니다.</p>
+    </div>
+  </footer>
+
+  <script>
+    function updateDays() {
+      const target = new Date('2026-04-24T00:00:00+09:00');
+      const days = Math.max(0, Math.floor((target - new Date()) / 864e5));
+      ['navDays','heroDays','ctaDays'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = days;
+      });
+    }
+    updateDays();
+    setInterval(updateDays, 60000);
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
