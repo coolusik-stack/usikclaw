@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOOL — 소매점 입점 제안</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Pretendard', 'system-ui', 'sans-serif'] },
+          colors: {
+            ink:   '#111111',
+            paper: '#fcfaf7',
+            line:  '#e8e0d4',
+            warm:  '#fff4ec',
+            ember: '#ff5a1f',
+            mist:  '#6f6b64',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #fcfaf7; color: #111111; word-break: keep-all; }
+
+    .display { font-size: clamp(2.6rem, 7vw, 6rem); font-weight: 900; line-height: 1.0; letter-spacing: -0.06em; }
+    .heading  { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; line-height: 1.1; letter-spacing: -0.05em; }
+    .kicker   { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #ff5a1f; }
+
+    .card     { background: #ffffff; border: 1px solid #e8e0d4; border-radius: 28px; }
+    .card-ink { background: #111111; border: 1px solid #111111; border-radius: 28px; color: #ffffff; }
+
+    .btn-primary { background: #111111; color: #fff; border-radius: 999px; padding: 0.85rem 1.75rem; font-size: 0.9rem; font-weight: 700; display: inline-flex; align-items: center; transition: background 0.2s; }
+    .btn-primary:hover { background: #ff5a1f; }
+    .btn-ghost   { border: 1px solid #e8e0d4; color: #111111; border-radius: 999px; padding: 0.85rem 1.75rem; font-size: 0.9rem; font-weight: 700; display: inline-flex; align-items: center; transition: all 0.2s; }
+    .btn-ghost:hover { border-color: #ff5a1f; color: #ff5a1f; }
+
+    .section { padding: 7rem 0; }
+    .editorial { font-size: clamp(1.5rem, 3vw, 2.4rem); font-weight: 900; line-height: 1.2; letter-spacing: -0.04em; }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 768px) {
+      .section { padding: 5rem 0; }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased">
+
+  <!-- NAV -->
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-line bg-paper/90 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 lg:px-8">
+      <div class="flex items-center gap-3">
+        <span class="font-black tracking-[0.3em] text-ember text-lg">BOOL</span>
+        <span class="hidden md:block text-xs font-semibold tracking-[0.15em] text-mist border border-line rounded-full px-3 py-1">RETAIL PROPOSAL</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="hidden md:block text-sm text-mist">4/24 온라인 판매 금지까지 <strong class="text-ember" id="navDays">--</strong>일</span>
+        <a href="#cta" class="btn-primary text-sm py-2 px-5">입점 문의</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 01. HERO -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-warm/60 to-paper pointer-events-none"></div>
+      <div class="mx-auto max-w-6xl px-5 lg:px-8 relative">
+
+        <div class="grid gap-8 lg:grid-cols-[1.02fr_.98fr] lg:items-center">
+          <div>
+            <div class="reveal mb-3">
+              <span class="kicker">소매점 입점 제안 · 2026</span>
+            </div>
+
+            <h1 class="display reveal text-balance mb-8 max-w-5xl">
+              계산대 앞 한 칸,<br>
+              <span class="text-ember">새로운 매출 카테고리.</span>
+            </h1>
+
+            <p class="reveal text-lg leading-8 text-mist max-w-2xl mb-10">
+              BOOL은 실내에서 담배를 피울 수 없는 성인 흡연자를 위한 니코틴 파우치입니다.<br>
+              껌·캔디 자리에 놓을 수 있는 작은 캔 상품으로, <strong class="text-ink">마진율 45%에 별도 냉장·진열 공간이 필요 없습니다.</strong><br>
+              기존 방문 고객에게 바로 제안할 수 있는 구조입니다.
+            </p>
+
+            <!-- 핵심 숫자 3개 -->
+            <div class="reveal grid gap-4 sm:grid-cols-3 max-w-2xl mb-12">
+              <div class="card p-5">
+                <div class="text-3xl font-black tracking-tight text-ember">7,200원</div>
+                <p class="text-sm text-mist mt-1">개당 매장 마진<br>(도매 8,800 / 소비자 16,000)</p>
+              </div>
+              <div class="card p-5">
+                <div class="text-3xl font-black tracking-tight text-ember">45%</div>
+                <p class="text-sm text-mist mt-1">권장 소비자가 기준<br>마진율</p>
+              </div>
+              <div class="card p-5">
+                <div class="text-3xl font-black tracking-tight text-ember">+280%</div>
+                <p class="text-sm text-mist mt-1">한국 직수입<br>전년 대비 증가</p>
+              </div>
+            </div>
+
+            <div class="reveal flex flex-wrap gap-3">
+              <a href="#why" class="btn-primary">왜 지금인가 보기</a>
+              <a href="#margin" class="btn-ghost">마진 계산 보기</a>
+            </div>
+
+            <p class="reveal mt-5 text-sm text-mist max-w-2xl">
+              니코틴 파우치는 <strong class="text-ink">전 세계에서 가장 빠르게 성장하는 카테고리</strong> 중 하나로 평가받고 있습니다.
+            </p>
+          </div>
+
+          <div class="reveal">
+            <div class="overflow-hidden rounded-[28px] border border-line bg-white shadow-[0_20px_60px_rgba(17,17,17,0.06)]">
+              <img
+                src="https://coolusik-stack.github.io/usikclaw/bool_hero_product.jpg"
+                alt="BOOL 프리미엄 제품 컷"
+                class="w-full h-full object-cover"
+              >
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="mx-auto max-w-6xl px-5 lg:px-8">
+      <div class="h-px bg-line"></div>
+    </div>
+
+
+    <!-- 02. 왜 지금인가 -->
+    <section id="why" class="section">
+      <div class="mx-auto max-w-6xl px-5 lg:px-8">
+
+        <div class="grid gap-8 lg:grid-cols-2 items-center">
+
+          <div class="reveal overflow-hidden rounded-[28px] aspect-[4/5]">
+            <img
+              src="https://cdn-optimized.imweb.me/upload/S202602112687547ef6f50/b7a1575cfb27a.jpg?w=1536"
+              alt="BOOL 비주얼"
+              class="w-full h-full object-cover"
+            >
+          </div>
+
+          <div class="reveal space-y-8">
+            <span class="kicker">왜 지금인가</span>
+
+            <p class="editorial">
+              4월 24일부터<br>
+              온라인 판매가<br>
+              <span class="text-ember">전면 금지됩니다.</span>
+            </p>
+
+            <p class="text-mist leading-8">
+              2026년 4월 24일부터 전자담배 관련 온라인 판매가 금지됩니다.
+              그 결과 <strong class="text-ink">성인 흡연자들이 니코틴 파우치를 구매할 수 있는 경로는 오프라인 매장뿐</strong>이 됩니다.
+              먼저 카운터에 자리를 잡은 매장이 이 카테고리의 첫 접점이 됩니다.
+            </p>
+
+            <div class="card p-6 space-y-4">
+              <p class="text-xs font-bold tracking-widest text-ember uppercase">지금 입점이 유리한 이유</p>
+              <div class="space-y-3 text-[15px] leading-7">
+                <div class="flex gap-3"><span class="text-ember font-bold shrink-0">→</span><span>온라인 금지 이후 오프라인 수요가 소매점으로 집중됩니다</span></div>
+                <div class="flex gap-3"><span class="text-ember font-bold shrink-0">→</span><span>카테고리 인식이 형성되기 전, 먼저 진열한 매장이 첫 선택지가 됩니다</span></div>
+                <div class="flex gap-3"><span class="text-ember font-bold shrink-0">→</span><span>성인 흡연자 고객은 이미 매장을 방문하고 있는 층입니다</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <div class="mx-auto max-w-6xl px-5 lg:px-8">
+      <div class="h-px bg-line"></div>
+    </div>
+
+
+    <!-- 03. 누가 사는가 -->
+    <section class="section">
+      <div class="mx-auto max-w-6xl px-5 lg:px-8">
+
+        <div class="reveal mb-14">
+          <span class="kicker block mb-3">누가 사는가</span>
+          <h2 class="heading max-w-3xl">
+            새 고객이 필요 없습니다.<br>이미 오는 손님이 타깃입니다.
+          </h2>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-3">
+
+          <div class="card reveal p-7 space-y-4">
+            <p class="text-[2.4rem] font-black leading-none tracking-tight text-ember">01</p>
+            <h3 class="text-xl font-black leading-tight">사무실 직장인</h3>
+            <p class="text-mist text-[15px] leading-7">
+              회의 중, 실내에서 담배를 피울 수 없는 순간. 점심 편의점을 들르는 성인 직장인이 충동 구매하기 가장 좋은 상품입니다.
+            </p>
+          </div>
+
+          <div class="card reveal p-7 space-y-4">
+            <p class="text-[2.4rem] font-black leading-none tracking-tight text-ember">02</p>
+            <h3 class="text-xl font-black leading-tight">출퇴근 흡연자</h3>
+            <p class="text-mist text-[15px] leading-7">
+              지하철·버스 안, 흡연 구역이 없는 상황. 슈퍼·편의점·마트를 지나다 계산대에서 바로 집을 수 있는 구조입니다.
+            </p>
+          </div>
+
+          <div class="card reveal p-7 space-y-4">
+            <p class="text-[2.4rem] font-black leading-none tracking-tight text-ember">03</p>
+            <h3 class="text-xl font-black leading-tight">금연 시도 중인 고객</h3>
+            <p class="text-mist text-[15px] leading-7">
+              담배 대신 니코틴을 보충하려는 수요. 껌·캔디 코너 옆에 자리를 잡으면 자연스럽게 시야에 들어옵니다.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- 에디토리얼 인용 -->
+        <div class="reveal mt-12 card-ink p-8 md:p-12">
+          <p class="text-xs font-bold tracking-widest text-orange-200 uppercase mb-5">Point of view</p>
+          <p class="editorial text-white max-w-3xl">
+            "담배를 팔던 자리 옆에<br>
+            <span class="text-orange-300">니코틴 파우치 한 줄만 추가하면<br>됩니다."</span>
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="mx-auto max-w-6xl px-5 lg:px-8">
+      <div class="h-px bg-line"></div>
+    </div>
+
+
+    <!-- 04. 마진 -->
+    <section id="margin" class="section">
+      <div class="mx-auto max-w-6xl px-5 lg:px-8">
+
+        <div class="reveal mb-14">
+          <span class="kicker block mb-3">리테일 숫자</span>
+          <h2 class="heading max-w-3xl">
+            숫자만 보면 됩니다.
+          </h2>
+        </div>
+
+        <div class="grid gap-5 lg:grid-cols-2">
+
+          <!-- 마진 구조 -->
+          <div class="card reveal p-8 space-y-6">
+            <p class="text-xs font-bold tracking-widest text-ember uppercase">마진 구조</p>
+
+            <div class="space-y-3">
+              <div class="flex justify-between items-end border-b border-line pb-3">
+                <span class="text-mist">도매가</span>
+                <span class="text-2xl font-black">8,800원</span>
+              </div>
+              <div class="flex justify-between items-end border-b border-line pb-3">
+                <span class="text-mist">소비자가</span>
+                <span class="text-2xl font-black">16,000원</span>
+              </div>
+              <div class="flex justify-between items-end">
+                <span class="font-bold">개당 마진</span>
+                <span class="text-3xl font-black text-ember">7,200원</span>
+              </div>
+            </div>
+
+            <div class="bg-warm rounded-[20px] p-5 space-y-3">
+              <p class="text-xs font-bold tracking-widest text-ember uppercase">하루 기준 시뮬레이션</p>
+              <div class="space-y-2 text-[15px]">
+                <div class="flex justify-between"><span class="text-mist">하루 1캔</span><strong>월 약 21.6만원</strong></div>
+                <div class="flex justify-between"><span class="text-mist">하루 2캔</span><strong>월 약 43.2만원</strong></div>
+                <div class="flex justify-between"><span class="text-mist">하루 3캔</span><strong>월 약 64.8만원</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 비교형 -->
+          <div class="card reveal p-8 space-y-6">
+            <p class="text-xs font-bold tracking-widest text-ember uppercase">다른 상품과 비교하면</p>
+
+            <div class="space-y-4">
+
+              <div class="rounded-[20px] border border-line p-5">
+                <p class="font-black mb-1">껌·캔디 대비 마진</p>
+                <p class="text-mist text-sm leading-6">껌 1통 마진이 100~300원대인 것에 비해, BOOL은 <strong class="text-ink">개당 7,200원</strong>입니다. 같은 계산대 자리에서 완전히 다른 마진율입니다.</p>
+              </div>
+
+              <div class="rounded-[20px] border border-line p-5">
+                <p class="font-black mb-1">공간과 관리</p>
+                <p class="text-mist text-sm leading-6">냉장 불필요, 유통기한 길고, 진열대 별도 공간 없이 카운터 한 칸이면 됩니다. 관리 부담이 거의 없습니다.</p>
+              </div>
+
+              <div class="rounded-[20px] border border-line p-5">
+                <p class="font-black mb-1">설명 없이 팔리는 구조</p>
+                <p class="text-mist text-sm leading-6">복잡한 제품 설명이 필요 없습니다. 성인 확인 후 바로 건네는 구조로, 직원 교육 부담이 낮습니다.</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <div class="mx-auto max-w-6xl px-5 lg:px-8">
+      <div class="h-px bg-line"></div>
+    </div>
+
+
+    <!-- 05. 진열 운영안 -->
+    <section class="section">
+      <div class="mx-auto max-w-6xl px-5 lg:px-8">
+
+        <div class="reveal mb-14">
+          <span class="kicker block mb-3">진열 운영안</span>
+          <h2 class="heading max-w-3xl">
+            입점 다음날부터<br>바로 팔 수 있는 상품구성입니다.
+          </h2>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[1fr_1.1fr] items-start">
+
+          <div class="reveal overflow-hidden rounded-[28px] aspect-[4/3] bg-[#f4efe7]">
+            <img
+              src="https://coolusik-stack.github.io/usikclaw/bool_model_mint.jpg"
+              alt="BOOL 민트 모델 컷"
+              class="w-full h-full object-cover"
+            >
+          </div>
+
+          <div class="reveal space-y-4">
+
+            <div class="card p-6">
+              <p class="text-xs font-bold tracking-widest text-ember uppercase mb-4">초도 입점 구성</p>
+
+              <div class="rounded-[18px] bg-warm p-4 mb-4">
+                <p class="text-[13px] font-bold text-ink">가장 무난한 시작은 <span class="text-ember">민트·베리 중심</span>입니다.</p>
+                <p class="mt-2 text-sm leading-6 text-mist">민트·베리로 반응을 먼저 보고, 수박은 2차로 추가하는 구성이 안정적입니다.</p>
+              </div>
+
+              <div class="space-y-2 text-[14px] leading-6 text-mist">
+                <div class="flex justify-between items-center rounded-[14px] border border-line px-4 py-3">
+                  <span class="font-bold text-ink">민트 12mg / 20mg</span>
+                  <span class="text-sm">핵심 SKU</span>
+                </div>
+                <div class="flex justify-between items-center rounded-[14px] border border-line px-4 py-3">
+                  <span class="font-bold text-ink">베리 12mg / 20mg</span>
+                  <span class="text-sm">취향 분산</span>
+                </div>
+                <div class="flex justify-between items-center rounded-[14px] border border-line px-4 py-3">
+                  <span class="font-bold text-ink">수박 12mg / 20mg</span>
+                  <span class="text-sm">2차 확장용</span>
+                </div>
+              </div>
+
+              <p class="mt-4 text-xs text-mist">민트·베리 반응을 먼저 보고, 수박은 이후 확대하는 방식이 가장 부담이 적습니다.</p>
+            </div>
+
+            <div class="card p-6">
+              <p class="text-xs font-bold tracking-widest text-ember uppercase mb-4">권장 진열 위치</p>
+              <p class="text-[15px] leading-7 text-mist">
+                계산대 앞 또는 담배 코너 옆이 가장 좋습니다. 성인 고객이 결제 전후로 자연스럽게 눈에 들어오는 자리면 됩니다. 냉장·별도 진열대 불필요합니다.
+              </p>
+            </div>
+
+            <div class="card p-6">
+              <p class="text-xs font-bold tracking-widest text-ember uppercase mb-4">직원 권장 멘트</p>
+              <div class="rounded-[16px] bg-warm p-4 text-[15px] leading-7">
+                <span class="text-ink font-black">"담배 못 피우는 자리에서 쓰는 거예요. 냄새 없고 기기 없이 잇몸 부위에 끼워 넣으면 됩니다."</span>
+              </div>
+              <p class="mt-3 text-xs text-mist">만 19세 이상 성인 확인 후 안내. 추가 설명 없어도 대부분 이해합니다.</p>
+            </div>
+
+            <div class="card p-6">
+              <p class="text-xs font-bold tracking-widest text-ember uppercase mb-4">리오더 기준</p>
+              <p class="text-[15px] leading-7 text-mist">
+                2주 안에 1종이라도 꾸준히 나가면 그 SKU 중심으로 리오더하면 됩니다.
+                반응이 확인된 향과 강도부터 순차적으로 넓히는 방식이 가장 안전합니다.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <div class="mx-auto max-w-6xl px-5 lg:px-8">
+      <div class="h-px bg-line"></div>
+    </div>
+
+
+    <!-- 05-B. SKU 라인업 -->
+    <section class="section" style="padding-top:0;">
+      <div class="mx-auto max-w-6xl px-5 lg:px-8">
+
+        <div class="reveal mb-10">
+          <span class="kicker block mb-3">SKU 라인업</span>
+          <h2 class="heading max-w-2xl">민트, 베리, 수박 — 3가지 향, 2가지 강도.</h2>
+          <p class="mt-3 text-mist text-[15px] leading-7 max-w-2xl">입문에는 미디엄(12mg), 업셀링에는 스트롱(20mg)으로 단순하게 권할 수 있습니다.</p>
+        </div>
+
+        <div class="reveal card overflow-hidden mb-4">
+          <img src="https://coolusik-stack.github.io/usikclaw/bool_sku_mint.jpg" alt="BOOL 민트 — MEDIUM 12mg / STRONG 20mg" class="w-full h-auto block">
+        </div>
+        <div class="reveal card overflow-hidden mb-4">
+          <img src="https://coolusik-stack.github.io/usikclaw/bool_sku_berry.jpg" alt="BOOL 베리 — MEDIUM 12mg / STRONG 20mg" class="w-full h-auto block">
+        </div>
+        <div class="reveal card overflow-hidden">
+          <img src="https://coolusik-stack.github.io/usikclaw/bool_sku_watermelon.jpg" alt="BOOL 수박 — MEDIUM 12mg / STRONG 20mg" class="w-full h-auto block">
+        </div>
+
+      </div>
+    </section>
+
+    <div class="mx-auto max-w-6xl px-5 lg:px-8">
+      <div class="h-px bg-line"></div>
+    </div>
+
+
+    <!-- 06. CTA -->
+    <section id="cta" class="section">
+      <div class="mx-auto max-w-6xl px-5 lg:px-8">
+
+        <div class="reveal mb-12 max-w-3xl">
+          <span class="kicker block mb-4">4/24 이후 오프라인만 남습니다</span>
+          <p class="editorial">
+            온라인 판매 금지 후<br>
+            소매점이 먼저 잡은 자리가<br>
+            <span class="text-ember">카테고리 첫 접점이 됩니다.</span>
+          </p>
+          <p class="mt-6 text-mist leading-8">
+            BOOL은 기존 방문 고객에게 바로 제안할 수 있는 상품입니다. <strong class="text-ink">민트, 베리, 수박 3가지 향과 2가지 강도로 구성돼 있어</strong>
+            매장 성향에 맞게 초도 구성을 잡고 반응을 볼 수 있습니다.<br>
+            중요한 건 복잡한 도입이 아니라, 매장에서 실제로 바로 제안해볼 수 있는 구조인지입니다.
+          </p>
+        </div>
+
+        <!-- CTA 카드 -->
+        <div class="card reveal p-8 md:p-10">
+          <div class="mx-auto max-w-xl text-center">
+            <p class="text-xs font-bold tracking-widest text-ember uppercase">BOOL Korea</p>
+            <p class="mt-3 text-2xl font-black text-ink">0507-1422-0951</p>
+
+            <div class="mt-5 space-y-2 text-sm text-mist">
+              <p>• 만 19세 이상 성인 전용 제품</p>
+              <p>• 소량 테스트 입점 가능</p>
+              <p>• 초도 상담 후 입점 결정 가능</p>
+            </div>
+
+            <div class="mt-7 flex flex-col items-center gap-3">
+              <a href="tel:050714220951" class="btn-primary justify-center min-w-[220px]">지금 문의하기</a>
+              <a href="https://boolkorea.com/?idx=9" target="_blank" class="btn-ghost justify-center min-w-[220px]">상세페이지</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- D-Day -->
+        <div class="reveal mt-6 rounded-[28px] border border-ember/20 bg-warm p-5 flex items-center gap-4">
+          <div>
+            <p class="text-xs font-bold tracking-widest text-ember uppercase">4/24 규제까지</p>
+            <p class="text-4xl font-black text-ink mt-1"><span id="ctaDays">--</span><span class="text-xl font-medium text-mist ml-1">일</span></p>
+          </div>
+          <p class="text-sm text-mist leading-6">
+            2026년 4월 24일부터 전자담배 관련 온라인 판매가 금지됩니다.<br>
+            전자담배 전문점 중심의 오프라인 채널이 유일한 구매 경로가 됩니다.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-line py-8">
+    <div class="mx-auto max-w-6xl px-5 lg:px-8 flex flex-wrap items-center justify-between gap-4">
+      <span class="font-black tracking-[0.3em] text-ember">BOOL</span>
+      <p class="text-xs text-mist">BOOL Korea · 만 19세 이상 성인 전용 · 과도한 니코틴 사용은 건강에 해롭습니다.</p>
+    </div>
+  </footer>
+
+  <script>
+    // 카운트다운
+    function updateCountdown() {
+      const target = new Date('2026-04-24T00:00:00+09:00');
+      const now = new Date();
+      const diff = Math.max(0, Math.ceil((target - now) / (1000 * 60 * 60 * 24)));
+      document.querySelectorAll('#navDays, #ctaDays').forEach(el => el.textContent = diff);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+
+    // reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
