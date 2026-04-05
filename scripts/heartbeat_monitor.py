@@ -113,8 +113,40 @@ def get_exchange_rates():
     except Exception as e:
         return {"error": str(e)}
 
+CIGAR_KEYWORDS = ["cigar", "stogie", "tobacconist", "toscano", "cohiba", "montecristo",
+                  "padron", "fuente", "davidoff", "leaf", "maduro", "habano",
+                  "시가", "파이프", "엽궐련"]
+
+def check_cigar_emails():
+    """himalaya로 Yahoo 메일에서 시가 관련 메일 감지 후 한국어 요약 반환"""
+    try:
+        import subprocess, json as _json
+        # 최근 30개 메일 JSON으로 가져오기
+        result = subprocess.run(
+            ["himalaya", "envelope", "list", "--page-size", "30", "--output", "json"],
+            capture_output=True, text=True, timeout=20
+        )
+        if result.returncode != 0:
+            return {"error": result.stderr[:200]}
+
+        envelopes = _json.loads(result.stdout)
+        cigar_mails = []
+        for env in envelopes:
+            subj = (env.get("subject") or "").lower()
+            sender = (env.get("from", {}).get("addr") or "").lower()
+            if any(kw in subj or kw in sender for kw in CIGAR_KEYWORDS):
+                cigar_mails.append({
+                    "id": env.get("id"),
+                    "subject": env.get("subject"),
+                    "from": env.get("from", {}).get("addr"),
+                    "date": env.get("date")
+                })
+        return {"cigar_mails": cigar_mails}
+    except Exception as e:
+        return {"error": str(e)}
+
 def main():
-    results = {"alerts": [], "exchange": {}, "summary": ""}
+    results = {"alerts": [], "exchange": {}, "cigar_emails": [], "summary": ""}
 
     # 캘린더
     try:
@@ -126,6 +158,12 @@ def main():
 
     # 환율
     results["exchange"] = get_exchange_rates()
+
+    # 시가 메일 감지
+    cigar_result = check_cigar_emails()
+    results["cigar_emails"] = cigar_result.get("cigar_mails", [])
+    if cigar_result.get("error"):
+        results["cigar_email_error"] = cigar_result["error"]
 
     # 상태 업데이트
     try:
