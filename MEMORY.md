@@ -23,6 +23,7 @@
 - News priorities: economy, exchange rates, and AI.
 - Voice messages should be acceptable as input and summarized into text when possible.
 - Reminder tone should be calm and concise, but still feel caring.
+- When sending summaries or briefings, include not just a summary and insight but also claw's own opinion/judgment.
 - It is okay to proactively suggest things across most areas when genuinely useful.
 - User wants Yahoo Mail cigar-related emails translated into Korean and surfaced promptly when they arrive.
 
@@ -56,6 +57,15 @@
 - Anthropic: https://www.youtube.com/@anthropic-ai
 - Species: https://www.youtube.com/@AISpecies
 - Mo Bitar: https://www.youtube.com/@atmoio
+
+## 브라우저 제어 설정 (2026-04-01 완료)
+- `gateway.nodes.browser.mode = "off"` → node proxy 자동 라우팅 비활성화
+- `channels.telegram.execApprovals.enabled = true` → 텔레그램에서 exec 승인 버튼 활성화
+- OpenClaw 전용 브라우저 프로필: `openclaw` (Chrome 기반)
+- X 로그인 상태 유지 중 → 9시 브리핑 X 소스 직접 수집 가능
+- node host 서비스 고정 완료 (`openclaw node install`) → 재시작해도 자동 연결
+- 유튜브 채널 페이지도 직접 접근 가능
+- 뉴스레터 공개 아카이브도 직접 읽기 가능
 
 ## Outlook Calendar Integration
 - Microsoft Graph API 연결 완료 (설정: ~/.openclaw/graph-calendar-config.json)
