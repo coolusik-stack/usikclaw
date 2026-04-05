@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — 2026년 4월 5일</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #090b11;
+    --bg2: #121724;
+    --bg3: #171d2d;
+    --line: rgba(255,255,255,0.08);
+    --text: #eef2ff;
+    --muted: #98a2b3;
+    --teal: #5eead4;
+    --sky: #7dd3fc;
+    --violet: #b388ff;
+    --amber: #ffbf69;
+    --rose: #ff8fab;
+    --lime: #a3e635;
+  }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: radial-gradient(circle at top, rgba(125,211,252,0.12), transparent 32%), linear-gradient(180deg, #0b1020 0%, var(--bg) 26%);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.72;
+  }
+  a { color: inherit; text-decoration: none; }
+  .hero {
+    padding: 68px 24px 46px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(160deg, #0c1223 0%, #12122a 48%, #090b11 100%);
+  }
+  .hero .emoji { font-size: 36px; display: block; margin-bottom: 12px; }
+  .hero .label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .hero h1 { font-size: 34px; font-weight: 800; color: #fff; letter-spacing: -0.4px; }
+  .hero .date-badge {
+    display: inline-block; margin-top: 14px; padding: 7px 16px; border-radius: 999px;
+    background: rgba(94,234,212,0.10); border: 1px solid rgba(94,234,212,0.22); color: #b7fff3; font-size: 13px;
+  }
+  .hero .sub { margin-top: 12px; font-size: 15px; color: var(--muted); }
+  .container { max-width: 920px; margin: 0 auto; padding: 40px 24px 96px; }
+  .summary, .bigpicture {
+    background: var(--bg2); border: 1px solid var(--line); border-radius: 22px; padding: 28px;
+  }
+  .summary { margin-bottom: 34px; }
+  .summary h2, .bigpicture h2 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; color: #d8e6ff; }
+  .summary p, .summary li, .bigpicture p { font-size: 15px; color: #d8deeb; }
+  .summary ul { margin-top: 12px; padding-left: 18px; }
+  .summary li { margin: 8px 0; }
+  .cat-header { display: flex; align-items: center; gap: 10px; margin: 42px 0 18px; }
+  .cat-header .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .cat-header h2 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .cat-header .line { flex: 1; height: 1px; background: var(--line); }
+  .card {
+    background: var(--bg2); border: 1px solid var(--line); border-radius: 18px; padding: 24px; margin-bottom: 16px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+  }
+  .tag {
+    display: inline-block; padding: 5px 10px; border-radius: 999px; font-size: 10px; font-weight: 700;
+    letter-spacing: 1.3px; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .card h3 { font-size: 20px; line-height: 1.4; color: #fff; letter-spacing: -0.2px; }
+  .source { margin-top: 10px; font-size: 13px; color: var(--muted); }
+  .row { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .row-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 7px; }
+  .row p { font-size: 14px; color: #d7ddee; }
+  .insight {
+    margin-top: 14px; padding: 14px 16px; border-radius: 14px;
+    background: rgba(124,156,255,0.08); border: 1px solid rgba(124,156,255,0.18);
+  }
+  .insight .row-label { color: #c4d2ff; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .link {
+    display: inline-block; padding: 8px 11px; border-radius: 999px; background: var(--bg3);
+    border: 1px solid var(--line); font-size: 13px; color: #e2e8f8;
+  }
+  .platform .dot { background: var(--teal); }
+  .platform .tag { color: var(--teal); border: 1px solid rgba(94,234,212,0.24); background: rgba(94,234,212,0.10); }
+  .builders .dot { background: var(--amber); }
+  .builders .tag { color: var(--amber); border: 1px solid rgba(255,191,105,0.24); background: rgba(255,191,105,0.10); }
+  .research .dot { background: var(--sky); }
+  .research .tag { color: var(--sky); border: 1px solid rgba(125,211,252,0.24); background: rgba(125,211,252,0.10); }
+  .macro .dot { background: var(--rose); }
+  .macro .tag { color: var(--rose); border: 1px solid rgba(255,143,171,0.24); background: rgba(255,143,171,0.10); }
+  .signal .dot { background: var(--lime); }
+  .signal .tag { color: var(--lime); border: 1px solid rgba(163,230,53,0.24); background: rgba(163,230,53,0.10); }
+  .bigpicture {
+    margin-top: 50px;
+    background: linear-gradient(135deg, rgba(125,211,252,0.10), rgba(179,136,255,0.08));
+    border-color: rgba(124,156,255,0.18);
+  }
+  .bigpicture p + p { margin-top: 10px; }
+  .foot { margin-top: 16px; color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <span class="emoji">🌅</span>
+    <div class="label">Morning Briefing</div>
+    <h1>2026년 4월 5일 아침 브리핑</h1>
+    <div class="date-badge">최근 7일 내 공개 콘텐츠 중심 · 직접 확인 가능한 링크 기준</div>
+    <div class="sub">오늘 핵심은 “더 좋은 모델”보다 “AI를 실제 운영 체계에 어떻게 박아넣느냐”입니다.</div>
+  </div>
+
+  <div class="container">
+    <section class="summary">
+      <h2>오늘 먼저 볼 것</h2>
+      <p>이번 주 흐름은 꽤 선명해요. AI 업계의 관심이 다시 데모 경쟁에서 운영 경쟁으로 이동하고 있습니다.</p>
+      <ul>
+        <li><strong>OpenAI</strong>는 Codex와 고객 사례를 통해 “엔지니어링 운영 부담을 덜어주는 에이전트” 포지션을 더 강하게 밀고 있어요.</li>
+        <li><strong>빌더/개발자 생태계</strong>는 Claude Code를 단일 툴이 아니라 오케스트레이터로 쓰는 설계법을 빠르게 학습 중입니다.</li>
+        <li><strong>투자·매크로 시그널</strong>은 이제 모델 스펙보다 보안, 신뢰, 공급 구조 같은 시스템 레벨 이슈를 더 크게 보기 시작했어요.</li>
+      </ul>
+    </section>
+
+    <section class="platform">
+      <div class="cat-header"><span class="dot"></span><h2>AI Platform Moves</h2><div class="line"></div></div>
+
+      <article class="card">
+        <div class="tag">OpenAI / Ramp</div>
+        <h3>Codex의 포지션이 더 분명해졌어요: 코드 생성기가 아니라 복잡한 엔지니어링 운영 부담을 대신 먹는 에이전트</h3>
+        <div class="source">소스: OpenAI YouTube — What Codex Unlocks for Ramp (2026-04-01), OpenAI Codex 페이지</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>Ramp는 Codex와 GPT-5.4를 활용해 AI 기반 온콜 헬퍼와 코드 리뷰 흐름을 운영하고 있다고 공개했어요. OpenAI 공식 Codex 페이지도 피처 개발, 리팩터링, 마이그레이션, 코드 리뷰, 백그라운드 자동화까지 “실제 엔지니어링 일” 전반을 맡기는 방향을 전면에 내세웁니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>이건 AI 코딩 툴의 평가 기준이 자동완성 품질에서 운영성으로 넘어갔다는 뜻이에요. 결국 팀이 돈을 쓰는 이유는 예쁜 데모가 아니라, 리뷰와 온콜처럼 귀찮고 비싼 병목을 줄여주기 때문입니다.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>우석 쪽 자동화도 같은 방향이 맞아요. “무엇을 더 만들까”보다 “누가 검수하고 어디서 멈추고 무엇을 기록할까”를 먼저 정리하면 claw의 실사용 가치가 훨씬 커집니다.</p>
+        </div>
+        <div class="links">
+          <a class="link" href="https://www.youtube.com/watch?v=ZXEAuZOSLs0">영상 보기</a>
+          <a class="link" href="https://openai.com/codex/">Codex 페이지</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="tag">OpenAI / Gradient Labs</div>
+        <h3>은행 고객지원도 “챗봇”이 아니라 단일 에이전트가 끝까지 처리하는 운영 레이어로 이동 중</h3>
+        <div class="source">소스: OpenAI YouTube — OpenAI x Gradient Labs Founder Spotlight (2026-04-01)</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>Gradient Labs는 은행 고객지원에서 AI account manager가 신원확인, 카드 액션, 후속 응대까지 한 대화 흐름 안에서 처리한다고 설명했어요. 공개 설명 기준으로 CSAT 98%, 첫날 해결률 50%+를 강조합니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>AI가 FAQ를 답하는 수준을 넘어 실제 업무 절차를 연결하기 시작하면 기업 가치가 급격히 커져요. 특히 금융처럼 핸드오프가 많은 산업에서 이 패턴이 먹히면 다른 업종으로도 빠르게 번질 가능성이 높습니다.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>claw도 같은 원리예요. 일정, 브리핑, 코딩, 리마인드를 따로 잘하는 것보다, 하나의 대화가 실제 액션까지 끊김 없이 연결되게 만드는 편이 체감 가치가 훨씬 큽니다.</p>
+        </div>
+        <div class="links"><a class="link" href="https://www.youtube.com/watch?v=yNNTLllVbiE">영상 보기</a></div>
+      </article>
+    </section>
+
+    <section class="builders">
+      <div class="cat-header"><span class="dot"></span><h2>Builder Workflow</h2><div class="line"></div></div>
+
+      <article class="card">
+        <div class="tag">Builder Josh</div>
+        <h3>Claude Code는 이제 “코딩 도구”보다 오케스트레이터로 더 강력해 보여요</h3>
+        <div class="source">소스: 빌더 조쉬 Builder Josh — 이제 클로드 코드가 기획자이자 편집자입니다 (2026-04-03)</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>최신 영상은 Claude Code를 중심축으로 두고, 대본 작성·팩트체크·씬 설계·TTS·편집 자동화까지 여러 에이전트가 협업하는 유튜브 제작 시스템을 다뤘어요. 캡컷 JSON 구조까지 활용해 사람이 거의 개입하지 않는 편집 흐름을 만들었다는 점이 핵심입니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>이건 “AI를 잘 쓰는 팁”이 아니라 제작 파이프라인을 통째로 재설계하는 사례예요. 생산성 차이는 이제 프롬프트 한 줄보다 공정 설계에서 벌어집니다.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>우석이 이미 브리핑·리마인드·코딩을 하나의 시스템으로 묶고 있다는 점이 꽤 앞선 포지션이에요. 지금은 기능 추가보다 작업 흐름 간 handoff를 더 부드럽게 만드는 게 더 큰 레버리지입니다.</p>
+        </div>
+        <div class="links"><a class="link" href="https://www.youtube.com/watch?v=arrKfg0V268">영상 보기</a></div>
+      </article>
+
+      <article class="card">
+        <div class="tag">Lenny's / Simon Willison</div>
+        <h3>“이미 변곡점은 지났다”는 Simon Willison의 진단은 과장이 아니라 운영 현실에 가까워요</h3>
+        <div class="source">소스: Lenny's Newsletter — An AI state of the union (2026-04-02)</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>Simon Willison은 2025년 11월을 AI 코딩 에이전트가 “mostly works”에서 “actually works”로 넘어간 시점으로 봤고, 이후 핵심 이슈를 dark factory, agentic engineering, prompt injection, lethal trifecta로 정리했어요. 즉 성능 향상보다 운영 리스크와 검증 체계가 더 중요한 국면이라는 얘기입니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>이 시각은 업계의 흥분을 냉정하게 정리해줘요. 실제 조직에서 막히는 지점은 모델 IQ가 아니라, 얼마나 오래 맡길 수 있고 얼마나 안전하게 통제할 수 있느냐예요.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>우석은 이미 생활형 에이전트를 돌리고 있으니, 기록·권한·검수 규칙을 조기에 잘 박아두는 게 중요해요. 이건 귀찮아 보여도 나중에 가장 큰 차이를 만드는 부분입니다.</p>
+        </div>
+        <div class="links"><a class="link" href="https://www.lennysnewsletter.com/p/an-ai-state-of-the-union">원문 보기</a></div>
+      </article>
+    </section>
+
+    <section class="research">
+      <div class="cat-header"><span class="dot"></span><h2>Research & Investor Signals</h2><div class="line"></div></div>
+
+      <article class="card">
+        <div class="tag">SandHill.io</div>
+        <h3>투자자들의 공통 화두가 거의 정렬됐습니다: AI agents, trust, security, 그리고 “모델보다 제품”</h3>
+        <div class="source">소스: SandHill.io #277 — Securing AI Agents, AI-Native Services, Contrarian Theses, & more (2026-03-29)</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>이번 큐레이션은 Bessemer의 AI agent 보안, Emergence의 AI-native services, G2VP의 “enterprise AI는 모델보다 제품이 이긴다”, QED의 “trust가 해자다”, Sequoia의 adoption vs advantage 같은 논점을 한데 묶었어요. 결국 투자자들도 배포력과 신뢰 구조를 더 크게 보기 시작한 겁니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>자본이 같은 질문을 반복하기 시작하면 실무의 체크리스트도 곧 바뀌어요. 좋은 모델을 쓴다는 사실만으로는 부족하고, 보안·검수·제품화 구조가 있어야 사업이 된다는 기준이 굳어지고 있습니다.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>우석의 시스템도 결국 제품이에요. 모델은 바뀌어도 브리핑 포맷, 메모리 구조, 승인 규칙, 하네스 설계는 남습니다. 그러니 운영 자산을 계속 쌓는 판단이 맞아요.</p>
+        </div>
+        <div class="links"><a class="link" href="https://www.sandhill.io/p/277-securing-ai-agents-ai-native">원문 보기</a></div>
+      </article>
+
+      <article class="card">
+        <div class="tag">Species</div>
+        <h3>Species의 AGI 시나리오 정리는 거칠지만, 중요한 질문 하나를 잘 찌릅니다: 속도가 빨라질수록 통제 구조가 더 중요해진다</h3>
+        <div class="source">소스: Species — The AI Endgame (2026-03-29)</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>Species는 AI 발전 이후의 사회적 분기점을 12개 시나리오로 정리하면서, 기술 가능성보다 통제와 대응 체계를 더 큰 질문으로 던져요. 다소 과감한 프레이밍이지만, 대중 담론을 “가능하냐”에서 “누가 관리하느냐”로 옮기는 효과가 있습니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>AGI 담론은 실제 도입 속도를 밀어붙이는 동력으로도 작동해요. 그래서 이런 콘텐츠는 기술 디테일보다 정책·여론·투자 심리를 움직이는 쪽에서 영향력이 큽니다.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>여기서는 낙관보다 약간의 회의론이 더 실전적이에요. 생활 자동화가 커질수록 claw에도 기록, 검수, 에스컬레이션 규칙을 기본값으로 심는 게 맞습니다.</p>
+        </div>
+        <div class="links"><a class="link" href="https://www.youtube.com/watch?v=FLcrvMfHUJM">영상 보기</a></div>
+      </article>
+    </section>
+
+    <section class="macro">
+      <div class="cat-header"><span class="dot"></span><h2>Macro & Society</h2><div class="line"></div></div>
+
+      <article class="card">
+        <div class="tag">Chamath</div>
+        <h3>집값은 단순 공급 부족이 아니라 “주택이 금융상품이 된 구조”의 결과라는 설명이 설득력 있어요</h3>
+        <div class="source">소스: Chamath Substack — Deep Dive: Why Housing Costs Keep Rising (2026-04-03)</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>글은 1970년 미국 중위주택 가격이 가구소득의 2.7배였는데 2024년엔 5.1배까지 올라왔고, 중산층 자산의 62%가 주택에 묶여 있다고 짚어요. 금리 상승은 수요만 죽인 게 아니라 공급도 얼려버려 가격 조정을 막았고, 결국 시장 전체가 “가격은 떨어지면 안 된다”는 쪽으로 정렬됐다는 해석입니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>부동산 얘기 같지만 사실 자산 가격, 정책 인센티브, 세대 격차를 함께 읽게 해주는 매크로 프레임이에요. 시장이 왜 비정상적으로 비싸게 버티는지 구조적으로 설명해줍니다.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>경제나 환율을 볼 때도 같은 관점이 유효해요. 단기 수치보다 “누가 현재 구조를 방어하고 있는가”를 보는 게 더 중요합니다. 가격은 자주 논리보다 구조를 따라가요.</p>
+        </div>
+        <div class="links"><a class="link" href="https://chamath.substack.com/p/housing-affordability">원문 보기</a></div>
+      </article>
+    </section>
+
+    <section class="signal">
+      <div class="cat-header"><span class="dot"></span><h2>Human Signal</h2><div class="line"></div></div>
+
+      <article class="card">
+        <div class="tag">Mo Bitar</div>
+        <h3>이번 주 반대편 경고음도 worth checking: AI를 잘못 쓰면 생산성보다 심리적 왜곡이 먼저 커질 수 있다는 문제 제기</h3>
+        <div class="source">소스: Mo Bitar — The AI crisis no one is talking about (2026-04-03)</div>
+        <div class="row">
+          <div class="row-label">핵심 내용</div>
+          <p>Mo Bitar는 최신 영상에서 AI 사용이 일부 사용자에게 망상적 확신이나 현실 왜곡을 키울 수 있다는 사례와 논문·기사들을 묶어 보여줬어요. 톤은 강하지만, “AI가 유용한 도구이면서도 tight leash가 필요하다”는 메시지는 일관됩니다.</p>
+        </div>
+        <div class="row">
+          <div class="row-label">왜 중요한지</div>
+          <p>요즘 업계는 효율성 이야기만 너무 많아요. 그런데 인간이 의사결정을 AI에 얼마나 넘기고 있는지, 그 과정에서 어떤 인지적 부작용이 생기는지는 앞으로 더 중요해질 겁니다.</p>
+        </div>
+        <div class="insight">
+          <div class="row-label">우석 입장 인사이트</div>
+          <p>우석처럼 AI를 매일 깊게 쓰는 사람일수록 이 경고를 무시하면 안 돼요. 좋은 시스템은 똑똑한 답을 많이 주는 시스템이 아니라, 이상한 확신이 생길 때 인간이 바로 개입할 수 있는 시스템입니다.</p>
+        </div>
+        <div class="links"><a class="link" href="https://www.youtube.com/watch?v=ZcH5C8Jlltc">영상 보기</a></div>
+      </article>
+    </section>
+
+    <section class="bigpicture">
+      <h2>Big Picture</h2>
+      <p>오늘 가장 또렷했던 건, AI 시장이 다시 “모델 데모”보다 “운영체계”로 무게중심을 옮기고 있다는 점이에요. OpenAI는 실제 엔지니어링 워크플로우를, 빌더 생태계는 오케스트레이션 설계를, 투자자들은 trust와 security를 이야기하고 있습니다.</p>
+      <p>우석 입장에서는 이 흐름이 오히려 기회예요. 이미 claw를 단순 챗봇이 아니라 생활 시스템으로 확장하고 있으니까요. 지금 복리가 붙는 영역은 모델 갈아타기보다 기록 구조, 승인 규칙, 하네스, 배포 리듬 같은 운영 자산 쪽입니다.</p>
+      <div class="foot">※ X 계정들은 오늘도 공개 페이지 추출 제약이 있어 직접 인용이 어려웠고, 이번 브리핑은 직접 확인 가능한 공개 페이지·뉴스레터·유튜브 콘텐츠 중심으로 정리했습니다.</div>
+    </section>
+  </div>
+</body>
+</html>
