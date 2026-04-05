@@ -1,0 +1,14 @@
+{
+  "lastChecks": {
+    "boolMonitor": 1775347917,
+    "thabacoMonitor": null,
+    "nicotinePouchNews": 1775347917,
+    "calendar": null,
+    "exchangeRate": null
+  },
+  "notes": {
+    "boolMonitor": "BOOL 니코틴 파우치 국내 동향 모니터링",
+    "calendar": "Outlook Graph API 연동 — 향후 24h 중요 일정 체크",
+    "exchangeRate": "USD/KRW, JPY/KRW 환율 — 아침 브리핑 보조"
+  }
+}
