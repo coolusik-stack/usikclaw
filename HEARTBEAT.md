@@ -11,11 +11,15 @@ python3 scripts/heartbeat_monitor.py
 - `alerts`에 항목 있지만 urgent 아니면 → 오늘 일정 간단히 메모만
 - 환율 USD/KRW 1,400 이하 또는 1,550 이상이면 → 알림
 
-### 2. 비즈니스 모니터링 (하루 1회, 마지막 체크 후 8시간 경과 시)
-`memory/heartbeat-state.json`의 `boolMonitor` 기준으로 8시간 지났으면:
-- **BOOL 니코틴 파우치** 관련 국내 뉴스 검색
-- **더바코 Thebacco** 관련 소식 검색
-- 새 소식 있을 때만 보고 (없으면 스킵)
+### 2. 비즈니스 모니터링 (매 heartbeat)
+모니터링 스크립트 결과의 `bool_news`를 확인:
+- `bool_news`에 항목 있으면 → 텔레그램으로 즉시 알림
+- 없으면 → 스킵
+
+blogwatcher가 구글 뉴스 RSS를 자동 스캔합니다:
+- BOOL 니코틴파우치
+- 더바코 Thebacco
+- 니코틴파우치 규제/전자담배
 
 ### 3. 뉴스 브리핑 보조 (아침 08:30~09:00 사이 heartbeat에서만)
 - AI/테크 주요 뉴스 1~2개 검색

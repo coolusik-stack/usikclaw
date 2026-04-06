@@ -145,8 +145,29 @@ def check_cigar_emails():
     except Exception as e:
         return {"error": str(e)}
 
+def check_bool_news():
+    """blogwatcher로 BOOL/Thebacco/니코틴파우치 뉴스 스캔"""
+    try:
+        import subprocess
+        gopath = subprocess.run(["go", "env", "GOPATH"], capture_output=True, text=True).stdout.strip()
+        blogwatcher_bin = f"{gopath}/bin/blogwatcher"
+        result = subprocess.run(
+            [blogwatcher_bin, "scan"],
+            capture_output=True, text=True, timeout=30
+        )
+        if result.returncode != 0:
+            return {"error": result.stderr[:200]}
+        output = result.stdout.strip()
+        if not output or "No new articles" in output:
+            return {"new_articles": []}
+        # 새 기사 있으면 반환
+        return {"new_articles": output.split("\n")[:10]}
+    except Exception as e:
+        return {"error": str(e)}
+
+
 def main():
-    results = {"alerts": [], "exchange": {}, "cigar_emails": [], "summary": ""}
+    results = {"alerts": [], "exchange": {}, "cigar_emails": [], "bool_news": [], "summary": ""}
 
     # 캘린더
     try:
@@ -164,6 +185,12 @@ def main():
     results["cigar_emails"] = cigar_result.get("cigar_mails", [])
     if cigar_result.get("error"):
         results["cigar_email_error"] = cigar_result["error"]
+
+    # BOOL/Thebacco 뉴스 (blogwatcher)
+    bool_result = check_bool_news()
+    results["bool_news"] = bool_result.get("new_articles", [])
+    if bool_result.get("error"):
+        results["bool_news_error"] = bool_result["error"]
 
     # 상태 업데이트
     try:
