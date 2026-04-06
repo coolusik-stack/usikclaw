@@ -1,941 +1,828 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <title>BOOL — 전자담배 전문점 입점 제안 브로슈어</title>
   <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
     @page { margin: 0; size: A4 portrait; }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --blk: #141210;
+      --black: #141210;
       --red: #C41230;
-      --gry: #F2F0ED;
-      --wht: #FFFFFF;
-      --txt: #6B6560;
+      --light: #F2F0ED;
+      --white: #FFFFFF;
+      --text: #6B6560;
     }
 
     body {
-      font-family: 'Pretendard', 'Apple SD Gothic Neo', -apple-system, sans-serif;
+      font-family: 'Pretendard', sans-serif;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
+      background: #555;
+    }
+
+    section.page {
+      width: 210mm;
+      height: 297mm;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      background: var(--white);
     }
 
     img {
       display: block;
+      max-width: 100%;
+      object-fit: contain;
       filter: contrast(1.05) saturate(1.1);
     }
 
+    img.cover-photo { object-fit: cover; }
     img.photo { object-fit: cover; }
 
-    /* ─── PRINT ─── */
     @media print {
-      body { background: none; padding: 0; }
-      .screen-ui { display: none !important; }
-      section.page {
+      body { background: none; }
+      .screen-note { display: none !important; }
+      .pages { display: block !important; }
+      .page-wrap {
         width: 210mm;
         height: 297mm;
         overflow: hidden;
-        position: relative;
         page-break-after: always;
       }
-      section.page:last-child { page-break-after: avoid; }
+      .page-wrap:last-child { page-break-after: avoid; }
+      section.page {
+        transform: none !important;
+        position: relative;
+      }
     }
 
-    /* ─── SCREEN ─── */
     @media screen {
-      body { background: #555; padding: 24px 16px 48px; }
-
-      .screen-ui {
-        max-width: 900px;
-        margin: 0 auto 14px;
+      .screen-note {
+        max-width: 920px;
+        margin: 0 auto 16px;
+        padding-top: 18px;
         font-size: 11px;
-        color: #bbb;
-        font-family: monospace;
-        letter-spacing: 0.06em;
+        color: #c9c9c9;
         text-align: center;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
       }
-
-      .page-grid {
+      .pages {
+        max-width: 920px;
+        margin: 0 auto 40px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 14px;
-        max-width: 900px;
-        margin: 0 auto;
+        gap: 16px;
       }
-
       .page-wrap {
         position: relative;
         overflow: hidden;
-        box-shadow: 0 6px 28px rgba(0,0,0,0.45);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        background: white;
       }
-
       section.page {
         position: absolute;
-        top: 0; left: 0;
-        width: 210mm;
-        height: 297mm;
+        top: 0;
+        left: 0;
         transform-origin: top left;
-        overflow: hidden;
       }
     }
 
-    /* ══════════════════════════════════
-       SHARED ATOMS
-    ══════════════════════════════════ */
     .eyebrow {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 800;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
-    /* ══════════════════════════════════
-       PAGE: COVER  (읽는 순서 ①)
-    ══════════════════════════════════ */
-    [data-page="cover"] {
-      background: var(--gry);
+    .headline-36 {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.05em;
+      word-break: keep-all;
+    }
+
+    .subhead-28 {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.18;
+      letter-spacing: -0.04em;
+      word-break: keep-all;
+    }
+
+    .body-12 {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    /* PAGE 1: BACK COVER */
+    .back {
+      background: var(--black);
+      color: var(--white);
+      padding: 14mm 12mm 10mm;
       display: flex;
       flex-direction: column;
     }
 
-    .cover-top {
-      padding: 10mm 10mm 0;
-      flex-shrink: 0;
-    }
-
-    .cover-logo {
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: 0.5em;
-      text-transform: uppercase;
-      color: var(--blk);
-    }
-
-    .cover-nicotine {
-      font-size: 11px;
-      color: var(--txt);
-      margin-top: 2px;
-      letter-spacing: 0.06em;
-    }
-
-    /* Hero image: contain, light gray bg, shows whole product */
-    .cover-hero {
-      flex: 1;
-      background: var(--gry);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6mm 10mm;
-      min-height: 0;
-    }
-
-    .cover-hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      max-height: 138mm;
-    }
-
-    /* Black bottom block ~40% */
-    .cover-black {
-      background: var(--blk);
-      padding: 8mm 10mm 9mm;
-      flex-shrink: 0;
-    }
-
-    .cover-hl {
-      font-size: 36px;
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -0.05em;
-      color: var(--wht);
-      word-break: keep-all;
-    }
-
-    .cover-hl-red { color: var(--red); }
-
-    .cover-sub {
-      margin-top: 5mm;
-      font-size: 13px;
-      line-height: 1.65;
-      color: var(--txt);
-      word-break: keep-all;
+    .back-title {
+      color: var(--white);
       max-width: 150mm;
     }
 
-    .cover-sku-line {
-      margin-top: 5mm;
-      padding-top: 4mm;
-      border-top: 1px solid rgba(255,255,255,0.12);
-      font-size: 10px;
-      color: rgba(255,255,255,0.3);
-      letter-spacing: 0.08em;
+    .back-sub {
+      margin-top: 6mm;
+      color: var(--text);
+      max-width: 126mm;
     }
 
-    /* ══════════════════════════════════
-       PAGE: INSIDE LEFT  (읽는 순서 ②)
-    ══════════════════════════════════ */
-    [data-page="inside-left"] {
-      background: var(--wht);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .il-header {
-      padding: 10mm 10mm 0;
-      flex-shrink: 0;
-    }
-
-    .il-title {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 1.2;
-      color: var(--blk);
-      word-break: keep-all;
-      padding-bottom: 5mm;
-      border-bottom: 3px solid var(--blk);
-      margin-bottom: 6mm;
-    }
-
-    .il-reasons {
-      padding: 0 10mm;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .il-reason {
-      display: flex;
-      gap: 5mm;
-      align-items: flex-start;
-      padding: 5mm 0;
-      border-bottom: 1px solid rgba(20,18,16,0.1);
-      position: relative;
-    }
-
-    .il-reason::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: var(--red);
-    }
-
-    .il-reason-num {
-      font-size: 48px;
-      font-weight: 900;
-      letter-spacing: -0.06em;
-      line-height: 1;
-      color: var(--red);
-      flex-shrink: 0;
-      width: 22mm;
-      text-align: right;
-      padding-right: 4mm;
-    }
-
-    .il-reason-body { flex: 1; }
-
-    .il-reason-h {
-      font-size: 18px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      color: var(--blk);
-      line-height: 1.2;
-      margin-bottom: 2.5mm;
-    }
-
-    .il-reason-p {
-      font-size: 13px;
-      line-height: 1.65;
-      color: var(--txt);
-      word-break: keep-all;
-    }
-
-    /* Q&A: light gray bottom block */
-    .il-qa {
-      background: var(--gry);
-      padding: 6mm 10mm 8mm;
-      margin-top: auto;
-      flex-shrink: 0;
-    }
-
-    .il-qa-title {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--txt);
-      margin-bottom: 4mm;
-      border-top: 2px solid var(--blk);
-      padding-top: 3mm;
-    }
-
-    .il-qa-item {
-      padding: 3mm 0;
-      border-bottom: 1px solid rgba(20,18,16,0.1);
-    }
-
-    .il-qa-item:last-child { border-bottom: none; }
-
-    .il-qa-q {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--blk);
-      margin-bottom: 1.5mm;
-    }
-
-    .il-qa-a {
-      font-size: 12px;
-      line-height: 1.65;
-      color: var(--txt);
-      word-break: keep-all;
-    }
-
-    /* ══════════════════════════════════
-       PAGE: INSIDE RIGHT  (읽는 순서 ③)
-    ══════════════════════════════════ */
-    [data-page="inside-right"] {
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* TOP 30%: black metrics */
-    .ir-metrics {
-      background: var(--blk);
-      padding: 8mm 10mm;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .ir-metrics-title {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 5mm;
-    }
-
-    .ir-metrics-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6mm;
-    }
-
-    .ir-metric {
-      border-top: 1px solid rgba(255,255,255,0.18);
-      padding-top: 3mm;
-    }
-
-    .ir-metric-n {
-      font-size: 42px;
-      font-weight: 900;
-      letter-spacing: -0.05em;
-      color: var(--red);
-      line-height: 1;
-    }
-
-    .ir-metric-l {
-      margin-top: 1.5mm;
-      font-size: 11px;
-      line-height: 1.55;
-      color: rgba(255,255,255,0.55);
-    }
-
-    /* MID 40%: SKU */
-    .ir-sku {
-      background: var(--wht);
-      padding: 6mm 10mm;
-      flex-shrink: 0;
-    }
-
-    .ir-sku-title {
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      color: var(--blk);
-      margin-bottom: 4mm;
-    }
-
-    .ir-sku-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 4mm;
-    }
-
-    .ir-sku-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* SKU images: contain, fixed 100×120px */
-    .ir-sku-imgwrap {
-      width: 100%;
-      height: 100px;
-      background: var(--gry);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .ir-sku-imgwrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .ir-sku-name {
-      margin-top: 2.5mm;
-      font-size: 14px;
-      font-weight: 900;
-      color: var(--blk);
-      letter-spacing: -0.02em;
-      text-align: center;
-    }
-
-    .ir-sku-mg {
-      font-size: 11px;
-      color: var(--txt);
-      text-align: center;
-      margin-top: 1px;
-    }
-
-    .ir-sku-tag {
-      margin-top: 2px;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--red);
-      border: 1px solid var(--red);
-      padding: 1px 5px;
-    }
-
-    .ir-sku-note {
-      margin-top: 3.5mm;
-      font-size: 11px;
-      line-height: 1.6;
-      color: var(--txt);
-    }
-
-    /* BOTTOM 30%: ops */
-    .ir-ops {
-      background: var(--gry);
-      padding: 5mm 10mm 7mm;
+    .back-spacer {
       flex: 1;
     }
 
-    .ir-ops-title {
-      font-size: 18px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      color: var(--blk);
-      padding-bottom: 3mm;
-      border-bottom: 2px solid var(--blk);
-      margin-bottom: 4mm;
-    }
-
-    .ir-ops-grid {
+    .back-info {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4mm 6mm;
+      grid-template-columns: 1fr 34mm;
+      gap: 8mm;
+      align-items: end;
     }
 
-    .ir-ops-item {}
-
-    .ir-ops-h {
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--blk);
-      border-top: 1px solid var(--blk);
-      padding-top: 2mm;
-      margin-bottom: 1.5mm;
-    }
-
-    .ir-ops-p {
-      font-size: 12px;
-      line-height: 1.65;
-      color: var(--txt);
-      word-break: keep-all;
-    }
-
-    .ir-ops-p strong { color: var(--blk); font-weight: 700; }
-
-    /* ══════════════════════════════════
-       PAGE: BACK COVER  (읽는 순서 ④)
-    ══════════════════════════════════ */
-    [data-page="back-cover"] {
-      background: var(--blk);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .bc-main {
-      padding: 12mm 11mm 0;
-      flex: 1;
-    }
-
-    .bc-eyebrow {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 6mm;
-    }
-
-    .bc-hl {
-      font-size: 34px;
-      font-weight: 900;
-      line-height: 1.15;
-      letter-spacing: -0.05em;
-      color: var(--wht);
-      word-break: keep-all;
-    }
-
-    .bc-hl em {
-      font-style: normal;
-      color: var(--red);
-    }
-
-    .bc-sub {
-      margin-top: 5mm;
+    .back-brand {
       font-size: 14px;
-      line-height: 1.65;
-      color: var(--txt);
-      word-break: keep-all;
-      max-width: 140mm;
-    }
-
-    /* usage red band */
-    .bc-usage {
-      background: var(--red);
-      padding: 0 11mm;
-      height: 72px;
-      display: flex;
-      align-items: stretch;
-      flex-shrink: 0;
-      margin-top: 8mm;
-    }
-
-    .bc-usage-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      width: 100%;
-    }
-
-    .bc-step {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 4mm;
-      border-right: 1px solid rgba(255,255,255,0.22);
-    }
-
-    .bc-step:last-child { border-right: none; }
-
-    .bc-step-n {
-      font-size: 19px;
-      font-weight: 900;
-      color: var(--wht);
-      line-height: 1;
-    }
-
-    .bc-step-t {
-      margin-top: 2px;
-      font-size: 11px;
-      line-height: 1.4;
-      color: rgba(255,255,255,0.78);
-      word-break: keep-all;
-    }
-
-    /* contact bottom */
-    .bc-contact {
-      padding: 6mm 11mm 0;
-      flex-shrink: 0;
-    }
-
-    .bc-contact-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 5mm;
-    }
-
-    .bc-contact-lbl {
-      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 2mm;
+      color: var(--white);
     }
 
-    .bc-phone {
+    .back-phone {
+      margin-top: 2mm;
       font-size: 28px;
       font-weight: 900;
-      letter-spacing: -0.03em;
-      color: var(--wht);
       line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--white);
     }
 
-    .bc-addr {
-      margin-top: 2.5mm;
-      font-size: 11.5px;
-      line-height: 1.72;
-      color: rgba(255,255,255,0.4);
+    .back-meta {
+      margin-top: 3mm;
+      font-size: 10px;
+      line-height: 1.7;
+      color: var(--text);
     }
 
-    .bc-qr-block {
+    .back-qr-col {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 3mm;
-      flex-shrink: 0;
+      gap: 8px;
     }
 
-    .bc-qr {
-      width: 100px;
-      height: 100px;
-      background: var(--gry);
-      padding: 4px;
-      flex-shrink: 0;
+    .ban-badge {
+      background: var(--red);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 6px 8px;
+      text-transform: uppercase;
     }
 
-    .bc-qr img {
+    .qr-box {
+      width: 120px;
+      height: 120px;
+      background: var(--light);
+      padding: 6px;
+      overflow: hidden;
+    }
+
+    .qr-box img {
       width: 100%;
       height: 100%;
       filter: none;
     }
 
-    .bc-4-24 {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--red);
-      text-align: right;
-    }
-
-    .bc-rule {
-      height: 1px;
+    .legal-rule {
+      height: 2px;
       background: var(--red);
-      margin: 5mm 11mm 0;
-      flex-shrink: 0;
+      margin-top: 8mm;
+      margin-bottom: 3mm;
     }
 
-    .bc-legal {
-      padding: 3mm 11mm 7mm;
+    .legal-text {
+      font-size: 9px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* PAGE 2: COVER */
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .cover-top {
+      padding: 12mm 12mm 0;
+    }
+
+    .cover-logo {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 0.42em;
+      color: var(--white);
+    }
+
+    .cover-kicker {
+      margin-top: 2mm;
       font-size: 10px;
-      color: rgba(255,255,255,0.2);
-      flex-shrink: 0;
+      color: var(--text);
+    }
+
+    .cover-hero-wrap {
+      padding: 6mm 12mm 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+    }
+
+    .cover-hero-box {
+      width: 100%;
+      height: 118mm;
+      background: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .cover-hero-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .cover-bottom {
+      background: var(--black);
+      padding: 8mm 12mm 10mm;
+    }
+
+    .cover-title {
+      color: var(--white);
+    }
+
+    .cover-title .red { color: var(--red); }
+
+    .cover-sub {
+      margin-top: 4mm;
+      color: var(--text);
+      max-width: 152mm;
+    }
+
+    .cover-metrics {
+      margin-top: 5mm;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5mm;
+      padding-top: 4mm;
+      border-top: 2px solid rgba(255,255,255,0.14);
+    }
+
+    .cover-metric-num {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      color: var(--red);
+    }
+
+    .cover-metric-label {
+      margin-top: 1.5mm;
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    .cover-bottom-line {
+      margin-top: 5mm;
+      font-size: 10px;
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      gap: 8mm;
+      padding-top: 3mm;
+      border-top: 2px solid rgba(255,255,255,0.14);
+    }
+
+    /* PAGE 3: INSIDE LEFT */
+    .inside-left {
+      background: var(--white);
+      padding: 12mm;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 6mm;
+    }
+
+    .inside-left-title {
+      color: var(--black);
+      max-width: 150mm;
+    }
+
+    .inside-left-intro {
+      color: var(--text);
+      max-width: 155mm;
+    }
+
+    .points {
+      display: grid;
+      grid-template-rows: repeat(3, auto);
+      gap: 3mm;
+    }
+
+    .point {
+      display: grid;
+      grid-template-columns: 24mm 1fr;
+      gap: 5mm;
+      align-items: start;
+      padding: 3mm 0;
+      border-top: 2px solid var(--black);
+    }
+
+    .point-num {
+      font-size: 40px;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      color: var(--red);
+      text-align: left;
+    }
+
+    .point-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--black);
+      margin-bottom: 1.5mm;
+    }
+
+    .point-body {
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text);
+      word-break: keep-all;
+    }
+
+    .qa-block {
+      background: var(--light);
+      padding: 7mm;
+      display: grid;
+      grid-template-columns: 1fr 42mm;
+      gap: 6mm;
+      align-items: start;
+    }
+
+    .qa-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3mm;
+    }
+
+    .qa-item {
+      padding-bottom: 3mm;
+      border-bottom: 2px solid rgba(20,18,16,0.08);
+    }
+
+    .qa-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .qa-q {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 1mm;
+      letter-spacing: -0.02em;
+    }
+
+    .qa-a {
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text);
+      word-break: keep-all;
+    }
+
+    .benefit-mini {
+      width: 42mm;
+      height: 58mm;
+      background: var(--white);
+      overflow: hidden;
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .benefit-mini img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* PAGE 4: INSIDE RIGHT */
+    .inside-right {
+      background: var(--white);
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+    }
+
+    .ir-top {
+      background: var(--black);
+      color: var(--white);
+      padding: 8mm 12mm;
+    }
+
+    .ir-top-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 8mm;
+      align-items: end;
+    }
+
+    .ir-margin-meta {
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.62);
+      word-break: keep-all;
+    }
+
+    .ir-margin-big {
+      margin-top: 2mm;
+      font-size: 54px;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      color: var(--red);
+    }
+
+    .ir-margin-small {
+      margin-top: 2mm;
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.62);
+    }
+
+    .ir-sim {
+      font-size: 11px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.72);
+      text-align: right;
+      border-left: 2px solid rgba(255,255,255,0.12);
+      padding-left: 6mm;
+    }
+
+    .ir-mid {
+      background: var(--white);
+      padding: 7mm 12mm 6mm;
+    }
+
+    .ir-mid-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 4mm;
+      letter-spacing: -0.03em;
+    }
+
+    .sku-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5mm;
+      margin-bottom: 5mm;
+    }
+
+    .sku-item {
+      text-align: center;
+    }
+
+    .sku-box {
+      width: 100%;
+      height: 100px;
+      background: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .sku-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .sku-name {
+      margin-top: 2.5mm;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .sku-mg {
+      margin-top: 0.8mm;
+      font-size: 11px;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .ops-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm 8mm;
+    }
+
+    .ops-item {
+      border-top: 2px solid var(--black);
+      padding-top: 2.5mm;
+    }
+
+    .ops-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 1.2mm;
+      letter-spacing: 0.04em;
+    }
+
+    .ops-body {
+      font-size: 11px;
+      line-height: 1.6;
+      color: var(--text);
+      word-break: keep-all;
+    }
+
+    .ir-bottom {
+      background: var(--black);
+      padding: 6mm 12mm 8mm;
+      color: var(--white);
+    }
+
+    .ir-bottom-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 3mm;
+    }
+
+    .howto-wrap {
+      width: 100%;
+      height: 88px;
+      background: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .howto-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .howto-steps {
+      margin-top: 3mm;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3mm;
+    }
+
+    .howto-step {
+      font-size: 10px;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.72);
+      border-top: 2px solid rgba(255,255,255,0.18);
+      padding-top: 2mm;
+      word-break: keep-all;
     }
   </style>
 </head>
 <body>
+  <div class="screen-note">인쇄 시트 순서: 후면 → 표지 → 내지좌 → 내지우 &nbsp;|&nbsp; A4 세로 · 여백 없음(None)</div>
 
-  <p class="screen-ui">
-    인쇄 순서: 후면 → 표지 → 내지좌 → 내지우 &nbsp;|&nbsp;
-    Cmd+P → A4 세로, 여백 없음(None)
-  </p>
-
-  <div class="page-grid">
-
-    <!-- ════════════════════════════
-         PRINT PAGE 1: 후면 BACK COVER
-    ════════════════════════════ -->
-    <div class="page-wrap" id="pw1">
-      <section class="page" data-page="back-cover">
-
-        <div class="bc-main">
-          <div class="bc-eyebrow">4/24 이후 오프라인만 남습니다</div>
-          <h2 class="bc-hl">
-            온라인 판매 금지 후,<br>
-            먼저 잡은 매장이<br>
-            <em>카테고리를<br>선점합니다.</em>
-          </h2>
-          <p class="bc-sub">
-            소량 테스트 후 판단해도 충분합니다.<br>
-            중요한 건 복잡한 도입이 아니라, 매장에서 바로 활용되는 구조입니다.
-          </p>
-        </div>
-
-        <!-- RED BAND: usage steps -->
-        <div class="bc-usage">
-          <div class="bc-usage-steps">
-            <div class="bc-step">
-              <div class="bc-step-n">01</div>
-              <div class="bc-step-t">케이스에서<br>꺼내기</div>
+  <div class="pages">
+    <!-- 1. 후면 (Sheet 1 앞면 좌측) -->
+    <div class="page-wrap" id="page-wrap-1">
+      <section class="page back" data-page="back-cover">
+        <h2 class="back-title headline-36">온라인 판매 금지 후 먼저 잡은 매장이 카테고리 인식을 선점합니다.</h2>
+        <p class="back-sub body-12">소량 테스트 후 판단해도 충분합니다. 중요한 건 복잡한 도입이 아니라, 매장에서 바로 활용되는 구조입니다.</p>
+        <div class="back-spacer"></div>
+        <div class="back-info">
+          <div>
+            <div class="back-brand">BOOL Korea</div>
+            <div class="back-phone">0507-1422-0951</div>
+            <div class="back-meta">
+              서울 강남구 역삼로70길 19-14, 301호<br>
+              · 소량 테스트 입점 가능<br>
+              · 초도 상담 후 입점 결정 가능
             </div>
-            <div class="bc-step">
-              <div class="bc-step-n">02</div>
-              <div class="bc-step-t">윗입술 안<br>잇몸에 넣기</div>
-            </div>
-            <div class="bc-step">
-              <div class="bc-step-n">03</div>
-              <div class="bc-step-t">10–40분<br>유지</div>
-            </div>
-            <div class="bc-step">
-              <div class="bc-step-n">04</div>
-              <div class="bc-step-t">뚜껑에 보관<br>후 폐기</div>
+          </div>
+          <div class="back-qr-col">
+            <div class="ban-badge">Online ban 4/24</div>
+            <div class="qr-box">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https://coolusik-stack.github.io/usikclaw/bool_brochure_v7.html&color=F2F0ED&bgcolor=141210" alt="QR code">
             </div>
           </div>
         </div>
-
-        <!-- CONTACT -->
-        <div class="bc-contact">
-          <div class="bc-contact-row">
-            <div>
-              <div class="bc-contact-lbl">BOOL Korea · 입점 문의</div>
-              <div class="bc-phone">0507-1422-0951</div>
-              <div class="bc-addr">
-                서울 강남구 역삼로70길 19-14, 301호 (대치동)<br>
-                소량 테스트 입점 가능 &nbsp;·&nbsp; 상담 후 초도 구성 조정<br>
-                만 19세 이상 성인 전용
-              </div>
-            </div>
-            <div class="bc-qr-block">
-              <div class="bc-qr">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https://coolusik-stack.github.io/usikclaw/bool_brochure_v7.html&color=F2F0ED&bgcolor=141210"
-                     alt="QR code">
-              </div>
-              <div class="bc-4-24">Online ban<br>4 / 24</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="bc-rule"></div>
-        <div class="bc-legal">
-          BOOL Korea &nbsp;·&nbsp; 만 19세 이상 성인 전용 &nbsp;·&nbsp; 과도한 니코틴 섭취는 건강에 해롭습니다
-        </div>
-
+        <div class="legal-rule"></div>
+        <div class="legal-text">만 19세 이상 성인 전용 · 과도한 니코틴 섭취는 건강에 해롭습니다</div>
       </section>
     </div>
 
-    <!-- ════════════════════════════
-         PRINT PAGE 2: 표지 COVER
-    ════════════════════════════ -->
-    <div class="page-wrap" id="pw2">
-      <section class="page" data-page="cover">
-
+    <!-- 2. 표지 (Sheet 1 앞면 우측) -->
+    <div class="page-wrap" id="page-wrap-2">
+      <section class="page cover" data-page="cover">
         <div class="cover-top">
           <div class="cover-logo">BOOL</div>
-          <div class="cover-nicotine">Nicotine Pouch &nbsp;·&nbsp; Korea</div>
+          <div class="cover-kicker">전자담배 전문점 입점 제안 · 2026</div>
         </div>
-
-        <!-- HERO: contain, full product visible -->
-        <div class="cover-hero">
-          <img src="https://coolusik-stack.github.io/usikclaw/bool_hero_product.jpg"
-               alt="BOOL 제품" loading="eager" decoding="async">
-        </div>
-
-        <!-- BLACK BOTTOM BLOCK -->
-        <div class="cover-black">
-          <h1 class="cover-hl">
-            전자담배 고객에게<br>
-            바로 제안할 수 있는<br>
-            <span class="cover-hl-red">추가 매출.</span>
-          </h1>
-          <p class="cover-sub">
-            새로운 취향을 설득하는 상품이 아닙니다.<br>
-            기존 고객이 이미 갖고 있는 수요를 받아주는 보완 카테고리입니다.
-          </p>
-          <div class="cover-sku-line">
-            민트 &nbsp;·&nbsp; 베리 &nbsp;·&nbsp; 수박 &nbsp;/&nbsp; 12mg · 20mg &nbsp;·&nbsp; 전자담배 전문점 입점 제안 2026
+        <div class="cover-hero-wrap">
+          <div class="cover-hero-box">
+            <img src="https://coolusik-stack.github.io/usikclaw/bool_hero_product.jpg" alt="BOOL hero product">
           </div>
         </div>
-
+        <div class="cover-bottom">
+          <h1 class="cover-title headline-36">전자담배 고객에게 바로 제안할 수 있는 <span class="red">추가 매출.</span></h1>
+          <p class="cover-sub body-12">BOOL은 전자담배를 대체하는 상품이 아니라, 기존 고객에게 바로 제안할 수 있는 상품입니다.</p>
+          <div class="cover-metrics">
+            <div>
+              <div class="cover-metric-num">7,200원</div>
+              <div class="cover-metric-label">개당 매장 마진</div>
+            </div>
+            <div>
+              <div class="cover-metric-num">45%</div>
+              <div class="cover-metric-label">마진율</div>
+            </div>
+            <div>
+              <div class="cover-metric-num">+280%</div>
+              <div class="cover-metric-label">전년 대비</div>
+            </div>
+          </div>
+          <div class="cover-bottom-line">
+            <span>민트 · 베리 · 수박 / 12mg · 20mg</span>
+            <span>만 19세 이상 성인 전용 · 과도한 니코틴 섭취는 건강에 해롭습니다</span>
+          </div>
+        </div>
       </section>
     </div>
 
-    <!-- ════════════════════════════
-         PRINT PAGE 3: 내지 좌 INSIDE LEFT
-    ════════════════════════════ -->
-    <div class="page-wrap" id="pw3">
-      <section class="page" data-page="inside-left">
+    <!-- 3. 내지 좌 (Sheet 1 뒷면 좌측) -->
+    <div class="page-wrap" id="page-wrap-3">
+      <section class="page inside-left" data-page="inside-left">
+        <h2 class="inside-left-title subhead-28">새 카테고리를 길게 설명할 필요가 없습니다. 기존 고객에게 바로 권할 수 있습니다.</h2>
+        <p class="inside-left-intro body-12">전자담배 전문점 고객은 이미 비연소 니코틴에 익숙합니다. BOOL의 핵심은 새로운 취향 설득이 아니라, 기존 고객이 필요하다고 느끼는 순간을 매출로 바꾸는 것입니다.</p>
 
-        <div class="il-header">
-          <div class="il-title">
-            왜 이 상품이<br>매장에서 작동하는가
-          </div>
-        </div>
-
-        <!-- REASONS with big red numbers -->
-        <div class="il-reasons">
-          <div class="il-reason">
-            <div class="il-reason-num">01</div>
-            <div class="il-reason-body">
-              <div class="il-reason-h">같은 고객, 다른 순간</div>
-              <div class="il-reason-p">별도 신규 고객 유입 없이, 이미 카운터 앞에 있는 기존 고객에게 바로 제안할 수 있습니다. 사무실, 차 안, 카페처럼 전자담배를 꺼내기 어려운 그 순간이 기회입니다.</div>
+        <div class="points">
+          <div class="point">
+            <div class="point-num">01</div>
+            <div>
+              <div class="point-title">같은 고객, 다른 순간</div>
+              <div class="point-body">별도 신규 유입 없이, 이미 카운터 앞에 있는 고객에게 바로 제안할 수 있습니다.</div>
             </div>
           </div>
-          <div class="il-reason">
-            <div class="il-reason-num">02</div>
-            <div class="il-reason-body">
-              <div class="il-reason-h">30초 설명으로 충분</div>
-              <div class="il-reason-p">기기, 충전, 코일, 액상 설명이 없습니다. "사무실이나 차에서 전자담배 못 피우실 때 쓰는 제품"이라고 한 줄로 첫 판매를 시작할 수 있습니다.</div>
+          <div class="point">
+            <div class="point-num">02</div>
+            <div>
+              <div class="point-title">30초 설명으로 충분</div>
+              <div class="point-body">기기·코일·액상 설명이 없어 판매 장벽이 낮습니다.</div>
             </div>
           </div>
-          <div class="il-reason">
-            <div class="il-reason-num">03</div>
-            <div class="il-reason-body">
-              <div class="il-reason-h">카운터 한 칸 테스트</div>
-              <div class="il-reason-p">카운터 한 칸으로 소량 시작해 반응을 봅니다. 나가면 SKU를 늘리고, 안 나가면 접으면 됩니다. 큰 발주 없이 검증할 수 있는 구조입니다.</div>
+          <div class="point">
+            <div class="point-num">03</div>
+            <div>
+              <div class="point-title">카운터 한 칸 테스트</div>
+              <div class="point-body">소량으로 시작해 반응 보고 확장. 큰 발주 없이 검증 가능합니다.</div>
             </div>
           </div>
         </div>
 
-        <!-- Q&A: light gray bottom -->
-        <div class="il-qa">
-          <div class="il-qa-title">매장에서 먼저 확인할 것들</div>
-          <div class="il-qa-item">
-            <div class="il-qa-q">이거 진짜 나가나?</div>
-            <div class="il-qa-a">핵심은 신규 고객이 아닙니다. 기존 고객에게 카운터에서 바로 제안할 수 있는지가 더 중요합니다. BOOL은 그 조건이 분명합니다.</div>
+        <div class="qa-block">
+          <div class="qa-list">
+            <div class="qa-item">
+              <div class="qa-q">Q: 이거 진짜 나가나?</div>
+              <div class="qa-a">기존 고객에게 카운터에서 바로 제안할 수 있습니다. BOOL은 그 조건이 분명합니다.</div>
+            </div>
+            <div class="qa-item">
+              <div class="qa-q">Q: 액상 매출 안 깎아먹나?</div>
+              <div class="qa-a">보완재 성격이 더 강합니다. 전자담배를 쓸 수 없는 순간의 추가 구매를 만듭니다.</div>
+            </div>
+            <div class="qa-item">
+              <div class="qa-q">Q: 직원이 설명하기 귀찮지 않나?</div>
+              <div class="qa-a">기기·충전·코일 설명이 없습니다. 한 줄이면 됩니다.</div>
+            </div>
           </div>
-          <div class="il-qa-item">
-            <div class="il-qa-q">액상 매출 안 깎아먹나?</div>
-            <div class="il-qa-a">대체재보다 보완재에 가깝습니다. 전자담배를 쓸 수 없는 순간을 메우는 구조라 기존 판매를 잠식하기보다 빈 상황의 추가 매출을 만듭니다.</div>
-          </div>
-          <div class="il-qa-item">
-            <div class="il-qa-q">직원이 설명하기 귀찮지 않나?</div>
-            <div class="il-qa-a">기기, 충전, 코일 설명이 없습니다. 한 줄로 시작할 수 있어 판매 장벽이 낮습니다.</div>
+          <div class="benefit-mini">
+            <img src="https://coolusik-stack.github.io/usikclaw/bool_benefit_card.webp" alt="Benefit card">
           </div>
         </div>
-
       </section>
     </div>
 
-    <!-- ════════════════════════════
-         PRINT PAGE 4: 내지 우 INSIDE RIGHT
-    ════════════════════════════ -->
-    <div class="page-wrap" id="pw4">
-      <section class="page" data-page="inside-right">
-
-        <!-- TOP 30%: black metrics -->
-        <div class="ir-metrics">
-          <div class="ir-metrics-title">Retail Numbers</div>
-          <div class="ir-metrics-row">
-            <div class="ir-metric">
-              <div class="ir-metric-n">7,200원</div>
-              <div class="ir-metric-l">개당 매장 마진<br>도매 8,800 / 소비자 16,000</div>
+    <!-- 4. 내지 우 (Sheet 1 뒷면 우측) -->
+    <div class="page-wrap" id="page-wrap-4">
+      <section class="page inside-right" data-page="inside-right">
+        <div class="ir-top">
+          <div class="ir-top-grid">
+            <div>
+              <div class="ir-margin-meta">도매가 8,800 / 소비자가 16,000</div>
+              <div class="ir-margin-big">7,200원</div>
+              <div class="ir-margin-small">개당 매장 마진</div>
             </div>
-            <div class="ir-metric">
-              <div class="ir-metric-n">45%</div>
-              <div class="ir-metric-l">권장 소비자가<br>기준 마진율</div>
-            </div>
-            <div class="ir-metric">
-              <div class="ir-metric-n">+280%</div>
-              <div class="ir-metric-l">한국 직수입<br>전년 대비 증가</div>
+            <div class="ir-sim">
+              하루 1캔 → 21.6만<br>
+              하루 2캔 → 43.2만<br>
+              하루 3캔 → 64.8만<br><br>
+              45% 마진율 · +280% 전년 대비
             </div>
           </div>
         </div>
 
-        <!-- MID 40%: SKU lineup -->
-        <div class="ir-sku">
-          <div class="ir-sku-title">SKU Lineup — 3향 × 2강도</div>
-          <div class="ir-sku-grid">
-            <div class="ir-sku-item">
-              <div class="ir-sku-imgwrap">
-                <img src="https://coolusik-stack.github.io/usikclaw/bool_sku_mint.jpg"
-                     alt="BOOL Mint" loading="eager" decoding="async">
-              </div>
-              <div class="ir-sku-name">Mint</div>
-              <div class="ir-sku-mg">12mg / 20mg</div>
-              <div class="ir-sku-tag">Core SKU</div>
+        <div class="ir-mid">
+          <div class="ir-mid-title">SKU Lineup</div>
+          <div class="sku-grid">
+            <div class="sku-item">
+              <div class="sku-box"><img src="https://coolusik-stack.github.io/usikclaw/bool_sku_mint.jpg" alt="Mint"></div>
+              <div class="sku-name">Mint</div>
+              <div class="sku-mg">12/20mg</div>
             </div>
-            <div class="ir-sku-item">
-              <div class="ir-sku-imgwrap">
-                <img src="https://coolusik-stack.github.io/usikclaw/bool_sku_berry.jpg"
-                     alt="BOOL Berry" loading="eager" decoding="async">
-              </div>
-              <div class="ir-sku-name">Berry</div>
-              <div class="ir-sku-mg">12mg / 20mg</div>
-              <div class="ir-sku-tag">Core SKU</div>
+            <div class="sku-item">
+              <div class="sku-box"><img src="https://coolusik-stack.github.io/usikclaw/bool_sku_berry.jpg" alt="Berry"></div>
+              <div class="sku-name">Berry</div>
+              <div class="sku-mg">12/20mg</div>
             </div>
-            <div class="ir-sku-item">
-              <div class="ir-sku-imgwrap">
-                <img src="https://coolusik-stack.github.io/usikclaw/bool_sku_watermelon.jpg"
-                     alt="BOOL Watermelon" loading="eager" decoding="async">
-              </div>
-              <div class="ir-sku-name">Watermelon</div>
-              <div class="ir-sku-mg">12mg / 20mg</div>
-              <div class="ir-sku-tag">2nd Wave</div>
+            <div class="sku-item">
+              <div class="sku-box"><img src="https://coolusik-stack.github.io/usikclaw/bool_sku_watermelon.jpg" alt="Watermelon"></div>
+              <div class="sku-name">Watermelon</div>
+              <div class="sku-mg">12/20mg</div>
             </div>
           </div>
-          <div class="ir-sku-note">
-            입문 → 12mg (미디엄) &nbsp;&nbsp; 업셀링 → 20mg (스트롱)<br>
-            총 6 SKU — 카운터 한 칸으로 전체 라인업 운영 가능
-          </div>
-        </div>
 
-        <!-- BOTTOM 30%: ops -->
-        <div class="ir-ops">
-          <div class="ir-ops-title">도입 운영안</div>
-          <div class="ir-ops-grid">
-            <div class="ir-ops-item">
-              <div class="ir-ops-h">초도 입점 구성</div>
-              <div class="ir-ops-p">
-                <strong>민트 12/20mg</strong>을 기본으로, <strong>베리 12/20mg</strong>으로 취향 분산. 수박은 반응 확인 후 2차 추가.
-              </div>
+          <div class="ops-grid">
+            <div class="ops-item">
+              <div class="ops-title">초도 구성</div>
+              <div class="ops-body">민트+베리 → 수박 2차</div>
             </div>
-            <div class="ir-ops-item">
-              <div class="ir-ops-h">권장 진열 위치</div>
-              <div class="ir-ops-p">
-                계산대 옆 카운터 상단. 결제 전후로 눈에 들어오는 자리.
-              </div>
+            <div class="ops-item">
+              <div class="ops-title">진열 위치</div>
+              <div class="ops-body">계산대 옆 카운터 상단</div>
             </div>
-            <div class="ir-ops-item">
-              <div class="ir-ops-h">직원 권장 멘트</div>
-              <div class="ir-ops-p">
-                "사무실·차에서 전자담배 못 피우실 때 쓰는 제품입니다. 냄새 없고 잇몸에 넣으면 됩니다."
-              </div>
+            <div class="ops-item">
+              <div class="ops-title">직원 멘트</div>
+              <div class="ops-body">"사무실·차에서 전자담배 못 피우실 때 쓰는 제품입니다."</div>
             </div>
-            <div class="ir-ops-item">
-              <div class="ir-ops-h">리오더 기준</div>
-              <div class="ir-ops-p">
-                2주 내 특정 향 반복 구매 시 그 SKU 중심으로 리오더. 반응 확인 후 순차 확장.
-              </div>
+            <div class="ops-item">
+              <div class="ops-title">리오더</div>
+              <div class="ops-body">2주 내 반복 구매 시 해당 SKU 중심</div>
             </div>
           </div>
         </div>
 
+        <div class="ir-bottom">
+          <div class="ir-bottom-title">사용법</div>
+          <div class="howto-wrap">
+            <img src="https://coolusik-stack.github.io/usikclaw/bool_howto.jpg" alt="How to use BOOL">
+          </div>
+          <div class="howto-steps">
+            <div class="howto-step">① 꺼내기</div>
+            <div class="howto-step">② 넣기</div>
+            <div class="howto-step">③ 유지</div>
+            <div class="howto-step">④ 보관</div>
+          </div>
+        </div>
       </section>
     </div>
-
   </div>
 
   <script>
-    function scale() {
-      const d = document.createElement('div');
-      d.style.cssText = 'position:fixed;top:0;left:0;width:10mm;visibility:hidden;';
-      document.body.appendChild(d);
-      const mmPx = d.offsetWidth / 10;
-      document.body.removeChild(d);
-      const W = 210 * mmPx;
-      const H = 297 * mmPx;
-      document.querySelectorAll('.page-wrap').forEach(wrap => {
-        const s = wrap.offsetWidth / W;
+    function scalePages() {
+      const probe = document.createElement('div');
+      probe.style.cssText = 'position:fixed;left:-9999px;top:-9999px;width:10mm;height:1px;';
+      document.body.appendChild(probe);
+      const mmPx = probe.offsetWidth / 10;
+      document.body.removeChild(probe);
+      const pageW = 210 * mmPx;
+      const pageH = 297 * mmPx;
+      document.querySelectorAll('.page-wrap').forEach((wrap) => {
         const page = wrap.querySelector('.page');
-        page.style.transform = `scale(${s})`;
-        wrap.style.height = (H * s) + 'px';
+        const scale = wrap.clientWidth / pageW;
+        page.style.transform = `scale(${scale})`;
+        wrap.style.height = `${pageH * scale}px`;
       });
     }
-    window.addEventListener('load', scale);
-    window.addEventListener('resize', scale);
+    window.addEventListener('load', scalePages);
+    window.addEventListener('resize', scalePages);
   </script>
-
 </body>
 </html>
