@@ -60,7 +60,15 @@ def fetch_rss(url, max_items=3):
                 if "source" in child.tag.lower():
                     source = child.text or ""
             if title and link:
-                items.append({"title": title, "link": link, "desc": desc, "pub": pub, "source": source})
+                pub_clean = ""
+                if pub:
+                    try:
+                        from email.utils import parsedate_to_datetime
+                        dt = parsedate_to_datetime(pub).astimezone(KST)
+                        pub_clean = dt.strftime("%Y.%m.%d")
+                    except:
+                        pub_clean = pub[:10] if pub else ""
+                items.append({"title": title, "link": link, "desc": desc, "pub": pub_clean, "source": source})
         return items
     except Exception as e:
         print(f"RSS ERROR {url[:60]}: {e}", file=sys.stderr)
@@ -205,7 +213,7 @@ def build_html(date_str, rates, items_analyzed, big_picture):
     <div class="card">
       <div class="tag" style="background:{bg};color:{color};border:1px solid {color}44">{item['source']}</div>
       <h3><a href="{item['link']}" target="_blank" rel="noopener">{item['headline']}</a></h3>
-      <p class="card-source">{item['title'][:80]}</p>
+      <p class="card-source">{item['title'][:80]}{(' &nbsp;·&nbsp; <span class="pub-date">' + item.get('pub','') + '</span>') if item.get('pub') else ''}</p>
       <div class="card-section">
         <div class="card-section-label">핵심 내용</div>
         <p>{item['summary']}</p>
@@ -260,6 +268,7 @@ a{{color:inherit;text-decoration:none}}
 .card h3{{font-size:20px;line-height:1.4;color:#fff;letter-spacing:-0.2px;margin-bottom:6px}}
 .card h3 a:hover{{color:#63d2ff}}
 .card-source{{font-size:12px;color:var(--muted);margin-bottom:14px}}
+.pub-date{{color:#63d2ff;font-weight:600}}
 .card-section{{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}}
 .card-section-label{{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}}
 .card-section p{{font-size:14px;color:#c8d4e8;line-height:1.72}}
