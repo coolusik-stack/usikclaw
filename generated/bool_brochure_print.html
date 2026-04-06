@@ -1,910 +1,994 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>BOOL — 전자담배 전문점 입점 제안 (인쇄용)</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOOL — 전자담배 전문점 입점 제안 브로셔 (인쇄용)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     @page { size: A4 landscape; margin: 0; }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
 
     :root {
-      --ember: #ff5a1f;
-      --ink:   #111111;
-      --paper: #fcfaf7;
-      --warm:  #fff4ec;
-      --mist:  #6f6b64;
-      --line:  #e8e0d4;
+      --paper: #f7f3ed;
+      --paper-strong: #efe8de;
+      --ink: #141414;
+      --muted: #6e675f;
+      --line: rgba(20,20,20,0.12);
+      --soft-line: rgba(20,20,20,0.07);
+      --accent: #d9642a;
+      --accent-soft: #f1ddd0;
+      --black: #111111;
+      --white: #ffffff;
     }
 
     body {
+      background: #d9d4ce;
+      color: var(--ink);
       font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
-      background: #ddd;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
-      color: var(--ink);
+    }
+
+    .screen-label {
+      margin: 14px 0 6px;
+      text-align: center;
+      font-size: 11px;
+      color: #7e776f;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .sheet-wrap {
+      width: 297mm;
+      margin: 0 auto 10mm;
+      position: relative;
+    }
+
+    .fold-guide {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 148.5mm;
+      border-left: 1px dashed rgba(0,0,0,0.12);
+      z-index: 30;
+      pointer-events: none;
     }
 
     .sheet {
       width: 297mm;
       height: 210mm;
+      background: var(--paper);
       display: flex;
-      margin: 8mm auto;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.13);
     }
-
-    @media print {
-      body { background: white; }
-      .sheet { margin: 0; box-shadow: none; page-break-after: always; }
-      .sheet:last-child { page-break-after: avoid; }
-      .fold-guide, .screen-label { display: none; }
-    }
-
-    .screen-label {
-      text-align: center;
-      font-size: 9pt;
-      color: #888;
-      margin: 4mm 0 1mm;
-      font-family: monospace;
-    }
-
-    .fold-guide {
-      position: absolute;
-      left: 148.5mm;
-      top: 0; bottom: 0;
-      width: 0;
-      border-left: 1px dashed #ccc;
-      pointer-events: none;
-      z-index: 99;
-    }
-
-    .sheet-wrap { position: relative; width: 297mm; margin: 0 auto; }
 
     .panel {
       width: 148.5mm;
       height: 210mm;
-      overflow: hidden;
-      flex-shrink: 0;
       position: relative;
+      overflow: hidden;
     }
 
-    /* ────────────────────────────────
-       유틸
-    ──────────────────────────────── */
-    .kicker {
-      font-size: 5pt;
+    .eyebrow {
+      font-size: 4.4pt;
       font-weight: 800;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--ember);
+      color: var(--accent);
     }
 
-    .card-light {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 3mm;
-      padding: 3mm 4mm;
+    .tiny-note {
+      font-size: 4.7pt;
+      line-height: 1.6;
+      color: var(--muted);
     }
 
-    .card-warm {
-      background: var(--warm);
-      border: 1px solid var(--line);
-      border-radius: 3mm;
-      padding: 3mm 4mm;
+    .serif {
+      font-family: 'Noto Serif KR', serif;
+      letter-spacing: -0.03em;
     }
 
-    .card-dark {
-      background: var(--ink);
-      border-radius: 3mm;
-      padding: 3.5mm 4mm;
-      color: white;
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--line);
     }
 
-    .divider { height: 0.3mm; background: var(--line); }
+    .soft-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--soft-line);
+    }
 
-    /* ════════════════════════════
-       PANEL 1 — 표지 (Cover)
-    ════════════════════════════ */
-    .panel-cover {
-      background: var(--ink);
+    .metric-label {
+      font-size: 4.2pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.48);
+      font-weight: 700;
+    }
+
+    @media print {
+      body { background: white; }
+      .screen-label, .fold-guide { display: none; }
+      .sheet-wrap { margin: 0; }
+      .sheet { box-shadow: none; page-break-after: always; }
+      .sheet:last-child { page-break-after: avoid; }
+    }
+
+    /* Sheet 1: Back + Cover */
+    .back-panel {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0)) 0 0/100% 100%,
+        var(--paper);
+      border-right: 1px solid var(--line);
+      padding: 13mm 12mm 12mm;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 7mm;
+    }
+
+    .back-top {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
     }
 
-    .cover-header {
-      padding: 9mm 10mm 0;
+    .back-brand {
+      font-size: 18pt;
+      font-weight: 900;
+      letter-spacing: 0.32em;
+      color: var(--accent);
+    }
+
+    .back-meta {
+      text-align: right;
+      font-size: 4.8pt;
+      line-height: 1.7;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .back-statement {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 7mm;
+      align-items: end;
+    }
+
+    .back-statement h2 {
+      margin: 0;
+      font-size: 17pt;
+      line-height: 1.22;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .back-statement p {
+      margin: 0;
+      font-size: 5.5pt;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .sku-rail {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.8mm;
+    }
+
+    .sku-cell {
+      border-top: 1.5px solid var(--ink);
+      padding-top: 2.3mm;
+    }
+
+    .sku-cell h4 {
+      margin: 0;
+      font-size: 8.2pt;
+      line-height: 1.15;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .sku-cell p {
+      margin: 1.2mm 0 0;
+      font-size: 4.9pt;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .back-bottom {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 7mm;
+      align-items: end;
+    }
+
+    .contact-block {
+      border-top: 1px solid var(--line);
+      padding-top: 4mm;
+    }
+
+    .contact-kicker {
+      font-size: 4.3pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .contact-phone {
+      margin-top: 1.2mm;
+      font-size: 15pt;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .contact-desc {
+      margin-top: 2mm;
+      font-size: 5pt;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .qr-wrap {
+      display: flex;
+      justify-content: flex-end;
+      align-items: end;
+      gap: 4mm;
+    }
+
+    .qr-info {
+      text-align: right;
+    }
+
+    .qr-info .deadline {
+      font-size: 4.4pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .qr-info .date {
+      margin-top: 1.2mm;
+      font-size: 17pt;
+      line-height: 1;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+
+    .qr-box {
+      width: 23mm;
+      height: 23mm;
+      background: white;
+      border: 1px solid var(--line);
+      padding: 1.5mm;
+    }
+
+    .qr-box img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .cover-panel {
+      background: var(--black);
+      color: white;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 12mm 12mm 11mm;
+    }
+
+    .cover-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
     }
 
     .cover-logo {
-      font-size: 20pt;
+      font-size: 21pt;
       font-weight: 900;
-      letter-spacing: 0.35em;
-      color: var(--ember);
+      letter-spacing: 0.34em;
+      color: var(--accent);
     }
 
-    .cover-proposal-tag {
-      font-size: 5pt;
-      font-weight: 700;
-      letter-spacing: 0.15em;
+    .cover-small {
+      font-size: 4.6pt;
+      line-height: 1.65;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.45);
       text-align: right;
-      line-height: 1.6;
-      margin-top: 1mm;
     }
 
-    .cover-hero {
-      padding: 7mm 10mm 5mm;
-      flex: 1;
+    .cover-main {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 8mm;
+      align-items: stretch;
+      padding-top: 8mm;
+    }
+
+    .cover-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .cover-headline {
-      font-size: 17pt;
+      margin: 0;
+      font-size: 21pt;
+      line-height: 1.14;
       font-weight: 900;
-      line-height: 1.12;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.055em;
       color: white;
     }
 
-    .cover-headline em { font-style: normal; color: var(--ember); }
-
-    .cover-sub {
-      font-size: 6.5pt;
-      color: rgba(255,255,255,0.5);
-      margin-top: 3mm;
-      line-height: 1.7;
+    .cover-headline em {
+      font-style: normal;
+      color: #ffb38d;
     }
 
-    .cover-img {
+    .cover-body {
+      margin-top: 5mm;
+      font-size: 5.7pt;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .cover-image-wrap {
+      position: relative;
+      border-radius: 0;
+      overflow: hidden;
+      min-height: 116mm;
+      border-left: 1px solid rgba(255,255,255,0.08);
+      padding-left: 6mm;
+    }
+
+    .cover-image {
       width: 100%;
-      height: 62mm;
+      height: 100%;
       object-fit: cover;
       display: block;
+      filter: saturate(0.93) contrast(1.02);
     }
 
-    .cover-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      flex-shrink: 0;
+    .cover-image-note {
+      position: absolute;
+      left: 9mm;
+      bottom: 8mm;
+      background: rgba(20,20,20,0.78);
+      backdrop-filter: blur(8px);
+      padding: 2.5mm 3mm;
+      max-width: 48mm;
     }
 
-    .cover-stat {
-      padding: 4.5mm 0;
-      text-align: center;
-      border-right: 1px solid rgba(255,255,255,0.08);
-    }
-    .cover-stat:last-child { border-right: none; }
-
-    .cover-stat-num {
-      font-size: 11pt;
-      font-weight: 900;
-      color: var(--ember);
-      line-height: 1;
-    }
-
-    .cover-stat-label {
-      font-size: 5pt;
-      color: rgba(255,255,255,0.45);
-      margin-top: 1mm;
+    .cover-image-note strong {
+      display: block;
+      font-size: 5.2pt;
+      color: white;
       line-height: 1.5;
     }
 
-    .cover-footer {
-      padding: 3mm 10mm;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .cover-footer-text {
-      font-size: 5pt;
-      color: rgba(255,255,255,0.25);
-      text-align: center;
-    }
-
-    /* ════════════════════════════
-       PANEL 2 — 안쪽 좌 (Inside Left)
-    ════════════════════════════ */
-    .panel-inside-left {
-      background: white;
-      padding: 9mm 8mm;
-      display: flex;
-      flex-direction: column;
-      gap: 4mm;
-      border-right: 1px solid var(--line);
-    }
-
-    .section-head { }
-    .section-heading {
-      font-size: 10.5pt;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 1.2;
-      margin-top: 1mm;
-    }
-    .section-body {
-      font-size: 5.5pt;
-      color: var(--mist);
-      line-height: 1.7;
-      margin-top: 1.5mm;
-    }
-
-    .insight-editorial {
-      font-size: 9.5pt;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 1.25;
-      color: var(--ink);
-    }
-    .insight-editorial em { font-style: normal; color: var(--ember); }
-
-    .qa-list { display: flex; flex-direction: column; gap: 2mm; }
-    .qa-item { }
-    .qa-q {
+    .cover-image-note span {
+      display: block;
+      margin-top: 0.8mm;
       font-size: 4.5pt;
-      font-weight: 800;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ember);
-      margin-bottom: 0.5mm;
-    }
-    .qa-title {
-      font-size: 7pt;
-      font-weight: 900;
-      color: var(--ink);
-      margin-bottom: 0.5mm;
-    }
-    .qa-body {
-      font-size: 5.5pt;
-      color: var(--mist);
-      line-height: 1.65;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.55;
     }
 
-    .reason-list { display: flex; flex-direction: column; gap: 2.5mm; }
-    .reason-item { display: flex; gap: 2.5mm; align-items: flex-start; }
-    .reason-num {
-      font-size: 10pt;
-      font-weight: 900;
-      color: var(--ember);
-      line-height: 1;
-      flex-shrink: 0;
-      width: 5mm;
-    }
-    .reason-title {
-      font-size: 7pt;
-      font-weight: 900;
-      color: var(--ink);
-      margin-bottom: 0.5mm;
-    }
-    .reason-body {
-      font-size: 5.5pt;
-      color: var(--mist);
-      line-height: 1.65;
-    }
-
-    .pov-block {
-      background: var(--ink);
-      border-radius: 3mm;
-      padding: 4mm;
-    }
-    .pov-label {
-      font-size: 4.5pt;
-      font-weight: 800;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 2mm;
-    }
-    .pov-text {
-      font-size: 7.5pt;
-      font-weight: 900;
-      color: white;
-      line-height: 1.35;
-      letter-spacing: -0.03em;
-    }
-    .pov-text em { font-style: normal; color: #ffb89a; }
-
-    /* ════════════════════════════
-       PANEL 3 — 안쪽 우 (Inside Right)
-    ════════════════════════════ */
-    .panel-inside-right {
-      background: white;
-      padding: 9mm 8mm;
-      display: flex;
-      flex-direction: column;
-      gap: 3.5mm;
-    }
-
-    .margin-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2mm;
-    }
-
-    .margin-main {
-      background: var(--ink);
-      border-radius: 3mm;
-      padding: 4mm;
-      color: white;
-    }
-    .margin-main-label {
-      font-size: 4.5pt;
-      font-weight: 800;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 2mm;
-    }
-    .margin-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1mm 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .margin-row:last-child { border-bottom: none; padding-top: 1.5mm; }
-    .margin-label { font-size: 5.5pt; color: rgba(255,255,255,0.55); }
-    .margin-value { font-size: 8pt; font-weight: 900; }
-    .margin-value.big { font-size: 11pt; color: var(--ember); }
-
-    .margin-sim {
-      background: var(--warm);
-      border: 1px solid var(--line);
-      border-radius: 3mm;
-      padding: 4mm;
-    }
-    .margin-sim-title {
-      font-size: 4.5pt;
-      font-weight: 800;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--ember);
-      margin-bottom: 2mm;
-    }
-    .sim-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 5.5pt;
-      padding: 1mm 0;
-      border-bottom: 1px solid var(--line);
-    }
-    .sim-row:last-child { border-bottom: none; }
-    .sim-label { color: var(--mist); }
-    .sim-value { font-weight: 700; color: var(--ink); }
-
-    .comparison-grid { display: flex; flex-direction: column; gap: 1.5mm; }
-    .comp-item {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 2.5mm;
-      padding: 2.5mm 3mm;
-    }
-    .comp-title {
-      font-size: 6pt;
-      font-weight: 900;
-      color: var(--ink);
-      margin-bottom: 0.5mm;
-    }
-    .comp-body {
-      font-size: 5pt;
-      color: var(--mist);
-      line-height: 1.6;
-    }
-
-    .ops-grid { display: flex; flex-direction: column; gap: 2mm; }
-    .ops-item {
-      border-left: 2px solid var(--ember);
-      padding-left: 3mm;
-    }
-    .ops-title {
-      font-size: 5.5pt;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ember);
-      margin-bottom: 0.8mm;
-    }
-    .ops-body {
-      font-size: 5.5pt;
-      color: var(--mist);
-      line-height: 1.65;
-    }
-    .ops-body strong { color: var(--ink); }
-
-    /* ════════════════════════════
-       PANEL 4 — 뒷면 (Back Cover)
-    ════════════════════════════ */
-    .panel-back {
-      background: var(--paper);
-      display: flex;
-      flex-direction: column;
-      padding: 9mm 9mm;
-      gap: 4mm;
-      border-right: 1px solid var(--line);
-    }
-
-    .back-logo {
-      font-size: 16pt;
-      font-weight: 900;
-      letter-spacing: 0.35em;
-      color: var(--ember);
-    }
-    .back-tagline {
-      font-size: 6pt;
-      color: var(--mist);
-      margin-top: 1mm;
-      line-height: 1.6;
-    }
-
-    .sku-grid {
+    .cover-metrics {
+      margin-top: 8mm;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2mm;
-    }
-    .sku-item {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 3mm;
-      padding: 2.5mm;
-      text-align: center;
-    }
-    .sku-name {
-      font-size: 7pt;
-      font-weight: 900;
-      color: var(--ink);
-    }
-    .sku-mg {
-      font-size: 5pt;
-      color: var(--mist);
-      margin-top: 0.8mm;
-    }
-    .sku-note {
-      font-size: 5pt;
-      color: var(--mist);
-      line-height: 1.6;
-      margin-top: 1.5mm;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 4.5mm;
+      gap: 5mm;
     }
 
-    .howto-section { }
-    .howto-kicker {
-      font-size: 4.5pt;
-      font-weight: 800;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ember);
-      margin-bottom: 1.5mm;
-    }
-    .howto-img {
-      width: 100%;
-      height: 17mm;
-      object-fit: cover;
-      border-radius: 2.5mm;
+    .cover-metric strong {
       display: block;
-      margin-bottom: 1.5mm;
-    }
-    .howto-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5mm;
-    }
-    .howto-step {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 2mm;
-      padding: 1.5mm;
-      text-align: center;
-    }
-    .howto-num {
-      font-size: 7pt;
-      font-weight: 900;
-      color: var(--ember);
+      font-size: 13.6pt;
       line-height: 1;
-    }
-    .howto-text {
-      font-size: 4.5pt;
-      color: var(--ink);
-      margin-top: 0.5mm;
-      line-height: 1.5;
-    }
-
-    .contact-card {
-      background: var(--ink);
-      border-radius: 3.5mm;
-      padding: 5mm;
-      color: white;
-      margin-top: auto;
-    }
-    .contact-brand {
-      font-size: 5pt;
-      font-weight: 800;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
-      margin-bottom: 1.5mm;
-    }
-    .contact-phone {
-      font-size: 14pt;
       font-weight: 900;
-      letter-spacing: -0.02em;
       color: white;
-    }
-    .contact-details {
-      font-size: 5pt;
-      color: rgba(255,255,255,0.5);
-      margin-top: 2mm;
-      line-height: 1.8;
+      letter-spacing: -0.04em;
     }
 
-    .contact-bottom {
+    .cover-metric p {
+      margin: 1.4mm 0 0;
+      font-size: 4.7pt;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.52);
+    }
+
+    /* Sheet 2: Inside spread */
+    .inside-left {
+      background: var(--paper);
+      border-right: 1px solid var(--line);
+      padding: 12mm 11mm 11mm 12mm;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 6mm;
+    }
+
+    .inside-intro {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 7mm;
+      align-items: start;
+    }
+
+    .inside-intro h2 {
+      margin: 1.8mm 0 0;
+      font-size: 16pt;
+      line-height: 1.28;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .inside-intro p {
+      margin: 0;
+      font-size: 5.5pt;
+      line-height: 1.78;
+      color: var(--muted);
+    }
+
+    .qa-section {
+      display: grid;
+      grid-template-columns: 1fr 46mm;
+      gap: 6mm;
+      align-items: start;
+    }
+
+    .qa-list {
+      display: grid;
+      gap: 2.8mm;
+    }
+
+    .qa-row {
+      padding: 2.5mm 0 2.8mm;
+      border-top: 1px solid var(--line);
+    }
+
+    .qa-row:first-child { border-top: 1.5px solid var(--ink); }
+
+    .qa-row .qno {
+      font-size: 4.4pt;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .qa-row h4 {
+      margin: 0.9mm 0 0;
+      font-size: 8.4pt;
+      line-height: 1.26;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .qa-row p {
+      margin: 1.3mm 0 0;
+      font-size: 5.3pt;
+      line-height: 1.72;
+      color: var(--muted);
+    }
+
+    .qa-image {
+      border-left: 1px solid var(--line);
+      padding-left: 4mm;
+    }
+
+    .qa-image img {
+      width: 100%;
+      height: 72mm;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.95) contrast(1.01);
+    }
+
+    .qa-image p {
+      margin: 2mm 0 0;
+      font-size: 4.7pt;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .why-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4mm;
+      align-items: start;
+    }
+
+    .why-item {
+      padding-top: 2.4mm;
+      border-top: 1.5px solid var(--ink);
+    }
+
+    .why-item .num {
+      font-size: 11pt;
+      line-height: 1;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+
+    .why-item h5 {
+      margin: 1.4mm 0 0;
+      font-size: 7.1pt;
+      line-height: 1.32;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .why-item p {
+      margin: 1mm 0 0;
+      font-size: 5pt;
+      line-height: 1.68;
+      color: var(--muted);
+    }
+
+    .inside-right {
+      background: linear-gradient(180deg, #f9f6f1 0%, #f3eee7 100%);
+      padding: 12mm 12mm 11mm 11mm;
+      display: grid;
+      grid-template-rows: auto auto auto 1fr auto;
+      gap: 5mm;
+    }
+
+    .economics {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 6mm;
+      align-items: start;
+    }
+
+    .economics-main {
+      background: var(--black);
+      color: white;
+      padding: 4.5mm 4.5mm 4mm;
+      min-height: 43mm;
+    }
+
+    .economics-main h4 {
+      margin: 0 0 2mm;
+      font-size: 4.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.48);
+    }
+
+    .money-line {
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-      margin-top: 2.5mm;
-      padding-top: 2.5mm;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      align-items: baseline;
+      padding: 1.2mm 0;
+      border-top: 1px solid rgba(255,255,255,0.09);
     }
-    .contact-deadline-label {
-      font-size: 4.5pt;
-      color: rgba(255,255,255,0.4);
+
+    .money-line:first-of-type { border-top: none; }
+
+    .money-line span {
+      font-size: 5.2pt;
+      color: rgba(255,255,255,0.62);
     }
-    .contact-deadline-date {
-      font-size: 11pt;
+
+    .money-line strong {
+      font-size: 8.4pt;
       font-weight: 900;
-      color: var(--ember);
-      line-height: 1;
+      color: white;
+      letter-spacing: -0.03em;
     }
-    .contact-qr img {
-      width: 18mm;
-      height: 18mm;
-      background: white;
-      border-radius: 1.5mm;
-      padding: 1mm;
+
+    .money-line strong.big {
+      font-size: 12.6pt;
+      color: #ffb38d;
+    }
+
+    .simulation {
+      padding-top: 2mm;
+      border-top: 1px solid var(--line);
+    }
+
+    .simulation h4 {
+      margin: 0 0 1.8mm;
+      font-size: 4.4pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .simulation-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 1.2mm 0;
+      border-top: 1px solid var(--soft-line);
+      font-size: 5.3pt;
+      color: var(--muted);
+    }
+
+    .simulation-row strong {
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .ops-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5mm 6mm;
+    }
+
+    .ops-block {
+      padding-top: 2.2mm;
+      border-top: 1px solid var(--line);
+    }
+
+    .ops-block h5 {
+      margin: 0;
+      font-size: 4.6pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .ops-block p {
+      margin: 1.3mm 0 0;
+      font-size: 5.2pt;
+      line-height: 1.72;
+      color: var(--muted);
+    }
+
+    .ops-block p strong { color: var(--ink); }
+
+    .usage-band {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 5mm;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 4mm;
+    }
+
+    .usage-band img {
+      width: 100%;
+      height: 34mm;
+      object-fit: cover;
       display: block;
+      filter: saturate(0.96);
+    }
+
+    .usage-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.8mm;
+    }
+
+    .usage-step {
+      border-top: 1.5px solid var(--ink);
+      padding-top: 1.5mm;
+    }
+
+    .usage-step strong {
+      display: block;
+      font-size: 6.8pt;
+      line-height: 1;
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    .usage-step span {
+      display: block;
+      margin-top: 1mm;
+      font-size: 4.5pt;
+      line-height: 1.45;
+      color: var(--ink);
+      word-break: keep-all;
+    }
+
+    .closing-bar {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      border-top: 1.5px solid var(--ink);
+      padding-top: 4mm;
+    }
+
+    .closing-bar .left h3 {
+      margin: 0;
+      font-size: 11.2pt;
+      line-height: 1.24;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+
+    .closing-bar .left p {
+      margin: 1.5mm 0 0;
+      font-size: 5pt;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .closing-bar .right {
+      text-align: right;
+      padding-left: 5mm;
+    }
+
+    .closing-bar .right .label {
+      font-size: 4.3pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .closing-bar .right .value {
+      margin-top: 1.2mm;
+      font-size: 13.6pt;
+      line-height: 1;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -0.04em;
     }
   </style>
 </head>
 <body>
-
-<p class="screen-label">◀ Sheet 1 앞면 인쇄 — 왼쪽이 뒷면, 오른쪽이 표지 ▶</p>
-
-<!-- ═══════════════════════════════════════════
-     SHEET 1: 앞면  [뒷면 | 표지]
-═══════════════════════════════════════════ -->
-<div class="sheet-wrap">
-  <div class="fold-guide"></div>
-  <div class="sheet">
-
-    <!-- Panel 4: 뒷면 Back Cover -->
-    <div class="panel panel-back">
-
-      <div>
-        <div class="back-logo">BOOL</div>
-        <div class="back-tagline">니코틴 파우치 · 전자담배 전문점 입점 제안 · 2026년</div>
-      </div>
-
-      <!-- SKU 라인업 -->
-      <div>
-        <div class="kicker" style="margin-bottom:2mm;">SKU 라인업 — 3향 × 2강도</div>
-        <div class="sku-grid">
-          <div class="sku-item">
-            <div class="sku-name">🌿 민트</div>
-            <div class="sku-mg">12mg · 20mg</div>
-          </div>
-          <div class="sku-item">
-            <div class="sku-name">🫐 베리</div>
-            <div class="sku-mg">12mg · 20mg</div>
-          </div>
-          <div class="sku-item">
-            <div class="sku-name">🍉 수박</div>
-            <div class="sku-mg">12mg · 20mg</div>
-          </div>
-        </div>
-        <div class="sku-note">
-          입문 → 미디엄(12mg)  |  업셀링 → 스트롱(20mg)<br>
-          초도 구성 추천: <strong style="color:var(--ink);">민트·베리 중심 시작 → 수박 2차 확장</strong>
-        </div>
-      </div>
-
-      <!-- 사용법 -->
-      <div class="howto-section">
-        <div class="howto-kicker">사용법</div>
-        <img class="howto-img"
-             src="https://coolusik-stack.github.io/usikclaw/bool_howto.jpg"
-             alt="BOOL 사용법">
-        <div class="howto-steps">
-          <div class="howto-step">
-            <div class="howto-num">01</div>
-            <div class="howto-text">케이스에서<br>꺼내기</div>
-          </div>
-          <div class="howto-step">
-            <div class="howto-num">02</div>
-            <div class="howto-text">윗입술 안<br>잇몸에 넣기</div>
-          </div>
-          <div class="howto-step">
-            <div class="howto-num">03</div>
-            <div class="howto-text">10~40분<br>유지</div>
-          </div>
-          <div class="howto-step">
-            <div class="howto-num">04</div>
-            <div class="howto-text">뚜껑에<br>보관·폐기</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 연락처 -->
-      <div class="contact-card">
-        <div class="contact-brand">BOOL Korea — 입점 문의</div>
-        <div class="contact-phone">0507-1422-0951</div>
-        <div class="contact-details">
-          서울 강남구 역삼로70길 19-14, 301호 (대치동)<br>
-          · 소량 테스트 입점 가능 &nbsp;&nbsp; · 초도 상담 후 결정<br>
-          · 만 19세 이상 성인 전용 제품
-        </div>
-        <div class="contact-bottom">
+  <div class="screen-label">Sheet 1 Front — Back Cover / Cover</div>
+  <div class="sheet-wrap">
+    <div class="fold-guide"></div>
+    <section class="sheet">
+      <article class="panel back-panel">
+        <div class="back-top">
           <div>
-            <div class="contact-deadline-label">온라인 판매 금지까지</div>
-            <div class="contact-deadline-date">4/24</div>
+            <div class="back-brand">BOOL</div>
+            <div class="tiny-note" style="margin-top:1.6mm;">Nicotine Pouch · Retail Proposal</div>
           </div>
-          <div class="contact-qr">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://coolusik-stack.github.io/usikclaw/bool_brochure_v7.html&color=111111&bgcolor=ffffff" alt="QR">
+          <div class="back-meta">
+            VAPE SHOP EDITION<br />
+            PRINT BROCHURE · 2026
           </div>
         </div>
-      </div>
 
-    </div>
+        <div class="back-statement">
+          <h2 class="serif">무엇을 들일지보다,<br>어떻게 시작할지가 더 중요합니다.</h2>
+          <p>
+            BOOL은 민트 · 베리 · 수박 3향, 각 12mg / 20mg으로 운영됩니다.<br>
+            초도는 민트·베리 중심으로 시작하고, 수박은 반응 보고 2차 확장하는 구성이 가장 안정적입니다.
+          </p>
+        </div>
 
-    <!-- Panel 1: 표지 Cover -->
-    <div class="panel panel-cover">
-      <div class="cover-header">
-        <div>
-          <div class="cover-logo">BOOL</div>
-          <div style="font-size:4.5pt;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-top:1mm;">Nicotine Pouch</div>
+        <div class="sku-rail">
+          <div class="sku-cell">
+            <h4>Mint</h4>
+            <p>12mg / 20mg<br>가장 무난한 시작 SKU</p>
+          </div>
+          <div class="sku-cell">
+            <h4>Berry</h4>
+            <p>12mg / 20mg<br>취향 분산용 핵심 SKU</p>
+          </div>
+          <div class="sku-cell">
+            <h4>Watermelon</h4>
+            <p>12mg / 20mg<br>2차 확장용으로 적합</p>
+          </div>
         </div>
-        <div class="cover-proposal-tag">
-          전자담배 전문점<br>입점 제안 · 2026
-        </div>
-      </div>
 
-      <div class="cover-hero">
-        <div class="cover-headline">
-          전자담배 고객에게<br>
-          바로 제안할 수 있는<br>
-          <em>추가 매출.</em>
+        <div class="back-bottom">
+          <div class="contact-block">
+            <div class="contact-kicker">BOOL Korea · 입점 문의</div>
+            <div class="contact-phone">0507-1422-0951</div>
+            <div class="contact-desc">
+              서울 강남구 역삼로70길 19-14, 301호 (대치동)<br>
+              소량 테스트 입점 가능 · 상담 후 초도 구성 조정 가능 · 만 19세 이상 성인 전용
+            </div>
+          </div>
+          <div class="qr-wrap">
+            <div class="qr-info">
+              <div class="deadline">온라인 판매 금지까지</div>
+              <div class="date">4/24</div>
+            </div>
+            <div class="qr-box">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://coolusik-stack.github.io/usikclaw/bool_brochure_v7.html&color=111111&bgcolor=ffffff" alt="QR code">
+            </div>
+          </div>
         </div>
-        <div class="cover-sub">
-          기기 없이, 설명은 짧게.<br>
-          사무실·차 안·카페에서 바로 쓰는 상품.<br>
-          민트 · 베리 · 수박 3향 × 2강도
-        </div>
-      </div>
+      </article>
 
-      <img class="cover-img"
-           src="https://coolusik-stack.github.io/usikclaw/bool_hero_product.jpg"
-           alt="BOOL 제품">
+      <article class="panel cover-panel">
+        <div class="cover-top">
+          <div>
+            <div class="cover-logo">BOOL</div>
+            <div class="tiny-note" style="margin-top:1.2mm;color:rgba(255,255,255,0.4);">Nicotine Pouch</div>
+          </div>
+          <div class="cover-small">
+            전자담배 전문점<br>입점 제안서
+          </div>
+        </div>
 
-      <div class="cover-stats">
-        <div class="cover-stat">
-          <div class="cover-stat-num">7,200원</div>
-          <div class="cover-stat-label">개당<br>매장 마진</div>
-        </div>
-        <div class="cover-stat">
-          <div class="cover-stat-num">45%</div>
-          <div class="cover-stat-label">권장 소비자가<br>기준 마진율</div>
-        </div>
-        <div class="cover-stat">
-          <div class="cover-stat-num">+280%</div>
-          <div class="cover-stat-label">한국 직수입<br>전년 대비 증가</div>
-        </div>
-      </div>
+        <div class="cover-main">
+          <div class="cover-copy">
+            <div>
+              <div class="eyebrow">Vape Shop Proposal</div>
+              <h1 class="cover-headline">
+                전자담배 고객에게<br>
+                바로 제안할 수 있는<br>
+                <em>추가 매출.</em>
+              </h1>
+              <div class="cover-body">
+                새로운 취향을 길게 설득하는 상품이 아닙니다.<br>
+                전자담배를 쓰지 못하는 순간, 고객이 바로 필요를 느끼는 상황에 자연스럽게 제안할 수 있는 카테고리입니다.
+              </div>
+            </div>
 
-      <div class="cover-footer">
-        <div class="cover-footer-text">
-          BOOL Korea · 만 19세 이상 성인 전용 · 과도한 니코틴 사용은 건강에 해롭습니다
-        </div>
-      </div>
-    </div>
+            <div class="cover-metrics">
+              <div class="cover-metric">
+                <div class="metric-label">Per Can Margin</div>
+                <strong>7,200원</strong>
+                <p>권장 소비자가 16,000원<br>도매가 8,800원 기준</p>
+              </div>
+              <div class="cover-metric">
+                <div class="metric-label">Retail Margin</div>
+                <strong>45%</strong>
+                <p>권장 소비자가 기준<br>매장 마진율</p>
+              </div>
+              <div class="cover-metric">
+                <div class="metric-label">Category Signal</div>
+                <strong>+280%</strong>
+                <p>한국 직수입 물량<br>전년 대비 증가</p>
+              </div>
+            </div>
+          </div>
 
+          <div class="cover-image-wrap">
+            <img class="cover-image" src="https://coolusik-stack.github.io/usikclaw/bool_hero_product.jpg" alt="BOOL product image">
+            <div class="cover-image-note">
+              <strong>민트 · 베리 · 수박 / 12mg · 20mg</strong>
+              <span>카운터 한 칸에서 시작 가능한 6SKU 구성</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
   </div>
-</div>
 
-
-<p class="screen-label">◀ Sheet 2 뒷면 인쇄 — 왼쪽이 안쪽 좌, 오른쪽이 안쪽 우 ▶</p>
-
-<!-- ═══════════════════════════════════════════
-     SHEET 2: 뒷면  [안쪽 좌 | 안쪽 우]
-═══════════════════════════════════════════ -->
-<div class="sheet-wrap">
-  <div class="fold-guide"></div>
-  <div class="sheet">
-
-    <!-- Panel 2: 안쪽 좌 Inside Left -->
-    <div class="panel panel-inside-left">
-
-      <!-- 핵심 인사이트 -->
-      <div>
-        <div class="kicker">이 상품이 팔리는 이유</div>
-        <div class="insight-editorial" style="margin-top:1.5mm;">
-          새 카테고리를 길게<br>설명할 필요가 없습니다.<br>
-          <em>기존 고객에게 바로<br>권할 수 있습니다.</em>
-        </div>
-        <div class="section-body" style="margin-top:2mm;">
-          전자담배 전문점 고객은 이미 비연소 니코틴에 익숙합니다. BOOL의 핵심은 "새로운 취향 제안"이 아니라, <strong style="color:var(--ink);">기존 고객이 당장 필요하다고 느끼는 순간을 매출로 바꾸는 것</strong>입니다. 사무실 회의 전, 카페에서, 차에서 — 그때 바로 권할 수 있습니다.
-        </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <!-- 먼저 확인할 것 -->
-      <div>
-        <div class="kicker">먼저 확인할 것</div>
-        <div class="section-heading" style="font-size:9pt;">이 상품이 내 매장에서 쉽게 팔릴 수 있는가.</div>
-        <div class="qa-list" style="margin-top:2mm;">
-          <div class="card-light qa-item">
-            <div class="qa-q">Q1</div>
-            <div class="qa-title">이거 진짜 나가나?</div>
-            <div class="qa-body">새 고객 유입 없이, 이미 전자담배를 사는 고객에게 카운터에서 바로 제안할 수 있는지가 더 중요합니다.</div>
+  <div class="screen-label">Sheet 2 Back — Inside Spread</div>
+  <div class="sheet-wrap">
+    <div class="fold-guide"></div>
+    <section class="sheet">
+      <article class="panel inside-left">
+        <div class="inside-intro">
+          <div>
+            <div class="eyebrow">Why this works</div>
+            <h2 class="serif">새 카테고리를 길게 설명할 필요가 없습니다.<br>기존 고객에게 바로 권할 수 있습니다.</h2>
           </div>
-          <div class="card-light qa-item">
-            <div class="qa-q">Q2</div>
-            <div class="qa-title">액상 매출 안 깎아먹나?</div>
-            <div class="qa-body">전자담배를 못 쓰는 상황을 메우는 상품입니다. 보완재 성격이 강합니다.</div>
+          <p>
+            BOOL의 핵심은 “완전히 새로운 소비 습관”을 파는 것이 아닙니다.
+            전자담배 전문점 고객이 이미 갖고 있는 니코틴 수요를,
+            사무실·차 안·회의 전처럼 전자담배를 사용하기 어려운 순간에 다른 방식으로 받아주는 상품입니다.
+          </p>
+        </div>
+
+        <div class="qa-section">
+          <div class="qa-list">
+            <div class="qa-row">
+              <div class="qno">Q1</div>
+              <h4>이거 진짜 나가나?</h4>
+              <p>핵심은 신규 고객 유입이 아니라, 이미 전자담배를 사러 온 고객에게 카운터에서 바로 제안할 수 있느냐입니다. BOOL은 그 조건이 분명한 상품입니다.</p>
+            </div>
+            <div class="qa-row">
+              <div class="qno">Q2</div>
+              <h4>액상 매출 안 깎아먹나?</h4>
+              <p>대체재보다 보완재에 가깝습니다. 전자담배를 쓸 수 없는 상황을 메우는 용도이기 때문에, 기존 액상 판매를 직접 잠식하기보다는 빈 순간의 추가 구매를 만드는 구조입니다.</p>
+            </div>
+            <div class="qa-row">
+              <div class="qno">Q3</div>
+              <h4>직원이 설명하기 안 귀찮나?</h4>
+              <p>기기, 충전, 액상, 코일 설명이 없습니다. “사무실이나 차에서 전자담배 못 피우실 때 쓰는 제품”이라고 한 줄로 시작할 수 있어 첫 제안이 훨씬 가볍습니다.</p>
+            </div>
           </div>
-          <div class="card-light qa-item">
-            <div class="qa-q">Q3</div>
-            <div class="qa-title">직원이 설명하기 안 귀찮나?</div>
-            <div class="qa-body">기기, 충전, 코일 설명이 없습니다. 한 줄 설명으로 첫 제안이 가능합니다.</div>
+
+          <div class="qa-image">
+            <img src="https://coolusik-stack.github.io/usikclaw/bool_benefit_card.webp" alt="BOOL reference card">
+            <p>
+              길게 읽히는 소비자용 상세페이지보다,
+              매장에서 바로 이해되는 한 문장이 더 중요합니다.
+            </p>
           </div>
         </div>
-      </div>
 
-      <div class="divider"></div>
-
-      <!-- 왜 전자담배 전문점인가 -->
-      <div>
-        <div class="kicker">왜 전자담배 전문점에서 팔리는가</div>
-        <div class="reason-list" style="margin-top:2mm;">
-          <div class="reason-item">
-            <div class="reason-num">01</div>
-            <div>
-              <div class="reason-title">같은 고객, 다른 상황</div>
-              <div class="reason-body">신규 고객 유입 없이, 카운터 앞에 있는 고객에게 바로 제안할 수 있습니다.</div>
-            </div>
+        <div class="why-strip">
+          <div class="why-item">
+            <div class="num">01</div>
+            <h5>같은 고객, 다른 상황</h5>
+            <p>전자담배를 이미 사용하는 고객에게, 사용이 어려운 순간을 위한 대안을 제안하는 방식입니다.</p>
           </div>
-          <div class="reason-item">
-            <div class="reason-num">02</div>
-            <div>
-              <div class="reason-title">카운터에서 30초 설명</div>
-              <div class="reason-body">배터리·코일·액상 설명이 없습니다. 한 문장으로 끝나 판매 장벽이 낮습니다.</div>
-            </div>
+          <div class="why-item">
+            <div class="num">02</div>
+            <h5>카운터에서 짧게 설명 가능</h5>
+            <p>사용법이 직관적이고 제품 구조가 단순해, 직원 설명 부담이 낮습니다.</p>
           </div>
-          <div class="reason-item">
-            <div class="reason-num">03</div>
-            <div>
-              <div class="reason-title">카운터 한 칸, 소량으로 시작</div>
-              <div class="reason-body">카운터 한 칸으로 시작해 반응만 보면 됩니다. 안 나가면 접고, 나가면 SKU를 늘리면 됩니다.</div>
-            </div>
+          <div class="why-item">
+            <div class="num">03</div>
+            <h5>카운터 한 칸으로 테스트</h5>
+            <p>큰 진열이나 대규모 초도 발주 없이도 반응 확인이 가능한 카테고리입니다.</p>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- POV -->
-      <div class="pov-block" style="margin-top:auto;">
-        <div class="pov-label">Point of view</div>
-        <div class="pov-text">
-          "설명이 굳이 필요하지 않습니다.<br>
-          <em>손님이 이미 불편해하는<br>순간을 위해 만든 상품입니다."</em>
+      <article class="panel inside-right">
+        <div>
+          <div class="eyebrow">Retail Economics</div>
         </div>
-      </div>
 
-    </div>
-
-    <!-- Panel 3: 안쪽 우 Inside Right -->
-    <div class="panel panel-inside-right">
-
-      <!-- 마진 구조 -->
-      <div>
-        <div class="kicker" style="margin-bottom:2mm;">리테일 숫자</div>
-        <div class="margin-grid">
-          <div class="margin-main">
-            <div class="margin-main-label">마진 구조</div>
-            <div class="margin-row">
-              <span class="margin-label">도매가</span>
-              <span class="margin-value">8,800원</span>
-            </div>
-            <div class="margin-row">
-              <span class="margin-label">소비자가</span>
-              <span class="margin-value">16,000원</span>
-            </div>
-            <div class="margin-row">
-              <span class="margin-label" style="color:white;font-weight:700;">개당 마진</span>
-              <span class="margin-value big">7,200원</span>
-            </div>
+        <div class="economics">
+          <div class="economics-main">
+            <h4>Margin Structure</h4>
+            <div class="money-line"><span>도매가</span><strong>8,800원</strong></div>
+            <div class="money-line"><span>권장 소비자가</span><strong>16,000원</strong></div>
+            <div class="money-line"><span>개당 매장 마진</span><strong class="big">7,200원</strong></div>
           </div>
-          <div class="margin-sim">
-            <div class="margin-sim-title">월 시뮬레이션</div>
-            <div class="sim-row">
-              <span class="sim-label">하루 1개</span>
-              <span class="sim-value">약 21.6만원</span>
-            </div>
-            <div class="sim-row">
-              <span class="sim-label">하루 2개</span>
-              <span class="sim-value">약 43.2만원</span>
-            </div>
-            <div class="sim-row">
-              <span class="sim-label">하루 3개</span>
-              <span class="sim-value">약 64.8만원</span>
-            </div>
+          <div class="simulation">
+            <h4>Monthly Simulation</h4>
+            <div class="simulation-row"><span>하루 1개 판매 시</span><strong>약 21.6만원</strong></div>
+            <div class="simulation-row"><span>하루 2개 판매 시</span><strong>약 43.2만원</strong></div>
+            <div class="simulation-row"><span>하루 3개 판매 시</span><strong>약 64.8만원</strong></div>
           </div>
         </div>
-      </div>
 
-      <!-- 다른 상품과 비교 -->
-      <div>
-        <div class="kicker" style="margin-bottom:1.5mm;">다른 상품과 비교하면</div>
-        <div class="comparison-grid">
-          <div class="comp-item">
-            <div class="comp-title">공간 차지</div>
-            <div class="comp-body">작은 캔 6종 = 카운터 한 칸. 냉장고·별도 진열대 불필요.</div>
-          </div>
-          <div class="comp-item">
-            <div class="comp-title">설명 시간</div>
-            <div class="comp-body">액상처럼 길게 설명할 필요 없습니다. 30초 안에 끝납니다.</div>
-          </div>
-          <div class="comp-item">
-            <div class="comp-title">테스트 리스크</div>
-            <div class="comp-body">소량 입점 → 반응 확인 → SKU 확장 순서로. 큰 초도 발주 없이 검증 가능.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 도입 운영안 -->
-      <div>
-        <div class="kicker" style="margin-bottom:1.5mm;">도입 운영안</div>
         <div class="ops-grid">
-          <div class="ops-item">
-            <div class="ops-title">초도 입점 구성</div>
-            <div class="ops-body">
-              <strong>민트 12mg/20mg</strong> — 핵심 SKU &nbsp;
-              <strong>베리 12mg/20mg</strong> — 취향 분산<br>
-              <strong>수박 12mg/20mg</strong> — 2차 확장용<br>
-              민트·베리로 반응 먼저 보고, 수박은 2차로 추가 권장.
-            </div>
+          <div class="ops-block">
+            <h5>초도 입점 구성</h5>
+            <p><strong>민트 12mg / 20mg</strong>을 기본축으로 두고, <strong>베리 12mg / 20mg</strong>로 취향 분산을 가져가는 구성이 가장 안정적입니다. 수박은 반응을 본 뒤 2차 확장하는 방식이 자연스럽습니다.</p>
           </div>
-          <div class="ops-item">
-            <div class="ops-title">권장 진열 위치</div>
-            <div class="ops-body">계산대 옆 카운터 상단. 액상 진열대 끝자리나 디바이스 옆 병행 배치도 가능.</div>
+          <div class="ops-block">
+            <h5>권장 진열 위치</h5>
+            <p>계산대 옆 카운터 상단이 가장 효율적입니다. 액상 진열대 끝이나 디바이스 옆 병행 배치도 가능하지만, 첫 테스트는 카운터 노출이 유리합니다.</p>
           </div>
-          <div class="ops-item">
-            <div class="ops-title">직원 권장 멘트</div>
-            <div class="ops-body">
-              <strong>"사무실이나 차에서 전자담배 못 피우실 때 이거 쓰세요. 냄새 없고 기기 없이 잇몸 부위에 끼워 넣으면 됩니다."</strong>
-            </div>
+          <div class="ops-block">
+            <h5>직원 권장 멘트</h5>
+            <p>“사무실이나 차에서 전자담배 못 피우실 때 쓰는 제품입니다. 냄새 없고 기기 없이 잇몸 부위에 끼워 넣으면 됩니다.”</p>
           </div>
-          <div class="ops-item">
-            <div class="ops-title">리오더 기준</div>
-            <div class="ops-body">2주 안에 1종이라도 꾸준히 나가면 그 SKU 중심으로 리오더. 반응 확인된 향부터 순차 확장.</div>
+          <div class="ops-block">
+            <h5>리오더 기준</h5>
+            <p>2주 안에 특정 향이 반복 구매되기 시작하면 그 SKU 중심으로 리오더하고, 이후 부족한 향만 보강하는 운영이 가장 효율적입니다.</p>
           </div>
         </div>
-      </div>
 
-      <!-- CTA 바 -->
-      <div style="margin-top:auto; background:var(--ember); border-radius:3mm; padding:4mm 5mm; display:flex; justify-content:space-between; align-items:center;">
-        <div>
-          <div style="font-size:4.5pt;font-weight:700;color:rgba(255,255,255,0.75);letter-spacing:0.1em;text-transform:uppercase;">입점 문의</div>
-          <div style="font-size:12pt;font-weight:900;color:white;line-height:1.2;">0507-1422-0951</div>
-          <div style="font-size:5pt;color:rgba(255,255,255,0.7);margin-top:0.5mm;">소량 테스트 · 상담 후 결정 가능</div>
+        <div class="usage-band">
+          <img src="https://coolusik-stack.github.io/usikclaw/bool_howto.jpg" alt="BOOL how to use">
+          <div class="usage-steps">
+            <div class="usage-step"><strong>01</strong><span>케이스에서 꺼내기</span></div>
+            <div class="usage-step"><strong>02</strong><span>윗입술 안 잇몸에 넣기</span></div>
+            <div class="usage-step"><strong>03</strong><span>10~40분 유지</span></div>
+            <div class="usage-step"><strong>04</strong><span>뚜껑에 보관·폐기</span></div>
+          </div>
         </div>
-        <div style="text-align:right;">
-          <div style="font-size:4.5pt;color:rgba(255,255,255,0.7);">온라인 금지까지</div>
-          <div style="font-size:14pt;font-weight:900;color:white;line-height:1;">4/24</div>
-        </div>
-      </div>
 
-    </div>
+        <div class="closing-bar">
+          <div class="left">
+            <h3>중요한 건 복잡한 도입이 아니라,<br>매장에서 바로 활용되는 구조입니다.</h3>
+            <p>먼저 잡은 매장이 카테고리 인식을 선점합니다. 소량 테스트 후 판단해도 충분합니다.</p>
+          </div>
+          <div class="right">
+            <div class="label">Contact</div>
+            <div class="value">0507-1422-0951</div>
+          </div>
+        </div>
+      </article>
+    </section>
   </div>
-</div>
-
 </body>
 </html>
