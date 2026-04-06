@@ -20,6 +20,7 @@ NOTION_KEY = Path.home() / ".config" / "notion" / "api_key"
 NOTION_WS  = Path.home() / ".config" / "notion" / "workspace.json"
 REPO_DIR   = Path.home() / ".openclaw" / "briefing_repo"
 REPO_URL   = "https://github.com/coolusik-stack/usikclaw.git"
+VAULT_DIR  = Path.home() / "claw-vault"
 GEMINI_KEY_PATH = Path.home() / ".openclaw" / "openclaw.json"
 WEEKDAY_KO = ["월","화","수","목","금","토","일"]
 
@@ -333,6 +334,47 @@ def push_to_github(html, date_str):
     except Exception as e:
         return f"ERROR: {e}"
 
+# ─── Obsidian Vault 저장 ─────────────────────────────
+def save_to_vault(date_str, rates, items_analyzed, big_picture, pages_url):
+    """Obsidian vault briefings/ 폴더에 마크다운 저장"""
+    try:
+        vault_briefings = VAULT_DIR / "briefings"
+        vault_briefings.mkdir(parents=True, exist_ok=True)
+        usd = rates.get("usd_krw")
+        jpy = rates.get("jpy_100")
+        now = datetime.now(KST)
+        weekday = WEEKDAY_KO[now.weekday()]
+
+        lines = [f"# 브리핑 {date_str} ({weekday})", ""]
+        lines.append(f"웹에서 보기: {pages_url}\n")
+        if usd:
+            rate_str = f"USD/KRW {usd:,.1f}원"
+            if jpy: rate_str += f" · 100엔 {jpy:,.1f}원"
+            lines.append(f"**환율**: {rate_str}\n")
+
+        lines.append("## 오늘 먼저 볼 것")
+        lines.append(big_picture + "\n")
+
+        for item in items_analyzed:
+            lines.append(f"## [{item['source']}] {item['headline']}")
+            lines.append(f"**제목**: [{item['title'][:70]}]({item['link']})")
+            if item.get('pub'): lines.append(f"**날짜**: {item['pub']}")
+            lines.append(f"\n**핵심 내용**: {item['summary']}")
+            lines.append(f"\n**왜 중요한지**: {item['why_matters']}")
+            lines.append(f"\n**우석 입장 인사이트**: {item['usuk_insight']}\n")
+
+        lines.append("---")
+        lines.append("#briefing #daily")
+
+        out_path = vault_briefings / f"{date_str}.md"
+        out_path.write_text("\n".join(lines), encoding="utf-8")
+        print(f"  Vault 저장: {out_path}", file=sys.stderr)
+        return str(out_path)
+    except Exception as e:
+        print(f"  Vault ERROR: {e}", file=sys.stderr)
+        return ""
+
+
 # ─── 노션 저장 ────────────────────────────────────────
 def save_notion(summary, date_str):
     try:
@@ -389,6 +431,7 @@ def main():
     html       = build_html(date_str, rates, items_analyzed, big_picture)
     pages_url  = push_to_github(html, date_str)
     notion_url = save_notion(big_picture, date_str)
+    save_to_vault(date_str, rates, items_analyzed, big_picture, pages_url)
 
     print(f"  GitHub: {pages_url}", file=sys.stderr)
     print(f"  Notion: {notion_url}", file=sys.stderr)
