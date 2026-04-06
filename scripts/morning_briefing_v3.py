@@ -338,7 +338,7 @@ def push_to_github(html, date_str):
 def save_to_vault(date_str, rates, items_analyzed, big_picture, pages_url):
     """Obsidian vault briefings/ 폴더에 마크다운 저장"""
     try:
-        vault_briefings = VAULT_DIR / "briefings"
+        vault_briefings = VAULT_DIR / "01_RAW"
         vault_briefings.mkdir(parents=True, exist_ok=True)
         usd = rates.get("usd_krw")
         jpy = rates.get("jpy_100")
@@ -369,6 +369,20 @@ def save_to_vault(date_str, rates, items_analyzed, big_picture, pages_url):
         out_path = vault_briefings / f"{date_str}.md"
         out_path.write_text("\n".join(lines), encoding="utf-8")
         print(f"  Vault 저장: {out_path}", file=sys.stderr)
+
+        # 00_Index.md 업데이트
+        index_path = VAULT_DIR / "00_Index.md"
+        if index_path.exists():
+            idx = index_path.read_text(encoding="utf-8")
+            new_row = f"| [[01_RAW/{date_str}]] | {date_str} 아침 브리핑 |"
+            if date_str not in idx:
+                idx = idx.replace(
+                    "| [[01_RAW/decisions]] |",
+                    f"{new_row}\n| [[01_RAW/decisions]] |"
+                )
+                index_path.write_text(idx, encoding="utf-8")
+                print(f"  Index 업데이트 완료", file=sys.stderr)
+
         return str(out_path)
     except Exception as e:
         print(f"  Vault ERROR: {e}", file=sys.stderr)
