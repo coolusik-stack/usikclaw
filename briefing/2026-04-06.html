@@ -3,61 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>브리핑 2026-04-06</title>
+<title>Morning Briefing — 2026-04-06</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0c12;--bg2:#111724;--border:rgba(255,255,255,0.08);
+  --bg:#0a0c12;--bg2:#111724;--bg3:#171e30;
+  --border:rgba(255,255,255,0.08);
   --text:#edf2ff;--muted:#8892a4;
 }
-body{
-  font-family:'Pretendard',-apple-system,sans-serif;
-  background:var(--bg);color:var(--text);
-  min-height:100vh;line-height:1.72;
-}
+body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.72}
+a{color:inherit;text-decoration:none}
 .hero{
-  padding:56px 24px 40px;text-align:center;
-  border-bottom:1px solid var(--border);
-  background:linear-gradient(160deg,#0b1020 0%,#12122a 50%,#0a0c12 100%);
+  padding:64px 24px 44px;text-align:center;border-bottom:1px solid var(--border);
+  background:linear-gradient(160deg,#0b1020 0%,#12122a 52%,#0a0c12 100%);
 }
 .hero .emoji{font-size:36px;display:block;margin-bottom:12px}
-.hero .label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.hero h1{font-size:32px;font-weight:800;color:#fff;letter-spacing:-0.4px}
-.date-badge{
-  display:inline-block;margin-top:12px;padding:6px 16px;border-radius:999px;
-  background:rgba(99,210,255,0.12);border:1px solid rgba(99,210,255,0.22);
-  color:#aeeaff;font-size:13px;
-}
-.rate-row{margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.rate-badge{
-  padding:5px 12px;border-radius:999px;
-  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
-  font-size:13px;color:#d8deeb;
-}
-.container{max-width:860px;margin:0 auto;padding:40px 20px 80px}
-.opinion-box{
-  background:#111724;border:1px solid rgba(255,255,255,0.1);
-  border-left:3px solid #c41230;border-radius:16px;
-  padding:22px 24px;margin-bottom:36px;
-}
-.opinion-box .label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#f87;margin-bottom:10px}
-.opinion-box p{font-size:15px;color:#d8deeb;line-height:1.75}
-.cat-section{margin-bottom:36px}
-.cat-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.cat-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-.cat-line{flex:1;height:1px;background:var(--border)}
-.card{
-  display:block;background:#111724;border:1px solid var(--border);
-  border-radius:14px;padding:18px 20px;margin-bottom:10px;
-  text-decoration:none;color:inherit;
-  transition:border-color 0.15s,background 0.15s;
-}
-.card:hover{background:#161f30;border-color:rgba(99,210,255,0.3)}
-.card-title{font-size:15px;font-weight:600;color:#e8eef8;line-height:1.5}
-.card-source{margin-top:6px;font-size:12px;color:var(--muted)}
-.footer{margin-top:60px;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:20px}
+.hero .label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.hero h1{font-size:34px;font-weight:800;color:#fff;letter-spacing:-0.4px}
+.date-badge{display:inline-block;margin-top:14px;padding:7px 16px;border-radius:999px;background:rgba(99,210,255,0.12);border:1px solid rgba(99,210,255,0.22);color:#aeeaff;font-size:13px}
+.hero .sub{margin-top:12px;font-size:15px;color:var(--muted)}
+.rate-row{margin-top:12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.rate-badge{padding:5px 12px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);font-size:13px;color:#d8deeb}
+.container{max-width:900px;margin:0 auto;padding:42px 24px 96px}
+.summary{background:var(--bg2);border:1px solid var(--border);border-radius:22px;padding:26px;margin-bottom:34px}
+.summary h2{font-size:12px;color:#b8cbff;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.summary p{color:#d8deeb;font-size:15px;line-height:1.8}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:24px;margin-bottom:16px}
+.tag{display:inline-block;padding:5px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:12px}
+.card h3{font-size:20px;line-height:1.4;color:#fff;letter-spacing:-0.2px;margin-bottom:6px}
+.card h3 a:hover{color:#63d2ff}
+.card-source{font-size:12px;color:var(--muted);margin-bottom:14px}
+.card-section{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.card-section-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.card-section p{font-size:14px;color:#c8d4e8;line-height:1.72}
+.card-section.insight{background:rgba(99,210,255,0.04);border:1px solid rgba(99,210,255,0.1);border-radius:10px;padding:12px 14px;margin-top:12px}
+.card-section.insight .card-section-label{color:#63d2ff}
+.card-section.insight p{color:#d8eeff}
+.big-picture{background:var(--bg3);border:1px solid rgba(255,255,255,0.12);border-radius:22px;padding:28px;margin-top:40px}
+.big-picture .bp-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#b8cbff;margin-bottom:14px}
+.big-picture p{font-size:15px;color:#d8deeb;line-height:1.8}
+.footer{margin-top:60px;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:24px}
 </style>
 </head>
 <body>
@@ -66,15 +52,71 @@ body{
   <div class="label">Morning Briefing</div>
   <h1>오늘의 브리핑</h1>
   <div class="date-badge">2026-04-06 (월요일)</div>
+  <div class="hero sub">오늘 브리핑 분석 중 오류가 발생했습니다: HTTP Error 404: Not Found</div>
   <div class="rate-row"><span class="rate-badge">USD/KRW 1,511.1원</span><span class="rate-badge">100엔 946.2원</span></div>
 </div>
 <div class="container">
-  <div class="opinion-box">
-    <div class="label">🦊 claw 의견</div>
-    <p>환율 1,511원. 큰 이상 없지만 방향성은 계속 달러 강세 쪽입니다. BOOL/니코틴파우치 관련 주목할 뉴스는 오늘 없습니다.</p>
+  <div class="summary">
+    <h2>오늘 먼저 볼 것</h2>
+    <p>오늘 브리핑 분석 중 오류가 발생했습니다: HTTP Error 404: Not Found</p>
   </div>
   
+    <div class="card">
+      <div class="tag" style="background:#2a0a10;color:#ff8fab;border:1px solid #ff8fab44">Lenny's</div>
+      <h3><a href="https://www.lennysnewsletter.com/p/anthropics-1b-to-19b-growth-run" target="_blank" rel="noopener">Anthropic’s $1B to $19B growth run: how </a></h3>
+      <p class="card-source">Anthropic’s $1B to $19B growth run: how Claude became the fastest-growing AI pro</p>
+      <div class="card-section">
+        <div class="card-section-label">핵심 내용</div>
+        <p>Listen now | Anthropic&#8217;s Head of Growth on scaling from $1B to $19B ARR in 14 months through big bets, intentional onboarding friction, deep focus, and CASH&#8212;an internal AI system for auton</p>
+      </div>
+      <div class="card-section">
+        <div class="card-section-label">왜 중요한지</div>
+        <p>내용 분석에 실패했습니다.</p>
+      </div>
+      <div class="card-section insight">
+        <div class="card-section-label">🦊 우석 입장 인사이트</div>
+        <p>직접 확인 권장합니다.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="tag" style="background:#0a1a1a;color:#a8dadc;border:1px solid #a8dadc44">Sandhill</div>
+      <h3><a href="https://www.sandhill.io/p/278-request-for-startups-infra-roadmap" target="_blank" rel="noopener">#278 | Request for Startups, Infra Roadm</a></h3>
+      <p class="card-source">#278 | Request for Startups, Infra Roadmap, & more</p>
+      <div class="card-section">
+        <div class="card-section-label">핵심 내용</div>
+        <p>April 5th | The latest from Primary, Bessemer, DCVC, Maveron, Cowboy, Foundation, and others</p>
+      </div>
+      <div class="card-section">
+        <div class="card-section-label">왜 중요한지</div>
+        <p>내용 분석에 실패했습니다.</p>
+      </div>
+      <div class="card-section insight">
+        <div class="card-section-label">🦊 우석 입장 인사이트</div>
+        <p>직접 확인 권장합니다.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="tag" style="background:#2a1e00;color:#ffd166;border:1px solid #ffd16644">Chamath</div>
+      <h3><a href="https://chamath.substack.com/p/what-i-read-this-week-178" target="_blank" rel="noopener">$18B in pharma deals and AI 40% trade gr</a></h3>
+      <p class="card-source">$18B in pharma deals and AI 40% trade growth</p>
+      <div class="card-section">
+        <div class="card-section-label">핵심 내용</div>
+        <p>A summary of the interesting content that I consumed this past week&#8230;</p>
+      </div>
+      <div class="card-section">
+        <div class="card-section-label">왜 중요한지</div>
+        <p>내용 분석에 실패했습니다.</p>
+      </div>
+      <div class="card-section insight">
+        <div class="card-section-label">🦊 우석 입장 인사이트</div>
+        <p>직접 확인 권장합니다.</p>
+      </div>
+    </div>
+  <div class="big-picture">
+    <div class="bp-label">🦊 Big Picture — claw 의견</div>
+    <p>오늘 브리핑 분석 중 오류가 발생했습니다: HTTP Error 404: Not Found</p>
+  </div>
 </div>
-<div class="footer">BOOL Korea · usikclaw · 자동 생성</div>
+<div class="footer">BOOL Korea · usikclaw · 2026-04-06 자동 생성</div>
 </body>
 </html>
