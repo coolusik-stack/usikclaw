@@ -52,7 +52,7 @@ def gemini(prompt: str, key: str) -> str:
     return resp["candidates"][0]["content"]["parts"][0]["text"].strip()
 
 # ─── RSS 파싱 ─────────────────────────────────────────
-def fetch_rss(url, max_items=3):
+def fetch_rss(url, max_items=6):
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, context=ctx, timeout=15) as r:
@@ -63,21 +63,27 @@ def fetch_rss(url, max_items=3):
             link    = (item.findtext("link")         or "").strip()
             desc    = (item.findtext("description")  or "").strip()[:400]
             pub     = (item.findtext("pubDate")      or "").strip()
-            src_el  = item.find(".//{http://www.google.com/schemas/sitemap/0.84}news")
             source  = ""
+            pub_dt  = None
             for child in item:
                 if "source" in child.tag.lower():
                     source = child.text or ""
+            if pub:
+                try:
+                    from email.utils import parsedate_to_datetime
+                    pub_dt = parsedate_to_datetime(pub).astimezone(KST)
+                except:
+                    pub_dt = None
             if title and link:
-                pub_clean = ""
-                if pub:
-                    try:
-                        from email.utils import parsedate_to_datetime
-                        dt = parsedate_to_datetime(pub).astimezone(KST)
-                        pub_clean = dt.strftime("%Y.%m.%d")
-                    except:
-                        pub_clean = pub[:10] if pub else ""
-                items.append({"title": title, "link": link, "desc": desc, "pub": pub_clean, "source": source})
+                pub_clean = pub_dt.strftime("%Y.%m.%d") if pub_dt else (pub[:10] if pub else "")
+                items.append({
+                    "title": title,
+                    "link": link,
+                    "desc": desc,
+                    "pub": pub_clean,
+                    "pub_dt": pub_dt.isoformat() if pub_dt else "",
+                    "source": source,
+                })
         return items
     except Exception as e:
         print(f"RSS ERROR {url[:60]}: {e}", file=sys.stderr)
@@ -112,16 +118,27 @@ SOURCES = {
     "Chamath":       "https://chamath.substack.com/feed",
 }
 
-def collect_items():
-    """각 소스에서 최신 1~2개 아이템 수집"""
+def collect_items(target_date=None):
+    """전날(KST) 올라온 아이템만 소스별 1개 수집"""
+    if target_date is None:
+        target_date = (datetime.now(KST) - timedelta(days=1)).date()
     collected = {}
     for name, url in SOURCES.items():
-        items = fetch_rss(url, max_items=2)
-        if items:
-            collected[name] = items[0]  # 최신 1개
-            print(f"  [{name}] {items[0]['title'][:60]}", file=sys.stderr)
+        items = fetch_rss(url, max_items=6)
+        matched = []
+        for item in items:
+            if item.get("pub_dt"):
+                try:
+                    item_date = datetime.fromisoformat(item["pub_dt"]).date()
+                    if item_date == target_date:
+                        matched.append(item)
+                except Exception:
+                    pass
+        if matched:
+            collected[name] = matched[0]
+            print(f"  [{name}] 전날 기사 채택: {matched[0]['title'][:60]}", file=sys.stderr)
         else:
-            print(f"  [{name}] 수집 실패", file=sys.stderr)
+            print(f"  [{name}] 전날 기사 없음", file=sys.stderr)
     return collected
 
 # ─── Gemini로 각 아이템 분석 ──────────────────────────
@@ -137,8 +154,11 @@ def analyze_item(name: str, item: dict, key: str) -> dict:
 
 소스: {name}
 제목: {title}
+발행일: {item.get('pub', '(미상)')}
 내용 요약: {desc[:300] if desc else '(없음)'}
 링크: {link}
+
+중요: 이 브리핑은 전날 새로 올라온 소식만 다룬다. 오래된 발표/기존 제품을 재소개하는 기사라면, '새 업데이트' 자체가 무엇인지 중심으로 정리해라.
 
 다음 JSON 형식으로만 응답:
 {{
