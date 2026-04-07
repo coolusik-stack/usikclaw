@@ -3,189 +3,572 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Morning Briefing — 2026-04-07</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+<title>Briefing / 2026-04-07</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0c12;--bg2:#111724;--bg3:#171e30;
-  --border:rgba(255,255,255,0.08);
-  --text:#edf2ff;--muted:#8892a4;
+  --ink:#0e0e0e;
+  --paper:#f5f2ec;
+  --cream:#ede9e0;
+  --rule:#c8c0b0;
+  --accent:#c0392b;
+  --accent2:#1a3a5c;
+  --muted:#7a7060;
+  --col:680px;
 }
-body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.72}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  min-height:100vh;
+  font-size:16px;
+  line-height:1.7;
+}
 a{color:inherit;text-decoration:none}
-.hero{
-  padding:64px 24px 44px;text-align:center;border-bottom:1px solid var(--border);
-  background:linear-gradient(160deg,#0b1020 0%,#12122a 52%,#0a0c12 100%);
+a:hover{color:var(--accent)}
+
+/* ── TICKER ── */
+.ticker{
+  background:var(--ink);
+  color:#f5f2ec;
+  font-family:'DM Mono',monospace;
+  font-size:11px;
+  letter-spacing:.06em;
+  padding:8px 0;
+  overflow:hidden;
+  white-space:nowrap;
 }
-.hero .emoji{font-size:36px;display:block;margin-bottom:12px}
-.hero .label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
-.hero h1{font-size:34px;font-weight:800;color:#fff;letter-spacing:-0.4px}
-.date-badge{display:inline-block;margin-top:14px;padding:7px 16px;border-radius:999px;background:rgba(99,210,255,0.12);border:1px solid rgba(99,210,255,0.22);color:#aeeaff;font-size:13px}
-.hero .sub{margin-top:12px;font-size:15px;color:var(--muted)}
-.rate-row{margin-top:12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.rate-badge{padding:5px 12px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);font-size:13px;color:#d8deeb}
-.container{max-width:900px;margin:0 auto;padding:42px 24px 96px}
-.summary{background:var(--bg2);border:1px solid var(--border);border-radius:22px;padding:26px;margin-bottom:34px}
-.summary h2{font-size:12px;color:#b8cbff;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
-.summary p{color:#d8deeb;font-size:15px;line-height:1.8}
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:24px;margin-bottom:16px}
-.tag{display:inline-block;padding:5px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:12px}
-.card h3{font-size:20px;line-height:1.4;color:#fff;letter-spacing:-0.2px;margin-bottom:6px}
-.card h3 a:hover{color:#63d2ff}
-.card-source{font-size:12px;color:var(--muted);margin-bottom:14px}
-.pub-date{color:#63d2ff;font-weight:600}
-.card-section{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
-.card-section-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.card-section p{font-size:14px;color:#c8d4e8;line-height:1.72}
-.card-section.insight{background:rgba(99,210,255,0.04);border:1px solid rgba(99,210,255,0.1);border-radius:10px;padding:12px 14px;margin-top:12px}
-.card-section.insight .card-section-label{color:#63d2ff}
-.card-section.insight p{color:#d8eeff}
-.big-picture{background:var(--bg3);border:1px solid rgba(255,255,255,0.12);border-radius:22px;padding:28px;margin-top:40px}
-.big-picture .bp-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#b8cbff;margin-bottom:14px}
-.big-picture p{font-size:15px;color:#d8deeb;line-height:1.8}
-.footer{margin-top:60px;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:24px}
+.ticker-inner{
+  display:inline-block;
+  animation:ticker 28s linear infinite;
+}
+@keyframes ticker{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+.ticker-item{display:inline-block;padding:0 40px}
+.ticker-sep{opacity:.4;padding:0 8px}
+
+/* ── MASTHEAD ── */
+.masthead{
+  border-bottom:3px solid var(--ink);
+  padding:40px 48px 28px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+}
+.masthead-left{}
+.masthead-label{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+.masthead h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(40px,6vw,72px);
+  font-weight:900;
+  line-height:.95;
+  letter-spacing:-.02em;
+  color:var(--ink);
+}
+.masthead h1 em{
+  font-style:italic;
+  color:var(--accent);
+}
+.masthead-right{
+  text-align:right;
+  flex-shrink:0;
+}
+.masthead-date{
+  font-family:'Playfair Display',serif;
+  font-size:13px;
+  font-style:italic;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+.masthead-rates{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:3px;
+}
+.rate{
+  font-family:'DM Mono',monospace;
+  font-size:12px;
+  color:var(--ink);
+}
+.rate span{
+  color:var(--accent);
+  font-weight:500;
+}
+
+/* ── LAYOUT ── */
+.layout{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 48px 96px;
+  display:grid;
+  grid-template-columns:1fr 300px;
+  gap:0 60px;
+  align-items:start;
+}
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr;padding:0 24px 64px}
+  .sidebar{border-top:2px solid var(--ink);border-left:none;padding:28px 0 0;margin-top:40px}
+  .masthead{padding:28px 24px 20px;flex-direction:column;align-items:flex-start}
+  .masthead-right{text-align:left}
+  .masthead-rates{align-items:flex-start}
+}
+
+/* ── SECTION DIVIDER ── */
+.section-head{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin:40px 0 20px;
+}
+.section-head-line{
+  flex:1;
+  height:1px;
+  background:var(--rule);
+}
+.section-head-label{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  flex-shrink:0;
+}
+
+/* ── LEAD (Big Picture) ── */
+.lead{
+  margin:40px 0 0;
+  padding-bottom:36px;
+  border-bottom:2px solid var(--ink);
+}
+.lead-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:12px;
+}
+.lead-headline{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(22px,3.5vw,32px);
+  font-weight:700;
+  line-height:1.25;
+  margin-bottom:16px;
+  letter-spacing:-.01em;
+}
+.lead-body{
+  font-size:15.5px;
+  color:#2a2a2a;
+  line-height:1.78;
+  max-width:64ch;
+}
+
+/* ── ARTICLE CARDS ── */
+.articles{
+  margin-top:0;
+}
+.article{
+  padding:28px 0;
+  border-bottom:1px solid var(--rule);
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:0 24px;
+}
+.article-num{
+  font-family:'Playfair Display',serif;
+  font-size:11px;
+  font-style:italic;
+  color:var(--rule);
+  padding-top:4px;
+  min-width:20px;
+}
+.article-source{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:8px;
+}
+.source-tag{
+  font-family:'DM Mono',monospace;
+  font-size:9px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:3px 8px;
+  border:1px solid currentColor;
+  font-weight:500;
+}
+.source-date{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  color:var(--muted);
+}
+.article h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(17px,2.2vw,21px);
+  font-weight:700;
+  line-height:1.3;
+  letter-spacing:-.01em;
+  margin-bottom:10px;
+}
+.article h2 a:hover{
+  color:var(--accent);
+}
+.article-meta{
+  font-size:11.5px;
+  color:var(--muted);
+  margin-bottom:12px;
+  font-style:italic;
+}
+.subhead{
+  font-family:'DM Mono',monospace;
+  font-size:9px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:12px 0 4px;
+}
+.article-body{
+  font-size:14px;
+  color:#333;
+  line-height:1.74;
+  margin-bottom:0;
+}
+.insight-block{
+  margin-top:14px;
+  padding:12px 16px;
+  border-left:3px solid var(--accent);
+  background:rgba(192,57,43,.04);
+}
+.insight-block .subhead{
+  color:var(--accent);
+  margin-top:0;
+}
+.insight-block .article-body{
+  color:#2a2020;
+}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  padding:40px 0 0 40px;
+  border-left:1px solid var(--rule);
+  position:sticky;
+  top:24px;
+}
+@media(max-width:900px){
+  .sidebar{padding:28px 0 0;border-left:none;border-top:2px solid var(--ink);}
+}
+.sidebar-section{
+  margin-bottom:36px;
+}
+.sidebar-label{
+  font-family:'DM Mono',monospace;
+  font-size:9px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+  border-bottom:1px solid var(--rule);
+  padding-bottom:6px;
+  margin-bottom:14px;
+}
+.sidebar-body{
+  font-size:13.5px;
+  line-height:1.72;
+  color:#2a2a2a;
+}
+.sidebar-rate-row{
+  margin-bottom:8px;
+}
+.sidebar-rate-val{
+  font-family:'DM Mono',monospace;
+  font-size:20px;
+  font-weight:500;
+  color:var(--ink);
+  display:block;
+  letter-spacing:-.01em;
+}
+.sidebar-rate-label{
+  font-size:11px;
+  color:var(--muted);
+}
+.toc-item{
+  display:flex;
+  gap:10px;
+  margin-bottom:10px;
+  font-size:13px;
+  line-height:1.4;
+}
+.toc-num{
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  color:var(--muted);
+  flex-shrink:0;
+  padding-top:2px;
+}
+.toc-link{
+  color:var(--ink);
+}
+.toc-link:hover{
+  color:var(--accent);
+}
+
+/* ── FOOTER ── */
+.site-footer{
+  border-top:3px solid var(--ink);
+  padding:20px 48px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-family:'DM Mono',monospace;
+  font-size:10px;
+  letter-spacing:.06em;
+  color:var(--muted);
+}
+@media(max-width:600px){
+  .site-footer{flex-direction:column;gap:6px;padding:16px 24px;}
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.lead,.articles,.sidebar{
+  animation:fadeUp .6s ease both;
+}
+.articles{animation-delay:.1s}
+.sidebar{animation-delay:.2s}
 </style>
 </head>
 <body>
-<div class="hero">
-  <span class="emoji">🌅</span>
-  <div class="label">Morning Briefing</div>
-  <h1>오늘의 브리핑</h1>
-  <div class="date-badge">2026-04-07 (화요일)</div>
-  <div class="hero sub">우석님, 오늘 아침 브리핑을 쓱 훑어보니 역시나 AI가 모든 흐름의 중심에 있네요. GPT-5.4 같은 새 모델 발표부터 에이전트 개발, 코드베이스 학습까지 기술 발전 속도는 정말 무섭지만, Claude의 요금 정책 변화나 트럼프 연설 후 증시 변동성, 그리고 1511원대 환율을 보면 단순히 기술만 좇을 수는 없는 상황이에요.</div>
-  <div class="rate-row"><span class="rate-badge">USD/KRW 1,511.1원</span><span class="rate-badge">100엔 946.2원</span></div>
-</div>
-<div class="container">
-  <div class="summary">
-    <h2>오늘 먼저 볼 것</h2>
-    <p>우석님, 오늘 아침 브리핑을 쓱 훑어보니 역시나 AI가 모든 흐름의 중심에 있네요. GPT-5.4 같은 새 모델 발표부터 에이전트 개발, 코드베이스 학습까지 기술 발전 속도는 정말 무섭지만, Claude의 요금 정책 변화나 트럼프 연설 후 증시 변동성, 그리고 1511원대 환율을 보면 단순히 기술만 좇을 수는 없는 상황이에요. 뜨거운 AI 파도 속에서도 실용적인 비즈니스 모델과 외부 환경 변화에 대한 민첩한 대응이 그 어느 때보다 중요해 보입니다. 지금은 새로운 기술을 주시하면서도 빠르게 변하는 시장 상황과 비용 효율성을 잊지 말고 균형을 잡아야 할 때입니다!</p>
-  </div>
-  
-    <div class="card">
-      <div class="tag" style="background:#1a1a1a;color:#aaa;border:1px solid #aaa44">OpenAI 뉴스</div>
-      <h3><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5pVFJudEpXa0E2TVFHUklhTjJ5RlNZV3FIWWpqazZCM0FYeVVWWFp6aHpCRVU4a2RQVFNDUGdYQlNPTE1BWmNXWW15TXZ5cXQtbGxqdnlOVHdBaHMxMEUtMA?oc=5" target="_blank" rel="noopener">GPT-5.4, OpenAI 새 모델 발표</a></h3>
-      <p class="card-source">GPT-5.4를 소개합니다 - OpenAI</p>
-      <div class="card-section">
-        <div class="card-section-label">핵심 내용</div>
-        <p>OpenAI가 차세대 대규모 언어 모델인 GPT-5.4를 공개했습니다. 이 모델은 기존 버전보다 추론 능력과 다중 모달 처리 성능이 크게 향상될 것으로 예상됩니다. 사용자 경험과 개발자 활용도를 높이는 데 중점을 둔 업데이트입니다.</p>
-      </div>
-      <div class="card-section">
-        <div class="card-section-label">왜 중요한지</div>
-        <p>GPT-5.4의 출시는 AI 기술의 한계를 넓히며 다양한 산업 전반에 걸쳐 혁신을 가속화할 것입니다. 특히 비즈니스 자동화 및 개인화된 서비스 개발에 중대한 영향을 미쳐 경제적 가치 창출에 기여할 것으로 보입니다.</p>
-      </div>
-      <div class="card-section insight">
-        <div class="card-section-label">🦊 우석 입장 인사이트</div>
-        <p>우석님의 BOOL 비즈니스는 GPT-5.4를 활용해 고객 서비스 자동화 수준을 높이고, 시장 트렌드 분석을 통한 마케팅 전략 강화에 기여할 수 있습니다. OpenClaw 자동화는 더욱 정교한 작업 처리와 복잡한 데이터 분석을 가능하게 하여 운영 효율성을 극대화하는 데 핵심적인 역할을 할 것입니다.</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="tag" style="background:#1a1a1a;color:#aaa;border:1px solid #aaa44">Anthropic 뉴스</div>
-      <h3><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBmbXdZYWNWdnh0VldmUVg4dDZfc1ZoZEpEVlJ1SUx6N2Rod0tvMXQ2Tm5Oc2d4MmdiNWVFd2dMejNka21EZm16S1AzajJLWlU?oc=5" target="_blank" rel="noopener">Anthropic Claude 요금 변경</a></h3>
-      <p class="card-source">Anthropic, Claude Code 요금 정책 변경... 서드파티 도구 사용 비용 증가한다 - devtimes.co.kr</p>
-      <div class="card-section">
-        <div class="card-section-label">핵심 내용</div>
-        <p>Anthropic이 Claude Code의 요금 정책을 변경하여 서드파티 도구 사용 비용이 증가할 예정입니다. 이는 Claude Code를 통해 외부 도구를 통합하여 활용하는 개발자들에게 직접적인 비용 부담으로 작용할 전망입니다.</p>
-      </div>
-      <div class="card-section">
-        <div class="card-section-label">왜 중요한지</div>
-        <p>이번 변경은 주요 AI 서비스 제공업체가 서드파티 도구 사용에 대한 수익 모델을 강화하려는 신호탄으로, 개발 생태계 전반의 비용 구조 변화를 예고합니다. AI 솔루션을 활용하는 스타트업 및 기업들의 운영 비용 증가로 이어져, 기술 채택 및 투자 전략에 영향을 미칠 수 있습니다.</p>
-      </div>
-      <div class="card-section insight">
-        <div class="card-section-label">🦊 우석 입장 인사이트</div>
-        <p>BOOL 비즈니스나 OpenClaw 자동화에서 Claude Code의 서드파티 도구 연동을 사용한다면, 이번 요금 인상은 운영 비용 증가로 직결될 것입니다. 이는 AI 서비스 전반의 비용 구조 변화를 시사하며, AI 관련 기술 및 기업 투자 시 수익 모델과 장기적 비용 효율성을 더욱 면밀히 분석해야 함을 의미합니다.</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="tag" style="background:#1a1a1a;color:#aaa;border:1px solid #aaa44">AI 테크 트렌드</div>
-      <h3><a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxNazFKbDVTcXh6VUtxbS1uVFRjdDNGOVMtczlvczNkODZhQmc0U2F6VWJOSDJHem9HVmRaUjJ5M2xjSWFEUGNNdlhkbUc4aHYxakhDMnlmeS1sZFZ4aldqSGhCQ2F5Ynlucm5saDNlQkhWVzN1a2FSb1U5SktCbVFFMDRkZUctV1I5R3dDY2hJWjg1YjhV?oc=5" target="_blank" rel="noopener">제미니와 오픈소스 에이전트 개발</a></h3>
-      <p class="card-source">Google Gemini 및 오픈소스 프레임워크를 이용한 에이전트 제작 - blog.google</p>
-      <div class="card-section">
-        <div class="card-section-label">핵심 내용</div>
-        <p>Google은 Gemini 모델과 LangChain, LlamaIndex 등 오픈소스 프레임워크를 활용해 복합적인 에이전트를 구축하는 방법을 제시합니다. 이를 통해 개발자들은 Gemini의 강력한 추론 능력을 바탕으로 도구 사용 및 다단계 작업을 수행하는 AI 에이전트를 만들 수 있습니다.</p>
-      </div>
-      <div class="card-section">
-        <div class="card-section-label">왜 중요한지</div>
-        <p>이는 개발자들이 고급 AI 에이전트를 더 쉽게 만들고 배포할 수 있게 하여 AI 활용의 문턱을 낮춥니다. 궁극적으로 다양한 산업 분야에서 AI 자동화 솔루션의 확산과 생산성 향상을 가속화할 것입니다.</p>
-      </div>
-      <div class="card-section insight">
-        <div class="card-section-label">🦊 우석 입장 인사이트</div>
-        <p>BOOL 비즈니스 관점에서 고객 응대 자동화나 시장 트렌드 분석 에이전트 구축 가능성을 탐색할 수 있습니다. 특히 OpenClaw 자동화와 결합하여 더욱 정교하고 자율적인 워크플로우를 구현하는 데 핵심적인 기술 기반이 될 것으로 보입니다.</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="tag" style="background:#1a1a1a;color:#aaa;border:1px solid #aaa44">경제 매크로</div>
-      <h3><a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE0wdlFoRldsaFNiRjVEOXNFQUhCR2lsWDNmcVRkZ2QtNGJoYWFWbmt6R0w4dDZDZmNueGdmUU1XYnhmVFhraFRmWlVhOE1pWEVvZUFF?oc=5" target="_blank" rel="noopener">트럼프 연설 후 증시·환율 급변동</a></h3>
-      <p class="card-source">KOSPI and FX rate show strong volatility after Trump’s address to the nation - A</p>
-      <div class="card-section">
-        <div class="card-section-label">핵심 내용</div>
-        <p>트럼프 전 대통령의 대국민 연설 이후 한국 증시(KOSPI)와 원/달러 환율이 큰 변동성을 보였습니다. 이는 글로벌 정치 이벤트가 국내 금융 시장에 즉각적인 영향을 미치고 있음을 시사합니다.</p>
-      </div>
-      <div class="card-section">
-        <div class="card-section-label">왜 중요한지</div>
-        <p>매크로 경제의 불안정성은 스타트업을 포함한 모든 비즈니스 환경에 불확실성을 가중시킵니다. 특히 환율 변동은 해외 원자재 수입 및 수출 의존도가 높은 기술 기업의 비용 구조와 수익성에 직접적인 영향을 미칠 수 있습니다.</p>
-      </div>
-      <div class="card-section insight">
-        <div class="card-section-label">🦊 우석 입장 인사이트</div>
-        <p>BOOL 비즈니스 관점에서, 원자재 수입 및 잠재적 해외 진출 시 환율 변동 위험 관리가 더욱 중요해집니다. 또한 OpenClaw 자동화 솔루션은 이러한 시장 변동성에 대응하여 효율적인 데이터 기반 의사결정을 지원하고 비용 관리를 최적화하는 데 기여할 수 있습니다.</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="tag" style="background:#2a0a10;color:#ff8fab;border:1px solid #ff8fab44">Lenny's</div>
-      <h3><a href="https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-i-gave-claude" target="_blank" rel="noopener">AI 코드베이스 학습, 고객 반응 즉각</a></h3>
-      <p class="card-source">🎙️ This week on How I AI: I gave Claude Code our entire codebase. Our customers </p>
-      <div class="card-section">
-        <div class="card-section-label">핵심 내용</div>
-        <p>Lenny's 'How I AI' 팟캐스트에서는 한 개발자가 Claude Code에 회사 전체 코드베이스를 입력한 사례를 다루었습니다. 이 AI 활용으로 인해 고객들이 제품의 변화를 즉각적으로 인지했다는 내용이 핵심입니다. 이는 AI가 실제 개발 과정에서 제품과 사용자 경험에 미치는 직접적인 영향력을 보여줍니다.</p>
-      </div>
-      <div class="card-section">
-        <div class="card-section-label">왜 중요한지</div>
-        <p>이번 사례는 AI가 단순한 보조 도구를 넘어 실제 제품 개발 및 개선의 핵심 주체가 될 수 있음을 시사합니다. AI 기반 개발은 기업의 생산성 향상과 시장 출시 시간 단축을 가속화하며, 이는 테크 산업의 경쟁 구도와 경제적 가치 창출 방식에 중대한 변화를 가져올 것입니다.</p>
-      </div>
-      <div class="card-section insight">
-        <div class="card-section-label">🦊 우석 입장 인사이트</div>
-        <p>BOOL 비즈니스 운영 시, OpenClaw와 같은 내부 자동화 툴 개발에 Claude Code를 활용해 코드 개선 및 신규 기능 구현 속도를 획기적으로 높일 수 있겠습니다. 이는 개발 리소스 절감과 시장 변화에 대한 빠른 대응으로 이어져, 궁극적으로 기업 가치 증대와 투자 수익률 개선에 긍정적인 영향을 미칠 것입니다.</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="tag" style="background:#0a1a1a;color:#a8dadc;border:1px solid #a8dadc44">Sandhill</div>
-      <h3><a href="https://www.sandhill.io/p/278-request-for-startups-infra-roadmap" target="_blank" rel="noopener">VC 트렌드, 스타트업 요청 분석</a></h3>
-      <p class="card-source">#278 | Request for Startups, Infra Roadmap, & more</p>
-      <div class="card-section">
-        <div class="card-section-label">핵심 내용</div>
-        <p>Sandhill의 최신 뉴스레터는 Primary, Bessemer, DCVC, Maveron 등 주요 벤처캐피탈의 4월 5일자 동향을 다룹니다. 특히 'Request for Startups(RFS)'와 '인프라 로드맵' 등 스타트업 창업 및 투자에 중요한 주제들이 포함되어 있습니다.</p>
-      </div>
-      <div class="card-section">
-        <div class="card-section-label">왜 중요한지</div>
-        <p>이는 주요 VC들이 주목하는 투자 관심사와 미래 기술 방향성을 직접적으로 보여주며, 글로벌 테크 및 AI 경제의 다음 물결을 예측하는 데 중요합니다. 새로운 스타트업 기회와 인프라 발전에 대한 인사이트를 제공하여 산업의 진화를 가늠하게 합니다.</p>
-      </div>
-      <div class="card-section insight">
-        <div class="card-section-label">🦊 우석 입장 인사이트</div>
-        <p>우석님께서는 VC들의 'Request for Startups'를 통해 BOOL 비즈니스 확장 또는 OpenClaw와 연계할 수 있는 자동화 및 인프라 기회를 발굴할 수 있습니다. 인프라 로드맵은 BOOL의 생산 및 유통 최적화와 OpenClaw의 자동화 솔루션 적용 분야를 모색하는 데 실질적인 단서를 제공할 것입니다.</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="tag" style="background:#2a1e00;color:#ffd166;border:1px solid #ffd16644">Chamath</div>
-      <h3><a href="https://chamath.substack.com/p/what-i-read-this-week-178" target="_blank" rel="noopener">제약 M&A, AI 무역 성장세 주목</a></h3>
-      <p class="card-source">$18B in pharma deals and AI 40% trade growth</p>
-      <div class="card-section">
-        <div class="card-section-label">핵심 내용</div>
-        <p>최근 Chamath의 주간 요약에 따르면, 제약 분야에서 180억 달러 규모의 딜이 성사되었으며, AI 관련 무역이 40% 성장하는 추세가 나타났습니다. 이는 특정 섹터의 활발한 M&A와 AI 기술이 경제 전반에 미치는 영향력을 보여줍니다.</p>
-      </div>
-      <div class="card-section">
-        <div class="card-section-label">왜 중요한지</div>
-        <p>180억 달러 규모의 제약 M&A는 바이오 및 헬스케어 기술 투자의 활성화를 의미하며, 이는 장기적인 경제 성장 동력과 연결됩니다. 또한 AI 관련 무역의 40% 성장은 AI 기술이 실제 산업과 경제에 광범위하게 통합되고 있음을 보여주는 핵심 지표입니다.</p>
-      </div>
-      <div class="card-section insight">
-        <div class="card-section-label">🦊 우석 입장 인사이트</div>
-        <p>제약 M&A 규모는 헬스케어 관련 소비재 시장의 투자 심리 변화를 예측하는 단서가 될 수 있으며, BOOL 비즈니스의 장기 전략 수립에 참고할 만합니다. 40%에 달하는 AI 무역 성장은 OpenClaw를 통한 물류 및 유통 자동화의 중요성을 더욱 강조하며, 이는 BOOL의 운영 효율화와 직결됩니다.</p>
-      </div>
-    </div>
-  <div class="big-picture">
-    <div class="bp-label">🦊 Big Picture — claw 의견</div>
-    <p>우석님, 오늘 아침 브리핑을 쓱 훑어보니 역시나 AI가 모든 흐름의 중심에 있네요. GPT-5.4 같은 새 모델 발표부터 에이전트 개발, 코드베이스 학습까지 기술 발전 속도는 정말 무섭지만, Claude의 요금 정책 변화나 트럼프 연설 후 증시 변동성, 그리고 1511원대 환율을 보면 단순히 기술만 좇을 수는 없는 상황이에요. 뜨거운 AI 파도 속에서도 실용적인 비즈니스 모델과 외부 환경 변화에 대한 민첩한 대응이 그 어느 때보다 중요해 보입니다. 지금은 새로운 기술을 주시하면서도 빠르게 변하는 시장 상황과 비용 효율성을 잊지 말고 균형을 잡아야 할 때입니다!</p>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">USIKCLAW MORNING BRIEFING</span>
+    <span class="ticker-item">2026-04-07 화요일</span>
+    <span class="ticker-item">USD/KRW <strong>1511.1</strong>원</span>
+    <span class="ticker-item">100엔 <strong>946.2</strong>원</span>
+    <span class="ticker-item">BOOL KOREA</span>
+    <span class="ticker-item">USIKCLAW MORNING BRIEFING</span>
+    <span class="ticker-item">2026-04-07 화요일</span>
+    <span class="ticker-item">USD/KRW <strong>1511.1</strong>원</span>
+    <span class="ticker-item">100엔 <strong>946.2</strong>원</span>
+    <span class="ticker-item">BOOL KOREA</span>
   </div>
 </div>
-<div class="footer">BOOL Korea · usikclaw · 2026-04-07 자동 생성</div>
+
+<header class="masthead">
+  <div class="masthead-left">
+    <div class="masthead-label">Daily Intelligence · 2026-04-07</div>
+    <h1>Morning<br><em>Briefing</em></h1>
+  </div>
+  <div class="masthead-right">
+    <div class="masthead-date">화요일, 2026년 4월 7일</div>
+    <div class="masthead-rates">
+      <div class="rate">USD/KRW <span>1,511.1원</span></div>
+      <div class="rate">100엔 <span>946.2원</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <main>
+    <div class="lead">
+      <div class="lead-eyebrow">🦊 Today's Perspective</div>
+      <div class="lead-headline">우석님, 좋은 아침입니다! 오늘 소식들을 종합해보니, AI 기술의 발전 속도가 정말 무섭도록 가속화되고 있어요. GPT-5.4 공개와 오픈소스 에이전트 개발 가속화는 물론, 경쟁사들의 요금 인상과 고객 피드백 직결 사례에서 보듯, 이제는 '얼마나 강력한 AI를 빠르게 시장에 투입하고 고객 가치로 연결하느냐'가 핵심 경쟁력이 된 것 같아요.</div>
+      <div class="lead-body">우석님, 좋은 아침입니다! 오늘 소식들을 종합해보니, AI 기술의 발전 속도가 정말 무섭도록 가속화되고 있어요. GPT-5.4 공개와 오픈소스 에이전트 개발 가속화는 물론, 경쟁사들의 요금 인상과 고객 피드백 직결 사례에서 보듯, 이제는 '얼마나 강력한 AI를 빠르게 시장에 투입하고 고객 가치로 연결하느냐'가 핵심 경쟁력이 된 것 같아요. 여기에 트럼프 연설 이후 증시와 1511.1원의 높은 환율이 보여주듯 거시 경제 환경의 변동성까지 고려하면, 우리 전략도 기술 개발 속도만큼이나 신속하고 유연하게 가져가야 할 시점입니다.</div>
+    </div>
+
+    <div class="section-head">
+      <div class="section-head-label">Sources & Analysis</div>
+      <div class="section-head-line"></div>
+    </div>
+
+    <div class="articles">
+      
+    <div class="article" id="s1">
+      <div class="article-num">01</div>
+      <div>
+        <div class="article-source">
+          <span class="source-tag" style="color:#1a3a5c;border-color:#1a3a5c">OpenAI 뉴스</span>
+          
+        </div>
+        <h2><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5pVFJudEpXa0E2TVFHUklhTjJ5RlNZV3FIWWpqazZCM0FYeVVWWFp6aHpCRVU4a2RQVFNDUGdYQlNPTE1BWmNXWW15TXZ5cXQtbGxqdnlOVHdBaHMxMEUtMA?oc=5" target="_blank" rel="noopener">OpenAI, GPT-5.4 공개</a></h2>
+        <div class="article-meta">GPT-5.4를 소개합니다 - OpenAI</div>
+        <div class="subhead">핵심 내용</div>
+        <div class="article-body">OpenAI가 차세대 대규모 언어 모델인 GPT-5.4를 공식 발표했습니다. 이번 버전은 기존 모델 대비 성능이 크게 향상되었으며, 추론 능력, 처리 속도, 다중 모드 지원 등 여러 면에서 진전을 보인 것으로 예상됩니다.</div>
+        <div class="subhead">왜 중요한지</div>
+        <div class="article-body">GPT-5.4의 출시는 인공지능 기술의 최전선을 한 단계 끌어올리며, 다양한 산업 분야에 걸쳐 생산성 향상과 새로운 서비스 창출을 가속화할 것입니다. 이는 AI 기술 경쟁의 심화를 예고하며, 기술 생태계 전반에 중대한 변화를 가져올 핵심 동력이 될 것으로 평가됩니다.</div>
+        <div class="insight-block">
+          <div class="subhead">🦊 우석 입장 인사이트</div>
+          <div class="article-body">우석님께 GPT-5.4는 BOOL 비즈니스의 마케팅 및 고객 응대 자동화 수준을 한 차원 높이는 기회가 될 수 있습니다. 더불어 OpenClaw를 활용한 복잡한 데이터 분석과 개인 투자 결정에 필요한 시장 분석 인사이트 도출에 매우 유용할 것입니다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="article" id="s2">
+      <div class="article-num">02</div>
+      <div>
+        <div class="article-source">
+          <span class="source-tag" style="color:#7b2d8b;border-color:#7b2d8b">Anthropic 뉴스</span>
+          
+        </div>
+        <h2><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBmbXdZYWNWdnh0VldmUVg4dDZfc1ZoZEpEVlJ1SUx6N2Rod0tvMXQ2Tm5Oc2d4MmdiNWVFd2dMejNka21EZm16S1AzajJLWlU?oc=5" target="_blank" rel="noopener">앤트로픽 클로드 코드 요금 인상</a></h2>
+        <div class="article-meta">Anthropic, Claude Code 요금 정책 변경... 서드파티 도구 사용 비용 증가한다 - devtimes.co.kr</div>
+        <div class="subhead">핵심 내용</div>
+        <div class="article-body">앤트로픽이 클로드(Claude)의 코드 요금 정책을 변경합니다. 이번 변경으로 클로드에서 서드파티 도구를 사용하는 비용이 인상될 예정입니다. 이는 클로드를 외부 기능과 연동하여 자동화된 워크플로우를 구축하는 개발자들의 운영 비용 증가로 이어질 수 있습니다.</div>
+        <div class="subhead">왜 중요한지</div>
+        <div class="article-body">이번 요금 변경은 클로드 기반 AI 서비스를 개발하는 기업 및 개발자들에게 직접적인 비용 부담으로 작용합니다. 이는 AI 모델 활용 전략 및 재정적 지속 가능성에 영향을 미치며, AI 생태계 내 경쟁 구도에도 변화를 가져올 수 있습니다.</div>
+        <div class="insight-block">
+          <div class="subhead">🦊 우석 입장 인사이트</div>
+          <div class="article-body">BOOL 비즈니스의 마케팅, 고객 서비스 등 자동화 과정에 클로드를 활용하고 있다면, 서드파티 툴 연동 비용 증가는 운영 비용 상승으로 이어질 수 있습니다. 이는 OpenClaw와 같은 자동화 솔루션 구축 시 클로드 대신 다른 LLM을 고려하거나, 효율적인 툴 연동 전략 재검토가 필요함을 시사합니다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="article" id="s3">
+      <div class="article-num">03</div>
+      <div>
+        <div class="article-source">
+          <span class="source-tag" style="color:#1a5c3a;border-color:#1a5c3a">AI 테크 트렌드</span>
+          
+        </div>
+        <h2><a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxNazFKbDVTcXh6VUtxbS1uVFRjdDNGOVMtczlvczNkODZhQmc0U2F6VWJOSDJHem9HVmRaUjJ5M2xjSWFEUGNNdlhkbUc4aHYxakhDMnlmeS1sZFZ4aldqSGhCQ2F5Ynlucm5saDNlQkhWVzN1a2FSb1U5SktCbVFFMDRkZUctV1I5R3dDY2hJWjg1YjhV?oc=5" target="_blank" rel="noopener">Gemini 에이전트, 오픈소스 개발 가속</a></h2>
+        <div class="article-meta">Google Gemini 및 오픈소스 프레임워크를 이용한 에이전트 제작 - blog.google</div>
+        <div class="subhead">핵심 내용</div>
+        <div class="article-body">Google이 Gemini 모델과 LangChain, LlamaIndex 같은 오픈소스 프레임워크를 활용하여 AI 에이전트를 제작하는 방법을 발표했습니다. 이는 개발자들이 LLM 기반의 복잡한 작업 자동화 에이전트를 더 쉽고 효율적으로 구축할 수 있도록 지원하는 데 목적이 있습니다. 해당 가이드라인은 AI 에이전트 개발 접근성을 높여 다양한 산업에서의 활용을 촉진할 것으로 기대됩니다.</div>
+        <div class="subhead">왜 중요한지</div>
+        <div class="article-body">AI 에이전트는 반복적이고 복잡한 작업을 자율적으로 수행하며 기업의 생산성과 효율성을 혁신할 핵심 기술입니다. 오픈소스 프레임워크와의 결합은 기술 장벽을 낮추고 개발 비용을 절감하여 AI 기술의 대중화 및 신규 비즈니스 모델 창출에 결정적인 역할을 할 것입니다.</div>
+        <div class="insight-block">
+          <div class="subhead">🦊 우석 입장 인사이트</div>
+          <div class="article-body">BOOL 비즈니스 운영자로서, Gemini 및 오픈소스 에이전트 활용은 고객 지원 자동화, 공급망 관리 최적화, 혹은 시장 트렌드 분석 등 운영 효율성을 극대화할 기회입니다. OpenClaw와 같은 기존 자동화 시스템에 에이전트 기능을 접목하여 더 지능적인 의사결정 및 업무 흐름을 구축하고, 개인 투자 및 경제 동향 분석에도 활용하여 정보 수집과 인사이트 도출을 자동화하는 방안을 모색해야 합니다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="article" id="s4">
+      <div class="article-num">04</div>
+      <div>
+        <div class="article-source">
+          <span class="source-tag" style="color:#c0392b;border-color:#c0392b">경제 매크로</span>
+          
+        </div>
+        <h2><a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE0wdlFoRldsaFNiRjVEOXNFQUhCR2lsWDNmcVRkZ2QtNGJoYWFWbmt6R0w4dDZDZmNueGdmUU1XYnhmVFhraFRmWlVhOE1pWEVvZUFF?oc=5" target="_blank" rel="noopener">트럼프 연설 후 증시 환율 급변</a></h2>
+        <div class="article-meta">KOSPI and FX rate show strong volatility after Trump’s address to the nation - A</div>
+        <div class="subhead">핵심 내용</div>
+        <div class="article-body">트럼프 전 대통령의 대국민 연설 이후 한국의 코스피(KOSPI) 지수와 원/달러 환율이 강한 변동성을 보였습니다. 이는 연설 내용이 금융 시장의 불확실성을 키우며 투자 심리에 즉각적인 영향을 미쳤음을 나타냅니다.</div>
+        <div class="subhead">왜 중요한지</div>
+        <div class="article-body">이러한 거시 경제의 불확실성과 환율 변동성은 기술 기업의 자금 조달 환경과 수출입 마진에 직접적인 영향을 미칩니다. 시장의 불안정성은 AI 및 테크 분야 신규 투자 심리를 위축시키거나, 반대로 특정 기술 수요를 촉진하는 요인이 될 수 있습니다.</div>
+        <div class="insight-block">
+          <div class="subhead">🦊 우석 입장 인사이트</div>
+          <div class="article-body">BOOL 비즈니스의 원자재 수입 또는 향후 해외 시장 확장을 고려할 때, 예측 불가능한 환율 변동은 원가 경쟁력과 가격 책정에 중요한 영향을 미치므로 면밀한 모니터링이 필요합니다. 개인 투자 관점에서는 이러한 급격한 시장 변동이 새로운 투자 기회를 창출하거나, 기존 포트폴리오의 리스크를 재평가하고 조정할 필요성을 시사합니다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="article" id="s5">
+      <div class="article-num">05</div>
+      <div>
+        <div class="article-source">
+          <span class="source-tag" style="color:#5c3a1a;border-color:#5c3a1a">Lenny's</span>
+          
+        </div>
+        <h2><a href="https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-i-gave-claude" target="_blank" rel="noopener">Claude 코드 전체 학습, 고객 피드백 직결</a></h2>
+        <div class="article-meta">🎙️ This week on How I AI: I gave Claude Code our entire codebase. Our customers </div>
+        <div class="subhead">핵심 내용</div>
+        <div class="article-body">AI 팟캐스트 'How I AI'에서 한 기업이 Claude Code에 자사 전체 코드베이스를 학습시킨 사례가 소개되었습니다. 이 실험은 고객들이 서비스 변화를 즉시 인지할 정도로 직접적인 영향을 미쳤습니다.</div>
+        <div class="subhead">왜 중요한지</div>
+        <div class="article-body">AI가 실제 서비스 개발 코드베이스에 직접 적용되어 고객 경험에 즉각적인 영향을 미쳤음을 보여줍니다. 이는 AI 도입 시 개발 효율성 증대와 사용자 피드백 관리의 중요성을 시사합니다.</div>
+        <div class="insight-block">
+          <div class="subhead">🦊 우석 입장 인사이트</div>
+          <div class="article-body">우석님은 OpenClaw 자동화 시 AI 활용 가능성을 깊이 탐색할 수 있습니다. 기존 스크립트나 코드베이스를 Claude 같은 AI에 학습시켜 최적화, 버그 탐색, 신규 기능 제안 등 개발 생산성을 획기적으로 높일 기회입니다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="article" id="s6">
+      <div class="article-num">06</div>
+      <div>
+        <div class="article-source">
+          <span class="source-tag" style="color:#1a4a5c;border-color:#1a4a5c">Sandhill</span>
+          
+        </div>
+        <h2><a href="https://www.sandhill.io/p/278-request-for-startups-infra-roadmap" target="_blank" rel="noopener">VC, 스타트업/인프라 동향</a></h2>
+        <div class="article-meta">#278 | Request for Startups, Infra Roadmap, & more</div>
+        <div class="subhead">핵심 내용</div>
+        <div class="article-body">Sandhill 278호는 Primary, Bessemer 등 주요 벤처캐피탈(VC)의 최신 투자 동향을 다룹니다. 특히, VC들이 적극적으로 찾는 스타트업 분야와 인프라 기술 로드맵에 대한 인사이트를 제공하며, 투자자들의 관심사를 보여줍니다.</div>
+        <div class="subhead">왜 중요한지</div>
+        <div class="article-body">주요 VC들의 '스타트업 투자 요청(RFS)'은 AI/테크 분야의 다음 성장 동력과 투자처를 명확히 제시합니다. 또한, '인프라 로드맵'은 AI 및 신기술 발전을 위한 핵심 기반 기술의 방향성을 보여주며, 향후 경제 전반의 기술 혁신 흐름을 예측하게 합니다.</div>
+        <div class="insight-block">
+          <div class="subhead">🦊 우석 입장 인사이트</div>
+          <div class="article-body">VC들의 '스타트업 투자 요청'은 BOOL 비즈니스의 성장 기회를 모색하거나 OpenClaw 자동화 솔루션을 확장할 새로운 시장 니즈를 파악하는 데 중요합니다. 특히 '인프라 로드맵'은 OpenClaw의 자동화 기술 발전 방향과 BOOL 비즈니스의 제조 및 유통 혁신을 위한 핵심 기술 트렌드를 예측하는 데 유용하며, 개인 투자 관점에서도 미래 유망 섹터를 짚어볼 수 있습니다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="article" id="s7">
+      <div class="article-num">07</div>
+      <div>
+        <div class="article-source">
+          <span class="source-tag" style="color:#3a3a1a;border-color:#3a3a1a">Chamath</span>
+          
+        </div>
+        <h2><a href="https://chamath.substack.com/p/what-i-read-this-week-178" target="_blank" rel="noopener">AI 무역 40% 성장 및 제약 M&A</a></h2>
+        <div class="article-meta">$18B in pharma deals and AI 40% trade growth</div>
+        <div class="subhead">핵심 내용</div>
+        <div class="article-body">Chamath Palihapitiya는 최근 주목할 만한 내용으로 제약 분야의 180억 달러 규모 거래와 AI 관련 무역의 40% 성장을 강조했습니다. 이는 헬스케어 산업의 활발한 M&A와 인공지능 기술이 견인하는 경제적 파급 효과가 주요 글로벌 트렌드임을 시사합니다.</div>
+        <div class="subhead">왜 중요한지</div>
+        <div class="article-body">AI 관련 무역의 40% 성장은 인공지능이 글로벌 경제의 핵심 동력으로 부상하며 산업 전반에 걸쳐 혁신과 새로운 시장 창출을 가속화하고 있음을 증명합니다. 동시에 제약 분야의 대규모 M&A는 바이오 및 헬스케어 산업의 재편과 기술 융합 투자의 중요성을 보여주며 거시 경제에 중요한 영향을 미칩니다.</div>
+        <div class="insight-block">
+          <div class="subhead">🦊 우석 입장 인사이트</div>
+          <div class="article-body">AI 무역의 급성장은 BOOL 니코틴 파우치 비즈니스의 공급망 효율화 및 OpenClaw를 통한 마케팅 자동화 고도화에 필요한 AI 기반 솔루션 도입 기회를 확대할 것입니다. 또한, 개인 투자 관점에서 AI 관련 기술 기업 및 바이오 헬스케어 분야의 자본 이동을 파악하여 미래 성장 동력을 탐색하는 데 유용한 지표가 될 수 있습니다.</div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </main>
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Exchange Rates</div>
+      <div class="sidebar-rate-row"><span class="sidebar-rate-val">1,511.1</span><span class="sidebar-rate-label">USD / KRW</span></div>
+      <div class="sidebar-rate-row"><span class="sidebar-rate-val">946.2</span><span class="sidebar-rate-label">100 JPY / KRW</span></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Today's Sources</div>
+      <div class="toc-item"><span class="toc-num">01</span><a class="toc-link" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5pVFJudEpXa0E2TVFHUklhTjJ5RlNZV3FIWWpqazZCM0FYeVVWWFp6aHpCRVU4a2RQVFNDUGdYQlNPTE1BWmNXWW15TXZ5cXQtbGxqdnlOVHdBaHMxMEUtMA?oc=5" target="_blank">[OpenAI 뉴스] OpenAI, GPT-5.4 공개</a></div>
+<div class="toc-item"><span class="toc-num">02</span><a class="toc-link" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBmbXdZYWNWdnh0VldmUVg4dDZfc1ZoZEpEVlJ1SUx6N2Rod0tvMXQ2Tm5Oc2d4MmdiNWVFd2dMejNka21EZm16S1AzajJLWlU?oc=5" target="_blank">[Anthropic 뉴스] 앤트로픽 클로드 코드 요금 인상</a></div>
+<div class="toc-item"><span class="toc-num">03</span><a class="toc-link" href="https://news.google.com/rss/articles/CBMilAFBVV95cUxNazFKbDVTcXh6VUtxbS1uVFRjdDNGOVMtczlvczNkODZhQmc0U2F6VWJOSDJHem9HVmRaUjJ5M2xjSWFEUGNNdlhkbUc4aHYxakhDMnlmeS1sZFZ4aldqSGhCQ2F5Ynlucm5saDNlQkhWVzN1a2FSb1U5SktCbVFFMDRkZUctV1I5R3dDY2hJWjg1YjhV?oc=5" target="_blank">[AI 테크 트렌드] Gemini 에이전트, 오픈소스 개발 가속</a></div>
+<div class="toc-item"><span class="toc-num">04</span><a class="toc-link" href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE0wdlFoRldsaFNiRjVEOXNFQUhCR2lsWDNmcVRkZ2QtNGJoYWFWbmt6R0w4dDZDZmNueGdmUU1XYnhmVFhraFRmWlVhOE1pWEVvZUFF?oc=5" target="_blank">[경제 매크로] 트럼프 연설 후 증시 환율 급변</a></div>
+<div class="toc-item"><span class="toc-num">05</span><a class="toc-link" href="https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-i-gave-claude" target="_blank">[Lenny's] Claude 코드 전체 학습, 고객 피드백 직결</a></div>
+<div class="toc-item"><span class="toc-num">06</span><a class="toc-link" href="https://www.sandhill.io/p/278-request-for-startups-infra-roadmap" target="_blank">[Sandhill] VC, 스타트업/인프라 동향</a></div>
+<div class="toc-item"><span class="toc-num">07</span><a class="toc-link" href="https://chamath.substack.com/p/what-i-read-this-week-178" target="_blank">[Chamath] AI 무역 40% 성장 및 제약 M&A</a></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">About</div>
+      <div class="sidebar-body">
+        claw의 매일 아침 브리핑.
+        주요 스타트업 뉴스, AI 트렌드, 경제 지표를
+        우석 관점으로 요약합니다.
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <span>USIKCLAW &mdash; BOOL KOREA</span>
+  <span>2026-04-07 자동 생성</span>
+</footer>
+
 </body>
 </html>
