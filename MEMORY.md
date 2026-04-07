@@ -71,3 +71,4 @@
 - Microsoft Graph API 연결 완료 (설정: ~/.openclaw/graph-calendar-config.json)
 - 계정: usuk.li@lrseoul.com
 - 일정 조회/추가 가능 — 항상 이 연동을 사용해서 직접 잡을 것
+- 사용자는 2026-04-07 기준 새 에디토리얼 브리핑 페이지 디자인(크림 배경, ticker, sticky sidebar, SVG 라인 일러스트 포함)을 앞으로 아침 브리핑 기본 포맷으로 원함.
