@@ -13,6 +13,14 @@ import json, ssl, subprocess, sys, urllib.request, urllib.parse
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+import importlib.util as _ilu
+
+# briefing_template.py 로드 (build_html 대체)
+_tpl_path = Path(__file__).parent / "briefing_template.py"
+_spec = _ilu.spec_from_file_location("briefing_template", _tpl_path)
+_tpl = _ilu.module_from_spec(_spec)
+_spec.loader.exec_module(_tpl)
+build_html = _tpl.build_html
 
 ctx = ssl.create_default_context()
 KST = timezone(timedelta(hours=9))
@@ -183,128 +191,6 @@ def make_big_picture(items_analyzed: list, rates: dict, key: str) -> str:
         return gemini(prompt, key)
     except Exception as e:
         return f"오늘 브리핑 분석 중 오류가 발생했습니다: {e}"
-
-# ─── HTML 빌드 ────────────────────────────────────────
-CAT_COLORS = {
-    "OpenAI":       ("#63d2ff", "#0a1a2a"),
-    "Anthropic":    ("#b388ff", "#1a0a2a"),
-    "Builder Josh": ("#58d68d", "#0a2a1a"),
-    "Species":      ("#ffbf69", "#2a1a0a"),
-    "Lenny's":      ("#ff8fab", "#2a0a10"),
-    "Sandhill":     ("#a8dadc", "#0a1a1a"),
-    "Chamath":      ("#ffd166", "#2a1e00"),
-}
-
-def build_html(date_str, rates, items_analyzed, big_picture):
-    now = datetime.now(KST)
-    weekday = WEEKDAY_KO[now.weekday()]
-    usd = rates.get("usd_krw")
-    jpy = rates.get("jpy_100")
-
-    rate_badges = ""
-    if usd:
-        rate_badges += f'<span class="rate-badge">USD/KRW {usd:,.1f}원</span>'
-    if jpy:
-        rate_badges += f'<span class="rate-badge">100엔 {jpy:,.1f}원</span>'
-
-    cards_html = ""
-    for item in items_analyzed:
-        color, bg = CAT_COLORS.get(item["source"], ("#aaa", "#1a1a1a"))
-        cards_html += f"""
-    <div class="card">
-      <div class="tag" style="background:{bg};color:{color};border:1px solid {color}44">{item['source']}</div>
-      <h3><a href="{item['link']}" target="_blank" rel="noopener">{item['headline']}</a></h3>
-      <p class="card-source">{item['title'][:80]}{(' &nbsp;·&nbsp; <span class="pub-date">' + item.get('pub','') + '</span>') if item.get('pub') else ''}</p>
-      <div class="card-section">
-        <div class="card-section-label">핵심 내용</div>
-        <p>{item['summary']}</p>
-      </div>
-      <div class="card-section">
-        <div class="card-section-label">왜 중요한지</div>
-        <p>{item['why_matters']}</p>
-      </div>
-      <div class="card-section insight">
-        <div class="card-section-label">🦊 우석 입장 인사이트</div>
-        <p>{item['usuk_insight']}</p>
-      </div>
-    </div>"""
-
-    # Big Picture에서 첫 두 문장 추출 (intro용)
-    bp_sentences = big_picture.split(". ")
-    intro = ". ".join(bp_sentences[:2]) + ("." if len(bp_sentences) > 1 else "")
-
-    return f"""<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Morning Briefing — {date_str}</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
-<style>
-*{{box-sizing:border-box;margin:0;padding:0}}
-:root{{
-  --bg:#0a0c12;--bg2:#111724;--bg3:#171e30;
-  --border:rgba(255,255,255,0.08);
-  --text:#edf2ff;--muted:#8892a4;
-}}
-body{{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.72}}
-a{{color:inherit;text-decoration:none}}
-.hero{{
-  padding:64px 24px 44px;text-align:center;border-bottom:1px solid var(--border);
-  background:linear-gradient(160deg,#0b1020 0%,#12122a 52%,#0a0c12 100%);
-}}
-.hero .emoji{{font-size:36px;display:block;margin-bottom:12px}}
-.hero .label{{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}}
-.hero h1{{font-size:34px;font-weight:800;color:#fff;letter-spacing:-0.4px}}
-.date-badge{{display:inline-block;margin-top:14px;padding:7px 16px;border-radius:999px;background:rgba(99,210,255,0.12);border:1px solid rgba(99,210,255,0.22);color:#aeeaff;font-size:13px}}
-.hero .sub{{margin-top:12px;font-size:15px;color:var(--muted)}}
-.rate-row{{margin-top:12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}}
-.rate-badge{{padding:5px 12px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);font-size:13px;color:#d8deeb}}
-.container{{max-width:900px;margin:0 auto;padding:42px 24px 96px}}
-.summary{{background:var(--bg2);border:1px solid var(--border);border-radius:22px;padding:26px;margin-bottom:34px}}
-.summary h2{{font-size:12px;color:#b8cbff;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}}
-.summary p{{color:#d8deeb;font-size:15px;line-height:1.8}}
-.card{{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:24px;margin-bottom:16px}}
-.tag{{display:inline-block;padding:5px 10px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:12px}}
-.card h3{{font-size:20px;line-height:1.4;color:#fff;letter-spacing:-0.2px;margin-bottom:6px}}
-.card h3 a:hover{{color:#63d2ff}}
-.card-source{{font-size:12px;color:var(--muted);margin-bottom:14px}}
-.pub-date{{color:#63d2ff;font-weight:600}}
-.card-section{{margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}}
-.card-section-label{{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}}
-.card-section p{{font-size:14px;color:#c8d4e8;line-height:1.72}}
-.card-section.insight{{background:rgba(99,210,255,0.04);border:1px solid rgba(99,210,255,0.1);border-radius:10px;padding:12px 14px;margin-top:12px}}
-.card-section.insight .card-section-label{{color:#63d2ff}}
-.card-section.insight p{{color:#d8eeff}}
-.big-picture{{background:var(--bg3);border:1px solid rgba(255,255,255,0.12);border-radius:22px;padding:28px;margin-top:40px}}
-.big-picture .bp-label{{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#b8cbff;margin-bottom:14px}}
-.big-picture p{{font-size:15px;color:#d8deeb;line-height:1.8}}
-.footer{{margin-top:60px;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:24px}}
-</style>
-</head>
-<body>
-<div class="hero">
-  <span class="emoji">🌅</span>
-  <div class="label">Morning Briefing</div>
-  <h1>오늘의 브리핑</h1>
-  <div class="date-badge">{date_str} ({weekday}요일)</div>
-  <div class="hero sub">{intro}</div>
-  <div class="rate-row">{rate_badges}</div>
-</div>
-<div class="container">
-  <div class="summary">
-    <h2>오늘 먼저 볼 것</h2>
-    <p>{big_picture}</p>
-  </div>
-  {cards_html}
-  <div class="big-picture">
-    <div class="bp-label">🦊 Big Picture — claw 의견</div>
-    <p>{big_picture}</p>
-  </div>
-</div>
-<div class="footer">BOOL Korea · usikclaw · {date_str} 자동 생성</div>
-</body>
-</html>"""
 
 # ─── GitHub Pages 푸시 ────────────────────────────────
 def push_to_github(html, date_str):
