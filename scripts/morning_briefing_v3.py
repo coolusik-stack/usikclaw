@@ -142,6 +142,16 @@ SOURCES = {
     "Chamath":       "https://chamath.substack.com/feed",
 }
 
+SOURCE_KEYWORDS = {
+    "OpenAI 뉴스": ["openai", "chatgpt", "gpt"],
+    "Anthropic 뉴스": ["anthropic", "claude"],
+    "AI 테크 트렌드": ["gemini", "agent", "llm", "ai"],
+    "경제 매크로": ["usd", "krw", "환율", "금리", "경기", "무역", "deal"],
+    "Lenny's": ["lenny", "creative", "product", "startup"],
+    "Sandhill": ["sandhill", "request for startups", "infra"],
+    "Chamath": ["chamath", "all in", "substack", "housing", "pharma", "trade"],
+}
+
 def collect_items(target_date=None):
     """전날(KST) 올라온 아이템만 소스별 1개 수집"""
     if target_date is None:
@@ -159,30 +169,43 @@ def collect_items(target_date=None):
                         matched.append(item)
                 except Exception:
                     pass
-        if matched:
-            collected[name] = matched[0]
-            source_statuses.append({"source": name, "status": "updated", "title": matched[0]["title"][:80]})
-            print(f"  [{name}] 전날 기사 채택: {matched[0]['title'][:60]}", file=sys.stderr)
+        filtered = []
+        keys = [k.lower() for k in SOURCE_KEYWORDS.get(name, [])]
+        for item in matched:
+            blob = f"{item.get('title','')} {item.get('desc','')} {item.get('source','')}".lower()
+            if not keys or any(k in blob for k in keys):
+                filtered.append(item)
+        if filtered:
+            collected[name] = filtered[0]
+            source_statuses.append({"source": name, "status": "updated", "title": filtered[0]["title"][:80]})
+            print(f"  [{name}] 전날 기사 채택: {filtered[0]['title'][:60]}", file=sys.stderr)
         else:
             source_statuses.append({"source": name, "status": "none", "title": "업데이트 없음"})
-            print(f"  [{name}] 전날 기사 없음", file=sys.stderr)
+            if matched:
+                print(f"  [{name}] 전날 기사 있었지만 소스 기준 미달", file=sys.stderr)
+            else:
+                print(f"  [{name}] 전날 기사 없음", file=sys.stderr)
     return collected, source_statuses
 
 def _fallback_item(name: str, item: dict) -> dict:
     title = item['title']
     desc = (item.get('desc') or '').strip()
-    headline = title.split(' - ')[0].strip()[:36]
-    summary = (desc[:180].strip() if desc else title).strip()
+    headline = title.split(' - ')[0].strip()[:42]
+    summary = (desc[:340].strip() if desc else title).strip()
     if not summary:
         summary = title
-    why = "전날 공개된 변화가 실제 운영 방식이나 비용 판단에 어떤 영향을 주는지 확인할 필요가 있습니다."
+    if summary and not summary.endswith('.'):
+        summary += '.'
+    if len(summary) < 120 and desc:
+        summary += ' 이번 업데이트가 실제로 어떤 맥락에서 나왔는지, 기존 흐름과 무엇이 달라졌는지를 함께 봐야 의미가 선명해집니다.'
+    why = "전날 공개된 변화가 실제 운영 방식이나 비용 판단에 어떤 영향을 주는지 확인할 필요가 있습니다. 단순 소식 소비보다, 도입 우선순위와 실행 타이밍 판단에 연결해서 봐야 합니다."
     if "가격" in title or "요금" in title or "cost" in title.lower():
         why = "가격이나 요금 정책 변화는 실제 도입 비용과 운영 판단에 바로 영향을 줍니다."
     elif "codebase" in title.lower() or "고객" in desc:
         why = "AI가 실제 운영과 고객 대응에 어떻게 연결되는지 보여주는 사례라 실무 참고 가치가 큽니다."
     elif "trade" in title.lower() or "deal" in title.lower() or "무역" in title or "제약" in title:
         why = "투자와 산업 흐름이 어디로 쏠리는지 보여줘 시장 판단의 참고점이 됩니다."
-    insight = "새 소식의 크기보다, 실제 비용과 운영 효율에 어떤 영향을 주는지부터 보는 편이 좋습니다."
+    insight = "새 소식의 크기보다, 실제 비용과 운영 효율에 어떤 영향을 주는지부터 보는 편이 좋습니다. 우석 기준에서는 브리핑, 영업, 자동화 흐름 어디에 바로 붙일 수 있는지까지 한 번 더 연결해서 보는 게 맞습니다."
     if "Claude" in title or "Anthropic" in title:
         insight = "우석 쪽 자동화도 모델 성능보다 실제 비용과 운영성 기준으로 판단하는 게 맞습니다."
     elif "codebase" in title.lower() or "고객" in desc:
@@ -207,6 +230,12 @@ def _validate_item(result: dict) -> bool:
     if any("<a " in x or "href=" in x for x in required):
         return False
     if any(x.strip().startswith("http") for x in required):
+        return False
+    if len(result.get("summary", "").strip()) < 110:
+        return False
+    if len(result.get("why_matters", "").strip()) < 55:
+        return False
+    if len(result.get("usuk_insight", "").strip()) < 55:
         return False
     if any(m in result.get("why_matters", "") for m in bad_markers):
         return False
@@ -241,15 +270,18 @@ def analyze_item(name: str, item: dict, key: str) -> dict:
 
 문체 규칙:
 - 자연스러운 한국어.
-- 짧고 단정하게.
+- 지나치게 짧게 줄이지 말 것.
 - 마케팅 문구처럼 쓰지 말 것.
+- summary는 최소 2문장, 가능하면 3문장으로 써라.
+- why_matters와 usuk_insight도 각각 최소 2문장으로 써라.
+- 독자가 기사 원문을 안 읽어도 핵심 맥락이 잡히게 써라.
 
 다음 JSON 형식으로만 응답:
 {{
-  "headline": "12~18자 한국어 한 줄 제목. 이번 업데이트의 본질이 드러나게.",
-  "summary": "핵심 내용 2문장. 이번에 새로 확인된 변화가 무엇인지 중심으로.",
-  "why_matters": "왜 중요한지 1~2문장. 업계/시장/운영 관점에서.",
-  "usuk_insight": "우석 입장 인사이트 1~2문장. 바로 연결되는 실무 판단이나 시사점."
+  "headline": "14~22자 한국어 한 줄 제목. 이번 업데이트의 본질이 드러나게.",
+  "summary": "핵심 내용 2~3문장. 이번에 새로 확인된 변화, 맥락, 의미를 충분히 담을 것.",
+  "why_matters": "왜 중요한지 2문장. 업계/시장/운영 관점에서 구체적으로.",
+  "usuk_insight": "우석 입장 인사이트 2문장. 바로 연결되는 실무 판단이나 다음 액션까지 암시."
 }}"""
 
     try:
