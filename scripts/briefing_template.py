@@ -81,8 +81,8 @@ def build_html(date_str, rates, items_analyzed, big_picture, source_statuses=Non
       --line:#e8e8e3;
       --line2:#ddddD6;
       --text:#111111;
-      --muted:#6f6f69;
-      --soft:#4c4c47;
+      --muted:#55554f;
+      --soft:#2f2f2b;
       --accent:#0f7a2f;
       --radius:22px;
     }
@@ -300,6 +300,7 @@ def build_html(date_str, rates, items_analyzed, big_picture, source_statuses=Non
       color:var(--muted);
       font-family:"JetBrains Mono", monospace;
       font-size:11px;
+      font-weight:600;
     }
     .toc-title{
       color:#252521;
@@ -320,7 +321,7 @@ def build_html(date_str, rates, items_analyzed, big_picture, source_statuses=Non
       letter-spacing:-.02em;
     }
     .note-body{
-      color:#343430;
+      color:#20201d;
       font-size:14px;
       line-height:1.75;
     }
