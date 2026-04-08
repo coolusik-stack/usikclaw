@@ -29,6 +29,18 @@
 - Batch 1
 - 우선 권역: 홍대/합정/상수, 신촌/이대, 성수
 - 목적: 300개 도달 전까지 검증 통과 후보를 계속 누적
+- 현재 단계: 브라우저 기반 네이버 지도 검증
+- 마지막 검증 시각(KST): 2026-04-09 05:08
+
+## 작업 지속 여부 검증 방법
+- 상태 파일: `generated/vape_500_progress.json`
+- 진행 요약: `generated/vape_500_progress.md`
+- 실제 반영본: `generated/vape_stores_seoul_template.csv`
+- 검증 기준:
+  1. `lastVerifiedAtKst`가 갱신되는지
+  2. `currentBatch.stage`가 진행되는지
+  3. CSV 총 개수가 늘어나는지
+  4. 배치 종료 시 사용자에게 메시지가 오는지
 
 ## 검증 규칙
 - 같은 전화번호가 기존 매장과 충돌하면 보류

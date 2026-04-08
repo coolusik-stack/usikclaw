@@ -1,0 +1,27 @@
+{
+  "project": "seoul_vape_500",
+  "status": "running",
+  "lastVerifiedAtKst": "2026-04-09 05:08",
+  "currentBatch": {
+    "name": "Batch 1",
+    "areas": ["홍대/합정/상수", "신촌/이대", "성수"],
+    "stage": "browser_verification"
+  },
+  "counts": {
+    "total": 280,
+    "phoneReady": 275,
+    "needsCheck": 5
+  },
+  "verification": {
+    "progressFile": "generated/vape_500_progress.md",
+    "csv": "generated/vape_stores_seoul_template.csv",
+    "browserProfile": "openclaw",
+    "browserStarted": true,
+    "proof": [
+      "progress tracker committed",
+      "browser opened on Naver Map search",
+      "Naver place/api response path confirmed"
+    ]
+  },
+  "nextProofPoint": "next verified additions reflected in CSV and reported to user"
+}
