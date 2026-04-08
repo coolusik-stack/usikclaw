@@ -1,15 +1,19 @@
 {
   "project": "seoul_vape_500",
   "status": "running",
-  "lastVerifiedAtKst": "2026-04-09 05:08",
+  "lastVerifiedAtKst": "2026-04-09 05:31",
   "currentBatch": {
     "name": "Batch 1",
-    "areas": ["홍대/합정/상수", "신촌/이대", "성수"],
-    "stage": "browser_verification"
+    "areas": [
+      "홍대/합정/상수",
+      "신촌/이대",
+      "성수"
+    ],
+    "stage": "csv_updated"
   },
   "counts": {
-    "total": 280,
-    "phoneReady": 275,
+    "total": 284,
+    "phoneReady": 279,
     "needsCheck": 5
   },
   "verification": {
@@ -20,8 +24,9 @@
     "proof": [
       "progress tracker committed",
       "browser opened on Naver Map search",
-      "Naver place/api response path confirmed"
+      "Naver place/api response path confirmed",
+      "4개 신규 후보 네이버 지도 검증 후 CSV 반영"
     ]
   },
-  "nextProofPoint": "next verified additions reflected in CSV and reported to user"
+  "nextProofPoint": "dashboard refresh after more verified additions"
 }
