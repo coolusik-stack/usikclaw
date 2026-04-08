@@ -1,17 +1,18 @@
 """
-briefing_template.py — Mono-Chromatic Precision briefing template
+briefing_template.py — Vercel-leaning mono precision briefing template
 """
 
 WEEKDAY_KO = ["월", "화", "수", "목", "금", "토", "일"]
 
 ACCENTS = {
-    "OpenAI 뉴스": "#9EFF00",
-    "Anthropic 뉴스": "#ff7a00",
-    "AI 테크 트렌드": "#9EFF00",
-    "경제 매크로": "#ff7a00",
-    "Lenny's": "#9EFF00",
-    "Sandhill": "#9EFF00",
-    "Chamath": "#ff7a00",
+    "OpenAI 뉴스": "#8BE26A",
+    "Anthropic 뉴스": "#8BE26A",
+    "AI 테크 트렌드": "#8BE26A",
+    "경제 매크로": "#8BE26A",
+    "Lenny's": "#8BE26A",
+    "Sandhill": "#8BE26A",
+    "Chamath": "#8BE26A",
+    "AI 뉴스": "#8BE26A",
 }
 
 
@@ -26,251 +27,260 @@ def build_html(date_str, rates, items_analyzed, big_picture):
     bp_sentences = big_picture.split(". ")
     intro = ". ".join(bp_sentences[:2]) + ("." if len(bp_sentences) > 1 else "")
 
-    rate_strip = []
+    rate_rows = []
     if usd:
-        rate_strip.append(f"USD/KRW {usd:,.1f}원")
+        rate_rows.append(("USD/KRW", f"{usd:,.1f}원"))
     if jpy:
-        rate_strip.append(f"100JPY/KRW {jpy:,.1f}원")
-    rate_strip_html = " · ".join(rate_strip)
+        rate_rows.append(("100JPY/KRW", f"{jpy:,.1f}원"))
 
     cards_html = ""
     toc_html = ""
     for i, item in enumerate(items_analyzed, 1):
-        accent = ACCENTS.get(item["source"], "#9EFF00")
+        accent = ACCENTS.get(item["source"], "#8BE26A")
         pub = item.get("pub", "")
         toc_html += (
-            f'<div class="toc-row"><span class="toc-index">{str(i).zfill(2)}</span>'
-            f'<span class="toc-text">{item["headline"]}</span></div>'
+            f'<div class="toc-row"><span class="toc-no">{str(i).zfill(2)}</span>'
+            f'<span class="toc-title">{item["headline"]}</span></div>'
         )
         cards_html += f'''
-        <article class="entry">
-          <div class="entry-kicker-row">
-            <span class="entry-kicker" style="color:{accent};border-color:{accent}">{item['source']}</span>
-            <span class="entry-date">{pub}</span>
+        <article class="card">
+          <div class="card-top">
+            <span class="chip" style="color:{accent};border-color:{accent}33;background:{accent}10">{item['source']}</span>
+            <span class="date">{pub}</span>
           </div>
           <h2>{item['headline']}</h2>
-          <div class="entry-meta">{item['title']}</div>
-          <div class="entry-grid">
-            <div class="entry-label">SUMMARY</div>
-            <div class="entry-body">{item['summary']}</div>
-            <div class="entry-label">WHY IT MATTERS</div>
-            <div class="entry-body">{item['why_matters']}</div>
-            <div class="entry-label insight">INSIGHT</div>
-            <div class="entry-body insight-body">{item['usuk_insight']}</div>
+          <div class="meta">{item['title']}</div>
+          <div class="body-grid">
+            <div class="label">SUMMARY</div>
+            <div class="body">{item['summary']}</div>
+            <div class="label">WHY IT MATTERS</div>
+            <div class="body">{item['why_matters']}</div>
+            <div class="label insight">INSIGHT</div>
+            <div class="body insight-body">{item['usuk_insight']}</div>
           </div>
-          <a class="entry-link" href="{item['link']}" target="_blank" rel="noopener">SOURCE ↗</a>
+          <a class="source-link" href="{item['link']}" target="_blank" rel="noopener">Open source ↗</a>
         </article>
         '''
+
+    sidebar_rates = "".join(
+        f'<div class="stat-row"><span>{k}</span><strong>{v}</strong></div>' for k, v in rate_rows
+    )
 
     css = '''
     *{box-sizing:border-box;margin:0;padding:0}
     :root{
       --bg:#050505;
-      --panel:#0d0d0d;
+      --panel:#0b0b0b;
       --panel2:#111111;
-      --line:#262626;
+      --line:#1f1f1f;
+      --line2:#2a2a2a;
       --text:#f5f5f5;
-      --muted:#8a8a8a;
-      --soft:#b3b3b3;
-      --lime:#9EFF00;
-      --orange:#ff7a00;
+      --muted:#9a9a9a;
+      --soft:#c9c9c9;
+      --accent:#8BE26A;
+      --radius:22px;
     }
     html{scroll-behavior:smooth}
     body{
-      font-family:Inter, Space Grotesk, Arial, sans-serif;
-      background:var(--bg);
+      font-family:Inter, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.04), transparent 36%),
+        linear-gradient(180deg, #040404 0%, #080808 100%);
       color:var(--text);
       min-height:100vh;
-      line-height:1.65;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
     }
     a{text-decoration:none;color:inherit}
-    .page{
-      width:min(1440px, calc(100vw - 40px));
-      margin:20px auto 60px;
-      border:1px solid var(--line);
-      background:linear-gradient(180deg,#050505 0%, #0a0a0a 100%);
-      position:relative;
-      overflow:hidden;
+    .wrap{
+      width:min(1400px, calc(100vw - 32px));
+      margin:18px auto 56px;
     }
-    .grid-lines::before,
-    .grid-lines::after{
-      content:"";
-      position:absolute;
-      top:0;bottom:0;
-      width:1px;
-      background:rgba(255,255,255,.06);
-      pointer-events:none;
-    }
-    .grid-lines::before{left:72px}
-    .grid-lines::after{right:320px}
     .topbar{
       display:flex;
       justify-content:space-between;
       gap:20px;
-      border-bottom:1px solid var(--line);
-      padding:12px 24px 12px 88px;
+      padding:12px 14px;
+      color:var(--muted);
       font-family:"JetBrains Mono", monospace;
       font-size:11px;
-      letter-spacing:.12em;
+      letter-spacing:.14em;
       text-transform:uppercase;
-      color:var(--soft);
+    }
+    .shell{
+      border:1px solid var(--line);
+      background:rgba(10,10,10,.92);
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
     }
     .hero{
       display:grid;
-      grid-template-columns:minmax(0,1fr) 280px;
-      gap:36px;
-      padding:32px 24px 32px 88px;
+      grid-template-columns:minmax(0,1fr) 300px;
+      gap:32px;
+      padding:46px 34px 34px;
       border-bottom:1px solid var(--line);
     }
-    .hero-left{min-width:0}
-    .hero-label{
+    .hero-kicker,
+    .section-kicker,
+    .label{
       font-family:"JetBrains Mono", monospace;
-      font-size:11px;
+      font-size:10px;
       letter-spacing:.18em;
       text-transform:uppercase;
-      color:var(--muted);
-      margin-bottom:16px;
     }
-    .hero h1{
-      font-size:clamp(52px, 8vw, 116px);
-      line-height:.86;
-      letter-spacing:-.07em;
+    .hero-kicker{color:var(--muted);margin-bottom:16px}
+    h1{
+      font-size:clamp(52px, 8vw, 96px);
+      line-height:.9;
+      letter-spacing:-.08em;
       font-weight:800;
-      max-width:9ch;
+      max-width:8ch;
       margin-bottom:18px;
     }
     .hero-intro{
-      max-width:62ch;
-      color:#d8d8d8;
       font-size:16px;
+      color:#dddddd;
+      max-width:64ch;
+      line-height:1.75;
     }
     .hero-side{
-      border-left:1px solid var(--line);
-      padding-left:24px;
       display:flex;
       flex-direction:column;
-      gap:18px;
+      gap:14px;
+      padding-left:12px;
     }
-    .meta-block{}
-    .meta-label{
+    .hero-panel{
+      border:1px solid var(--line2);
+      background:linear-gradient(180deg,#101010 0%,#0c0c0c 100%);
+      border-radius:20px;
+      padding:16px;
+    }
+    .hero-panel .title{
+      color:var(--muted);
       font-family:"JetBrains Mono", monospace;
       font-size:10px;
       letter-spacing:.16em;
       text-transform:uppercase;
-      color:var(--muted);
-      margin-bottom:6px;
+      margin-bottom:10px;
     }
-    .meta-value{
-      font-size:18px;
-      line-height:1.25;
+    .hero-panel .value{
+      font-size:22px;
       font-weight:700;
-      color:var(--text);
-      letter-spacing:-.03em;
+      letter-spacing:-.04em;
+      line-height:1.15;
     }
-    .meta-sub{font-size:13px;color:var(--soft);line-height:1.5}
-    .canvas{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) 280px;
-      gap:36px;
-      padding:0 24px 32px 88px;
-    }
-    .main{padding-top:28px}
-    .sidebar{padding-top:28px;border-left:1px solid var(--line);padding-left:24px}
-    .section-tag{
-      font-family:"JetBrains Mono", monospace;
-      font-size:10px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
+    .hero-panel .sub{
       color:var(--muted);
-      margin-bottom:18px;
+      font-size:13px;
+      margin-top:6px;
+      line-height:1.5;
     }
+    .content{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 300px;
+      gap:32px;
+      padding:28px 34px 34px;
+    }
+    .section-kicker{color:var(--muted);margin-bottom:16px}
     .big-picture{
-      padding:0 0 28px;
+      margin-bottom:26px;
+      padding:0 0 26px;
       border-bottom:1px solid var(--line);
-      margin-bottom:24px;
     }
     .big-picture h3{
-      font-size:22px;
-      line-height:1.15;
-      letter-spacing:-.04em;
-      margin-bottom:10px;
-      max-width:20ch;
+      font-size:28px;
+      line-height:1.06;
+      letter-spacing:-.06em;
+      max-width:18ch;
+      margin-bottom:12px;
+      font-weight:700;
     }
-    .big-picture p{font-size:15px;color:#d6d6d6;max-width:66ch}
-    .entry{
-      padding:22px 0 26px;
-      border-bottom:1px solid var(--line);
+    .big-picture p{
+      color:#d6d6d6;
+      font-size:15px;
+      line-height:1.8;
+      max-width:68ch;
     }
-    .entry-kicker-row{
+    .card{
+      border:1px solid var(--line2);
+      background:linear-gradient(180deg,#0f0f0f 0%,#0b0b0b 100%);
+      border-radius:var(--radius);
+      padding:20px;
+      margin-bottom:14px;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .card:hover{
+      transform:translateY(-2px);
+      border-color:#363636;
+      background:linear-gradient(180deg,#121212 0%,#0c0c0c 100%);
+    }
+    .card-top{
       display:flex;
-      align-items:center;
       justify-content:space-between;
-      gap:16px;
+      align-items:center;
+      gap:12px;
       margin-bottom:12px;
     }
-    .entry-kicker{
+    .chip{
       display:inline-flex;
       align-items:center;
       height:24px;
       padding:0 10px;
       border:1px solid currentColor;
+      border-radius:999px;
       font-family:"JetBrains Mono", monospace;
       font-size:10px;
       letter-spacing:.16em;
       text-transform:uppercase;
     }
-    .entry-date{
+    .date{
+      color:var(--muted);
       font-family:"JetBrains Mono", monospace;
       font-size:11px;
-      color:var(--muted);
     }
-    .entry h2{
-      font-size:clamp(26px, 3vw, 40px);
+    .card h2{
+      font-size:clamp(26px, 3vw, 38px);
       line-height:.98;
       letter-spacing:-.06em;
+      font-weight:750;
       margin-bottom:10px;
-      max-width:18ch;
+      max-width:19ch;
     }
-    .entry-meta{
+    .meta{
       color:var(--muted);
       font-size:13px;
+      line-height:1.55;
       margin-bottom:16px;
       max-width:70ch;
     }
-    .entry-grid{
+    .body-grid{
       display:grid;
-      grid-template-columns:140px minmax(0,1fr);
-      gap:8px 20px;
+      grid-template-columns:120px minmax(0,1fr);
+      gap:10px 22px;
       align-items:start;
     }
-    .entry-label{
-      font-family:"JetBrains Mono", monospace;
-      font-size:10px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:var(--soft);
-      padding-top:2px;
-    }
-    .entry-label.insight{color:var(--lime)}
-    .entry-body{
-      font-size:15px;
-      color:#ededed;
-      padding-bottom:6px;
-    }
-    .insight-body{color:#e9ffd0}
-    .entry-link{
+    .label{color:var(--muted);padding-top:3px}
+    .label.insight{color:var(--accent)}
+    .body{font-size:15px;color:#ededed;line-height:1.78}
+    .insight-body{color:#e7fbdc}
+    .source-link{
       display:inline-block;
-      margin-top:12px;
+      margin-top:14px;
+      color:var(--soft);
       font-family:"JetBrains Mono", monospace;
       font-size:11px;
       letter-spacing:.14em;
       text-transform:uppercase;
-      color:var(--orange);
     }
-    .toc-box{
-      margin-bottom:26px;
-      padding-bottom:22px;
-      border-bottom:1px solid var(--line);
+    .source-link:hover{color:var(--accent)}
+    .sidebar-panel{
+      border:1px solid var(--line2);
+      background:linear-gradient(180deg,#0f0f0f 0%,#0b0b0b 100%);
+      border-radius:20px;
+      padding:18px;
+      margin-bottom:14px;
     }
     .toc-row{
       display:grid;
@@ -279,40 +289,54 @@ def build_html(date_str, rates, items_analyzed, big_picture):
       padding:10px 0;
       border-top:1px solid rgba(255,255,255,.04);
     }
-    .toc-index{
-      font-family:"JetBrains Mono", monospace;
+    .toc-no{
       color:var(--muted);
+      font-family:"JetBrains Mono", monospace;
       font-size:11px;
     }
-    .toc-text{
+    .toc-title{
+      color:#d8d8d8;
       font-size:13px;
-      color:#ddd;
       line-height:1.45;
     }
-    .sidebar-note{
-      font-size:14px;
-      color:#d0d0d0;
-      line-height:1.7;
-    }
-    .footer{
-      border-top:1px solid var(--line);
+    .stat-row{
       display:flex;
       justify-content:space-between;
-      gap:16px;
-      padding:14px 24px 14px 88px;
+      gap:14px;
+      padding:10px 0;
+      border-top:1px solid rgba(255,255,255,.05);
+      color:#dfdfdf;
+      font-size:13px;
+    }
+    .stat-row strong{
+      font-weight:700;
+      letter-spacing:-.02em;
+    }
+    .note-body{
+      color:#d0d0d0;
+      font-size:14px;
+      line-height:1.75;
+    }
+    .footer{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      padding:16px 34px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
       font-family:"JetBrains Mono", monospace;
       font-size:11px;
-      letter-spacing:.12em;
+      letter-spacing:.14em;
       text-transform:uppercase;
-      color:var(--muted);
     }
     @media (max-width: 980px){
-      .grid-lines::before,.grid-lines::after{display:none}
-      .hero,.canvas{grid-template-columns:1fr;padding-left:24px}
-      .topbar,.footer{padding-left:24px}
-      .hero-side,.sidebar{border-left:none;padding-left:0}
-      .entry-grid{grid-template-columns:1fr}
-      .hero h1{max-width:none}
+      .hero,.content{grid-template-columns:1fr}
+      .hero-side{padding-left:0}
+      .body-grid{grid-template-columns:1fr}
+      .wrap{width:min(100vw - 16px, 1400px)}
+      .topbar,.footer{padding-left:18px;padding-right:18px}
+      .hero,.content{padding-left:18px;padding-right:18px}
+      h1{max-width:none}
     }
     '''
 
@@ -328,65 +352,66 @@ def build_html(date_str, rates, items_analyzed, big_picture):
 <style>{css}</style>
 </head>
 <body>
-  <div class="page grid-lines">
+  <div class="wrap">
     <div class="topbar">
-      <span>MORNING BRIEFING / {date_str} / {weekday}요일</span>
-      <span>{rate_strip_html or 'RATE DATA'}</span>
+      <span>MORNING BRIEFING / {date_str}</span>
+      <span>{weekday}요일</span>
     </div>
 
-    <section class="hero">
-      <div class="hero-left">
-        <div class="hero-label">Monolithic Canvas / Daily Intelligence</div>
-        <h1>Morning<br>Briefing</h1>
-        <div class="hero-intro">{intro}</div>
-      </div>
-      <div class="hero-side">
-        <div class="meta-block">
-          <div class="meta-label">Date</div>
-          <div class="meta-value">{date_str}</div>
-          <div class="meta-sub">{weekday}요일</div>
+    <div class="shell">
+      <section class="hero">
+        <div>
+          <div class="hero-kicker">Daily Intelligence / Vercel-Leaning Mono Precision</div>
+          <h1>Morning<br>Briefing</h1>
+          <div class="hero-intro">{intro}</div>
         </div>
-        <div class="meta-block">
-          <div class="meta-label">Exchange</div>
-          <div class="meta-value">{f'{usd:,.1f}원' if usd else '-'}</div>
-          <div class="meta-sub">USD/KRW</div>
+        <div class="hero-side">
+          <div class="hero-panel">
+            <div class="title">Date</div>
+            <div class="value">{date_str}</div>
+            <div class="sub">{weekday}요일</div>
+          </div>
+          <div class="hero-panel">
+            <div class="title">Exchange</div>
+            <div class="sub">전날 기준 참고 지표</div>
+            {sidebar_rates or '<div class="stat-row"><span>USD/KRW</span><strong>-</strong></div>'}
+          </div>
         </div>
-        <div class="meta-block">
-          <div class="meta-value">{f'{jpy:,.1f}원' if jpy else '-'}</div>
-          <div class="meta-sub">100JPY/KRW</div>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="canvas">
-      <main class="main">
-        <div class="section-tag">Big Picture</div>
-        <div class="big-picture">
-          <h3>{intro}</h3>
-          <p>{big_picture}</p>
-        </div>
+      <section class="content">
+        <main>
+          <div class="section-kicker">Big Picture</div>
+          <div class="big-picture">
+            <h3>{intro}</h3>
+            <p>{big_picture}</p>
+          </div>
 
-        <div class="section-tag">Entries</div>
-        {cards_html}
-      </main>
+          <div class="section-kicker">Entries</div>
+          {cards_html}
+        </main>
 
-      <aside class="sidebar">
-        <div class="section-tag">Index</div>
-        <div class="toc-box">{toc_html}</div>
+        <aside>
+          <div class="sidebar-panel">
+            <div class="section-kicker">Index</div>
+            {toc_html}
+          </div>
+          <div class="sidebar-panel">
+            <div class="section-kicker">Notes</div>
+            <div class="note-body">
+              전날 공개된 소식만 기준으로 정리합니다.<br><br>
+              이번 버전은 색보다 간격과 위계, 밀도를 우선하는 구조입니다.<br><br>
+              우석 기준에선 새 기능보다 실제 운영과 비용 판단에 어떤 영향을 주는지가 더 중요합니다.
+            </div>
+          </div>
+        </aside>
+      </section>
 
-        <div class="section-tag">Notes</div>
-        <div class="sidebar-note">
-          이 페이지는 전날 업데이트된 소식만 기준으로 정리합니다.<br><br>
-          큰 톤은 단색 중심으로 유지하고, 강조는 최소한의 기술적 포인트 컬러로만 처리합니다.<br><br>
-          우석 관점에선 새 기능 자체보다, 실제 운영·비용·도입 흐름에 어떤 영향을 주는지가 더 중요합니다.
-        </div>
-      </aside>
-    </section>
-
-    <footer class="footer">
-      <span>USIKCLAW / BOOL KOREA</span>
-      <span>MONO-CHROMATIC PRECISION</span>
-    </footer>
+      <footer class="footer">
+        <span>USIKCLAW / BOOL KOREA</span>
+        <span>VERCEL-LEANING BRIEFING SURFACE</span>
+      </footer>
+    </div>
   </div>
 </body>
 </html>'''
