@@ -9,7 +9,7 @@ morning_briefing_v3.py
 - 텔레그램 메시지 출력 (링크 + claw 의견)
 """
 
-import json, ssl, subprocess, sys, urllib.request, urllib.parse
+import json, ssl, subprocess, sys, urllib.request, urllib.parse, urllib.error, time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -41,15 +41,36 @@ def get_gemini_key():
 def gemini(prompt: str, key: str) -> str:
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={key}"
     body = {"contents": [{"parts": [{"text": prompt}]}]}
-    req = urllib.request.Request(
-        url,
-        data=json.dumps(body).encode(),
-        headers={"Content-Type": "application/json"},
-        method="POST"
-    )
-    with urllib.request.urlopen(req, context=ctx, timeout=30) as r:
-        resp = json.loads(r.read())
-    return resp["candidates"][0]["content"]["parts"][0]["text"].strip()
+    delays = [2, 5, 10, 15]
+    last_err = None
+    for attempt in range(len(delays) + 1):
+        req = urllib.request.Request(
+            url,
+            data=json.dumps(body).encode(),
+            headers={"Content-Type": "application/json"},
+            method="POST"
+        )
+        try:
+            with urllib.request.urlopen(req, context=ctx, timeout=30) as r:
+                resp = json.loads(r.read())
+            return resp["candidates"][0]["content"]["parts"][0]["text"].strip()
+        except urllib.error.HTTPError as e:
+            last_err = e
+            if e.code == 429 and attempt < len(delays):
+                retry_after = 0
+                try:
+                    retry_after = int(e.headers.get("Retry-After", "0"))
+                except Exception:
+                    retry_after = 0
+                sleep_for = max(retry_after, delays[attempt])
+                print(f"  Gemini rate limit, retry in {sleep_for}s...", file=sys.stderr)
+                time.sleep(sleep_for)
+                continue
+            raise
+        except Exception as e:
+            last_err = e
+            raise
+    raise last_err
 
 # ─── RSS 파싱 ─────────────────────────────────────────
 def fetch_rss(url, max_items=6):
@@ -187,9 +208,15 @@ def analyze_item(name: str, item: dict, key: str) -> dict:
         # JSON 파싱
         raw = raw.strip()
         if raw.startswith("```"):
-            raw = raw.split("```")[1]
+            raw = raw.split("```", 2)[1]
             if raw.startswith("json"):
                 raw = raw[4:]
+        raw = raw.strip()
+        if not raw.startswith("{"):
+            start = raw.find("{")
+            end = raw.rfind("}")
+            if start != -1 and end != -1 and end > start:
+                raw = raw[start:end+1]
         result = json.loads(raw.strip())
         result["title"] = title
         result["link"]  = link
