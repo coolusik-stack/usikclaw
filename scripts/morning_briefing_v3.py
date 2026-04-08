@@ -123,6 +123,7 @@ def collect_items(target_date=None):
     if target_date is None:
         target_date = (datetime.now(KST) - timedelta(days=1)).date()
     collected = {}
+    source_statuses = []
     for name, url in SOURCES.items():
         items = fetch_rss(url, max_items=6)
         matched = []
@@ -136,10 +137,12 @@ def collect_items(target_date=None):
                     pass
         if matched:
             collected[name] = matched[0]
+            source_statuses.append({"source": name, "status": "updated", "title": matched[0]["title"][:80]})
             print(f"  [{name}] 전날 기사 채택: {matched[0]['title'][:60]}", file=sys.stderr)
         else:
+            source_statuses.append({"source": name, "status": "none", "title": "업데이트 없음"})
             print(f"  [{name}] 전날 기사 없음", file=sys.stderr)
-    return collected
+    return collected, source_statuses
 
 # ─── Gemini로 각 아이템 분석 ──────────────────────────
 def analyze_item(name: str, item: dict, key: str) -> dict:
@@ -281,7 +284,7 @@ def push_to_github(html, date_str):
         return f"ERROR: {e}"
 
 # ─── Obsidian Vault 저장 ─────────────────────────────
-def save_to_vault(date_str, rates, items_analyzed, big_picture, pages_url):
+def save_to_vault(date_str, rates, items_analyzed, big_picture, pages_url, source_statuses=None):
     """Obsidian vault briefings/ 폴더에 마크다운 저장"""
     try:
         vault_briefings = VAULT_DIR / "01_RAW"
@@ -300,6 +303,13 @@ def save_to_vault(date_str, rates, items_analyzed, big_picture, pages_url):
 
         lines.append("## 오늘 먼저 볼 것")
         lines.append(big_picture + "\n")
+
+        if source_statuses:
+            lines.append("## 소스 확인 결과")
+            for s in source_statuses:
+                mark = "업데이트" if s["status"] == "updated" else "없음"
+                lines.append(f"- {s['source']}: {mark}")
+            lines.append("")
 
         for item in items_analyzed:
             lines.append(f"## [{item['source']}] {item['headline']}")
@@ -375,7 +385,7 @@ def main():
     rates      = get_rates()
 
     print("  소스 수집 중...", file=sys.stderr)
-    raw_items = collect_items()
+    raw_items, source_statuses = collect_items()
 
     print("  Gemini 분석 중...", file=sys.stderr)
     items_analyzed = []
@@ -388,10 +398,10 @@ def main():
     big_picture = make_big_picture(items_analyzed, rates, gemini_key)
 
     print("  HTML 빌드 & 푸시 중...", file=sys.stderr)
-    html       = build_html(date_str, rates, items_analyzed, big_picture)
+    html       = build_html(date_str, rates, items_analyzed, big_picture, source_statuses)
     pages_url  = push_to_github(html, date_str)
     notion_url = save_notion(big_picture, date_str)
-    save_to_vault(date_str, rates, items_analyzed, big_picture, pages_url)
+    save_to_vault(date_str, rates, items_analyzed, big_picture, pages_url, source_statuses)
 
     print(f"  GitHub: {pages_url}", file=sys.stderr)
     print(f"  Notion: {notion_url}", file=sys.stderr)

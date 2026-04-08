@@ -16,7 +16,7 @@ ACCENTS = {
 }
 
 
-def build_html(date_str, rates, items_analyzed, big_picture):
+def build_html(date_str, rates, items_analyzed, big_picture, source_statuses=None):
     from datetime import datetime, timezone, timedelta
     KST = timezone(timedelta(hours=9))
     now = datetime.now(KST)
@@ -65,6 +65,12 @@ def build_html(date_str, rates, items_analyzed, big_picture):
     sidebar_rates = "".join(
         f'<div class="stat-row"><span>{k}</span><strong>{v}</strong></div>' for k, v in rate_rows
     )
+    source_status_html = ""
+    for s in (source_statuses or []):
+        if s.get("status") == "updated":
+            source_status_html += f'<div class="toc-row"><span class="toc-no">●</span><span class="toc-title">{s["source"]} / 업데이트</span></div>'
+        else:
+            source_status_html += f'<div class="toc-row"><span class="toc-no">○</span><span class="toc-title">{s["source"]} / 업데이트 없음</span></div>'
 
     css = '''
     *{box-sizing:border-box;margin:0;padding:0}
@@ -398,10 +404,14 @@ def build_html(date_str, rates, items_analyzed, big_picture):
             {toc_html}
           </div>
           <div class="sidebar-panel">
+            <div class="section-kicker">Source Status</div>
+            {source_status_html}
+          </div>
+          <div class="sidebar-panel">
             <div class="section-kicker">Notes</div>
             <div class="note-body">
               전날 공개된 소식만 기준으로 정리합니다.<br><br>
-              이번 버전은 색보다 간격과 위계, 밀도를 우선하는 구조입니다.<br><br>
+              업데이트가 없는 소스는 오른쪽에 별도로 표시합니다.<br><br>
               우석 기준에선 새 기능보다 실제 운영과 비용 판단에 어떤 영향을 주는지가 더 중요합니다.
             </div>
           </div>
