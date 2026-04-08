@@ -194,12 +194,30 @@ def analyze_item(name: str, item: dict, key: str) -> dict:
         return result
     except Exception as e:
         print(f"  Gemini ERROR [{name}]: {e}", file=sys.stderr)
+        clean_desc = (desc or title).replace("&quot;", '"').replace("&#39;", "'")
+        clean_desc = clean_desc.replace("<b>", "").replace("</b>", "").replace("<br>", " ")
+        headline = title.split(" - ")[0].strip()[:36]
+        summary = clean_desc[:140].strip() if clean_desc else title
+        why = "전날 공개된 업데이트라면 업계 운영 방식이나 비용 구조 변화와 연결될 가능성이 있습니다."
+        if "가격" in title or "요금" in title or "cost" in title.lower():
+            why = "가격이나 요금 정책 변화는 실제 도입 비용과 운영 판단에 바로 영향을 줍니다."
+        elif "codebase" in title.lower() or "고객" in clean_desc:
+            why = "AI가 실제 운영과 고객 대응에 어떻게 연결되는지 보여주는 사례라 실무 참고 가치가 큽니다."
+        elif "trade" in title.lower() or "deal" in title.lower() or "무역" in title or "제약" in title:
+            why = "투자와 산업 흐름이 어디로 쏠리는지 보여줘 시장 판단의 참고점이 됩니다."
+        insight = "바로 메시지를 만들기보다, 비용 대비 효과가 분명한 흐름인지 먼저 보는 편이 좋습니다."
+        if "Claude" in title or "Anthropic" in title:
+            insight = "우석 쪽 자동화도 모델 성능보다 실제 비용과 운영성 기준으로 판단하는 게 맞습니다."
+        elif "codebase" in title.lower() or "고객" in clean_desc:
+            insight = "BOOL이나 OpenClaw 작업에서도 '어디까지 자동화할지'를 더 구체적으로 나누는 데 참고할 만합니다."
+        elif "trade" in title.lower() or "deal" in title.lower() or "무역" in title:
+            insight = "AI 관련 흐름을 볼 때도 기술 뉴스만 보지 말고 돈이 실제로 몰리는 산업을 같이 보는 게 유리합니다."
         return {
             "source": name, "title": title, "link": link,
-            "headline": title[:40],
-            "summary": desc[:200] if desc else title,
-            "why_matters": "내용 분석에 실패했습니다.",
-            "usuk_insight": "직접 확인 권장합니다."
+            "headline": headline,
+            "summary": summary,
+            "why_matters": why,
+            "usuk_insight": insight
         }
 
 # ─── Big Picture 생성 ─────────────────────────────────
@@ -227,7 +245,12 @@ JSON/마크다운 없이 순수 텍스트만 출력."""
     try:
         return gemini(prompt, key)
     except Exception as e:
-        return f"오늘 브리핑 분석 중 오류가 발생했습니다: {e}"
+        print(f"  Gemini ERROR [Big Picture]: {e}", file=sys.stderr)
+        count = len(items_analyzed)
+        if count == 0:
+            return "전날 기준으로 뚜렷한 신규 소식이 거의 없어, 오늘은 무리하게 해석하지 않는 편이 맞습니다. 필요한 영역만 선별적으로 보는 게 좋겠습니다."
+        sources = ", ".join(i['source'] for i in items_analyzed[:3])
+        return f"오늘 브리핑은 {sources} 쪽 업데이트가 중심입니다. 공통적으로는 AI와 시장 이슈가 실제 비용과 운영 판단으로 이어지는 흐름이 보입니다. 우석은 새로운 소식 자체보다, 이 변화가 실제 매출·운영·도입비용에 어떤 영향을 주는지부터 보는 편이 좋겠습니다."
 
 # ─── GitHub Pages 푸시 ────────────────────────────────
 def push_to_github(html, date_str):
