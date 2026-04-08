@@ -1,122 +1,18 @@
 """
-briefing_template.py — 브리핑 HTML 템플릿 (일러스트 포함)
-morning_briefing_v3.py 에서 import해서 사용.
+briefing_template.py — Mono-Chromatic Precision briefing template
 """
 
 WEEKDAY_KO = ["월", "화", "수", "목", "금", "토", "일"]
 
-CAT_ACCENT = {
-    "OpenAI 뉴스":    "#1a3a5c",
-    "Anthropic 뉴스": "#7b2d8b",
-    "AI 테크 트렌드":  "#1a5c3a",
-    "경제 매크로":     "#c0392b",
-    "Lenny's":        "#5c3a1a",
-    "Sandhill":       "#1a4a5c",
-    "Chamath":        "#3a3a1a",
+ACCENTS = {
+    "OpenAI 뉴스": "#9EFF00",
+    "Anthropic 뉴스": "#ff7a00",
+    "AI 테크 트렌드": "#9EFF00",
+    "경제 매크로": "#ff7a00",
+    "Lenny's": "#9EFF00",
+    "Sandhill": "#9EFF00",
+    "Chamath": "#ff7a00",
 }
-
-# ─── SVG 일러스트 ──────────────────────────────────────
-
-SVG_SUN = """<svg width="160" height="100" viewBox="0 0 160 100" fill="none"
-  xmlns="http://www.w3.org/2000/svg" style="opacity:.18" aria-hidden="true">
-  <line x1="0" y1="70" x2="160" y2="70" stroke="#0e0e0e" stroke-width="1.2"/>
-  <circle cx="80" cy="44" r="18" stroke="#0e0e0e" stroke-width="1.2"/>
-  <line x1="80" y1="14" x2="80" y2="8" stroke="#0e0e0e" stroke-width="1"/>
-  <line x1="50" y1="44" x2="44" y2="44" stroke="#0e0e0e" stroke-width="1"/>
-  <line x1="110" y1="44" x2="116" y2="44" stroke="#0e0e0e" stroke-width="1"/>
-  <line x1="58.5" y1="22.5" x2="54.4" y2="18.4" stroke="#0e0e0e" stroke-width="1"/>
-  <line x1="101.5" y1="22.5" x2="105.6" y2="18.4" stroke="#0e0e0e" stroke-width="1"/>
-  <line x1="58.5" y1="65.5" x2="54.4" y2="69.6" stroke="#0e0e0e" stroke-width="1"/>
-  <line x1="101.5" y1="65.5" x2="105.6" y2="69.6" stroke="#0e0e0e" stroke-width="1"/>
-  <path d="M0 82 Q20 76 40 82 Q60 88 80 82 Q100 76 120 82 Q140 88 160 82"
-    stroke="#0e0e0e" stroke-width="1" fill="none"/>
-  <path d="M0 90 Q20 84 40 90 Q60 96 80 90 Q100 84 120 90 Q140 96 160 90"
-    stroke="#0e0e0e" stroke-width="1" fill="none" opacity=".5"/>
-</svg>"""
-
-SVG_CHART = """<svg width="100%" height="60" viewBox="0 0 200 60" fill="none"
-  xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <line x1="20" y1="8" x2="20" y2="52" stroke="#0e0e0e" stroke-width="1.2"/>
-  <line x1="20" y1="52" x2="190" y2="52" stroke="#0e0e0e" stroke-width="1.2"/>
-  <polyline points="20,44 50,30 80,36 110,18 140,24 170,10 190,14"
-    stroke="#0e0e0e" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
-  <circle cx="50" cy="30" r="2" fill="#0e0e0e"/>
-  <circle cx="110" cy="18" r="2" fill="#0e0e0e"/>
-  <circle cx="170" cy="10" r="2" fill="#0e0e0e"/>
-  <line x1="16" y1="20" x2="20" y2="20" stroke="#0e0e0e" stroke-width="1"/>
-  <line x1="16" y1="36" x2="20" y2="36" stroke="#0e0e0e" stroke-width="1"/>
-</svg>"""
-
-SVG_FOX = """<svg width="80" height="60" viewBox="0 0 80 60" fill="none"
-  xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <ellipse cx="40" cy="38" rx="18" ry="14" stroke="#0e0e0e" stroke-width="1.2"/>
-  <path d="M26 28 L18 12 L30 22" stroke="#0e0e0e" stroke-width="1.2"
-    stroke-linejoin="round" fill="none"/>
-  <path d="M54 28 L62 12 L50 22" stroke="#0e0e0e" stroke-width="1.2"
-    stroke-linejoin="round" fill="none"/>
-  <circle cx="34" cy="36" r="2" stroke="#0e0e0e" stroke-width="1"/>
-  <circle cx="46" cy="36" r="2" stroke="#0e0e0e" stroke-width="1"/>
-  <ellipse cx="40" cy="42" rx="3" ry="2" stroke="#0e0e0e" stroke-width="1"/>
-  <path d="M58 44 Q70 38 72 50 Q60 52 58 44" stroke="#0e0e0e" stroke-width="1" fill="none"/>
-</svg>"""
-
-SVG_DOTS = """<svg width="28" height="14" viewBox="0 0 28 14" fill="none"
-  xmlns="http://www.w3.org/2000/svg" style="opacity:.25;flex-shrink:0" aria-hidden="true">
-  <circle cx="4" cy="7" r="3" stroke="#0e0e0e" stroke-width="1"/>
-  <line x1="8" y1="7" x2="14" y2="7" stroke="#0e0e0e" stroke-width="1"/>
-  <circle cx="18" cy="7" r="3" stroke="#0e0e0e" stroke-width="1"/>
-  <line x1="22" y1="7" x2="28" y2="7" stroke="#0e0e0e" stroke-width="1"/>
-</svg>"""
-
-SVG_FOOTER_DECO = """<svg width="40" height="10" viewBox="0 0 40 10" fill="none"
-  aria-hidden="true" style="opacity:.3">
-  <line x1="0" y1="5" x2="12" y2="5" stroke="#7a7060" stroke-width="1"/>
-  <circle cx="20" cy="5" r="3" stroke="#7a7060" stroke-width="1"/>
-  <line x1="28" y1="5" x2="40" y2="5" stroke="#7a7060" stroke-width="1"/>
-</svg>"""
-
-# 기사별 소스 타입에 맞는 미니 일러스트
-def get_article_illo(source):
-    if "AI" in source or "OpenAI" in source or "Anthropic" in source:
-        # AI 칩/회로 느낌
-        return """<svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-          xmlns="http://www.w3.org/2000/svg" style="opacity:.18;margin-bottom:8px" aria-hidden="true">
-          <rect x="8" y="8" width="16" height="16" stroke="#0e0e0e" stroke-width="1.2"/>
-          <rect x="11" y="11" width="10" height="10" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="12" y1="8" x2="12" y2="4" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="16" y1="8" x2="16" y2="4" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="20" y1="8" x2="20" y2="4" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="12" y1="24" x2="12" y2="28" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="16" y1="24" x2="16" y2="28" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="20" y1="24" x2="20" y2="28" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="8" y1="12" x2="4" y2="12" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="8" y1="16" x2="4" y2="16" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="8" y1="20" x2="4" y2="20" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="24" y1="12" x2="28" y2="12" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="24" y1="16" x2="28" y2="16" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="24" y1="20" x2="28" y2="20" stroke="#0e0e0e" stroke-width="1"/>
-        </svg>"""
-    elif "경제" in source:
-        # 코인/달러 느낌
-        return """<svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-          xmlns="http://www.w3.org/2000/svg" style="opacity:.18;margin-bottom:8px" aria-hidden="true">
-          <circle cx="16" cy="16" r="11" stroke="#0e0e0e" stroke-width="1.2"/>
-          <circle cx="16" cy="16" r="7" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="16" y1="9" x2="16" y2="7" stroke="#0e0e0e" stroke-width="1.2"/>
-          <line x1="16" y1="23" x2="16" y2="25" stroke="#0e0e0e" stroke-width="1.2"/>
-          <path d="M13 13 Q16 11 19 13 Q19 16 16 17 Q19 18 19 21 Q16 23 13 21"
-            stroke="#0e0e0e" stroke-width="1" fill="none"/>
-        </svg>"""
-    else:
-        # 책/문서 느낌
-        return """<svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-          xmlns="http://www.w3.org/2000/svg" style="opacity:.18;margin-bottom:8px" aria-hidden="true">
-          <rect x="7" y="5" width="18" height="22" rx="1" stroke="#0e0e0e" stroke-width="1.2"/>
-          <line x1="11" y1="11" x2="21" y2="11" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="11" y1="15" x2="21" y2="15" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="11" y1="19" x2="17" y2="19" stroke="#0e0e0e" stroke-width="1"/>
-          <line x1="7" y1="5" x2="7" y2="27" stroke="#0e0e0e" stroke-width="2"/>
-        </svg>"""
 
 
 def build_html(date_str, rates, items_analyzed, big_picture):
@@ -127,340 +23,300 @@ def build_html(date_str, rates, items_analyzed, big_picture):
     usd = rates.get("usd_krw")
     jpy = rates.get("jpy_100")
 
-    # intro: big_picture 첫 두 문장
     bp_sentences = big_picture.split(". ")
     intro = ". ".join(bp_sentences[:2]) + ("." if len(bp_sentences) > 1 else "")
 
-    # ticker 콘텐츠 (×2 for infinite loop)
-    ticker_items = ["USIKCLAW MORNING BRIEFING", date_str + " " + weekday + "요일"]
+    rate_strip = []
     if usd:
-        ticker_items.append(f"USD/KRW {usd:,.1f}원")
+        rate_strip.append(f"USD/KRW {usd:,.1f}원")
     if jpy:
-        ticker_items.append(f"100엔 {jpy:,.1f}원")
-    ticker_items.append("BOOL KOREA")
-    ticker_inner = "".join(
-        f'<span class="ticker-item">{t}</span>' for t in ticker_items * 2
-    )
+        rate_strip.append(f"100JPY/KRW {jpy:,.1f}원")
+    rate_strip_html = " · ".join(rate_strip)
 
-    # 환율 rows
-    rate_rows_sidebar = ""
-    if usd:
-        rate_rows_sidebar += (
-            f'<div class="sidebar-rate-row">'
-            f'<span class="sidebar-rate-val">{usd:,.1f}</span>'
-            f'<span class="sidebar-rate-label">USD / KRW</span></div>'
-        )
-    if jpy:
-        rate_rows_sidebar += (
-            f'<div class="sidebar-rate-row">'
-            f'<span class="sidebar-rate-val">{jpy:,.1f}</span>'
-            f'<span class="sidebar-rate-label">100 JPY / KRW</span></div>'
-        )
-
-    rate_masthead = ""
-    if usd:
-        rate_masthead += f'<div class="rate">USD/KRW <span>{usd:,.1f}원</span></div>'
-    if jpy:
-        rate_masthead += f'<div class="rate">100엔 <span>{jpy:,.1f}원</span></div>'
-
-    # 기사 카드
     cards_html = ""
-    for i, item in enumerate(items_analyzed):
-        accent = CAT_ACCENT.get(item["source"], "#333")
-        pub_str = (
-            f'<span class="source-date">{item["pub"]}</span>'
-            if item.get("pub") else ""
-        )
-        illo = get_article_illo(item["source"])
-        cards_html += (
-            f'<div class="article" id="s{i+1}">'
-            f'<div class="article-num">{str(i+1).zfill(2)}</div>'
-            f'<div>'
-            f'{illo}'
-            f'<div class="article-source">'
-            f'<span class="source-tag" style="color:{accent};border-color:{accent}">'
-            f'{item["source"]}</span>{pub_str}</div>'
-            f'<h2><a href="{item["link"]}" target="_blank" rel="noopener">'
-            f'{item["headline"]}</a></h2>'
-            f'<div class="article-meta">{item["title"][:80]}</div>'
-            f'<div class="subhead">핵심 내용</div>'
-            f'<div class="article-body">{item["summary"]}</div>'
-            f'<div class="subhead">왜 중요한지</div>'
-            f'<div class="article-body">{item["why_matters"]}</div>'
-            f'<div class="insight-block">'
-            f'<div class="subhead">🦊 우석 입장 인사이트</div>'
-            f'<div class="article-body">{item["usuk_insight"]}</div>'
-            f'</div></div></div>'
-        )
-
-    # 목차
     toc_html = ""
-    for i, item in enumerate(items_analyzed):
+    for i, item in enumerate(items_analyzed, 1):
+        accent = ACCENTS.get(item["source"], "#9EFF00")
+        pub = item.get("pub", "")
         toc_html += (
-            f'<div class="toc-item">'
-            f'<span class="toc-num">{str(i+1).zfill(2)}</span>'
-            f'<a class="toc-link" href="{item["link"]}" target="_blank">'
-            f'[{item["source"]}] {item["headline"]}</a></div>'
+            f'<div class="toc-row"><span class="toc-index">{str(i).zfill(2)}</span>'
+            f'<span class="toc-text">{item["headline"]}</span></div>'
         )
+        cards_html += f'''
+        <article class="entry">
+          <div class="entry-kicker-row">
+            <span class="entry-kicker" style="color:{accent};border-color:{accent}">{item['source']}</span>
+            <span class="entry-date">{pub}</span>
+          </div>
+          <h2>{item['headline']}</h2>
+          <div class="entry-meta">{item['title']}</div>
+          <div class="entry-grid">
+            <div class="entry-label">SUMMARY</div>
+            <div class="entry-body">{item['summary']}</div>
+            <div class="entry-label">WHY IT MATTERS</div>
+            <div class="entry-body">{item['why_matters']}</div>
+            <div class="entry-label insight">INSIGHT</div>
+            <div class="entry-body insight-body">{item['usuk_insight']}</div>
+          </div>
+          <a class="entry-link" href="{item['link']}" target="_blank" rel="noopener">SOURCE ↗</a>
+        </article>
+        '''
 
-    # 날짜 포맷 (%-m, %-d: mac/linux)
-    try:
-        date_ko = now.strftime("%Y년 %-m월 %-d일")
-    except Exception:
-        date_ko = date_str
+    css = '''
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#050505;
+      --panel:#0d0d0d;
+      --panel2:#111111;
+      --line:#262626;
+      --text:#f5f5f5;
+      --muted:#8a8a8a;
+      --soft:#b3b3b3;
+      --lime:#9EFF00;
+      --orange:#ff7a00;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter, Space Grotesk, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      line-height:1.65;
+    }
+    a{text-decoration:none;color:inherit}
+    .page{
+      width:min(1440px, calc(100vw - 40px));
+      margin:20px auto 60px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg,#050505 0%, #0a0a0a 100%);
+      position:relative;
+      overflow:hidden;
+    }
+    .grid-lines::before,
+    .grid-lines::after{
+      content:"";
+      position:absolute;
+      top:0;bottom:0;
+      width:1px;
+      background:rgba(255,255,255,.06);
+      pointer-events:none;
+    }
+    .grid-lines::before{left:72px}
+    .grid-lines::after{right:320px}
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      border-bottom:1px solid var(--line);
+      padding:12px 24px 12px 88px;
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--soft);
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 280px;
+      gap:36px;
+      padding:32px 24px 32px 88px;
+      border-bottom:1px solid var(--line);
+    }
+    .hero-left{min-width:0}
+    .hero-label{
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:16px;
+    }
+    .hero h1{
+      font-size:clamp(52px, 8vw, 116px);
+      line-height:.86;
+      letter-spacing:-.07em;
+      font-weight:800;
+      max-width:9ch;
+      margin-bottom:18px;
+    }
+    .hero-intro{
+      max-width:62ch;
+      color:#d8d8d8;
+      font-size:16px;
+    }
+    .hero-side{
+      border-left:1px solid var(--line);
+      padding-left:24px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+    .meta-block{}
+    .meta-label{
+      font-family:"JetBrains Mono", monospace;
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:6px;
+    }
+    .meta-value{
+      font-size:18px;
+      line-height:1.25;
+      font-weight:700;
+      color:var(--text);
+      letter-spacing:-.03em;
+    }
+    .meta-sub{font-size:13px;color:var(--soft);line-height:1.5}
+    .canvas{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 280px;
+      gap:36px;
+      padding:0 24px 32px 88px;
+    }
+    .main{padding-top:28px}
+    .sidebar{padding-top:28px;border-left:1px solid var(--line);padding-left:24px}
+    .section-tag{
+      font-family:"JetBrains Mono", monospace;
+      font-size:10px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:18px;
+    }
+    .big-picture{
+      padding:0 0 28px;
+      border-bottom:1px solid var(--line);
+      margin-bottom:24px;
+    }
+    .big-picture h3{
+      font-size:22px;
+      line-height:1.15;
+      letter-spacing:-.04em;
+      margin-bottom:10px;
+      max-width:20ch;
+    }
+    .big-picture p{font-size:15px;color:#d6d6d6;max-width:66ch}
+    .entry{
+      padding:22px 0 26px;
+      border-bottom:1px solid var(--line);
+    }
+    .entry-kicker-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:12px;
+    }
+    .entry-kicker{
+      display:inline-flex;
+      align-items:center;
+      height:24px;
+      padding:0 10px;
+      border:1px solid currentColor;
+      font-family:"JetBrains Mono", monospace;
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    .entry-date{
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      color:var(--muted);
+    }
+    .entry h2{
+      font-size:clamp(26px, 3vw, 40px);
+      line-height:.98;
+      letter-spacing:-.06em;
+      margin-bottom:10px;
+      max-width:18ch;
+    }
+    .entry-meta{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:16px;
+      max-width:70ch;
+    }
+    .entry-grid{
+      display:grid;
+      grid-template-columns:140px minmax(0,1fr);
+      gap:8px 20px;
+      align-items:start;
+    }
+    .entry-label{
+      font-family:"JetBrains Mono", monospace;
+      font-size:10px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--soft);
+      padding-top:2px;
+    }
+    .entry-label.insight{color:var(--lime)}
+    .entry-body{
+      font-size:15px;
+      color:#ededed;
+      padding-bottom:6px;
+    }
+    .insight-body{color:#e9ffd0}
+    .entry-link{
+      display:inline-block;
+      margin-top:12px;
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--orange);
+    }
+    .toc-box{
+      margin-bottom:26px;
+      padding-bottom:22px;
+      border-bottom:1px solid var(--line);
+    }
+    .toc-row{
+      display:grid;
+      grid-template-columns:34px 1fr;
+      gap:12px;
+      padding:10px 0;
+      border-top:1px solid rgba(255,255,255,.04);
+    }
+    .toc-index{
+      font-family:"JetBrains Mono", monospace;
+      color:var(--muted);
+      font-size:11px;
+    }
+    .toc-text{
+      font-size:13px;
+      color:#ddd;
+      line-height:1.45;
+    }
+    .sidebar-note{
+      font-size:14px;
+      color:#d0d0d0;
+      line-height:1.7;
+    }
+    .footer{
+      border-top:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 24px 14px 88px;
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    @media (max-width: 980px){
+      .grid-lines::before,.grid-lines::after{display:none}
+      .hero,.canvas{grid-template-columns:1fr;padding-left:24px}
+      .topbar,.footer{padding-left:24px}
+      .hero-side,.sidebar{border-left:none;padding-left:0}
+      .entry-grid{grid-template-columns:1fr}
+      .hero h1{max-width:none}
+    }
+    '''
 
-    css = """
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --ink:#0e0e0e;
-  --paper:#f5f2ec;
-  --cream:#ede9e0;
-  --rule:#c8c0b0;
-  --accent:#c0392b;
-  --accent2:#1a3a5c;
-  --muted:#7a7060;
-}
-html{scroll-behavior:smooth}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--paper);
-  color:var(--ink);
-  min-height:100vh;
-  font-size:16px;
-  line-height:1.7;
-}
-a{color:inherit;text-decoration:none}
-a:hover{color:var(--accent)}
-
-/* TICKER */
-.ticker{
-  background:var(--ink);
-  color:#f5f2ec;
-  font-family:'DM Mono',monospace;
-  font-size:11px;
-  letter-spacing:.06em;
-  padding:8px 0;
-  overflow:hidden;
-  white-space:nowrap;
-}
-.ticker-inner{display:inline-block;animation:ticker 28s linear infinite}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ticker-item{display:inline-block;padding:0 40px}
-
-/* MASTHEAD */
-.masthead{
-  border-bottom:3px solid var(--ink);
-  padding:40px 48px 28px;
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:24px;
-}
-.masthead-label{
-  font-family:'DM Mono',monospace;
-  font-size:10px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:8px;
-}
-.masthead h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(40px,6vw,72px);
-  font-weight:900;
-  line-height:.95;
-  letter-spacing:-.02em;
-}
-.masthead h1 em{font-style:italic;color:var(--accent)}
-.masthead-illo{flex-shrink:0;align-self:center}
-.masthead-right{text-align:right;flex-shrink:0}
-.masthead-date{
-  font-family:'Playfair Display',serif;
-  font-size:13px;
-  font-style:italic;
-  color:var(--muted);
-  margin-bottom:6px;
-}
-.masthead-rates{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
-.rate{font-family:'DM Mono',monospace;font-size:12px}
-.rate span{color:var(--accent);font-weight:500}
-
-/* LAYOUT */
-.layout{
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 48px 96px;
-  display:grid;
-  grid-template-columns:1fr 300px;
-  gap:0 60px;
-  align-items:start;
-}
-
-/* SECTION DIVIDER */
-.section-head{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  margin:40px 0 20px;
-}
-.section-head-line{flex:1;height:1px;background:var(--rule)}
-.section-head-label{
-  font-family:'DM Mono',monospace;
-  font-size:10px;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  color:var(--muted);
-  flex-shrink:0;
-}
-
-/* LEAD */
-.lead{
-  margin:40px 0 0;
-  padding-bottom:36px;
-  border-bottom:2px solid var(--ink);
-}
-.lead-eyebrow{
-  font-family:'DM Mono',monospace;
-  font-size:10px;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  color:var(--accent);
-  margin-bottom:12px;
-}
-.lead-headline{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(22px,3.5vw,32px);
-  font-weight:700;
-  line-height:1.25;
-  margin-bottom:16px;
-  letter-spacing:-.01em;
-}
-.lead-body{font-size:15.5px;color:#2a2a2a;line-height:1.78;max-width:64ch}
-
-/* ARTICLE CARDS */
-.article{
-  padding:28px 0;
-  border-bottom:1px solid var(--rule);
-  display:grid;
-  grid-template-columns:auto 1fr;
-  gap:0 24px;
-}
-.article-num{
-  font-family:'Playfair Display',serif;
-  font-size:11px;
-  font-style:italic;
-  color:var(--rule);
-  padding-top:4px;
-  min-width:20px;
-}
-.article-source{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.source-tag{
-  font-family:'DM Mono',monospace;
-  font-size:9px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  padding:3px 8px;
-  border:1px solid currentColor;
-  font-weight:500;
-}
-.source-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted)}
-.article h2{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(17px,2.2vw,21px);
-  font-weight:700;
-  line-height:1.3;
-  letter-spacing:-.01em;
-  margin-bottom:10px;
-}
-.article-meta{font-size:11.5px;color:var(--muted);margin-bottom:12px;font-style:italic}
-.subhead{
-  font-family:'DM Mono',monospace;
-  font-size:9px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin:12px 0 4px;
-}
-.article-body{font-size:14px;color:#333;line-height:1.74}
-.insight-block{
-  margin-top:14px;
-  padding:12px 16px;
-  border-left:3px solid var(--accent);
-  background:rgba(192,57,43,.04);
-}
-.insight-block .subhead{color:var(--accent);margin-top:0}
-.insight-block .article-body{color:#2a2020}
-
-/* SIDEBAR */
-.sidebar{
-  padding:40px 0 0 40px;
-  border-left:1px solid var(--rule);
-  position:sticky;
-  top:24px;
-}
-.sidebar-section{margin-bottom:36px}
-.sidebar-label{
-  font-family:'DM Mono',monospace;
-  font-size:9px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--muted);
-  border-bottom:1px solid var(--rule);
-  padding-bottom:6px;
-  margin-bottom:14px;
-}
-.sidebar-body{font-size:13.5px;line-height:1.72;color:#2a2a2a}
-.sidebar-rate-row{margin-bottom:8px}
-.sidebar-rate-val{
-  font-family:'DM Mono',monospace;
-  font-size:20px;
-  font-weight:500;
-  display:block;
-  letter-spacing:-.01em;
-}
-.sidebar-rate-label{font-size:11px;color:var(--muted)}
-.toc-item{display:flex;gap:10px;margin-bottom:10px;font-size:13px;line-height:1.4}
-.toc-num{
-  font-family:'DM Mono',monospace;
-  font-size:10px;
-  color:var(--muted);
-  flex-shrink:0;
-  padding-top:2px;
-}
-.sidebar-illo{opacity:.15;text-align:center;margin:4px 0 24px}
-
-/* FOOTER */
-.site-footer{
-  border-top:3px solid var(--ink);
-  padding:20px 48px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-family:'DM Mono',monospace;
-  font-size:10px;
-  letter-spacing:.06em;
-  color:var(--muted);
-}
-
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.lead,.articles,.sidebar{animation:fadeUp .6s ease both}
-.articles{animation-delay:.1s}
-.sidebar{animation-delay:.2s}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .layout{grid-template-columns:1fr;padding:0 24px 64px}
-  .sidebar{border-left:none;border-top:2px solid var(--ink);padding:28px 0 0;margin-top:40px}
-  .masthead{padding:28px 24px 20px;flex-direction:column;align-items:flex-start}
-  .masthead-illo{display:none}
-  .masthead-right{text-align:left}
-  .masthead-rates{align-items:flex-start}
-  .site-footer{flex-direction:column;gap:6px;padding:16px 24px}
-}
-"""
-
-    html = f"""<!DOCTYPE html>
+    html = f'''<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -468,75 +324,70 @@ a:hover{color:var(--accent)}
 <title>Briefing / {date_str}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>{css}</style>
 </head>
 <body>
-
-<div class="ticker"><div class="ticker-inner">{ticker_inner}</div></div>
-
-<header class="masthead">
-  <div class="masthead-left">
-    <div class="masthead-label">Daily Intelligence · {date_str}</div>
-    <h1>Morning<br><em>Briefing</em></h1>
-  </div>
-  <div class="masthead-illo">{SVG_SUN}</div>
-  <div class="masthead-right">
-    <div class="masthead-date">{weekday}요일, {date_ko}</div>
-    <div class="masthead-rates">{rate_masthead}</div>
-  </div>
-</header>
-
-<div class="layout">
-  <main>
-    <div class="lead">
-      <div class="lead-eyebrow">🦊 Today's Perspective</div>
-      <div class="lead-headline">{intro}</div>
-      <div class="lead-body">{big_picture}</div>
+  <div class="page grid-lines">
+    <div class="topbar">
+      <span>MORNING BRIEFING / {date_str} / {weekday}요일</span>
+      <span>{rate_strip_html or 'RATE DATA'}</span>
     </div>
 
-    <div class="section-head">
-      <div class="section-head-label">Sources &amp; Analysis</div>
-      <div class="section-head-line"></div>
-      {SVG_DOTS}
-    </div>
-
-    <div class="articles">{cards_html}</div>
-  </main>
-
-  <aside class="sidebar">
-    <div class="sidebar-section">
-      <div class="sidebar-label">Exchange Rates</div>
-      {rate_rows_sidebar}
-    </div>
-
-    <div class="sidebar-illo">{SVG_CHART}</div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-label">Today's Sources</div>
-      {toc_html}
-    </div>
-
-    <div class="sidebar-illo" style="margin:24px 0 0">{SVG_FOX}</div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-label">About</div>
-      <div class="sidebar-body">
-        claw의 매일 아침 브리핑.<br>
-        AI 트렌드, 스타트업 뉴스, 경제 지표를<br>
-        우석 관점으로 요약합니다.
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-label">Monolithic Canvas / Daily Intelligence</div>
+        <h1>Morning<br>Briefing</h1>
+        <div class="hero-intro">{intro}</div>
       </div>
-    </div>
-  </aside>
-</div>
+      <div class="hero-side">
+        <div class="meta-block">
+          <div class="meta-label">Date</div>
+          <div class="meta-value">{date_str}</div>
+          <div class="meta-sub">{weekday}요일</div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-label">Exchange</div>
+          <div class="meta-value">{f'{usd:,.1f}원' if usd else '-'}</div>
+          <div class="meta-sub">USD/KRW</div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-value">{f'{jpy:,.1f}원' if jpy else '-'}</div>
+          <div class="meta-sub">100JPY/KRW</div>
+        </div>
+      </div>
+    </section>
 
-<footer class="site-footer">
-  <span>USIKCLAW — BOOL KOREA</span>
-  {SVG_FOOTER_DECO}
-  <span>{date_str} 자동 생성</span>
-</footer>
+    <section class="canvas">
+      <main class="main">
+        <div class="section-tag">Big Picture</div>
+        <div class="big-picture">
+          <h3>{intro}</h3>
+          <p>{big_picture}</p>
+        </div>
 
+        <div class="section-tag">Entries</div>
+        {cards_html}
+      </main>
+
+      <aside class="sidebar">
+        <div class="section-tag">Index</div>
+        <div class="toc-box">{toc_html}</div>
+
+        <div class="section-tag">Notes</div>
+        <div class="sidebar-note">
+          이 페이지는 전날 업데이트된 소식만 기준으로 정리합니다.<br><br>
+          큰 톤은 단색 중심으로 유지하고, 강조는 최소한의 기술적 포인트 컬러로만 처리합니다.<br><br>
+          우석 관점에선 새 기능 자체보다, 실제 운영·비용·도입 흐름에 어떤 영향을 주는지가 더 중요합니다.
+        </div>
+      </aside>
+    </section>
+
+    <footer class="footer">
+      <span>USIKCLAW / BOOL KOREA</span>
+      <span>MONO-CHROMATIC PRECISION</span>
+    </footer>
+  </div>
 </body>
-</html>"""
-
+</html>'''
     return html
