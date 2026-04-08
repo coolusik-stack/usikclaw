@@ -10,23 +10,23 @@
 <style>
     *{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --bg:#050505;
-      --panel:#0b0b0b;
-      --panel2:#111111;
-      --line:#1f1f1f;
-      --line2:#2a2a2a;
-      --text:#f5f5f5;
-      --muted:#9a9a9a;
-      --soft:#c9c9c9;
-      --accent:#8BE26A;
+      --bg:#f6f6f4;
+      --panel:#ffffff;
+      --panel2:#fbfbfa;
+      --line:#e8e8e3;
+      --line2:#ddddD6;
+      --text:#111111;
+      --muted:#6f6f69;
+      --soft:#4c4c47;
+      --accent:#0f7a2f;
       --radius:22px;
     }
     html{scroll-behavior:smooth}
     body{
       font-family:Inter, Arial, sans-serif;
       background:
-        radial-gradient(circle at top, rgba(255,255,255,.04), transparent 36%),
-        linear-gradient(180deg, #040404 0%, #080808 100%);
+        radial-gradient(circle at top, rgba(0,0,0,.03), transparent 38%),
+        linear-gradient(180deg, #fafaf8 0%, #f4f4f1 100%);
       color:var(--text);
       min-height:100vh;
       line-height:1.6;
@@ -50,10 +50,10 @@
     }
     .shell{
       border:1px solid var(--line);
-      background:rgba(10,10,10,.92);
+      background:rgba(255,255,255,.88);
       border-radius:28px;
       overflow:hidden;
-      box-shadow:0 20px 60px rgba(0,0,0,.35);
+      box-shadow:0 12px 40px rgba(0,0,0,.06);
       backdrop-filter: blur(10px);
     }
     .hero{
@@ -82,7 +82,7 @@
     }
     .hero-intro{
       font-size:16px;
-      color:#dddddd;
+      color:#2d2d29;
       max-width:64ch;
       line-height:1.75;
     }
@@ -94,7 +94,7 @@
     }
     .hero-panel{
       border:1px solid var(--line2);
-      background:linear-gradient(180deg,#101010 0%,#0c0c0c 100%);
+      background:linear-gradient(180deg,#ffffff 0%,#f7f7f4 100%);
       border-radius:20px;
       padding:16px;
     }
@@ -139,23 +139,24 @@
       font-weight:700;
     }
     .big-picture p{
-      color:#d6d6d6;
+      color:#33332f;
       font-size:15px;
       line-height:1.8;
       max-width:68ch;
     }
     .card{
       border:1px solid var(--line2);
-      background:linear-gradient(180deg,#0f0f0f 0%,#0b0b0b 100%);
+      background:linear-gradient(180deg,#ffffff 0%,#fafaf8 100%);
       border-radius:var(--radius);
       padding:20px;
       margin-bottom:14px;
-      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
     }
     .card:hover{
       transform:translateY(-2px);
-      border-color:#363636;
-      background:linear-gradient(180deg,#121212 0%,#0c0c0c 100%);
+      border-color:#cfcfc8;
+      background:linear-gradient(180deg,#ffffff 0%,#f7f7f3 100%);
+      box-shadow:0 10px 28px rgba(0,0,0,.05);
     }
     .card-top{
       display:flex;
@@ -204,8 +205,8 @@
     }
     .label{color:var(--muted);padding-top:3px}
     .label.insight{color:var(--accent)}
-    .body{font-size:15px;color:#ededed;line-height:1.78}
-    .insight-body{color:#e7fbdc}
+    .body{font-size:15px;color:#1f1f1c;line-height:1.78}
+    .insight-body{color:#145728}
     .source-link{
       display:inline-block;
       margin-top:14px;
@@ -236,7 +237,7 @@
       font-size:11px;
     }
     .toc-title{
-      color:#d8d8d8;
+      color:#252521;
       font-size:13px;
       line-height:1.45;
     }
@@ -254,7 +255,7 @@
       letter-spacing:-.02em;
     }
     .note-body{
-      color:#d0d0d0;
+      color:#343430;
       font-size:14px;
       line-height:1.75;
     }
@@ -293,7 +294,7 @@
         <div>
           <div class="hero-kicker">Daily Intelligence / Vercel-Leaning Mono Precision</div>
           <h1>Morning<br>Briefing</h1>
-          <div class="hero-intro">오늘 소식들은 AI의 성능과 활용 가치가 이제 인간과의 상호작용 방식과 인간 중심 설계에 달려있음을 공통으로 강조합니다. 이러한 흐름은 우석이 추구하는 AI 서비스의 방향성과 전략 수립에 중요한 시사점을 제공합니다.</div>
+          <div class="hero-intro">오늘의 주요 소식들은 AI 기술 발전의 초점이 인격 설계, 협업 에이전트 등 인간적 요소와의 접점으로 확장되고 있음을 공통으로 보여줍니다. 이는 우리가 개발하는 AI 솔루션이 단순한 도구를 넘어 인간과 유기적으로 상호작용하는 방식을 고민하고, 팀 내 인간 역량의 역할을 재정립할 시점임을 뜻합니다.</div>
         </div>
         <div class="hero-side">
           <div class="hero-panel">
@@ -313,8 +314,8 @@
         <main>
           <div class="section-kicker">Big Picture</div>
           <div class="big-picture">
-            <h3>오늘 소식들은 AI의 성능과 활용 가치가 이제 인간과의 상호작용 방식과 인간 중심 설계에 달려있음을 공통으로 강조합니다. 이러한 흐름은 우석이 추구하는 AI 서비스의 방향성과 전략 수립에 중요한 시사점을 제공합니다.</h3>
-            <p>오늘 소식들은 AI의 성능과 활용 가치가 이제 인간과의 상호작용 방식과 인간 중심 설계에 달려있음을 공통으로 강조합니다. 이러한 흐름은 우석이 추구하는 AI 서비스의 방향성과 전략 수립에 중요한 시사점을 제공합니다. 따라서 오늘 실무에서는 AI 설계 및 구현 과정에서 사용자 경험과 인격 부여의 측면을 면밀히 검토해 주십시오.</p>
+            <h3>오늘의 주요 소식들은 AI 기술 발전의 초점이 인격 설계, 협업 에이전트 등 인간적 요소와의 접점으로 확장되고 있음을 공통으로 보여줍니다. 이는 우리가 개발하는 AI 솔루션이 단순한 도구를 넘어 인간과 유기적으로 상호작용하는 방식을 고민하고, 팀 내 인간 역량의 역할을 재정립할 시점임을 뜻합니다.</h3>
+            <p>오늘의 주요 소식들은 AI 기술 발전의 초점이 인격 설계, 협업 에이전트 등 인간적 요소와의 접점으로 확장되고 있음을 공통으로 보여줍니다. 이는 우리가 개발하는 AI 솔루션이 단순한 도구를 넘어 인간과 유기적으로 상호작용하는 방식을 고민하고, 팀 내 인간 역량의 역할을 재정립할 시점임을 뜻합니다. 그러므로 오늘 주요 프로젝트에서 AI의 사용자 경험을 인간적 관점에서 재검토하고, 팀원들의 창의적 기여를 독려하는 방안을 우선적으로 논의해야 합니다.</p>
           </div>
 
           <div class="section-kicker">Entries</div>
@@ -324,15 +325,15 @@
             <span class="chip" style="color:#8BE26A;border-color:#8BE26A33;background:#8BE26A10">Anthropic 뉴스</span>
             <span class="date"></span>
           </div>
-          <h2>AI 성능, 인격 설계에 달렸다</h2>
+          <h2>AI 인격 설계, 성능에 직결</h2>
           <div class="meta">Vol.03 — 인격 설계가 AI 성능을 바꾼다 - 브런치</div>
           <div class="body-grid">
             <div class="label">SUMMARY</div>
-            <div class="body">Anthropic 연구에 따르면 AI의 '인격 설계'가 AI 성능에 직접적인 영향을 미친다. 이는 단순한 모델 훈련을 넘어 AI의 페르소나 구축이 주요 성능 개선 요인임을 보여준다.</div>
+            <div class="body">Anthropic 연구를 통해 AI의 인격 설계가 실제 성능에 직접적인 영향을 미치는 것이 확인되었다. 이는 AI 개발 시 단순히 기술적 개선을 넘어 사용자와의 상호작용 방식이 중요해졌음을 보여준다.</div>
             <div class="label">WHY IT MATTERS</div>
-            <div class="body">AI 개발 및 활용에 있어 기술적 성능 외에 사용자 경험과 상호작용 측면의 인격 설계가 핵심 고려 사항이 될 것이다. 이는 AI의 실제 적용 과정에서 효율성과 사용자 만족도를 높이는 새로운 접근법을 제시한다.</div>
+            <div class="body">AI의 윤리적/사회적 측면이 단순한 가이드라인을 넘어 실제 성능 지표로 통합될 수 있음을 시사한다. 사용자 접점에서 AI의 신뢰도와 수용도를 높이는 데 중요한 고려사항이 될 것이다.</div>
             <div class="label insight">INSIGHT</div>
-            <div class="body insight-body">OpenClaw 자동화 솔루션 도입 시, AI의 페르소나 설계가 자동화 작업의 정확도와 사용자 편의성에 미치는 영향을 고려하여 최적의 운영 방안을 수립해야 한다.</div>
+            <div class="body insight-body">OpenClaw 자동화 솔루션 개발 시, AI의 응대 인격 설계를 통해 사용자 만족도와 작업 효율을 높일 수 있다. BOOL 비즈니스에서는 AI 챗봇 등 대고객 서비스의 신뢰성 및 접근성을 강화하는 데 활용 가능하다.</div>
           </div>
           <a class="source-link" href="https://news.google.com/rss/articles/CBMiREFVX3lxTE5zaVMzVUNlM2pUSy01b3BTdVJCQUczOXA1SGFDMVZpUmVucHNLdG5vejFzLVBMZGxUamJoRjU3aHREVndz?oc=5" target="_blank" rel="noopener">Open source ↗</a>
         </article>
@@ -342,15 +343,15 @@
             <span class="chip" style="color:#8BE26A;border-color:#8BE26A33;background:#8BE26A10">AI 테크 트렌드</span>
             <span class="date"></span>
           </div>
-          <h2>구글, 제미나이 3 기반 협업 에이전트 공개</h2>
+          <h2>구글 제미니 3, 협업 에이전트 공개</h2>
           <div class="meta">[AI 도구 해부학] 구글의 반격, Gemini 3 'Workspace Agent'는 협업의 미래인가? - 한국데이터경제신문</div>
           <div class="body-grid">
             <div class="label">SUMMARY</div>
-            <div class="body">구글이 제미나이 3 기반의 '워크스페이스 에이전트'를 공개하며 업무 협업 도구 시장 진출을 알렸다. AI가 문서 작성, 일정 관리 등 업무 전반에 걸쳐 사용자 활동을 지원하며 생산성 향상을 목표로 한다.</div>
+            <div class="body">구글이 새로운 AI 모델 제미니 3 기반의 'Workspace Agent'를 발표했다. 이는 업무 환경 내 협업 기능을 강화하는 데 중점을 둔다.</div>
             <div class="label">WHY IT MATTERS</div>
-            <div class="body">이 에이전트는 기존 협업 도구 시장에 새로운 AI 기반 경쟁을 촉발할 것으로 예상된다. 기업이 AI를 통해 업무 흐름을 자동화하고 생산성을 극대화할 수 있는 잠재력을 보여준다.</div>
+            <div class="body">생산성 스위트 시장에서 AI 에이전트 경쟁이 심화되는 가운데, 구글의 이번 발표는 AI 기반 협업 도구의 발전을 가속화할 것이다.</div>
             <div class="label insight">INSIGHT</div>
-            <div class="body insight-body">OpenClaw 자동화 관점에서, 구글의 AI 에이전트는 업무 자동화의 스펙트럼을 넓히는 기회 요인이 될 수 있다. 기존 OpenClaw 솔루션과의 연동을 통해 더 복잡한 비즈니스 프로세스 자동화를 구현할 방안을 모색해야 한다.</div>
+            <div class="body insight-body">OpenClaw 자동화 관점에서, 이 에이전트가 기존 협업 프로세스에 어떤 효율을 가져올지 초기부터 면밀히 검토해야 한다.</div>
           </div>
           <a class="source-link" href="https://news.google.com/rss/articles/CBMicEFVX3lxTFBBUzFiMzZ3aHZGT01fVmZIbE1tcTJ2OTRWeHZ1MFlxUW9sWl84aG5sbzVVR0x5U3pCNHdqZ054RF9oVXVZdVl1NGFhU29DVkRkb2ZGX01GUk1qRzlMQkJ4eTFpcDJBMnFkRXMxTnFQSVQ?oc=5" target="_blank" rel="noopener">Open source ↗</a>
         </article>
@@ -360,15 +361,15 @@
             <span class="chip" style="color:#8BE26A;border-color:#8BE26A33;background:#8BE26A10">Lenny's</span>
             <span class="date"></span>
           </div>
-          <h2>창의적 침체 극복: 인간 중심 접근법 제안</h2>
+          <h2>창의성 침체, 인간적 회복 새 지침</h2>
           <div class="meta">A visual guide to getting out of a creative slump</div>
           <div class="body-grid">
             <div class="label">SUMMARY</div>
-            <div class="body">레니스는 창의적 침체 극복을 위한 시각 가이드를 발표했다. 이는 인간적인 감정을 활용하고 취약성을 인정하며 작업을 진행하는 새로운 관점을 제시한다.</div>
+            <div class="body">이번 가이드는 창의적 침체기를 인간의 감정적 측면과 연결하여 극복하는 방법을 시각적으로 제시합니다. 이는 기존의 기술적 해결책과 달리, 심리적 요인을 고려한 실질적 접근법을 제안하는 것이 특징입니다.</div>
             <div class="label">WHY IT MATTERS</div>
-            <div class="body">창의적 침체는 프로젝트 지연 및 생산성 저하로 직결된다. 본 가이드는 업무 효율성과 팀 사기 유지에 기여하는 실질적인 방법을 제시한다.</div>
+            <div class="body">창의성이 중요한 모든 분야에서 개인의 생산성 유지와 번아웃 방지는 핵심 과제입니다. 이 가이드는 실무자들이 창의적 어려움을 겪을 때 효과적으로 대처할 수 있는 새로운 관점과 도구를 제공할 수 있습니다.</div>
             <div class="label insight">INSIGHT</div>
-            <div class="body insight-body">BOOL 비즈니스에서 창의적 문제 해결 능력은 핵심이다. 이 가이드는 팀원들의 창의적 침체를 최소화하여 프로젝트 지연을 방지하고 운영 효율성을 높이는 데 실질적 도움을 줄 수 있다.</div>
+            <div class="body insight-body">BOOL 비즈니스 운영 시, 팀원들의 창의적 침체는 프로젝트 지연 및 비용 증가로 이어질 수 있습니다. 이러한 인간 중심의 회복 가이드라인을 팀에 적용하여 운영 효율성을 높이고 인력 유지에 기여할 방안을 모색해야 합니다.</div>
           </div>
           <a class="source-link" href="https://www.lennysnewsletter.com/p/a-visual-guide-to-getting-out-of" target="_blank" rel="noopener">Open source ↗</a>
         </article>
@@ -378,7 +379,7 @@
         <aside>
           <div class="sidebar-panel">
             <div class="section-kicker">Index</div>
-            <div class="toc-row"><span class="toc-no">01</span><span class="toc-title">AI 성능, 인격 설계에 달렸다</span></div><div class="toc-row"><span class="toc-no">02</span><span class="toc-title">구글, 제미나이 3 기반 협업 에이전트 공개</span></div><div class="toc-row"><span class="toc-no">03</span><span class="toc-title">창의적 침체 극복: 인간 중심 접근법 제안</span></div>
+            <div class="toc-row"><span class="toc-no">01</span><span class="toc-title">AI 인격 설계, 성능에 직결</span></div><div class="toc-row"><span class="toc-no">02</span><span class="toc-title">구글 제미니 3, 협업 에이전트 공개</span></div><div class="toc-row"><span class="toc-no">03</span><span class="toc-title">창의성 침체, 인간적 회복 새 지침</span></div>
           </div>
           <div class="sidebar-panel">
             <div class="section-kicker">Notes</div>
