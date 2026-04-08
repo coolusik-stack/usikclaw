@@ -81,8 +81,8 @@ def build_html(date_str, rates, items_analyzed, big_picture, source_statuses=Non
       --line:#e8e8e3;
       --line2:#ddddD6;
       --text:#111111;
-      --muted:#55554f;
-      --soft:#2f2f2b;
+      --muted:#44443e;
+      --soft:#1f1f1b;
       --accent:#0f7a2f;
       --radius:22px;
     }
@@ -283,11 +283,14 @@ def build_html(date_str, rates, items_analyzed, big_picture, source_statuses=Non
     }
     .source-link:hover{color:var(--accent)}
     .sidebar-panel{
-      border:1px solid var(--line2);
+      border:1px solid #1f1f1f;
       background:linear-gradient(180deg,#0f0f0f 0%,#0b0b0b 100%);
       border-radius:20px;
       padding:18px;
       margin-bottom:14px;
+    }
+    .sidebar-panel .section-kicker{
+      color:#b9b9b2;
     }
     .toc-row{
       display:grid;
@@ -297,15 +300,16 @@ def build_html(date_str, rates, items_analyzed, big_picture, source_statuses=Non
       border-top:1px solid rgba(255,255,255,.04);
     }
     .toc-no{
-      color:var(--muted);
+      color:#9f9f97;
       font-family:"JetBrains Mono", monospace;
       font-size:11px;
       font-weight:600;
     }
     .toc-title{
-      color:#252521;
+      color:#f1f1eb;
       font-size:13px;
-      line-height:1.45;
+      line-height:1.5;
+      font-weight:500;
     }
     .stat-row{
       display:flex;
@@ -321,9 +325,10 @@ def build_html(date_str, rates, items_analyzed, big_picture, source_statuses=Non
       letter-spacing:-.02em;
     }
     .note-body{
-      color:#20201d;
+      color:#ededE7;
       font-size:14px;
-      line-height:1.75;
+      line-height:1.8;
+      font-weight:450;
     }
     .footer{
       display:flex;
