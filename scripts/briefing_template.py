@@ -69,23 +69,23 @@ def build_html(date_str, rates, items_analyzed, big_picture):
     css = '''
     *{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --bg:#050505;
-      --panel:#0b0b0b;
-      --panel2:#111111;
-      --line:#1f1f1f;
-      --line2:#2a2a2a;
-      --text:#f5f5f5;
-      --muted:#9a9a9a;
-      --soft:#c9c9c9;
-      --accent:#8BE26A;
+      --bg:#f6f6f4;
+      --panel:#ffffff;
+      --panel2:#fbfbfa;
+      --line:#e8e8e3;
+      --line2:#ddddD6;
+      --text:#111111;
+      --muted:#6f6f69;
+      --soft:#4c4c47;
+      --accent:#0f7a2f;
       --radius:22px;
     }
     html{scroll-behavior:smooth}
     body{
       font-family:Inter, Arial, sans-serif;
       background:
-        radial-gradient(circle at top, rgba(255,255,255,.04), transparent 36%),
-        linear-gradient(180deg, #040404 0%, #080808 100%);
+        radial-gradient(circle at top, rgba(0,0,0,.03), transparent 38%),
+        linear-gradient(180deg, #fafaf8 0%, #f4f4f1 100%);
       color:var(--text);
       min-height:100vh;
       line-height:1.6;
@@ -109,10 +109,10 @@ def build_html(date_str, rates, items_analyzed, big_picture):
     }
     .shell{
       border:1px solid var(--line);
-      background:rgba(10,10,10,.92);
+      background:rgba(255,255,255,.88);
       border-radius:28px;
       overflow:hidden;
-      box-shadow:0 20px 60px rgba(0,0,0,.35);
+      box-shadow:0 12px 40px rgba(0,0,0,.06);
       backdrop-filter: blur(10px);
     }
     .hero{
@@ -141,7 +141,7 @@ def build_html(date_str, rates, items_analyzed, big_picture):
     }
     .hero-intro{
       font-size:16px;
-      color:#dddddd;
+      color:#2d2d29;
       max-width:64ch;
       line-height:1.75;
     }
@@ -153,7 +153,7 @@ def build_html(date_str, rates, items_analyzed, big_picture):
     }
     .hero-panel{
       border:1px solid var(--line2);
-      background:linear-gradient(180deg,#101010 0%,#0c0c0c 100%);
+      background:linear-gradient(180deg,#ffffff 0%,#f7f7f4 100%);
       border-radius:20px;
       padding:16px;
     }
@@ -198,23 +198,24 @@ def build_html(date_str, rates, items_analyzed, big_picture):
       font-weight:700;
     }
     .big-picture p{
-      color:#d6d6d6;
+      color:#33332f;
       font-size:15px;
       line-height:1.8;
       max-width:68ch;
     }
     .card{
       border:1px solid var(--line2);
-      background:linear-gradient(180deg,#0f0f0f 0%,#0b0b0b 100%);
+      background:linear-gradient(180deg,#ffffff 0%,#fafaf8 100%);
       border-radius:var(--radius);
       padding:20px;
       margin-bottom:14px;
-      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
     }
     .card:hover{
       transform:translateY(-2px);
-      border-color:#363636;
-      background:linear-gradient(180deg,#121212 0%,#0c0c0c 100%);
+      border-color:#cfcfc8;
+      background:linear-gradient(180deg,#ffffff 0%,#f7f7f3 100%);
+      box-shadow:0 10px 28px rgba(0,0,0,.05);
     }
     .card-top{
       display:flex;
@@ -263,8 +264,8 @@ def build_html(date_str, rates, items_analyzed, big_picture):
     }
     .label{color:var(--muted);padding-top:3px}
     .label.insight{color:var(--accent)}
-    .body{font-size:15px;color:#ededed;line-height:1.78}
-    .insight-body{color:#e7fbdc}
+    .body{font-size:15px;color:#1f1f1c;line-height:1.78}
+    .insight-body{color:#145728}
     .source-link{
       display:inline-block;
       margin-top:14px;
@@ -295,7 +296,7 @@ def build_html(date_str, rates, items_analyzed, big_picture):
       font-size:11px;
     }
     .toc-title{
-      color:#d8d8d8;
+      color:#252521;
       font-size:13px;
       line-height:1.45;
     }
@@ -313,7 +314,7 @@ def build_html(date_str, rates, items_analyzed, big_picture):
       letter-spacing:-.02em;
     }
     .note-body{
-      color:#d0d0d0;
+      color:#343430;
       font-size:14px;
       line-height:1.75;
     }
