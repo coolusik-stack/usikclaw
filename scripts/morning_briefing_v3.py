@@ -9,7 +9,7 @@ morning_briefing_v3.py
 - 텔레그램 메시지 출력 (링크 + claw 의견)
 """
 
-import json, ssl, subprocess, sys, urllib.request, urllib.parse, urllib.error, time
+import json, ssl, subprocess, sys, urllib.request, urllib.parse, urllib.error, time, re, html
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -82,7 +82,10 @@ def fetch_rss(url, max_items=6):
         for item in root.findall(".//item")[:max_items]:
             title   = (item.findtext("title")       or "").strip()
             link    = (item.findtext("link")         or "").strip()
-            desc    = (item.findtext("description")  or "").strip()[:400]
+            desc_raw = (item.findtext("description") or "").strip()
+            desc = html.unescape(re.sub(r"<[^>]+>", " ", desc_raw))
+            desc = re.sub(r"https?://\\S+", " ", desc)
+            desc = re.sub(r"\s+", " ", desc).strip()[:400]
             pub     = (item.findtext("pubDate")      or "").strip()
             source  = ""
             pub_dt  = None
@@ -165,6 +168,52 @@ def collect_items(target_date=None):
             print(f"  [{name}] 전날 기사 없음", file=sys.stderr)
     return collected, source_statuses
 
+def _fallback_item(name: str, item: dict) -> dict:
+    title = item['title']
+    desc = (item.get('desc') or '').strip()
+    headline = title.split(' - ')[0].strip()[:36]
+    summary = (desc[:180].strip() if desc else title).strip()
+    if not summary:
+        summary = title
+    why = "전날 공개된 변화가 실제 운영 방식이나 비용 판단에 어떤 영향을 주는지 확인할 필요가 있습니다."
+    if "가격" in title or "요금" in title or "cost" in title.lower():
+        why = "가격이나 요금 정책 변화는 실제 도입 비용과 운영 판단에 바로 영향을 줍니다."
+    elif "codebase" in title.lower() or "고객" in desc:
+        why = "AI가 실제 운영과 고객 대응에 어떻게 연결되는지 보여주는 사례라 실무 참고 가치가 큽니다."
+    elif "trade" in title.lower() or "deal" in title.lower() or "무역" in title or "제약" in title:
+        why = "투자와 산업 흐름이 어디로 쏠리는지 보여줘 시장 판단의 참고점이 됩니다."
+    insight = "새 소식의 크기보다, 실제 비용과 운영 효율에 어떤 영향을 주는지부터 보는 편이 좋습니다."
+    if "Claude" in title or "Anthropic" in title:
+        insight = "우석 쪽 자동화도 모델 성능보다 실제 비용과 운영성 기준으로 판단하는 게 맞습니다."
+    elif "codebase" in title.lower() or "고객" in desc:
+        insight = "BOOL이나 OpenClaw 작업에서도 어디까지 자동화할지 더 구체적으로 나누는 데 참고할 만합니다."
+    elif "trade" in title.lower() or "deal" in title.lower() or "무역" in title:
+        insight = "AI 관련 흐름을 볼 때도 기술 뉴스만 보지 말고 돈이 실제로 몰리는 산업을 같이 보는 게 유리합니다."
+    return {
+        "source": name, "title": title, "link": item['link'],
+        "headline": headline,
+        "summary": summary,
+        "why_matters": why,
+        "usuk_insight": insight,
+        "pub": item.get('pub', '')
+    }
+
+
+def _validate_item(result: dict) -> bool:
+    bad_markers = ["전날 공개된 업데이트라면", "바로 메시지를 만들기보다"]
+    required = [result.get("headline", ""), result.get("summary", ""), result.get("why_matters", ""), result.get("usuk_insight", "")]
+    if any((not x or not x.strip()) for x in required):
+        return False
+    if any("<a " in x or "href=" in x for x in required):
+        return False
+    if any(x.strip().startswith("http") for x in required):
+        return False
+    if any(m in result.get("why_matters", "") for m in bad_markers):
+        return False
+    if any(m in result.get("usuk_insight", "") for m in bad_markers):
+        return False
+    return True
+
 # ─── Gemini로 각 아이템 분석 ──────────────────────────
 def analyze_item(name: str, item: dict, key: str) -> dict:
     """각 소스 아이템에 대해 한국어 분석 생성"""
@@ -221,34 +270,14 @@ def analyze_item(name: str, item: dict, key: str) -> dict:
         result["title"] = title
         result["link"]  = link
         result["source"] = name
+        result["pub"] = item.get("pub", "")
+        if not _validate_item(result):
+            print(f"  Validation fallback [{name}]", file=sys.stderr)
+            return _fallback_item(name, item)
         return result
     except Exception as e:
         print(f"  Gemini ERROR [{name}]: {e}", file=sys.stderr)
-        clean_desc = (desc or title).replace("&quot;", '"').replace("&#39;", "'")
-        clean_desc = clean_desc.replace("<b>", "").replace("</b>", "").replace("<br>", " ")
-        headline = title.split(" - ")[0].strip()[:36]
-        summary = clean_desc[:140].strip() if clean_desc else title
-        why = "전날 공개된 업데이트라면 업계 운영 방식이나 비용 구조 변화와 연결될 가능성이 있습니다."
-        if "가격" in title or "요금" in title or "cost" in title.lower():
-            why = "가격이나 요금 정책 변화는 실제 도입 비용과 운영 판단에 바로 영향을 줍니다."
-        elif "codebase" in title.lower() or "고객" in clean_desc:
-            why = "AI가 실제 운영과 고객 대응에 어떻게 연결되는지 보여주는 사례라 실무 참고 가치가 큽니다."
-        elif "trade" in title.lower() or "deal" in title.lower() or "무역" in title or "제약" in title:
-            why = "투자와 산업 흐름이 어디로 쏠리는지 보여줘 시장 판단의 참고점이 됩니다."
-        insight = "바로 메시지를 만들기보다, 비용 대비 효과가 분명한 흐름인지 먼저 보는 편이 좋습니다."
-        if "Claude" in title or "Anthropic" in title:
-            insight = "우석 쪽 자동화도 모델 성능보다 실제 비용과 운영성 기준으로 판단하는 게 맞습니다."
-        elif "codebase" in title.lower() or "고객" in clean_desc:
-            insight = "BOOL이나 OpenClaw 작업에서도 '어디까지 자동화할지'를 더 구체적으로 나누는 데 참고할 만합니다."
-        elif "trade" in title.lower() or "deal" in title.lower() or "무역" in title:
-            insight = "AI 관련 흐름을 볼 때도 기술 뉴스만 보지 말고 돈이 실제로 몰리는 산업을 같이 보는 게 유리합니다."
-        return {
-            "source": name, "title": title, "link": link,
-            "headline": headline,
-            "summary": summary,
-            "why_matters": why,
-            "usuk_insight": insight
-        }
+        return _fallback_item(name, item)
 
 # ─── Big Picture 생성 ─────────────────────────────────
 def make_big_picture(items_analyzed: list, rates: dict, key: str) -> str:
