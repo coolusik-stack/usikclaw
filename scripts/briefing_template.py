@@ -425,7 +425,7 @@ def build_html(date_str, rates, items_analyzed, big_picture, source_statuses=Non
       </section>
 
       <footer class="footer">
-        <span>USIKCLAW / BOOL KOREA</span>
+        <span>USIKCLAW</span>
         <span>VERCEL-LEANING BRIEFING SURFACE</span>
       </footer>
     </div>
