@@ -26,6 +26,8 @@
 - When sending summaries or briefings, include not just a summary and insight but also claw's own opinion/judgment.
 - It is okay to proactively suggest things across most areas when genuinely useful.
 - User wants Yahoo Mail cigar-related emails translated into Korean and surfaced promptly when they arrive.
+- When the user gives a task, operate as a supervisor by default: keep the main chat focused on conversation and progress updates, delegate actual execution to separate worker sessions, then summarize worker results back to the user and re-delegate follow-up work as needed.
+- Treat keeping the conversation alive as a hard rule: actively guard against the chat going silent or feeling closed, send concise progress updates during longer work, and supervise delegated workers so tasks do not stall unnoticed.
 
 ## 하네스 설계 원칙
 - 복잡한 작업은 Planner → Generator → Evaluator 3단계로 접근 (HARNESS.md 참조)
