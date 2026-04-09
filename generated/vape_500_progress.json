@@ -1,7 +1,7 @@
 {
   "project": "seoul_vape_500",
   "status": "running",
-  "lastVerifiedAtKst": "2026-04-10 00:26",
+  "lastVerifiedAtKst": "2026-04-10 00:51",
   "currentBatch": {
     "name": "Batch 2",
     "areas": [
@@ -10,11 +10,11 @@
       "성수/건대",
       "영등포/여의도"
     ],
-    "stage": "ambiguous_phone_revalidated"
+    "stage": "hotspot_wave2_verified"
   },
   "counts": {
-    "total": 372,
-    "phoneReady": 367,
+    "total": 430,
+    "phoneReady": 425,
     "needsCheck": 5
   },
   "verification": {
@@ -67,8 +67,17 @@
       "queue exhausted or awaiting more candidates",
       "queue exhausted or awaiting more candidates",
       "hotspot wave2 added=0, scanned=1, by_query={}",
-      "ambiguous phone revalidation recovered_sms_ready=10, unresolved_leftovers=63"
+      "ambiguous phone revalidation recovered_sms_ready=10, unresolved_leftovers=63",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "hotspot wave2 added=27, scanned=42, by_query={'강남역 전자담배': 2, '삼성역 전자담배': 4, '홍대 전자담배': 1, '합정 전자담배': 2, '성수 전자담배': 4, '서울숲 전자담배': 2, '잠실 전자담배': 3, '문정 전자담배': 3, '영등포역 전자담배': 4, '문래 전자담배': 2}",
+      "hotspot wave2 added=5, scanned=47, by_query={'여의도 전자담배': 5}",
+      "hotspot wave2 added=12, scanned=63, by_query={'건대입구 전자담배': 4, '왕십리 전자담배': 3, '이태원 전자담배': 2, '공덕 전자담배': 3}",
+      "queue exhausted or awaiting more candidates",
+      "hotspot wave2 added=14, scanned=14, by_query={'신논현 전자담배': 1, '선릉 전자담배': 5, '상수 전자담배': 1, '잠실새내 전자담배': 1, '뚝섬 전자담배': 1, '삼전 전자담배': 1, '당산 전자담배': 4}"
     ]
   },
-  "nextProofPoint": "updated dashboard/public link refreshed with ambiguous-phone recoveries"
+  "nextProofPoint": "dashboard refreshed with second-wave hotspot verified additions"
 }
