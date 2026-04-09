@@ -513,7 +513,11 @@
     "hint_name": "시가랜드",
     "hint_address": "서울특별시 양천구 신정동 1026-3 1층 시가랜드",
     "hint_phone": "010-5643-1505",
-    "status": "no_place_id"
+    "status": "verified_from_naver_place",
+    "verified_name": "시가랜드 전자담배",
+    "verified_address": "서울특별시 양천구 신월로 344 1층",
+    "verified_phone": "0507-1335-8585",
+    "map_link": "https://map.naver.com/p/entry/place/34524114"
   },
   {
     "query": "킹콩전자담배이태원점",
@@ -693,7 +697,11 @@
     "hint_name": "스모킹라이프",
     "hint_address": "서울특별시 영등포구 대방천로 191 1층",
     "hint_phone": "010-3545-0500",
-    "status": "no_place_id"
+    "status": "verified_from_naver_place",
+    "verified_name": "스모킹라이프",
+    "verified_address": "서울특별시 영등포구 대방천로 191 1층",
+    "verified_phone": "0507-1479-8991",
+    "map_link": "https://map.naver.com/p/entry/place/36215100"
   },
   {
     "query": "언노운 인더스트리",
