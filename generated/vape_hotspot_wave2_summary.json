@@ -1,9 +1,9 @@
 {
   "before_total": 372,
-  "after_total": 430,
+  "after_total": 429,
   "before_sms": 367,
-  "after_sms": 425,
-  "added_total": 58,
+  "after_sms": 424,
+  "added_total": 57,
   "added_rows": [
     {
       "store_name": "에어릭스전자담배 강남역점",
@@ -220,14 +220,6 @@
       "address": "서울 영등포구 선유로 58 제가동호 1층 106호",
       "map_link": "https://pcmap.place.naver.com/place/2050340010/home",
       "notes": "네이버 검색 핫스팟 2차 확장 2026-04-10 · query=문래 전자담배"
-    },
-    {
-      "store_name": "홀릭 여의도점",
-      "phone": "0507-1410-5869",
-      "area": "여의도",
-      "address": "서울 영등포구 의사당대로 127 롯데캐슬 엠파이어 B1층 117호 전자담배",
-      "map_link": "https://pcmap.place.naver.com/place/31806245/home",
-      "notes": "네이버 검색 핫스팟 2차 확장 2026-04-10 · query=여의도 전자담배"
     },
     {
       "store_name": "여의도 전자담배",
@@ -481,7 +473,7 @@
     "문정 전자담배": 3,
     "영등포역 전자담배": 4,
     "문래 전자담배": 2,
-    "여의도 전자담배": 5,
+    "여의도 전자담배": 4,
     "건대입구 전자담배": 4,
     "왕십리 전자담배": 3,
     "이태원 전자담배": 2,
@@ -498,5 +490,55 @@
   "search_failures": [],
   "unresolved_issues": [
     "Some adjacent-keyword candidates were skipped as ambiguous or existing duplicates to preserve SMS-ready trust quality."
-  ]
+  ],
+  "salvage_review": {
+    "validated_candidates": [
+      {
+        "store_name": "여의도 전자담배",
+        "phone": "0507-1383-1154",
+        "address": "서울 영등포구 국제금융로6길 33 여의도 백화점 2층",
+        "map_link": "https://map.naver.com/p/entry/place/35021742",
+        "result": "kept"
+      },
+      {
+        "store_name": "하카 여의도직영점",
+        "phone": "0507-1398-2161",
+        "address": "서울 영등포구 여의대방로69길 28 유성빌딩 1층 110호",
+        "map_link": "https://map.naver.com/p/entry/place/2027106161",
+        "result": "kept"
+      },
+      {
+        "store_name": "루나전자담배 여의도점",
+        "phone": "0507-1477-0759",
+        "address": "서울 영등포구 여의나루로 113 1층 118호",
+        "map_link": "https://map.naver.com/p/entry/place/1431828485",
+        "result": "kept"
+      },
+      {
+        "store_name": "베이프큐 전자담배 여의도점",
+        "phone": "0507-1310-1194",
+        "address": "서울 영등포구 국제금융로6길 33 1층 24호",
+        "map_link": "https://map.naver.com/p/entry/place/1363898535",
+        "result": "kept"
+      },
+      {
+        "store_name": "홀릭 여의도점",
+        "phone": "0507-1410-5869",
+        "address": "서울 영등포구 의사당대로 127 롯데캐슬 엠파이어 B1층 117호 전자담배",
+        "map_link": "https://map.naver.com/p/entry/place/31806245",
+        "result": "merged_into_existing"
+      },
+      {
+        "store_name": "국회전자담배",
+        "phone": "",
+        "address": "서울 영등포구 국회대로 780 지하1층 전자담배",
+        "map_link": "https://map.naver.com/p/entry/place/1752772061",
+        "result": "rejected_no_sms_number"
+      }
+    ],
+    "notes": [
+      "홀릭 여의도점은 기존 CSV의 공개 웹 검색 초안 마샤전자담배 여의도점과 동일 주소여서 신규 추가 대신 병합 정정",
+      "국회전자담배는 네이버 지도 상 전자담배 매장 컨텍스트는 확인됐지만 SMS 발송 가능한 공개 번호가 없어 제외"
+    ]
+  }
 }
