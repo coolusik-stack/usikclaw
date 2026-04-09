@@ -7,7 +7,7 @@ heartbeat 때 호출하는 모니터링 스크립트.
 출력: JSON {"alerts": [...], "summary": "..."}
 """
 
-import urllib.request, urllib.parse, json, ssl, sys
+import urllib.request, urllib.parse, json, ssl, sys, subprocess
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
@@ -166,6 +166,21 @@ def check_bool_news():
         return {"error": str(e)}
 
 
+def refresh_worker_dashboard(results: dict):
+    """heartbeat 실행 시 worker 상태 대시보드도 함께 재생성"""
+    try:
+        subprocess.run(
+            [sys.executable, str(Path(__file__).parent / "render_worker_status_dashboard.py")],
+            capture_output=True,
+            text=True,
+            timeout=20,
+            check=True,
+        )
+        results["worker_dashboard_refreshed"] = True
+    except Exception as e:
+        results["worker_dashboard_error"] = str(e)
+
+
 def main():
     results = {"alerts": [], "exchange": {}, "cigar_emails": [], "bool_news": [], "summary": ""}
 
@@ -192,12 +207,17 @@ def main():
     if bool_result.get("error"):
         results["bool_news_error"] = bool_result["error"]
 
+    # worker 상태 대시보드도 heartbeat마다 재생성
+    refresh_worker_dashboard(results)
+
     # 상태 업데이트
     try:
         import time
         state = json.loads(STATE_FILE.read_text())
-        state["lastChecks"]["calendar"] = int(time.time())
-        state["lastChecks"]["exchangeRate"] = int(time.time())
+        now_ts = int(time.time())
+        state["lastChecks"]["calendar"] = now_ts
+        state["lastChecks"]["exchangeRate"] = now_ts
+        state["lastChecks"]["workerDashboard"] = now_ts
         STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=2))
     except:
         pass

@@ -1,6 +1,6 @@
 {
   "project": "seoul_vape_500",
-  "generatedAt": "2026-04-10 01:11",
+  "generatedAt": "2026-04-10 01:45",
   "headline": "Worker status dashboard",
   "overview": {
     "workers": 5,
@@ -21,7 +21,7 @@
       "task": "Seoul vape 500 coordinator",
       "status": "running",
       "stage": "idle",
-      "lastUpdate": "2026-04-10 01:10",
+      "lastUpdate": "2026-04-10 01:40",
       "summary": "424 SMS-ready contacts out of 429 verified stores.",
       "metrics": [
         {
@@ -38,10 +38,10 @@
         }
       ],
       "notes": [
-        "hotspot wave2 added=14, scanned=14, by_query={'신논현 전자담배': 1, '선릉 전자담배': 5, '상수 전자담배': 1, '잠실새내 전자담배': 1, '뚝섬 전자담배': 1, '삼전 전자담배': 1, '당산 전자담배': 4}",
         "queue exhausted or awaiting more candidates",
         "queue exhausted or awaiting more candidates",
-        "hotspot wave2 salvage: 여의도/영등포 후보 strict-revalidated=6, net_new_kept=4, merged_existing=1(홀릭 여의도점←마샤전자담배 여의도점), rejected_no_sms=1(국회전자담배)",
+        "queue exhausted or awaiting more candidates",
+        "queue exhausted or awaiting more candidates",
         "queue exhausted or awaiting more candidates",
         "queue exhausted or awaiting more candidates"
       ],
@@ -55,7 +55,7 @@
       "task": "Batch and cron monitor",
       "status": "running",
       "stage": "waiting for new queued candidates",
-      "lastUpdate": "2026-04-10 01:10",
+      "lastUpdate": "2026-04-10 01:40",
       "summary": "The recurring worker is still writing heartbeat-style queue checks.",
       "metrics": [
         {
@@ -68,12 +68,12 @@
         }
       ],
       "notes": [
-        "[2026-04-10 00:44:43] No queued candidates left",
-        "[2026-04-10 00:50:29] No queued candidates left",
-        "[2026-04-10 00:54:51] No queued candidates left",
-        "[2026-04-10 01:00:29] No queued candidates left",
-        "[2026-04-10 01:05:01] No queued candidates left",
-        "[2026-04-10 01:10:32] No queued candidates left"
+        "[2026-04-10 01:15:10] No queued candidates left",
+        "[2026-04-10 01:20:32] No queued candidates left",
+        "[2026-04-10 01:25:20] No queued candidates left",
+        "[2026-04-10 01:30:32] No queued candidates left",
+        "[2026-04-10 01:35:30] No queued candidates left",
+        "[2026-04-10 01:40:32] No queued candidates left"
       ],
       "sources": [
         "generated/logs/vape_500_batch.log",
