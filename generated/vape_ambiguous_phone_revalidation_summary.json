@@ -1,0 +1,28 @@
+{
+  "before_total": 362,
+  "before_sms": 357,
+  "ambiguous_phone_candidates": 73,
+  "recovered_sms_ready_count": 10,
+  "after_total": 372,
+  "after_sms": 367,
+  "unresolved_leftovers": 63,
+  "skipped_existing": [],
+  "recovered_store_names": [
+    "서브마린",
+    "전자금연용품할인매장",
+    "시가모아 강남점",
+    "둔촌역전자담배",
+    "라미야구로점(신도림)",
+    "하카전자담배 신당약수역",
+    "너구리굴양남사거리점",
+    "듀바코 삼성점",
+    "마곡너구리굴전자담배 본점",
+    "룩전자담배점"
+  ],
+  "updated_dashboards": [
+    "generated/bool_outreach_dashboard_v3.html",
+    "bool_outreach_dashboard_v3.html",
+    "bool_outreach_dashboard.html"
+  ],
+  "lastVerifiedAtKst": "2026-04-10 00:26"
+}

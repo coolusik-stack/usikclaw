@@ -1,19 +1,20 @@
 {
   "project": "seoul_vape_500",
   "status": "running",
-  "lastVerifiedAtKst": "2026-04-10 00:14",
+  "lastVerifiedAtKst": "2026-04-10 00:26",
   "currentBatch": {
-    "name": "Batch 1",
+    "name": "Batch 2",
     "areas": [
-      "홍대/합정/상수",
-      "신촌/이대",
-      "성수"
+      "강남/삼성",
+      "홍대/신촌",
+      "성수/건대",
+      "영등포/여의도"
     ],
-    "stage": "idle"
+    "stage": "ambiguous_phone_revalidated"
   },
   "counts": {
-    "total": 362,
-    "phoneReady": 357,
+    "total": 372,
+    "phoneReady": 367,
     "needsCheck": 5
   },
   "verification": {
@@ -62,8 +63,12 @@
       "queue exhausted or awaiting more candidates",
       "queue exhausted or awaiting more candidates",
       "strict ambiguous-phone revalidation recovered=2 from Naver place listings only, upgraded=1(existing 시가랜드 row), added=1(스모킹라이프), rejected=7 low-confidence leftovers",
-      "queue exhausted or awaiting more candidates"
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "hotspot wave2 added=0, scanned=1, by_query={}",
+      "ambiguous phone revalidation recovered_sms_ready=10, unresolved_leftovers=63"
     ]
   },
-  "nextProofPoint": "next verified additions reflected in CSV and reported to user"
+  "nextProofPoint": "updated dashboard/public link refreshed with ambiguous-phone recoveries"
 }
