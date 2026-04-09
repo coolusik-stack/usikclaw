@@ -1,0 +1,18 @@
+{
+  "before_total": 284,
+  "before_sms": 279,
+  "gross_added_total": 95,
+  "gross_after_total": 379,
+  "gross_after_sms": 374,
+  "dedupe_removed": 18,
+  "net_after_total": 361,
+  "net_after_sms": 356,
+  "net_added_total": 77,
+  "source_counts": {
+    "martha": 78,
+    "litmus": 15,
+    "justfog": 2
+  },
+  "ambiguous_phone_skips": 73,
+  "unresolved_fixed": 19
+}

@@ -152,9 +152,9 @@ html_doc = f"""<!doctype html>
           <div class='mini'><div class='t'>Non-Seoul / 제외</div><div class='v'>{status_counts.get('non_seoul', 0)}</div></div>
         </div>
         <ul class='meta-list section-gap'>
-          <li>현재 남은 <strong>queued</strong> 후보는 0건입니다.</li>
-          <li>이번 마감 기준 CSV는 284개 매장, 그중 279개가 010/0507 번호입니다.</li>
-          <li>남은 확장 여지는 신규 소스 확보, no_place_id 재탐색, 저신뢰 번호 재검증 쪽에 있습니다.</li>
+          <li>현재 남은 <strong>queued</strong> 후보는 {status_counts.get('queued', 0)}건입니다.</li>
+          <li>이번 마감 기준 CSV는 {total}개 매장, 그중 {phone_ready}개가 010/0507 번호입니다.</li>
+          <li>동일 연락처 중복은 병합 정리했고, 다음 확장 포인트는 신규 소스 확보, no_place_id 재탐색, 저신뢰 번호 재검증입니다.</li>
         </ul>
       </div>
       <div class='card'>

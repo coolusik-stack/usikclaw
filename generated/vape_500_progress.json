@@ -1,19 +1,20 @@
 {
   "project": "seoul_vape_500",
-  "status": "idle",
-  "lastVerifiedAtKst": "2026-04-09 23:23",
+  "status": "running",
+  "lastVerifiedAtKst": "2026-04-09 23:54",
   "currentBatch": {
-    "name": "Batch 1",
+    "name": "Batch 2",
     "areas": [
-      "홍대/합정/상수",
-      "신촌/이대",
-      "성수"
+      "강남/삼성",
+      "홍대/신촌",
+      "성수/건대",
+      "영등포/여의도"
     ],
-    "stage": "idle"
+    "stage": "deduped_sms_ready"
   },
   "counts": {
-    "total": 284,
-    "phoneReady": 279,
+    "total": 361,
+    "phoneReady": 356,
     "needsCheck": 5
   },
   "verification": {
@@ -48,8 +49,17 @@
       "queue exhausted or awaiting more candidates",
       "queue exhausted or awaiting more candidates",
       "dashboard regenerated as bool_outreach_dashboard_v3.html",
-      "ready for new public link deployment"
+      "ready for new public link deployment",
+      "batch processed=3, added=0",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "source locator expansion added=95, unresolved_fixed=19, by_source={'martha': 78, 'litmus': 15, 'justfog': 2}",
+      "phone-level dedupe removed=18 duplicate contact rows, kept unique SMS-ready contacts prioritized by specificity",
+      "queue exhausted or awaiting more candidates"
     ]
   },
-  "nextProofPoint": "source new candidates or retry no_place_id entries with alternate queries"
+  "nextProofPoint": "public dashboard reflects deduped unique SMS-ready contact pool"
 }
