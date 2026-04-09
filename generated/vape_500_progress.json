@@ -1,7 +1,7 @@
 {
   "project": "seoul_vape_500",
-  "status": "running",
-  "lastVerifiedAtKst": "2026-04-09 05:31",
+  "status": "idle",
+  "lastVerifiedAtKst": "2026-04-09 23:23",
   "currentBatch": {
     "name": "Batch 1",
     "areas": [
@@ -9,7 +9,7 @@
       "신촌/이대",
       "성수"
     ],
-    "stage": "csv_updated"
+    "stage": "idle"
   },
   "counts": {
     "total": 284,
@@ -25,8 +25,31 @@
       "progress tracker committed",
       "browser opened on Naver Map search",
       "Naver place/api response path confirmed",
-      "4개 신규 후보 네이버 지도 검증 후 CSV 반영"
+      "4개 신규 후보 네이버 지도 검증 후 CSV 반영",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "batch processed=3, added=0",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "dashboard regenerated as bool_outreach_dashboard_v3.html",
+      "ready for new public link deployment"
     ]
   },
-  "nextProofPoint": "dashboard refresh after more verified additions"
+  "nextProofPoint": "source new candidates or retry no_place_id entries with alternate queries"
 }
