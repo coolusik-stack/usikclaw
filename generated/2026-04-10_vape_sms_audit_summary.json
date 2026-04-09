@@ -1,0 +1,120 @@
+{
+  "summary": {
+    "dataset_file": "vape_sms_priority_ranked.csv",
+    "audit_prefix": "2026-04-10_vape_sms_audit",
+    "sms_ready_rows_confirmed": 424,
+    "strongest_caveat": "Without actual outbound SMS or live call verification, 100% live reachability cannot be proven.",
+    "split_counts": {
+      "confirmed_high_confidence": 259,
+      "review_needed": 165,
+      "excluded_if_any": 0
+    },
+    "duplicate_phone_groups": 0,
+    "duplicate_phone_rows_involved": 0,
+    "duplicate_store_address_groups": 0,
+    "duplicate_store_address_rows_involved": 0,
+    "phone_type_counts": {
+      "mobile_010": 355,
+      "business_0507": 69
+    },
+    "source_bucket_counts": {
+      "official_locator": 105,
+      "linked_source": 165,
+      "web_search_draft": 154
+    },
+    "issue_flag_counts": {
+      "area_address_mismatch": 7,
+      "cleanup:merged_dup_history": 16,
+      "cleanup:draft_only": 129,
+      "draft_provenance_only": 154,
+      "missing_map_link": 154,
+      "cleanup:phone_check": 5,
+      "cleanup:identity_risk": 3,
+      "cleanup:manual_review": 12,
+      "cleanup:address_check": 9
+    },
+    "review_reason_counts": {
+      "area_address_mismatch": 7,
+      "cleanup:merged_dup_history": 16,
+      "cleanup:draft_only": 129,
+      "draft_provenance_only": 154,
+      "missing_map_link": 154,
+      "cleanup:phone_check": 5,
+      "cleanup:identity_risk": 3,
+      "cleanup:manual_review": 12,
+      "cleanup:address_check": 9
+    },
+    "area_address_mismatch_count": 7
+  },
+  "duplicate_phone_details": [],
+  "duplicate_store_address_details": [],
+  "area_address_mismatches": [
+    {
+      "row_number": 37,
+      "area": "성수",
+      "store_name": "요가파이어",
+      "address": "서울 마포구 성암로 215 1층 전자담배",
+      "allowed_districts": [
+        "성동구"
+      ]
+    },
+    {
+      "row_number": 177,
+      "area": "종로/을지로/충무로",
+      "store_name": "벨베이프 이대",
+      "address": "서울 서대문구 이화여대길 29 1층",
+      "allowed_districts": [
+        "종로구",
+        "중구"
+      ]
+    },
+    {
+      "row_number": 235,
+      "area": "천호/강동",
+      "store_name": "일원전자담배",
+      "address": "서울 강남구 양재대로31길 5, 1층 (일원동)",
+      "allowed_districts": [
+        "강동구"
+      ]
+    },
+    {
+      "row_number": 267,
+      "area": "신촌/이대",
+      "store_name": "카리 전자담배 무악동",
+      "address": "서울 종로구 통일로 230 (무악동) 경희궁롯데캐슬 상가 111호",
+      "allowed_districts": [
+        "서대문구",
+        "마포구"
+      ]
+    },
+    {
+      "row_number": 285,
+      "area": "영등포/문래",
+      "store_name": "보라매전자담배",
+      "address": "서울 동작구 신길동 보라매 인근",
+      "allowed_districts": [
+        "영등포구"
+      ]
+    },
+    {
+      "row_number": 295,
+      "area": "종로/을지로/충무로",
+      "store_name": "에어베이프 연희동",
+      "address": "서울 서대문구 연희로 114 1층",
+      "allowed_districts": [
+        "종로구",
+        "중구"
+      ]
+    },
+    {
+      "row_number": 296,
+      "area": "종로/을지로/충무로",
+      "store_name": "전자담배 충정로",
+      "address": "서울 서대문구 충정로 73 1층",
+      "allowed_districts": [
+        "종로구",
+        "중구"
+      ]
+    }
+  ]
+}
