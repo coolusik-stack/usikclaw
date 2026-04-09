@@ -1,0 +1,185 @@
+{
+  "project": "seoul_vape_500",
+  "generatedAt": "2026-04-10 01:11",
+  "headline": "Worker status dashboard",
+  "overview": {
+    "workers": 5,
+    "running": 2,
+    "completed": 3,
+    "smsReady": 424,
+    "verifiedStores": 429,
+    "needsCheck": 5
+  },
+  "guidance": [
+    "A moving last update time or fresh log lines means a worker is still alive.",
+    "Running means the loop is active now. Completed means its output has already been folded into the dataset.",
+    "If queue watcher keeps advancing but verification loop stays idle, the system is waiting on new candidates rather than being broken."
+  ],
+  "workers": [
+    {
+      "name": "Verification loop",
+      "task": "Seoul vape 500 coordinator",
+      "status": "running",
+      "stage": "idle",
+      "lastUpdate": "2026-04-10 01:10",
+      "summary": "424 SMS-ready contacts out of 429 verified stores.",
+      "metrics": [
+        {
+          "label": "Verified stores",
+          "value": 429
+        },
+        {
+          "label": "SMS-ready",
+          "value": 424
+        },
+        {
+          "label": "Needs check",
+          "value": 5
+        }
+      ],
+      "notes": [
+        "hotspot wave2 added=14, scanned=14, by_query={'신논현 전자담배': 1, '선릉 전자담배': 5, '상수 전자담배': 1, '잠실새내 전자담배': 1, '뚝섬 전자담배': 1, '삼전 전자담배': 1, '당산 전자담배': 4}",
+        "queue exhausted or awaiting more candidates",
+        "queue exhausted or awaiting more candidates",
+        "hotspot wave2 salvage: 여의도/영등포 후보 strict-revalidated=6, net_new_kept=4, merged_existing=1(홀릭 여의도점←마샤전자담배 여의도점), rejected_no_sms=1(국회전자담배)",
+        "queue exhausted or awaiting more candidates",
+        "queue exhausted or awaiting more candidates"
+      ],
+      "sources": [
+        "generated/vape_500_progress.json",
+        "generated/vape_500_progress.md"
+      ]
+    },
+    {
+      "name": "Queue watcher",
+      "task": "Batch and cron monitor",
+      "status": "running",
+      "stage": "waiting for new queued candidates",
+      "lastUpdate": "2026-04-10 01:10",
+      "summary": "The recurring worker is still writing heartbeat-style queue checks.",
+      "metrics": [
+        {
+          "label": "Recent batch checks",
+          "value": 20
+        },
+        {
+          "label": "Recent cron checks",
+          "value": 20
+        }
+      ],
+      "notes": [
+        "[2026-04-10 00:44:43] No queued candidates left",
+        "[2026-04-10 00:50:29] No queued candidates left",
+        "[2026-04-10 00:54:51] No queued candidates left",
+        "[2026-04-10 01:00:29] No queued candidates left",
+        "[2026-04-10 01:05:01] No queued candidates left",
+        "[2026-04-10 01:10:32] No queued candidates left"
+      ],
+      "sources": [
+        "generated/logs/vape_500_batch.log",
+        "generated/logs/vape_500_cron.log"
+      ]
+    },
+    {
+      "name": "Hotspot expansion",
+      "task": "Naver search wave 2",
+      "status": "completed",
+      "stage": "results merged into master CSV",
+      "lastUpdate": "2026-04-10 00:49",
+      "summary": "Added 57 rows and lifted SMS-ready count from 367 to 424.",
+      "metrics": [
+        {
+          "label": "Rows added",
+          "value": 57
+        },
+        {
+          "label": "Queries scanned",
+          "value": 57
+        },
+        {
+          "label": "After SMS-ready",
+          "value": 424
+        }
+      ],
+      "notes": [
+        "[2026-04-10 00:49:44] added 이태원 전자담배 :: 이태원 전자담배 :: 0507-1303-2908",
+        "[2026-04-10 00:49:44] added 이태원 전자담배 :: 퍼프매니아 이태원점 :: 0507-1315-5455",
+        "[2026-04-10 00:49:46] query 공덕 전자담배: parsed 4 candidates",
+        "[2026-04-10 00:49:46] added 공덕 전자담배 :: 베이프월드 마포공덕점 :: 0507-1366-0188",
+        "[2026-04-10 00:49:46] added 공덕 전자담배 :: 하카 공덕역직영점 :: 0507-1485-2161",
+        "[2026-04-10 00:49:46] added 공덕 전자담배 :: 도도베이프 공덕 :: 0507-1487-0960",
+        "[2026-04-10 00:49:46] {\"before_total\": 404, \"after_total\": 416, \"before_sms\": 399, \"after_sms\": 411, \"added_total\": 12, \"scanned_candidates\": 63, \"query_counts\": {\"건대입구 전자담배\": 4, \"왕십리 전자담배\": 3, \"이태원 전자담배\": 2, \"공덕 전자담배\":…"
+      ],
+      "sources": [
+        "generated/logs/vape_hotspot_wave2.log",
+        "generated/vape_hotspot_wave2_summary.json"
+      ]
+    },
+    {
+      "name": "Source locator expansion",
+      "task": "Brand/store locator sweep",
+      "status": "completed",
+      "stage": "deduped and consolidated",
+      "lastUpdate": "2026-04-09 23:56",
+      "summary": "Gross +95 candidates from locator sources, net +77 after dedupe.",
+      "metrics": [
+        {
+          "label": "Net added",
+          "value": 77
+        },
+        {
+          "label": "Deduped away",
+          "value": 18
+        },
+        {
+          "label": "Ambiguous skipped",
+          "value": 73
+        }
+      ],
+      "notes": [
+        "martha: 78",
+        "litmus: 15",
+        "justfog: 2",
+        "unresolved fixed: 19"
+      ],
+      "sources": [
+        "generated/logs/vape_sms_hotspot_expand.log",
+        "generated/vape_sms_hotspot_expand_summary.json"
+      ]
+    },
+    {
+      "name": "Ambiguous phone recovery",
+      "task": "Strict revalidation pass",
+      "status": "completed",
+      "stage": "low-confidence leftovers held back",
+      "lastUpdate": "2026-04-10 00:26",
+      "summary": "Recovered 10 SMS-ready stores from 73 ambiguous candidates.",
+      "metrics": [
+        {
+          "label": "Recovered",
+          "value": 10
+        },
+        {
+          "label": "Left unresolved",
+          "value": 63
+        },
+        {
+          "label": "After SMS-ready",
+          "value": 367
+        }
+      ],
+      "notes": [
+        "서브마린",
+        "전자금연용품할인매장",
+        "시가모아 강남점",
+        "둔촌역전자담배",
+        "라미야구로점(신도림)",
+        "하카전자담배 신당약수역",
+        "너구리굴양남사거리점"
+      ],
+      "sources": [
+        "generated/vape_ambiguous_phone_revalidation_summary.json"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Worker status dashboard</title>
+  <meta http-equiv='refresh' content='120'>
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-2: #0f1d33;
+      --panel: rgba(11, 23, 41, 0.82);
+      --panel-strong: rgba(8, 18, 33, 0.95);
+      --line: rgba(148, 163, 184, 0.18);
+      --text: #edf3ff;
+      --muted: #9caecc;
+      --cyan: #79e3ff;
+      --mint: #7ef0c1;
+      --amber: #ffd166;
+      --rose: #ff8aa1;
+      --violet: #baa7ff;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(121, 227, 255, 0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(186, 167, 255, 0.2), transparent 34%),
+        linear-gradient(180deg, #0d1830 0%, #08111d 45%, #050b14 100%);
+      min-height: 100vh;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.55), transparent 88%);
+    }
+    .wrap { width: min(1320px, calc(100vw - 32px)); margin: 0 auto; padding: 28px 0 72px; position: relative; z-index: 1; }
+    .hero, .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); backdrop-filter: blur(18px); box-shadow: var(--shadow); }
+    .hero { padding: 28px; overflow: hidden; position: relative; }
+    .hero::after { content: ''; position: absolute; inset: auto -10% -35% 40%; height: 320px; background: radial-gradient(circle, rgba(121,227,255,0.28), transparent 62%); filter: blur(20px); }
+    .eyebrow { margin: 0 0 10px; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.16em; font-size: 12px; }
+    h1 { margin: 0; font-size: clamp(34px, 5vw, 68px); line-height: 0.95; max-width: 9ch; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 18px; align-items: end; }
+    .lead { color: var(--muted); font-size: 16px; line-height: 1.7; max-width: 72ch; margin: 16px 0 0; }
+    .timestamp { margin-top: 16px; color: #d8e6ff; font-size: 13px; }
+    .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .stat { background: var(--panel-strong); border: 1px solid var(--line); border-radius: 18px; padding: 18px; min-height: 120px; display: flex; flex-direction: column; justify-content: space-between; }
+    .stat span { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .stat strong { font-size: clamp(28px, 4vw, 42px); line-height: 1; }
+    .stat em { font-style: normal; color: #d7e6ff; font-size: 14px; }
+    .section { margin-top: 18px; }
+    .section-title { display: flex; justify-content: space-between; align-items: end; gap: 12px; margin: 0 0 12px; }
+    .section-title h2 { margin: 0; font-size: 22px; }
+    .section-title p { margin: 0; color: var(--muted); font-size: 14px; }
+    .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .worker-card { padding: 20px; }
+    .card-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+    h3 { margin: 0; font-size: 26px; line-height: 1.08; }
+    .badge { padding: 10px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid transparent; white-space: nowrap; }
+    .badge.running { background: rgba(126, 240, 193, 0.14); color: var(--mint); border-color: rgba(126, 240, 193, 0.26); }
+    .badge.idle { background: rgba(255, 209, 102, 0.12); color: var(--amber); border-color: rgba(255, 209, 102, 0.24); }
+    .badge.done { background: rgba(121, 227, 255, 0.12); color: var(--cyan); border-color: rgba(121, 227, 255, 0.24); }
+    .badge.warning, .badge.unknown { background: rgba(255, 138, 161, 0.12); color: var(--rose); border-color: rgba(255, 138, 161, 0.24); }
+    .meta-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 16px 0 0; }
+    .meta-grid div, .metric { background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; }
+    .meta-grid span, .metric span { display: block; color: var(--muted); font-size: 12px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .meta-grid strong, .metric strong { font-size: 15px; line-height: 1.4; }
+    .summary { color: #e7efff; line-height: 1.7; margin: 16px 0; }
+    .metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .log-box { margin-top: 14px; background: #06101e; border: 1px solid rgba(121, 227, 255, 0.12); border-radius: 18px; padding: 14px; }
+    .log-title { color: var(--cyan); font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px; }
+    .log-box ul { margin: 0; padding-left: 18px; color: #dbe7ff; line-height: 1.6; font-size: 14px; }
+    .sources { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .sources code { background: rgba(186, 167, 255, 0.12); color: #e7deff; border: 1px solid rgba(186, 167, 255, 0.22); border-radius: 999px; padding: 6px 10px; font-size: 12px; }
+    .lower-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 16px; }
+    .guide-card, .table-card { padding: 20px; }
+    .guide-card ol { margin: 12px 0 0; padding-left: 18px; color: #dce7fb; line-height: 1.75; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; font-size: 14px; }
+    th { color: #cfddf7; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+    td { color: #e9f1ff; }
+    .footer { margin-top: 16px; color: var(--muted); font-size: 12px; }
+    @media (max-width: 1024px) { .hero-grid, .cards, .lower-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 720px) { .stats, .metric-grid, .meta-grid { grid-template-columns: 1fr; } .wrap { width: min(100vw - 18px, 1320px); } h1 { max-width: none; } }
+  </style>
+</head>
+<body>
+  <main class='wrap'>
+    <section class='hero'>
+      <div class='hero-grid'>
+        <div>
+          <p class='eyebrow'>Live workspace telemetry</p>
+          <h1>Worker status dashboard</h1>
+          <p class='lead'>A practical readout for seeing whether background worker-style tasks are actually doing work in this workspace. It pulls from the existing progress files and logs, then presents the most recent evidence in one page.</p>
+          <div class='timestamp'>Generated: 2026-04-10 01:11 KST-ish local time, auto refresh every 120s.</div>
+        </div>
+        <div class='stats'>
+          <div class='stat'><span>Workers tracked</span><strong>5</strong><em>2 running, 3 completed</em></div>
+          <div class='stat'><span>Verified stores</span><strong>429</strong><em>424 are SMS-ready</em></div>
+          <div class='stat'><span>Needs check</span><strong>5</strong><em>held back for manual or stricter validation</em></div>
+        </div>
+      </div>
+    </section>
+
+    <section class='section'>
+      <div class='section-title'>
+        <h2>Worker cards</h2>
+        <p>Each card shows task name, state, stage, last update, and the freshest proof we have.</p>
+      </div>
+      <div class='cards'>
+        
+            <article class='card worker-card'>
+              <div class='card-top'>
+                <div>
+                  <p class='eyebrow'>Seoul vape 500 coordinator</p>
+                  <h3>Verification loop</h3>
+                </div>
+                <span class='badge running'>Running</span>
+              </div>
+              <div class='meta-grid'>
+                <div><span>Stage</span><strong>idle</strong></div>
+                <div><span>Last update</span><strong>2026-04-10 01:10</strong></div>
+              </div>
+              <p class='summary'>424 SMS-ready contacts out of 429 verified stores.</p>
+              <div class='metric-grid'><div class='metric'><span>Verified stores</span><strong>429</strong></div><div class='metric'><span>SMS-ready</span><strong>424</strong></div><div class='metric'><span>Needs check</span><strong>5</strong></div></div>
+              <div class='log-box'>
+                <div class='log-title'>Recent notes / log snippets</div>
+                <ul><li>hotspot wave2 added=14, scanned=14, by_query={&#x27;신논현 전자담배&#x27;: 1, &#x27;선릉 전자담배&#x27;: 5, &#x27;상수 전자담배&#x27;: 1, &#x27;잠실새내 전자담배&#x27;: 1, &#x27;뚝섬 전자담배&#x27;: 1, &#x27;삼전 전자담배&#x27;: 1, &#x27;당산 전자담배&#x27;: 4}</li><li>queue exhausted or awaiting more candidates</li><li>queue exhausted or awaiting more candidates</li><li>hotspot wave2 salvage: 여의도/영등포 후보 strict-revalidated=6, net_new_kept=4, merged_existing=1(홀릭 여의도점←마샤전자담배 여의도점), rejected_no_sms=1(국회전자담배)</li><li>queue exhausted or awaiting more candidates</li><li>queue exhausted or awaiting more candidates</li></ul>
+              </div>
+              <div class='sources'><code>generated/vape_500_progress.json</code><code>generated/vape_500_progress.md</code></div>
+            </article>
+            
+            <article class='card worker-card'>
+              <div class='card-top'>
+                <div>
+                  <p class='eyebrow'>Batch and cron monitor</p>
+                  <h3>Queue watcher</h3>
+                </div>
+                <span class='badge running'>Running</span>
+              </div>
+              <div class='meta-grid'>
+                <div><span>Stage</span><strong>waiting for new queued candidates</strong></div>
+                <div><span>Last update</span><strong>2026-04-10 01:10</strong></div>
+              </div>
+              <p class='summary'>The recurring worker is still writing heartbeat-style queue checks.</p>
+              <div class='metric-grid'><div class='metric'><span>Recent batch checks</span><strong>20</strong></div><div class='metric'><span>Recent cron checks</span><strong>20</strong></div></div>
+              <div class='log-box'>
+                <div class='log-title'>Recent notes / log snippets</div>
+                <ul><li>[2026-04-10 00:44:43] No queued candidates left</li><li>[2026-04-10 00:50:29] No queued candidates left</li><li>[2026-04-10 00:54:51] No queued candidates left</li><li>[2026-04-10 01:00:29] No queued candidates left</li><li>[2026-04-10 01:05:01] No queued candidates left</li><li>[2026-04-10 01:10:32] No queued candidates left</li></ul>
+              </div>
+              <div class='sources'><code>generated/logs/vape_500_batch.log</code><code>generated/logs/vape_500_cron.log</code></div>
+            </article>
+            
+            <article class='card worker-card'>
+              <div class='card-top'>
+                <div>
+                  <p class='eyebrow'>Naver search wave 2</p>
+                  <h3>Hotspot expansion</h3>
+                </div>
+                <span class='badge done'>Done</span>
+              </div>
+              <div class='meta-grid'>
+                <div><span>Stage</span><strong>results merged into master CSV</strong></div>
+                <div><span>Last update</span><strong>2026-04-10 00:49</strong></div>
+              </div>
+              <p class='summary'>Added 57 rows and lifted SMS-ready count from 367 to 424.</p>
+              <div class='metric-grid'><div class='metric'><span>Rows added</span><strong>57</strong></div><div class='metric'><span>Queries scanned</span><strong>57</strong></div><div class='metric'><span>After SMS-ready</span><strong>424</strong></div></div>
+              <div class='log-box'>
+                <div class='log-title'>Recent notes / log snippets</div>
+                <ul><li>[2026-04-10 00:49:44] added 이태원 전자담배 :: 이태원 전자담배 :: 0507-1303-2908</li><li>[2026-04-10 00:49:44] added 이태원 전자담배 :: 퍼프매니아 이태원점 :: 0507-1315-5455</li><li>[2026-04-10 00:49:46] query 공덕 전자담배: parsed 4 candidates</li><li>[2026-04-10 00:49:46] added 공덕 전자담배 :: 베이프월드 마포공덕점 :: 0507-1366-0188</li><li>[2026-04-10 00:49:46] added 공덕 전자담배 :: 하카 공덕역직영점 :: 0507-1485-2161</li><li>[2026-04-10 00:49:46] added 공덕 전자담배 :: 도도베이프 공덕 :: 0507-1487-0960</li><li>[2026-04-10 00:49:46] {&quot;before_total&quot;: 404, &quot;after_total&quot;: 416, &quot;before_sms&quot;: 399, &quot;after_sms&quot;: 411, &quot;added_total&quot;: 12, &quot;scanned_candidates&quot;: 63, &quot;query_counts&quot;: {&quot;건대입구 전자담배&quot;: 4, &quot;왕십리 전자담배&quot;: 3, &quot;이태원 전자담배&quot;: 2, &quot;공덕 전자담배&quot;:…</li></ul>
+              </div>
+              <div class='sources'><code>generated/logs/vape_hotspot_wave2.log</code><code>generated/vape_hotspot_wave2_summary.json</code></div>
+            </article>
+            
+            <article class='card worker-card'>
+              <div class='card-top'>
+                <div>
+                  <p class='eyebrow'>Brand/store locator sweep</p>
+                  <h3>Source locator expansion</h3>
+                </div>
+                <span class='badge done'>Done</span>
+              </div>
+              <div class='meta-grid'>
+                <div><span>Stage</span><strong>deduped and consolidated</strong></div>
+                <div><span>Last update</span><strong>2026-04-09 23:56</strong></div>
+              </div>
+              <p class='summary'>Gross +95 candidates from locator sources, net +77 after dedupe.</p>
+              <div class='metric-grid'><div class='metric'><span>Net added</span><strong>77</strong></div><div class='metric'><span>Deduped away</span><strong>18</strong></div><div class='metric'><span>Ambiguous skipped</span><strong>73</strong></div></div>
+              <div class='log-box'>
+                <div class='log-title'>Recent notes / log snippets</div>
+                <ul><li>martha: 78</li><li>litmus: 15</li><li>justfog: 2</li><li>unresolved fixed: 19</li></ul>
+              </div>
+              <div class='sources'><code>generated/logs/vape_sms_hotspot_expand.log</code><code>generated/vape_sms_hotspot_expand_summary.json</code></div>
+            </article>
+            
+            <article class='card worker-card'>
+              <div class='card-top'>
+                <div>
+                  <p class='eyebrow'>Strict revalidation pass</p>
+                  <h3>Ambiguous phone recovery</h3>
+                </div>
+                <span class='badge done'>Done</span>
+              </div>
+              <div class='meta-grid'>
+                <div><span>Stage</span><strong>low-confidence leftovers held back</strong></div>
+                <div><span>Last update</span><strong>2026-04-10 00:26</strong></div>
+              </div>
+              <p class='summary'>Recovered 10 SMS-ready stores from 73 ambiguous candidates.</p>
+              <div class='metric-grid'><div class='metric'><span>Recovered</span><strong>10</strong></div><div class='metric'><span>Left unresolved</span><strong>63</strong></div><div class='metric'><span>After SMS-ready</span><strong>367</strong></div></div>
+              <div class='log-box'>
+                <div class='log-title'>Recent notes / log snippets</div>
+                <ul><li>서브마린</li><li>전자금연용품할인매장</li><li>시가모아 강남점</li><li>둔촌역전자담배</li><li>라미야구로점(신도림)</li><li>하카전자담배 신당약수역</li><li>너구리굴양남사거리점</li></ul>
+              </div>
+              <div class='sources'><code>generated/vape_ambiguous_phone_revalidation_summary.json</code></div>
+            </article>
+            
+      </div>
+    </section>
+
+    <section class='section lower-grid'>
+      <article class='card guide-card'>
+        <div class='section-title'>
+          <h2>How to read this</h2>
+          <p>Quick operator guidance</p>
+        </div>
+        <ol><li>A moving last update time or fresh log lines means a worker is still alive.</li><li>Running means the loop is active now. Completed means its output has already been folded into the dataset.</li><li>If queue watcher keeps advancing but verification loop stays idle, the system is waiting on new candidates rather than being broken.</li></ol>
+        <p class='footer'>Tip: open this file directly or publish it as a static page. The companion JSON artifact can feed another frontend later without changing the source logs.</p>
+      </article>
+      <article class='card table-card'>
+        <div class='section-title'>
+          <h2>Compact matrix</h2>
+          <p>Good for fast scanning and screenshots</p>
+        </div>
+        <table>
+          <thead><tr><th>Worker</th><th>Status</th><th>Stage</th><th>Last update</th><th>Summary</th></tr></thead>
+          <tbody><tr><td>Verification loop</td><td>running</td><td>idle</td><td>2026-04-10 01:10</td><td>424 SMS-ready contacts out of 429 verified stores.</td></tr><tr><td>Queue watcher</td><td>running</td><td>waiting for new queued candidates</td><td>2026-04-10 01:10</td><td>The recurring worker is still writing heartbeat-style queue checks.</td></tr><tr><td>Hotspot expansion</td><td>completed</td><td>results merged into master CSV</td><td>2026-04-10 00:49</td><td>Added 57 rows and lifted SMS-ready count from 367 to 424.</td></tr><tr><td>Source locator expansion</td><td>completed</td><td>deduped and consolidated</td><td>2026-04-09 23:56</td><td>Gross +95 candidates from locator sources, net +77 after dedupe.</td></tr><tr><td>Ambiguous phone recovery</td><td>completed</td><td>low-confidence leftovers held back</td><td>2026-04-10 00:26</td><td>Recovered 10 SMS-ready stores from 73 ambiguous candidates.</td></tr></tbody>
+        </table>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
