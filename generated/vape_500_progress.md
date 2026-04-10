@@ -8,10 +8,10 @@
 - 공개 소스로 후보 수집 후 네이버 지도/브라우저로 최종 검증
 
 ## 현재 상태 (2026-04-10 00:26 KST)
-- 총 매장 수: 594
-- 문자 가능 번호: 589
+- 총 매장 수: 636
+- 문자 가능 번호: 631
 - 재확인 필요: 5
-- 최근 추가 반영: 38건
+- 최근 추가 반영: 42건
 - 현재 큐 상태: 소진 완료 (남은 queued 후보 0건)
 - 최신 대시보드: `bool_outreach_dashboard.html`, `bool_outreach_dashboard_v3.html`, `generated/bool_outreach_dashboard_v3.html`
 
@@ -31,8 +31,8 @@
 - Batch 5
 - 우선 권역: 중구/은평/서대문, 성북/강북/노원, 동작/관악/금천, 장안/답십리
 - 목적: 남은 장기 롱테일 서울 상권을 채우되 저신뢰 일반상호는 제외
-- 현재 단계: longtail_round3_verified
-- 마지막 검증 시각(KST): 2026-04-10 11:44
+- 현재 단계: longtail_noon_push_verified
+- 마지막 검증 시각(KST): 2026-04-10 12:37
 
 ## 작업 지속 여부 검증 방법
 - 상태 파일: `generated/vape_500_progress.json`

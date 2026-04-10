@@ -1,0 +1,39 @@
+{
+  "timestamp_kst": "2026-04-10 12:38",
+  "before_total": 594,
+  "after_total": 636,
+  "before_sms": 589,
+  "after_sms": 631,
+  "net_new_kept": 42,
+  "duplicates_skipped": 104,
+  "rejected": 13,
+  "productive_areas": {
+    "노원": 8,
+    "잠실/송리단길": 6,
+    "강서/마곡": 5,
+    "건대입구": 3,
+    "성북/길음": 4,
+    "구로디지털단지": 3,
+    "신촌/이대": 2,
+    "천호/강동": 2,
+    "목동/오목교": 2,
+    "중랑/면목": 2,
+    "신논현/논현": 2,
+    "역삼/선릉": 1,
+    "동대문/청량리": 1,
+    "종로/을지로/충무로": 1
+  },
+  "quality_assessment": "Kept quality did not materially degrade. This push stayed Seoul-only, required public 0507 contactable numbers, and filtered out 13 noisier or same-store/ambiguous candidates.",
+  "rejected_examples": [
+    "로얄타바코전자담배 방화점",
+    "구름VAPE24시무인매장",
+    "시가런",
+    "지직스베이프",
+    "베이프247",
+    "시가톱텐",
+    "고척전자담배",
+    "무인제로전자담배&커피",
+    "위베이프 송파잠실점",
+    "세븐베이프 고대점"
+  ]
+}
