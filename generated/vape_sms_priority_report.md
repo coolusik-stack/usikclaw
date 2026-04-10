@@ -1,12 +1,12 @@
 # Seoul vape SMS outreach prioritization
 
 ## Snapshot
-- SMS-ready contacts: **551**
-- Wave 1 send-now: **125**
-- Wave 2 next: **246**
+- SMS-ready contacts: **631**
+- Wave 1 send-now: **147**
+- Wave 2 next: **304**
 - Wave 3 long-tail: **160**
 - Hold for cleanup: **20**
-- Source mix: official locator 110, linked source 287, web-search draft 154
+- Source mix: official locator 110, linked source 367, web-search draft 154
 
 ## Main recommendation
 - Start with **Wave 1 (116 contacts)**, led by 역삼/선릉, 성수, 홍대/합정/상수, 잠실/송리단길, 영등포/문래, 건대입구.
@@ -25,21 +25,21 @@
 ## Top priority segments
 | Segment area | SMS-ready | Wave 1 | Avg send score |
 | --- | ---: | ---: | ---: |
-| 잠실/송리단길 | 26 | 15 | 15.44 |
-| 건대입구 | 22 | 14 | 15.58 |
+| 잠실/송리단길 | 32 | 21 | 15.70 |
+| 건대입구 | 25 | 17 | 15.72 |
 | 영등포/문래 | 27 | 14 | 14.96 |
+| 역삼/선릉 | 25 | 13 | 15.67 |
 | 성수 | 13 | 12 | 16.39 |
-| 역삼/선릉 | 24 | 12 | 15.62 |
 | 홍대/합정/상수 | 18 | 12 | 15.48 |
-| 마포/공덕 | 13 | 8 | 15.38 |
+| 마포/공덕 | 16 | 11 | 15.64 |
 | 여의도 | 9 | 7 | 16.28 |
 | 삼성/코엑스 | 9 | 7 | 16.04 |
+| 신논현/논현 | 12 | 7 | 15.82 |
 | 이태원 | 11 | 7 | 15.33 |
-| 신논현/논현 | 10 | 5 | 15.62 |
-| 강남역 | 11 | 5 | 15.15 |
+| 왕십리/한양대 | 12 | 7 | 15.28 |
 
 ## Batching logic
-- Cluster mix: 코어 오피스/상업권 73, 트렌드/대학가 87, 혼합 고회전 상권 129, 확장/생활상권 262
+- Cluster mix: 코어 오피스/상업권 76, 트렌드/대학가 97, 혼합 고회전 상권 144, 확장/생활상권 314
 - Keep each batch internally similar by area cluster first, then send_score order second.
 - Within each batch, prioritize `message_type=1` and higher `total_score` rows first.
 - If replies spike in one cluster, pause the next batch in that same cluster and adapt the message, instead of contaminating the whole list.
