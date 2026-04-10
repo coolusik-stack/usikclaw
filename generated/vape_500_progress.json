@@ -1,20 +1,22 @@
 {
   "project": "seoul_vape_500",
   "status": "running",
-  "lastVerifiedAtKst": "2026-04-10 10:00",
+  "lastVerifiedAtKst": "2026-04-10 10:35",
   "currentBatch": {
     "name": "Batch 5",
     "areas": [
-      "중구/은평/서대문",
-      "성북/강북/노원",
-      "동작/관악/금천",
-      "장안/답십리"
+      "서울역/용산",
+      "서대문/홍제",
+      "노량진/보라매",
+      "서초/양재",
+      "문정/가락",
+      "압구정/청담"
     ],
-    "stage": "longtail_wave_c_verified"
+    "stage": "longtail_round2_added"
   },
   "counts": {
-    "total": 531,
-    "phoneReady": 526,
+    "total": 556,
+    "phoneReady": 551,
     "needsCheck": 5
   },
   "verification": {
@@ -189,8 +191,16 @@
       "longtail waveA added=26, skipped_existing=0, focus=종로·대학로·동대문·서울역·중랑",
       "longtail waveB added=30, skipped_existing=0, focus=은평·강서·노량진·관악·광진·강동·송파",
       "queue exhausted or awaiting more candidates",
-      "longtail waveC added=41, skipped_existing=0, focus=중구·은평·성북·동작·관악·금천·장안"
+      "longtail waveC added=41, skipped_existing=0, focus=중구·은평·성북·동작·관악·금천·장안",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "longtail round2 added=25, skipped_after_final_dedupe=0"
     ]
   },
-  "nextProofPoint": "dataset refreshed beyond 500 with long-tail verified Seoul contacts"
+  "nextProofPoint": "next verified additions reflected in CSV and reported to user"
 }
