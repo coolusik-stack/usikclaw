@@ -1,0 +1,315 @@
+{
+  "before_total": 556,
+  "after_total": 594,
+  "before_sms": 551,
+  "after_sms": 589,
+  "net_added_total": 38,
+  "duplicates_skipped": 0,
+  "queries_source": "naver_search_longtail_round3_manual_append",
+  "added_rows": [
+    {
+      "area": "서울역/용산",
+      "store_name": "틈베이프",
+      "address": "서울 용산구 한강대로 95 용산래미안더센트럴 A동 지하1층 B124호 틈베이프",
+      "phone": "0507-1316-0891",
+      "map_link": "https://pcmap.place.naver.com/place/1102254663/home",
+      "query": "신용산역 전자담배"
+    },
+    {
+      "area": "서울역/용산",
+      "store_name": "하카 용산역직영점",
+      "address": "서울 용산구 한강대로 66 108호",
+      "phone": "0507-1489-2161",
+      "map_link": "https://pcmap.place.naver.com/place/2001078658/home",
+      "query": "신용산역 전자담배"
+    },
+    {
+      "area": "서울역/용산",
+      "store_name": "전자담배랩",
+      "address": "서울 용산구 한강대로11길 30 101호 전자담배랩",
+      "phone": "0507-1379-7590",
+      "map_link": "https://pcmap.place.naver.com/place/1445295999/home",
+      "query": "용산역 전자담배"
+    },
+    {
+      "area": "도봉/창동",
+      "store_name": "제로전자담배 씨드큐브창동점",
+      "address": "서울 도봉구 마들로13길 61 지하1층 B103-3호",
+      "phone": "0507-1391-7770",
+      "map_link": "https://pcmap.place.naver.com/place/1386313636/home",
+      "query": "창동역 전자담배"
+    },
+    {
+      "area": "도봉/창동",
+      "store_name": "제로전자담배 쌍문세라믹점",
+      "address": "서울 도봉구 해등로 189 1층 103, 116호",
+      "phone": "0507-1302-4351",
+      "map_link": "https://pcmap.place.naver.com/place/1372830696/home",
+      "query": "창동역 전자담배"
+    },
+    {
+      "area": "도봉/창동",
+      "store_name": "하카전자담배 도봉구방학점",
+      "address": "서울 도봉구 도봉로152길 23-3",
+      "phone": "0507-1343-1613",
+      "map_link": "https://pcmap.place.naver.com/place/35787753/home",
+      "query": "방학역 전자담배"
+    },
+    {
+      "area": "도봉/창동",
+      "store_name": "위베이프전자담배 도봉구청점",
+      "address": "서울 도봉구 마들로 657 1층",
+      "phone": "0507-1422-3944",
+      "map_link": "https://pcmap.place.naver.com/place/2055540468/home",
+      "query": "방학역 전자담배"
+    },
+    {
+      "area": "수유/미아",
+      "store_name": "래빗전자담배 수유점",
+      "address": "서울 강북구 도봉로87길 24 2층 래빗전자담배",
+      "phone": "0507-1357-6084",
+      "map_link": "https://pcmap.place.naver.com/place/1184619915/home",
+      "query": "수유역 전자담배"
+    },
+    {
+      "area": "수유/미아",
+      "store_name": "헬로전자담배 수유점",
+      "address": "서울 강북구 노해로8길 33 1층",
+      "phone": "0507-1361-3115",
+      "map_link": "https://pcmap.place.naver.com/place/1232979920/home",
+      "query": "수유역 전자담배"
+    },
+    {
+      "area": "수유/미아",
+      "store_name": "전담GATE 수유역점",
+      "address": "서울 강북구 수유동 191-19",
+      "phone": "0507-1360-9763",
+      "map_link": "https://pcmap.place.naver.com/place/1456016443/home",
+      "query": "수유역 전자담배"
+    },
+    {
+      "area": "수유/미아",
+      "store_name": "수유 전자담배 베이핑클럽",
+      "address": "서울 강북구 노해로8길 22 상가1층116호",
+      "phone": "0507-1332-1821",
+      "map_link": "https://pcmap.place.naver.com/place/47449180/home",
+      "query": "수유역 전자담배"
+    },
+    {
+      "area": "성북/길음",
+      "store_name": "24시로드전자담배",
+      "address": "서울 성북구 길음로 11 136호",
+      "phone": "0507-1431-1380",
+      "map_link": "https://pcmap.place.naver.com/place/1792619445/home",
+      "query": "길음역 전자담배"
+    },
+    {
+      "area": "성북/길음",
+      "store_name": "성북구 종암동 전자담배멀티샵",
+      "address": "서울 성북구 종암로 113 1층",
+      "phone": "0507-1327-2336",
+      "map_link": "https://pcmap.place.naver.com/place/36028421/home",
+      "query": "길음역 전자담배"
+    },
+    {
+      "area": "마포/공덕",
+      "store_name": "깜스베이프",
+      "address": "서울 마포구 신촌로 250 1층 깜스베이프",
+      "phone": "0507-1430-4023",
+      "map_link": "https://pcmap.place.naver.com/place/1818079045/home",
+      "query": "애오개역 전자담배"
+    },
+    {
+      "area": "마포/공덕",
+      "store_name": "위베이프 전자담배 마포역점",
+      "address": "서울 마포구 마포대로 68 상가 109호",
+      "phone": "0507-1485-7205",
+      "map_link": "https://pcmap.place.naver.com/place/2074306459/home",
+      "query": "마포역 전자담배"
+    },
+    {
+      "area": "마포/공덕",
+      "store_name": "마녀주스 전자담배",
+      "address": "서울 마포구 백범로 199 지하1층 118호",
+      "phone": "0507-1435-1137",
+      "map_link": "https://pcmap.place.naver.com/place/33211686/home",
+      "query": "마포역 전자담배"
+    },
+    {
+      "area": "신촌/이대",
+      "store_name": "위베이프 신촌포스빌점",
+      "address": "서울 마포구 신촌로 150 106호",
+      "phone": "0507-1391-3681",
+      "map_link": "https://pcmap.place.naver.com/place/1417432453/home",
+      "query": "대흥역 전자담배"
+    },
+    {
+      "area": "신촌/이대",
+      "store_name": "플렉스베이프",
+      "address": "서울 서대문구 신촌로 143 2층(대현동) 플렉스베이프",
+      "phone": "0507-1395-1972",
+      "map_link": "https://pcmap.place.naver.com/place/1157721931/home",
+      "query": "대흥역 전자담배"
+    },
+    {
+      "area": "노량진/보라매",
+      "store_name": "중앙대 전자담배",
+      "address": "서울 동작구 서달로 157 1층 전자담배",
+      "phone": "0507-1348-0668",
+      "map_link": "https://pcmap.place.naver.com/place/1694055326/home",
+      "query": "노들역 전자담배"
+    },
+    {
+      "area": "왕십리/한양대",
+      "store_name": "월드베이프 한양대점",
+      "address": "서울 성동구 마조로 22 1층 1호",
+      "phone": "0507-1376-9502",
+      "map_link": "https://pcmap.place.naver.com/place/2032832010/home",
+      "query": "왕십리역 전자담배"
+    },
+    {
+      "area": "왕십리/한양대",
+      "store_name": "아이다전자담배 왕십리행당점",
+      "address": "서울 성동구 왕십리로 259 1층",
+      "phone": "0507-1486-0009",
+      "map_link": "https://pcmap.place.naver.com/place/36139483/home",
+      "query": "행당역 전자담배"
+    },
+    {
+      "area": "종로/을지로/충무로",
+      "store_name": "전담GATE 이마트청계천점",
+      "address": "서울 중구 청계천로 400 1층 1206호",
+      "phone": "0507-1313-4861",
+      "map_link": "https://pcmap.place.naver.com/place/2095013528/home",
+      "query": "상왕십리역 전자담배"
+    },
+    {
+      "area": "왕십리/한양대",
+      "store_name": "다온 수 전자담배",
+      "address": "서울 성동구 천호대로 286 1층",
+      "phone": "0507-1433-0608",
+      "map_link": "https://pcmap.place.naver.com/place/1739492233/home",
+      "query": "답십리역 전자담배"
+    },
+    {
+      "area": "은평/연신내",
+      "store_name": "리소베이프",
+      "address": "서울 은평구 진흥로1길 24 1층 6호",
+      "phone": "0507-1471-7724",
+      "map_link": "https://pcmap.place.naver.com/place/2001071929/home",
+      "query": "응암역 전자담배"
+    },
+    {
+      "area": "은평/연신내",
+      "store_name": "위베이프 247역말",
+      "address": "서울 은평구 연서로 23-1 1층",
+      "phone": "0507-1326-9136",
+      "map_link": "https://pcmap.place.naver.com/place/1112823314/home",
+      "query": "응암역 전자담배"
+    },
+    {
+      "area": "은평/연신내",
+      "store_name": "누나베이프",
+      "address": "서울 은평구 연서로27길 7 1층",
+      "phone": "0507-1314-6743",
+      "map_link": "https://pcmap.place.naver.com/place/1153101677/home",
+      "query": "구산역 전자담배"
+    },
+    {
+      "area": "구로디지털단지",
+      "store_name": "시흥동전자담배",
+      "address": "서울 금천구 금하로 680 1층",
+      "phone": "0507-1324-3730",
+      "map_link": "https://pcmap.place.naver.com/place/1940541711/home",
+      "query": "금천구청역 전자담배"
+    },
+    {
+      "area": "천호/강동",
+      "store_name": "전담GATE 천호역점",
+      "address": "서울 강동구 천호대로 1021 1층 2호",
+      "phone": "0507-1404-6840",
+      "map_link": "https://pcmap.place.naver.com/place/1188630702/home",
+      "query": "천호역 전자담배"
+    },
+    {
+      "area": "천호/강동",
+      "store_name": "오지구 천호로데오점",
+      "address": "서울 강동구 천호대로157길 25 1층",
+      "phone": "0507-1405-1758",
+      "map_link": "https://pcmap.place.naver.com/place/2025694506/home",
+      "query": "천호역 전자담배"
+    },
+    {
+      "area": "천호/강동",
+      "store_name": "엔조이베이프",
+      "address": "서울 강동구 천호옛14길 28 104호",
+      "phone": "0507-1313-7814",
+      "map_link": "https://pcmap.place.naver.com/place/1164578344/home",
+      "query": "천호역 전자담배"
+    },
+    {
+      "area": "천호/강동",
+      "store_name": "하카 강동역직영점",
+      "address": "서울 강동구 천호대로 1078 1층 104호",
+      "phone": "0507-1458-2167",
+      "map_link": "https://pcmap.place.naver.com/place/2024225582/home",
+      "query": "강동역 전자담배"
+    },
+    {
+      "area": "천호/강동",
+      "store_name": "베이프쥬 강동점",
+      "address": "서울 강동구 천호대로 1116 라이저강동빌딩 1층 105호",
+      "phone": "0507-1336-0244",
+      "map_link": "https://pcmap.place.naver.com/place/1378836699/home",
+      "query": "강동역 전자담배"
+    },
+    {
+      "area": "천호/강동",
+      "store_name": "JMI 전자담배 암사점",
+      "address": "서울 강동구 올림픽로92길 66 1층 JMI 전자담배 암사역점",
+      "phone": "0507-1334-2043",
+      "map_link": "https://pcmap.place.naver.com/place/1835569612/home",
+      "query": "암사역 전자담배"
+    },
+    {
+      "area": "천호/강동",
+      "store_name": "모던베이프",
+      "address": "서울 강동구 올림픽로 816 102호 모던베이프",
+      "phone": "0507-1324-8264",
+      "map_link": "https://pcmap.place.naver.com/place/1816310244/home",
+      "query": "암사역 전자담배"
+    },
+    {
+      "area": "천호/강동",
+      "store_name": "토토전자담배",
+      "address": "서울 강동구 올림픽로98길 7",
+      "phone": "0507-1378-1514",
+      "map_link": "https://pcmap.place.naver.com/place/1243450120/home",
+      "query": "암사역 전자담배"
+    },
+    {
+      "area": "천호/강동",
+      "store_name": "한국전자담배 천호점",
+      "address": "서울 강동구 천중로12길 1 성우스타펠리스 103동 104호",
+      "phone": "0507-1344-1342",
+      "map_link": "https://pcmap.place.naver.com/place/13586726/home",
+      "query": "암사역 전자담배"
+    },
+    {
+      "area": "천호/강동",
+      "store_name": "베이프판다",
+      "address": "서울 강동구 고덕비즈밸리로 26 B동 1층 109호",
+      "phone": "0507-1492-1495",
+      "map_link": "https://pcmap.place.naver.com/place/1536838485/home",
+      "query": "고덕역 전자담배"
+    },
+    {
+      "area": "천호/강동",
+      "store_name": "JMI전자담배 명일점",
+      "address": "서울 강동구 구천면로 384 2층 201호 전자담배",
+      "phone": "0507-1497-8783",
+      "map_link": "https://pcmap.place.naver.com/place/1117596164/home",
+      "query": "고덕역 전자담배"
+    }
+  ]
+}

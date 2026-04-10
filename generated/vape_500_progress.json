@@ -1,22 +1,25 @@
 {
   "project": "seoul_vape_500",
   "status": "running",
-  "lastVerifiedAtKst": "2026-04-10 10:35",
+  "lastVerifiedAtKst": "2026-04-10 11:44",
   "currentBatch": {
     "name": "Batch 5",
     "areas": [
       "서울역/용산",
-      "서대문/홍제",
-      "노량진/보라매",
-      "서초/양재",
-      "문정/가락",
-      "압구정/청담"
+      "도봉/창동",
+      "수유/미아",
+      "성북/길음",
+      "마포/공덕",
+      "신촌/이대",
+      "왕십리/한양대",
+      "은평/연신내",
+      "천호/강동"
     ],
-    "stage": "longtail_round2_added"
+    "stage": "longtail_round3_verified"
   },
   "counts": {
-    "total": 556,
-    "phoneReady": 551,
+    "total": 594,
+    "phoneReady": 589,
     "needsCheck": 5
   },
   "verification": {
@@ -199,8 +202,22 @@
       "queue exhausted or awaiting more candidates",
       "queue exhausted or awaiting more candidates",
       "queue exhausted or awaiting more candidates",
-      "longtail round2 added=25, skipped_after_final_dedupe=0"
+      "longtail round2 added=25, skipped_after_final_dedupe=0",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "queue exhausted or awaiting more candidates",
+      "longtail round3 added=38, duplicates=0"
     ]
   },
-  "nextProofPoint": "next verified additions reflected in CSV and reported to user"
+  "nextProofPoint": "focused long-tail round3 additions reflected in CSV and dashboard refresh"
 }
