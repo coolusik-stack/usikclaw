@@ -1,12 +1,12 @@
 # Seoul vape SMS outreach prioritization
 
 ## Snapshot
-- SMS-ready contacts: **631**
-- Wave 1 send-now: **147**
-- Wave 2 next: **304**
-- Wave 3 long-tail: **160**
+- SMS-ready contacts: **701**
+- Wave 1 send-now: **152**
+- Wave 2 next: **336**
+- Wave 3 long-tail: **193**
 - Hold for cleanup: **20**
-- Source mix: official locator 110, linked source 367, web-search draft 154
+- Source mix: official locator 110, linked source 414, web-search draft 177
 
 ## Main recommendation
 - Start with **Wave 1 (116 contacts)**, led by 역삼/선릉, 성수, 홍대/합정/상수, 잠실/송리단길, 영등포/문래, 건대입구.
@@ -26,20 +26,20 @@
 | Segment area | SMS-ready | Wave 1 | Avg send score |
 | --- | ---: | ---: | ---: |
 | 잠실/송리단길 | 32 | 21 | 15.70 |
-| 건대입구 | 25 | 17 | 15.72 |
+| 건대입구 | 27 | 17 | 15.54 |
 | 영등포/문래 | 27 | 14 | 14.96 |
 | 역삼/선릉 | 25 | 13 | 15.67 |
 | 성수 | 13 | 12 | 16.39 |
 | 홍대/합정/상수 | 18 | 12 | 15.48 |
-| 마포/공덕 | 16 | 11 | 15.64 |
+| 마포/공덕 | 22 | 11 | 15.19 |
+| 강남역 | 14 | 8 | 15.46 |
 | 여의도 | 9 | 7 | 16.28 |
 | 삼성/코엑스 | 9 | 7 | 16.04 |
 | 신논현/논현 | 12 | 7 | 15.82 |
-| 이태원 | 11 | 7 | 15.33 |
 | 왕십리/한양대 | 12 | 7 | 15.28 |
 
 ## Batching logic
-- Cluster mix: 코어 오피스/상업권 76, 트렌드/대학가 97, 혼합 고회전 상권 144, 확장/생활상권 314
+- Cluster mix: 코어 오피스/상업권 79, 트렌드/대학가 100, 혼합 고회전 상권 157, 확장/생활상권 365
 - Keep each batch internally similar by area cluster first, then send_score order second.
 - Within each batch, prioritize `message_type=1` and higher `total_score` rows first.
 - If replies spike in one cluster, pause the next batch in that same cluster and adapt the message, instead of contaminating the whole list.
@@ -73,10 +73,10 @@
 | 6 | 역삼/선릉 | 킹콩전자담배 | 010-7131-2019 | 17.30 | score 17.3, tier1 area, message_type1, official source |
 | 7 | 여의도 | 킹스베이프 | 010-2292-9696 | 16.90 | score 16.9, tier1 area, official source |
 | 8 | 여의도 | 하카국회점 | 010-9907-3028 | 16.90 | score 16.9, tier1 area, official source |
-| 9 | 강남역 | 시가모아 강남점 | 010-8989-2577 | 16.80 | score 16.8, tier1 area, message_type1, linked source |
-| 10 | 강남역 | 에어릭스전자담배 강남역점 | 0507-1418-1549 | 16.80 | score 16.8, tier1 area, message_type1, linked source |
-| 11 | 강남역 | 저스트포그 강남본점 | 010-4007-9783 | 16.80 | score 16.8, tier1 area, message_type1, linked source |
-| 12 | 강남역 | 하카 강남역직영점 | 0507-1372-2161 | 16.80 | score 16.8, tier1 area, message_type1, linked source |
-| 13 | 삼성/코엑스 | 듀바코 삼성점 | 010-3237-4520 | 16.80 | score 16.8, tier1 area, message_type1, linked source |
-| 14 | 삼성/코엑스 | 룩전자담배점 | 010-8078-9600 | 16.80 | score 16.8, tier1 area, message_type1, linked source |
-| 15 | 삼성/코엑스 | 위베이프 도깨비전자 삼성점 | 0507-1376-9876 | 16.80 | score 16.8, tier1 area, message_type1, linked source |
+| 9 | 강남역 | 강남 전자담배 | 0507-1309-5428 | 16.80 | score 16.8, tier1 area, message_type1, linked source |
+| 10 | 강남역 | 강남 전자담배 | 0507-1427-7962 | 16.80 | score 16.8, tier1 area, message_type1, linked source |
+| 11 | 강남역 | 시가모아 강남점 | 010-8989-2577 | 16.80 | score 16.8, tier1 area, message_type1, linked source |
+| 12 | 강남역 | 에어릭스전자담배 강남역점 | 0507-1418-1549 | 16.80 | score 16.8, tier1 area, message_type1, linked source |
+| 13 | 강남역 | 저스트포그 강남본점 | 010-4007-9783 | 16.80 | score 16.8, tier1 area, message_type1, linked source |
+| 14 | 강남역 | 하카 강남역직영점 | 0507-1372-2161 | 16.80 | score 16.8, tier1 area, message_type1, linked source |
+| 15 | 삼성/코엑스 | 듀바코 삼성점 | 010-3237-4520 | 16.80 | score 16.8, tier1 area, message_type1, linked source |
