@@ -1,12 +1,12 @@
 # Seoul vape SMS outreach prioritization
 
 ## Snapshot
-- SMS-ready contacts: **424**
+- SMS-ready contacts: **455**
 - Wave 1 send-now: **116**
-- Wave 2 next: **132**
-- Wave 3 long-tail: **156**
+- Wave 2 next: **159**
+- Wave 3 long-tail: **160**
 - Hold for cleanup: **20**
-- Source mix: official locator 105, linked source 165, web-search draft 154
+- Source mix: official locator 110, linked source 191, web-search draft 154
 
 ## Main recommendation
 - Start with **Wave 1 (116 contacts)**, led by 역삼/선릉, 성수, 홍대/합정/상수, 잠실/송리단길, 영등포/문래, 건대입구.
@@ -31,7 +31,7 @@
 | 홍대/합정/상수 | 18 | 12 | 15.48 |
 | 잠실/송리단길 | 23 | 12 | 15.27 |
 | 건대입구 | 18 | 10 | 15.31 |
-| 마포/공덕 | 12 | 8 | 15.48 |
+| 마포/공덕 | 13 | 8 | 15.38 |
 | 여의도 | 9 | 7 | 16.28 |
 | 삼성/코엑스 | 9 | 7 | 16.04 |
 | 이태원 | 11 | 7 | 15.33 |
@@ -39,7 +39,7 @@
 | 신논현/논현 | 9 | 4 | 15.49 |
 
 ## Batching logic
-- Cluster mix: 코어 오피스/상업권 69, 트렌드/대학가 82, 혼합 고회전 상권 104, 확장/생활상권 169
+- Cluster mix: 코어 오피스/상업권 69, 트렌드/대학가 82, 혼합 고회전 상권 114, 확장/생활상권 190
 - Keep each batch internally similar by area cluster first, then send_score order second.
 - Within each batch, prioritize `message_type=1` and higher `total_score` rows first.
 - If replies spike in one cluster, pause the next batch in that same cluster and adapt the message, instead of contaminating the whole list.
