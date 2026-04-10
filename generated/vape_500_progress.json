@@ -1,20 +1,20 @@
 {
   "project": "seoul_vape_500",
   "status": "running",
-  "lastVerifiedAtKst": "2026-04-10 09:56",
+  "lastVerifiedAtKst": "2026-04-10 10:00",
   "currentBatch": {
-    "name": "Batch 3",
+    "name": "Batch 5",
     "areas": [
-      "종로/대학로",
-      "동대문/회기/장한평",
-      "서울역/숙대",
-      "상봉/중랑"
+      "중구/은평/서대문",
+      "성북/강북/노원",
+      "동작/관악/금천",
+      "장안/답십리"
     ],
-    "stage": "longtail_wave_a_verified"
+    "stage": "longtail_wave_c_verified"
   },
   "counts": {
-    "total": 460,
-    "phoneReady": 455,
+    "total": 531,
+    "phoneReady": 526,
     "needsCheck": 5
   },
   "verification": {
@@ -186,8 +186,11 @@
       "queue exhausted or awaiting more candidates",
       "queue exhausted or awaiting more candidates",
       "queue exhausted or awaiting more candidates",
-      "longtail waveA added=26, skipped_existing=0, focus=종로·대학로·동대문·서울역·중랑"
+      "longtail waveA added=26, skipped_existing=0, focus=종로·대학로·동대문·서울역·중랑",
+      "longtail waveB added=30, skipped_existing=0, focus=은평·강서·노량진·관악·광진·강동·송파",
+      "queue exhausted or awaiting more candidates",
+      "longtail waveC added=41, skipped_existing=0, focus=중구·은평·성북·동작·관악·금천·장안"
     ]
   },
-  "nextProofPoint": "next long-tail Seoul additions reflected in CSV and ranked artifacts"
+  "nextProofPoint": "dataset refreshed beyond 500 with long-tail verified Seoul contacts"
 }
