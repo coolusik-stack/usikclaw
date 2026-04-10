@@ -1,0 +1,43 @@
+{
+  "timestamp_kst": "2026-04-10 17:45",
+  "before_total": 670,
+  "after_total": 727,
+  "before_sms": 631,
+  "after_sms": 688,
+  "net_new_kept": 57,
+  "duplicates_skipped": 78,
+  "rejected": 31,
+  "productive_areas": {
+    "서대문/홍제": 8,
+    "강서/마곡": 8,
+    "노원": 6,
+    "마포/공덕": 5,
+    "금호/약수/옥수": 3,
+    "구로디지털단지": 3,
+    "사당/방배": 3,
+    "신림": 3,
+    "강남역": 3,
+    "서초/양재": 3,
+    "종로/을지로/충무로": 2,
+    "은평/연신내": 2,
+    "중랑/면목": 2,
+    "동대문/청량리": 2,
+    "도봉/창동": 2,
+    "서울역/용산": 1,
+    "노량진/보라매": 1
+  },
+  "new_areas_opened": ["금호/약수/옥수"],
+  "quality_notes": "Evening push focused on underrepresented Seoul areas via Naver place search. 서대문/홍제 grew from 3 to 11. Added new 금호/약수/옥수 cluster. Rejected 31 entries: 7 non-Seoul (제주/경기/인천 등), 15 not-vape businesses (한의원/카페/편의점), 7 wrong areas, 2 prior reject-list stores. All kept entries use 0507 Naver virtual phone or 010 with verified Seoul address.",
+  "rejected_examples": [
+    "소이담 (제주 - nonSeoul)",
+    "진보골프랜드 (경남 - nonSeoul)",
+    "하카 인천동춘직영점 (인천 - nonSeoul)",
+    "베이커스홈 (경기 용인 - nonSeoul)",
+    "워크업 일산성석점 (경기 - nonSeoul)",
+    "플레이버포에버 한남점 (not-vape)",
+    "해가율한의원 (not-vape)",
+    "마곡점빵 (not-vape bakery)",
+    "로얄타바코전자담배 방화점 (reject list)",
+    "시가톱텐 (reject list)"
+  ]
+}
