@@ -1,0 +1,99 @@
+{
+  "baseline_file": "generated/vape_stores_seoul_template_2026-04-11_expanded.csv",
+  "previous_summary_file": "generated/vape_stores_seoul_template_2026-04-11_expanded_summary.json",
+  "excluded_non_sms_file": "generated/vape_send_excluded_non_sms_2026-04-11.csv",
+  "send_ready_file": "generated/vape_send_ready_final_2026-04-11.csv",
+  "new_additions_file": "generated/vape_new_additions_target_areas_2026-04-11.csv",
+  "expanded_round2_file": "generated/vape_stores_seoul_template_2026-04-11_expanded_round2.csv",
+  "baseline_total_rows": 740,
+  "baseline_filled_rows": 707,
+  "baseline_sms_ready_rows": 704,
+  "final_total_rows": 740,
+  "final_filled_rows": 708,
+  "final_sms_ready_rows": 705,
+  "final_non_sms_rows": 3,
+  "final_blank_phone_rows": 0,
+  "send_ready_total_unique": 705,
+  "excluded_non_sms_total": 3,
+  "new_unique_sms_additions_round2": 1,
+  "target_area_stats": [
+    {
+      "area": "홍대/합정/상수",
+      "before_filled": 18,
+      "before_sms_ready": 18,
+      "after_filled": 18,
+      "after_sms_ready": 18,
+      "new_additions": 0
+    },
+    {
+      "area": "성수",
+      "before_filled": 13,
+      "before_sms_ready": 13,
+      "after_filled": 13,
+      "after_sms_ready": 13,
+      "new_additions": 0
+    },
+    {
+      "area": "왕십리/한양대",
+      "before_filled": 12,
+      "before_sms_ready": 12,
+      "after_filled": 12,
+      "after_sms_ready": 12,
+      "new_additions": 0
+    },
+    {
+      "area": "이태원",
+      "before_filled": 12,
+      "before_sms_ready": 12,
+      "after_filled": 13,
+      "after_sms_ready": 13,
+      "new_additions": 1
+    }
+  ],
+  "new_additions": [
+    {
+      "area": "이태원",
+      "store_name": "더바코 이태원점",
+      "phone": "0507-1422-0951",
+      "address": "서울 용산구 이태원로 165-1 뉴월드프라자 1층",
+      "source": "https://thebacco.co.kr/itaewon_lounge",
+      "note": "thebacco.co.kr 이태원 라운지 공개 페이지 기준. 0507 네이버발급번호 확인, 기존 파일 대비 신규 확보"
+    }
+  ],
+  "placements": [
+    {
+      "store_name": "더바코 이태원점",
+      "row_index_1based_data": 44,
+      "mode": "fill_blank_slot"
+    }
+  ],
+  "non_sms_kept": [
+    {
+      "area": "강남역",
+      "store_name": "강남역전자담배멀티샵",
+      "phone": "070-7943-9445",
+      "address": "서울 강남구 역삼로 111 대세빌딩 1층"
+    },
+    {
+      "area": "강남역",
+      "store_name": "시가브로",
+      "phone": "1800-7495",
+      "address": "서울 강남구 테헤란로 147 성지하이츠Ⅱ 제지하층 13호"
+    },
+    {
+      "area": "강남역",
+      "store_name": "강남전자담배마샤 신논현역점",
+      "phone": "02-508-1179",
+      "address": "서울 강남구 봉은사로 106"
+    }
+  ],
+  "generated_files": [
+    "generated/vape_send_excluded_non_sms_2026-04-11.csv",
+    "generated/vape_send_ready_final_2026-04-11.csv",
+    "generated/vape_new_additions_target_areas_2026-04-11.csv",
+    "generated/vape_stores_seoul_template_2026-04-11_expanded_round2.csv",
+    "generated/vape_stores_seoul_template_2026-04-11_expanded_round2_summary.json",
+    "generated/vape_stores_seoul_template_2026-04-11_expanded_round2_summary.md",
+    "generated/bool_outreach_dashboard_2026-04-11_send_ready.html"
+  ]
+}

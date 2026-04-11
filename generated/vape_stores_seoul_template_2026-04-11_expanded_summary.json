@@ -1,0 +1,64 @@
+{
+  "baseline_file": "generated/vape_stores_seoul_template.csv",
+  "output_file": "generated/vape_stores_seoul_template_2026-04-11_expanded.csv",
+  "baseline_total_rows": 740,
+  "baseline_filled_rows": 706,
+  "baseline_sms_ready_rows": 701,
+  "final_total_rows": 740,
+  "final_filled_rows": 707,
+  "final_sms_ready_rows": 704,
+  "final_non_sms_rows": 3,
+  "final_blank_phone_rows": 0,
+  "new_unique_sms_additions": 3,
+  "sms_upgrades_from_non_sms": 1,
+  "revalidated_non_sms_kept": [
+    {
+      "store_name": "강남역전자담배멀티샵",
+      "phone": "070-7943-9445",
+      "status": "kept_non_sms",
+      "reason": "검색 결과상 010/0507 미확인"
+    },
+    {
+      "store_name": "시가브로",
+      "phone": "1800-7495",
+      "status": "kept_non_sms",
+      "reason": "검색 결과상 010/0507 미확인"
+    },
+    {
+      "store_name": "강남전자담배마샤 신논현역점",
+      "phone": "02-508-1179",
+      "status": "kept_non_sms",
+      "reason": "직통 02만 재확인"
+    }
+  ],
+  "changes": [
+    {
+      "row": 28,
+      "action": "upgrade",
+      "store_name": "라미야 방이점",
+      "phone": "010-9624-3989",
+      "basis": "same-address official locator, replacing 02 version"
+    },
+    {
+      "row": 14,
+      "action": "replace_obsolete_row_with_new_store",
+      "store_name": "예스",
+      "phone": "010-6297-5622",
+      "basis": "official locator"
+    },
+    {
+      "row": 15,
+      "action": "fill_empty_slot",
+      "store_name": "강남핫딜",
+      "phone": "010-2648-2864",
+      "basis": "official locator"
+    },
+    {
+      "row": 241,
+      "action": "replace_duplicate_row_with_new_store",
+      "store_name": "아메리퀴드여의도",
+      "phone": "010-4557-4742",
+      "basis": "official locator"
+    }
+  ]
+}
