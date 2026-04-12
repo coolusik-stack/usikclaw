@@ -1,0 +1,222 @@
+{
+  "summary": {
+    "date": "2026-04-12",
+    "source_focus": "Naver Place",
+    "target_areas": [
+      "홍대/합정/상수",
+      "성수",
+      "왕십리/한양대",
+      "이태원",
+      "신촌/이대"
+    ],
+    "base_target_unique_phones": 73,
+    "new_valid_additions": 22,
+    "updated_target_unique_phones": 95,
+    "net_increase": 22,
+    "notes": [
+      "010/0507 우선 수집",
+      "공식 사이트는 보조 증거로만 사용",
+      "권역 외 매칭(건대/강남 등)은 제외"
+    ]
+  },
+  "rows": [
+    {
+      "area": "홍대/합정/상수",
+      "store_name": "고릴라파이프 연남동점",
+      "phone": "0507-1350-2011",
+      "address": "서울특별시 마포구 동교로 227-5 1층",
+      "naver_place_id": "",
+      "source_query": "연남 전자담배",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "홍대/합정/상수",
+      "store_name": "굿잡 합정점",
+      "phone": "0507-1432-7822",
+      "address": "서울특별시 마포구 성지1길 12 1층",
+      "naver_place_id": "",
+      "source_query": "합정역 전자담배",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "홍대/합정/상수",
+      "store_name": "어벤져스리앤비",
+      "phone": "0507-1353-3039",
+      "address": "서울특별시 마포구 월드컵로1길 14 딜라이트스퀘어1차 L층 B114-1호",
+      "naver_place_id": "",
+      "source_query": "합정 전자담배",
+      "evidence": "네이버 플레이스 결과 기반 후보, 합정권 상가 주소 확인"
+    },
+    {
+      "area": "홍대/합정/상수",
+      "store_name": "연남베이프",
+      "phone": "0507-1321-9788",
+      "address": "서울특별시 마포구 동교로27길 44 1층",
+      "naver_place_id": "",
+      "source_query": "연남 전자담배",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "홍대/합정/상수",
+      "store_name": "연남익스프레스스탑",
+      "phone": "0507-1391-9256",
+      "address": "서울특별시 마포구 동교로38길 27-15 지하1층",
+      "naver_place_id": "",
+      "source_query": "연남 전자담배",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "홍대/합정/상수",
+      "store_name": "홍대전담",
+      "phone": "0507-1410-2577",
+      "address": "서울특별시 마포구 양화로 156 LG팰리스빌딩 제1층 제111호, 제112호 홍대전담",
+      "naver_place_id": "",
+      "source_query": "홍대 전자담배",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "홍대/합정/상수",
+      "store_name": "홍대전자담배",
+      "phone": "0507-1325-3540",
+      "address": "서울특별시 마포구 와우산로21길 20 1층",
+      "naver_place_id": "",
+      "source_query": "상수역 전자담배",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "홍대/합정/상수",
+      "store_name": "더베이프샵 다미 홍대점",
+      "phone": "0507-1407-5262",
+      "address": "서울특별시 마포구 와우산로35길 71-4 1층",
+      "naver_place_id": "",
+      "source_query": "홍대 베이프",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "홍대/합정/상수",
+      "store_name": "박시 베이프 핑크점",
+      "phone": "0507-1351-0893",
+      "address": "서울특별시 마포구 와우산로29바길 9 101호",
+      "naver_place_id": "",
+      "source_query": "홍대 베이프",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "홍대/합정/상수",
+      "store_name": "홍대엘프바전자담배",
+      "phone": "0507-1354-3370",
+      "address": "서울특별시 마포구 홍익로3길 19 1층",
+      "naver_place_id": "",
+      "source_query": "합정역 전자담배",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "성수",
+      "store_name": "퍼피 성수도원점",
+      "phone": "0507-1431-2484",
+      "address": "서울특별시 성동구 연무장3길 9 피치스도원",
+      "naver_place_id": "",
+      "source_query": "성수 전자담배",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "성수",
+      "store_name": "펠릭스샵 성수점",
+      "phone": "0507-1356-2561",
+      "address": "서울특별시 성동구 동일로 143 127, 128호",
+      "naver_place_id": "",
+      "source_query": "성수 전자담배",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "성수",
+      "store_name": "나이스전자담배",
+      "phone": "0507-1331-8506",
+      "address": "서울특별시 성동구 아차산로 96 1층 나이스전자담배",
+      "naver_place_id": "",
+      "source_query": "성수역 전담",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "성수",
+      "store_name": "더블베이프 성수",
+      "phone": "0507-1390-6555",
+      "address": "서울특별시 성동구 성수일로4길 49-1 1층 VAPE VAPE",
+      "naver_place_id": "",
+      "source_query": "성수 전담",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "왕십리/한양대",
+      "store_name": "렉스전자담배",
+      "phone": "0507-1481-1689",
+      "address": "서울특별시 성동구 왕십리로 336 상가 1층 102호",
+      "naver_place_id": "",
+      "source_query": "왕십리 전자담배",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "이태원",
+      "store_name": "킹콩 전자담배 이태원점",
+      "phone": "0507-1469-1442",
+      "address": "서울특별시 용산구 보광로 112 1층 킹콩전자담배",
+      "naver_place_id": "",
+      "source_query": "이태원 전자담배",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "이태원",
+      "store_name": "플레이버포에버 한남점",
+      "phone": "0507-1448-0973",
+      "address": "서울특별시 용산구 한남대로 104 1층 2호",
+      "naver_place_id": "",
+      "source_query": "한남역 전자담배",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "이태원",
+      "store_name": "전담스팟 이태원점",
+      "phone": "0507-1378-4904",
+      "address": "서울특별시 용산구 보광로 126 1층 전담스팟",
+      "naver_place_id": "",
+      "source_query": "이태원 전담",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "이태원",
+      "store_name": "전담GATE 이태원역점",
+      "phone": "0507-1313-8155",
+      "address": "서울특별시 용산구 이태원로 161-1 1층",
+      "naver_place_id": "",
+      "source_query": "이태원 전담",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "신촌/이대",
+      "store_name": "베이퍼니전자담배 신촌점",
+      "phone": "0507-1399-1540",
+      "address": "서울특별시 서대문구 연세로 6-1 1층",
+      "naver_place_id": "",
+      "source_query": "신촌 전자담배",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "신촌/이대",
+      "store_name": "전담GATE 신촌역점",
+      "phone": "0507-1373-5436",
+      "address": "서울특별시 서대문구 연세로5가길 8-6 1층",
+      "naver_place_id": "",
+      "source_query": "신촌 전담",
+      "evidence": "네이버 플레이스 category=전자담배, virtualPhone 노출"
+    },
+    {
+      "area": "신촌/이대",
+      "store_name": "어반베이프",
+      "phone": "0507-1493-4999",
+      "address": "서울특별시 마포구 서강로11길 11 1층 101호",
+      "naver_place_id": "",
+      "source_query": "신촌 베이프",
+      "evidence": "네이버 플레이스 category=전자담배, 신촌-서강대 인접권 후보"
+    }
+  ]
+}

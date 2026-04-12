@@ -1,0 +1,115 @@
+{
+  "date": "2026-04-12",
+  "basis": "vape_stores_seoul_template_2026-04-11_expanded_round2.csv",
+  "method": "Naver Place prioritized verification; official locators used only as secondary checks",
+  "start": {
+    "total_rows": 740,
+    "phone_filled": 708,
+    "sms_ready": 705
+  },
+  "end": {
+    "total_rows": 740,
+    "phone_filled": 715,
+    "sms_ready": 712
+  },
+  "new_valid_sms_numbers": 7,
+  "new_entries": [
+    {
+      "area": "홍대/합정/상수",
+      "store_name": "홍대전담",
+      "address": "서울 마포구 양화로 156 LG팰리스빌딩 제1층 제111호, 제112호",
+      "phone": "0507-1410-2577"
+    },
+    {
+      "area": "이태원",
+      "store_name": "전담GATE 이태원역점",
+      "address": "서울 용산구 이태원로 161-1 1층",
+      "phone": "0507-1313-8155"
+    },
+    {
+      "area": "이태원",
+      "store_name": "플레이버포에버 한남점",
+      "address": "서울 용산구 한남대로 104 1층 2호",
+      "phone": "0507-1448-0973"
+    },
+    {
+      "area": "신논현/논현",
+      "store_name": "베어베이프전자담배",
+      "address": "서울 강남구 강남대로118길 34 1층 베어베이프",
+      "phone": "0507-1339-5262"
+    },
+    {
+      "area": "신논현/논현",
+      "store_name": "전담플레이 신논현점",
+      "address": "서울 강남구 강남대로122길 10 1층 102호",
+      "phone": "0507-1395-3788"
+    },
+    {
+      "area": "삼성/코엑스",
+      "store_name": "위베이프 대치 직영점",
+      "address": "서울 강남구 삼성로85길 33 1층 102-3호",
+      "phone": "0507-1365-8225"
+    },
+    {
+      "area": "성수",
+      "store_name": "엘프바 성수점",
+      "address": "서울 성동구 연무장길 81 1층 108호",
+      "phone": "0507-1431-2484"
+    }
+  ],
+  "upgrades": [
+    {
+      "phone": "0507-1307-0734",
+      "store_name": "위베이프 서대문전자담배마켓",
+      "address": "서울 서대문구 충정로 73 1층"
+    }
+  ],
+  "skipped_as_duplicate_or_review": [
+    {
+      "store_name": "시가K 홍대점",
+      "phone": "0507-1424-4578",
+      "reason": "existing same-suite store at 홍익로 10 101동 1층 108-1호; held out conservatively"
+    },
+    {
+      "store_name": "지직스베이프",
+      "phone": "0507-1387-4480",
+      "reason": "existing same-address send-ready row already present"
+    },
+    {
+      "store_name": "킹콩전자담배블랙",
+      "phone": "0507-1357-2044",
+      "reason": "existing same-address send-ready row already present"
+    },
+    {
+      "store_name": "카우베이프 전자담배 신사점",
+      "phone": "0507-1395-2382",
+      "reason": "existing same-address send-ready row already present"
+    },
+    {
+      "store_name": "위베이프 압구정",
+      "phone": "0507-1348-6928",
+      "reason": "existing same-address send-ready row already present under different name"
+    },
+    {
+      "store_name": "베이프스트릿",
+      "phone": "0507-1416-1550",
+      "reason": "existing same-address send-ready row already present"
+    },
+    {
+      "store_name": "보나팩토리 시청점",
+      "phone": "0507-1444-8757",
+      "reason": "store category ambiguity; left out conservatively"
+    },
+    {
+      "store_name": "나이스전자담배",
+      "phone": "0507-1331-8506",
+      "reason": "same-name existing 성수 row already present; address differed but held for review"
+    }
+  ],
+  "unresolved_focus_areas": [
+    "홍대/합정/상수 추가 슬롯 다수",
+    "성수 추가 1~2건 더 발굴 필요",
+    "여의도는 네이버 플레이스상 신규 send-ready보다 중복/비전담 노출이 많음",
+    "서울역/용산은 보나팩토리 등 비중복 후보 재검증 필요"
+  ]
+}

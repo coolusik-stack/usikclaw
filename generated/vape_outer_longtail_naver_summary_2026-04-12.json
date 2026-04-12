@@ -1,0 +1,257 @@
+{
+  "source_policy": "서울 매장 + 네이버 플레이스 검색 스니펫 기준, 010/0507 우선. exact duplicate 제거. 권역 구/동 필터 재적용.",
+  "new_additions": 37,
+  "review_only": 99,
+  "area_summary": [
+    {
+      "area": "강서/마곡",
+      "before": 43,
+      "added": 7,
+      "after": 50
+    },
+    {
+      "area": "은평/연신내",
+      "before": 28,
+      "added": 5,
+      "after": 33
+    },
+    {
+      "area": "중랑/면목",
+      "before": 25,
+      "added": 4,
+      "after": 29
+    },
+    {
+      "area": "노원/수유/도봉",
+      "before": 56,
+      "added": 6,
+      "after": 62
+    },
+    {
+      "area": "구로디지털단지/금천",
+      "before": 36,
+      "added": 3,
+      "after": 39
+    },
+    {
+      "area": "천호/강동",
+      "before": 42,
+      "added": 6,
+      "after": 48
+    },
+    {
+      "area": "성북/길음",
+      "before": 18,
+      "added": 0,
+      "after": 18
+    },
+    {
+      "area": "사당/방배/목동",
+      "before": 33,
+      "added": 6,
+      "after": 39
+    }
+  ],
+  "sample_additions": [
+    {
+      "area": "강서/마곡",
+      "query": "가양역 전자담배",
+      "store_name": "시가톱텐",
+      "phone": "0507-1302-3226",
+      "address": "서울 강서구 화곡로68길 15 아벨테크노지식산업센터 606호",
+      "map_link": "https://pcmap.place.naver.com/place/1559564679/home",
+      "place_id": "1559564679",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (가양역 전자담배)"
+    },
+    {
+      "area": "강서/마곡",
+      "query": "마곡나루역 전자담배",
+      "store_name": "마곡너구리굴전자담배 본점",
+      "phone": "0507-1310-4027",
+      "address": "서울 강서구 마곡중앙로 161-17 보타닉타워1 지하1층 108호",
+      "map_link": "https://pcmap.place.naver.com/place/1652032967/home",
+      "place_id": "1652032967",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (마곡나루역 전자담배)"
+    },
+    {
+      "area": "강서/마곡",
+      "query": "마곡나루역 전자담배",
+      "store_name": "차이코스몰",
+      "phone": "0507-1313-4027",
+      "address": "서울 강서구 마곡중앙로 161-17 B1 108호",
+      "map_link": "https://pcmap.place.naver.com/place/1625935430/home",
+      "place_id": "1625935430",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (마곡나루역 전자담배)"
+    },
+    {
+      "area": "강서/마곡",
+      "query": "마곡나루역 전자담배",
+      "store_name": "캐츠베이핑",
+      "phone": "0507-1388-7255",
+      "address": "서울 강서구 마곡중앙5로 6 227호",
+      "map_link": "https://pcmap.place.naver.com/place/1269352635/home",
+      "place_id": "1269352635",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (마곡나루역 전자담배)"
+    },
+    {
+      "area": "강서/마곡",
+      "query": "방화역 전자담배",
+      "store_name": "로얄타바코전자담배 방화점",
+      "phone": "0507-1319-9502",
+      "address": "서울 강서구 방화동로 126 삼정코아(상가) 1층 163호 로얄전자담배 방화점",
+      "map_link": "https://pcmap.place.naver.com/place/35394795/home",
+      "place_id": "35394795",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (방화역 전자담배)"
+    },
+    {
+      "area": "강서/마곡",
+      "query": "방화역 전자담배",
+      "store_name": "마곡점빵",
+      "phone": "0507-1405-5489",
+      "address": "서울 강서구 마곡서1로 100 603동 상가 107호",
+      "map_link": "https://pcmap.place.naver.com/place/2094845369/home",
+      "place_id": "2094845369",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (방화역 전자담배)"
+    },
+    {
+      "area": "강서/마곡",
+      "query": "화곡역 전자담배",
+      "store_name": "보루 우장산역점",
+      "phone": "0507-1394-5712",
+      "address": "서울 강서구 강서로45길 28 107호",
+      "map_link": "https://pcmap.place.naver.com/place/1883635045/home",
+      "place_id": "1883635045",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (화곡역 전자담배)"
+    },
+    {
+      "area": "구로디지털단지/금천",
+      "query": "가산디지털단지역 전자담배",
+      "store_name": "마크전자담배 금천구 가산점",
+      "phone": "0507-1353-3375",
+      "address": "서울 금천구 가산디지털1로 168 우림라이온스밸리 A동 109호 마크전자담배",
+      "map_link": "https://pcmap.place.naver.com/place/1068177509/home",
+      "place_id": "1068177509",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (가산디지털단지역 전자담배)"
+    },
+    {
+      "area": "구로디지털단지/금천",
+      "query": "구로디지털단지역 전자담배",
+      "store_name": "전자담배 구로디지털점",
+      "phone": "0507-1401-5336",
+      "address": "서울 구로구 디지털로32나길 38",
+      "map_link": "https://pcmap.place.naver.com/place/36305256/home",
+      "place_id": "36305256",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (구로디지털단지역 전자담배)"
+    },
+    {
+      "area": "구로디지털단지/금천",
+      "query": "독산역 전자담배",
+      "store_name": "키츠베이프",
+      "phone": "0507-1317-9378",
+      "address": "서울 금천구 벚꽃로 234 에이스하이엔드타워6차 101호 키츠베이프전자담배",
+      "map_link": "https://pcmap.place.naver.com/place/1652883555/home",
+      "place_id": "1652883555",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (독산역 전자담배)"
+    },
+    {
+      "area": "노원/수유/도봉",
+      "query": "노원역 전자담배",
+      "store_name": "전담이지 노원점",
+      "phone": "0507-1383-4578",
+      "address": "서울 노원구 노해로 491 1층",
+      "map_link": "https://pcmap.place.naver.com/place/2076146814/home",
+      "place_id": "2076146814",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (노원역 전자담배)"
+    },
+    {
+      "area": "노원/수유/도봉",
+      "query": "방학역 전자담배",
+      "store_name": "몬스터24시",
+      "phone": "0507-1395-5213",
+      "address": "서울 도봉구 도봉로150마길 34 지상1층 161호",
+      "map_link": "https://pcmap.place.naver.com/place/2082004100/home",
+      "place_id": "2082004100",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (방학역 전자담배)"
+    },
+    {
+      "area": "노원/수유/도봉",
+      "query": "수유역 전자담배",
+      "store_name": "수유 전자담배 그레이 광산점",
+      "phone": "0507-1430-2827",
+      "address": "서울 강북구 한천로 1096 1층",
+      "map_link": "https://pcmap.place.naver.com/place/1033834276/home",
+      "place_id": "1033834276",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (수유역 전자담배)"
+    },
+    {
+      "area": "노원/수유/도봉",
+      "query": "수유역 전자담배",
+      "store_name": "수유 전자담배 어썸리퀴드",
+      "phone": "0507-1409-0901",
+      "address": "서울 강북구 도봉로 290 푸르지오시티 1층 112호 어썸리퀴드",
+      "map_link": "https://pcmap.place.naver.com/place/36652279/home",
+      "place_id": "36652279",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (수유역 전자담배)"
+    },
+    {
+      "area": "노원/수유/도봉",
+      "query": "쌍문역 전자담배",
+      "store_name": "베이핑스타",
+      "phone": "0507-1442-0177",
+      "address": "서울 도봉구 도봉로 441 101호",
+      "map_link": "https://pcmap.place.naver.com/place/1337662834/home",
+      "place_id": "1337662834",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (쌍문역 전자담배)"
+    },
+    {
+      "area": "노원/수유/도봉",
+      "query": "창동역 전자담배",
+      "store_name": "위베이프 제이스전자담배 방학점",
+      "phone": "0507-1423-3898",
+      "address": "서울 도봉구 도봉로145길 39 1층",
+      "map_link": "https://pcmap.place.naver.com/place/37657840/home",
+      "place_id": "37657840",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (창동역 전자담배)"
+    },
+    {
+      "area": "사당/방배/목동",
+      "query": "목동역 전자담배",
+      "store_name": "마샤전자담배 목동점",
+      "phone": "0507-1423-1701",
+      "address": "서울 양천구 목동동로 233-1 지하1층 137,142호",
+      "map_link": "https://pcmap.place.naver.com/place/35965205/home",
+      "place_id": "35965205",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (목동역 전자담배)"
+    },
+    {
+      "area": "사당/방배/목동",
+      "query": "목동역 전자담배",
+      "store_name": "베이프갱스터 목동점",
+      "phone": "0507-1358-0754",
+      "address": "서울 양천구 목동로 163 이스타팰리스 1층 106호",
+      "map_link": "https://pcmap.place.naver.com/place/1454748649/home",
+      "place_id": "1454748649",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (목동역 전자담배)"
+    },
+    {
+      "area": "사당/방배/목동",
+      "query": "목동역 전자담배",
+      "store_name": "전자담BAAM",
+      "phone": "0507-1417-5635",
+      "address": "서울 양천구 목동로23길 12 1층 103호",
+      "map_link": "https://pcmap.place.naver.com/place/1723561269/home",
+      "place_id": "1723561269",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (목동역 전자담배)"
+    },
+    {
+      "area": "사당/방배/목동",
+      "query": "사당역 전자담배",
+      "store_name": "룰루전자담배 사당점",
+      "phone": "0507-1390-2440",
+      "address": "서울 서초구 과천대로 946 1층 8호",
+      "map_link": "https://pcmap.place.naver.com/place/1539043547/home",
+      "place_id": "1539043547",
+      "notes": "네이버 플레이스 검색 스니펫 기준 신규 확보 (사당역 전자담배)"
+    }
+  ]
+}

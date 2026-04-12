@@ -1,0 +1,70 @@
+{
+  "date": "2026-04-12",
+  "scope": {
+    "priority": "5 unresolved non-SMS/blank Seoul vape rows",
+    "method": "Naver search HTML / place-context-first verification",
+    "strict_send_ready_rule": "Only promote when a 010 or 0507 number is tied to the same place context, not just a raw regex hit"
+  },
+  "counts": {
+    "targets": 5,
+    "confirmed_recovered": 1,
+    "candidate_same_address": 1,
+    "unresolved": 3,
+    "strict_send_ready_conversions": 1
+  },
+  "confirmed": [
+    {
+      "original_store_name": "방이베이프전자담배",
+      "original_address": "서울특별시 송파구 오금로11길 33 신동아타워 1층 10호",
+      "original_phone": "02-417-6979",
+      "recovered_store_name": "방이 베이프 전자담배 송파잠실점",
+      "recovered_phone": "0507-1411-6979",
+      "recovered_phone_type": "business_0507",
+      "send_ready": true,
+      "confidence": "high",
+      "evidence_source": "naver_search_html_structured_place",
+      "evidence_url": "https://search.naver.com/search.naver?where=nexearch&query=%EB%B0%A9%EC%9D%B4%EB%B2%A0%EC%9D%B4%ED%94%84%EC%A0%84%EC%9E%90%EB%8B%B4%EB%B0%B0%20%EC%86%A1%ED%8C%8C%EA%B5%AC%20%EC%98%A4%EA%B8%88%EB%A1%9C11%EA%B8%B8%2033%200507",
+      "evidence_excerpt": "store_name=방이 베이프 전자담배 송파잠실점, fullAddress=서울특별시 송파구 오금로11길 33 신동아타워 1층 110호, virtualPhone=0507-1411-6979"
+    }
+  ],
+  "candidates": [
+    {
+      "original_store_name": "스위든바 논현동점",
+      "original_address": "서울 강남구 언주로 604 ACROHILLS논현상가 111호",
+      "original_phone": "BLANK",
+      "candidate_store_name": "야옹이 전자담배 논현점",
+      "candidate_phone": "010-6259-5397",
+      "candidate_phone_type": "mobile_010",
+      "send_ready": false,
+      "confidence": "medium",
+      "reason": "Same-address candidate already exists in master, but this pass did not produce direct Naver place evidence tying 스위든바 itself to that number",
+      "evidence_source": "existing_master_same_address",
+      "evidence_url": "/Users/usuk/.openclaw/workspace/generated/vape_contacts_master_2026-04-11.csv"
+    }
+  ],
+  "unresolved_items": [
+    {
+      "store_name": "강남역전자담배멀티샵",
+      "address": "서울 강남구 역삼로 111 대세빌딩 1층",
+      "phone": "070-7943-9445",
+      "reason": "Search results mixed with other stores at different addresses; no verified same-place 010/0507 recovered"
+    },
+    {
+      "store_name": "시가브로",
+      "address": "서울 강남구 테헤란로 147 성지하이츠Ⅱ 제지하층 13호",
+      "phone": "1800-7495",
+      "reason": "Only representative-number style evidence found; no verified same-place 010/0507 recovered"
+    },
+    {
+      "store_name": "강남전자담배마샤 신논현역점",
+      "address": "서울 강남구 봉은사로 106",
+      "phone": "02-508-1179",
+      "reason": "Raw 010 hits were false positives from unrelated blog/table fragments; public search context still supports only the 02 number"
+    }
+  ],
+  "output_files": {
+    "csv": "/Users/usuk/.openclaw/workspace/generated/vape_recovered_upgrades_2026-04-12.csv",
+    "md": "/Users/usuk/.openclaw/workspace/generated/vape_recovered_upgrades_summary_2026-04-12.md",
+    "json": "/Users/usuk/.openclaw/workspace/generated/vape_recovered_upgrades_summary_2026-04-12.json"
+  }
+}

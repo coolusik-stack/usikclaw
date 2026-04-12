@@ -1,0 +1,6 @@
+﻿area,store_name,address,phone,phone_type,source,evidence,notes
+강남역,전담GATE 강남역지하상가점,서울 강남구 테헤란로1길 20,0507-1424-2846,0507,naver_place,search.naver exact query place card phone field,"네이버 플레이스 리스트에서 강남역 권역 노출, 역삼동 소재"
+역삼/선릉,역삼 전자담배 카우베이프,서울 강남구 역삼동 (네이버 플레이스 exact query 기준),0507-1427-3799,0507,naver_place,search.naver exact query place card phone field,역삼동 네이버 플레이스 리스트 신규 후보
+삼성/코엑스,헬로 삼성점,서울 강남구 삼성로 517 채널리저브 지하109호,0507-1444-2030,0507,naver_place,search.naver exact query place card phone field,삼성동 네이버 플레이스 리스트 신규 후보
+삼성/코엑스,베이퓨 선정릉점,서울 강남구 봉은사로 452 1층,0507-1384-5932,0507,naver_place,search.naver exact query place card phone field,삼성동/선정릉 축 신규 후보
+압구정/청담,위베이프 압구정,서울 강남구 선릉로155길 28 1층,0507-1348-6928,0507,naver_place,search.naver exact query place card phone field,압구정/로데오권 네이버 플레이스 신규 후보

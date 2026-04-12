@@ -1,0 +1,123 @@
+{
+  "baseline_file": "generated/vape_contacts_master_2026-04-11.csv",
+  "new_additions_file": "generated/vape_new_additions_target_areas_2026-04-12_naver_priority.csv",
+  "source_priority": "naver_place_first",
+  "target_areas": [
+    "신논현/논현",
+    "역삼/선릉",
+    "삼성/코엑스",
+    "강남역",
+    "압구정/청담",
+    "여의도",
+    "서울역/용산"
+  ],
+  "baseline_target_area_rows": 88,
+  "new_sms_ready_additions": 5,
+  "new_sms_ready_additions_by_area": {
+    "강남역": 1,
+    "역삼/선릉": 1,
+    "삼성/코엑스": 2,
+    "압구정/청담": 1
+  },
+  "final_target_area_rows_estimate": 93,
+  "baseline_counts_by_area": {
+    "강남역": 14,
+    "신논현/논현": 12,
+    "역삼/선릉": 25,
+    "여의도": 9,
+    "삼성/코엑스": 9,
+    "서울역/용산": 9,
+    "압구정/청담": 10
+  },
+  "final_counts_by_area_estimate": {
+    "신논현/논현": 12,
+    "역삼/선릉": 26,
+    "삼성/코엑스": 11,
+    "강남역": 15,
+    "압구정/청담": 11,
+    "여의도": 9,
+    "서울역/용산": 9
+  },
+  "unresolved_or_non_sms_candidates": [
+    {
+      "area": "신논현/논현",
+      "store_name": "전담플레이 신논현점",
+      "address": "서울 강남구 강남대로122길 10 1층 102호",
+      "phone": "1877-7025",
+      "issue": "1877 번호라 SMS 우선순위 제외",
+      "source": "naver_place"
+    },
+    {
+      "area": "신논현/논현",
+      "store_name": "칠렉스전자담배 논현점",
+      "address": "서울 강남구 강남대로118길 52 1층",
+      "phone": "02-6012-8922",
+      "issue": "02 번호라 SMS 우선순위 제외",
+      "source": "naver_place"
+    },
+    {
+      "area": "신논현/논현",
+      "store_name": "래빗베이프 신논현점",
+      "address": "서울 강남구 강남대로 506 1층 103호",
+      "phone": "",
+      "issue": "네이버 플레이스 exact query에서 전화 미노출",
+      "source": "naver_place"
+    },
+    {
+      "area": "삼성/코엑스",
+      "store_name": "전자담배라미야코리아 삼성점",
+      "address": "서울 강남구 삼성로103길 12 신도브래뉴상가 b105-1호",
+      "phone": "070-8129-3090",
+      "issue": "070 번호라 SMS 우선순위 제외",
+      "source": "naver_place"
+    },
+    {
+      "area": "여의도",
+      "store_name": "국회전자담배",
+      "address": "서울 영등포구 국회대로 780 지하1층",
+      "phone": "",
+      "issue": "네이버 플레이스 exact query에서 전화 미노출",
+      "source": "naver_place"
+    },
+    {
+      "area": "여의도",
+      "store_name": "연기상회 전자담배 여의도점",
+      "address": "서울 영등포구 은행로 29 지하1층 10-2호",
+      "phone": "",
+      "issue": "네이버 플레이스 exact query에서 전화 미노출",
+      "source": "naver_place"
+    },
+    {
+      "area": "서울역/용산",
+      "store_name": "전담스팟 숙명여대점",
+      "address": "서울 용산구 청파로47길 62 1층 101호",
+      "phone": "",
+      "issue": "네이버 플레이스 exact query에서 전화 미노출",
+      "source": "naver_place"
+    },
+    {
+      "area": "서울역/용산",
+      "store_name": "위베이프 전자담배 남영점",
+      "address": "서울 용산구 한강대로 257 청룡빌딩 B1",
+      "phone": "02-797-3004",
+      "issue": "02 번호라 SMS 우선순위 제외",
+      "source": "naver_place"
+    },
+    {
+      "area": "서울역/용산",
+      "store_name": "해방촌 퍼프클럽",
+      "address": "서울 용산구 신흥로20길 9 1층 HBC PUFF CLUB",
+      "phone": "",
+      "issue": "네이버 플레이스 카드에서 전화 미노출",
+      "source": "naver_place"
+    },
+    {
+      "area": "서울역/용산",
+      "store_name": "뭉뭉뭉밍전자담배",
+      "address": "서울 용산구 만리재로 152-1 1층 뭉뭉뭉밍",
+      "phone": "",
+      "issue": "네이버 플레이스 카드에서 전화 미노출",
+      "source": "naver_place"
+    }
+  ]
+}
