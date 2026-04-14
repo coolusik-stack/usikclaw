@@ -1,0 +1,40 @@
+{
+  "activeGoal": "vape_send_ready_900",
+  "baselineAccepted": 831,
+  "currentAccepted": 899,
+  "targetAccepted": 900,
+  "activeLanes": [
+    {
+      "id": "last_one_strict",
+      "label": "Strict closer",
+      "launchedAt": "2026-04-15T08:14:00+09:00"
+    }
+  ],
+  "nextLanes": [
+    "strict_review_recheck",
+    "hyperlocal_last_gap"
+  ],
+  "exhaustedLanes": [
+    "dense_core_redux",
+    "proven_longtail_cluster_redux",
+    "brand_chain_sweep",
+    "carryover_promotable_first",
+    "missing_district_sweep",
+    "end_puff_locator_sweep",
+    "martha_vape_locator_sweep",
+    "justfog_locator_sweep",
+    "litmuskorea_locator_sweep",
+    "vera_locator_sweep"
+  ],
+  "lastUpdatedAt": "2026-04-15T08:14:00+09:00",
+  "relaunchNeeded": false,
+  "orchestratorMode": "continuous_single_run",
+  "sessionNote": "All major locator pages exhausted. Web search unavailable. Net +5 added (4 from end-puff, 1 from martha-vape). Pool at 832. Gap: 69 to reach 900. Requires web search quota reset for new_open_monitor lane.",
+  "netAddedThisSession": 5,
+  "poolSize": 832,
+  "strategyShift": "post_831",
+  "openGoalHardRule": "active worker 0 before goal completion = failure",
+  "enforcementFile": "generated/open_goal_enforcement_2026-04-15.md",
+  "failureDefinition": "open goal + active worker 0",
+  "relayRule": "on worker completion, report and relaunch in same turn if goal still open"
+}
