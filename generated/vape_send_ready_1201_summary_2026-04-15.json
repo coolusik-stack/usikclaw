@@ -1,12 +1,16 @@
 {
-  "final_unique_send_ready": 1187,
+  "final_unique_send_ready": 1201,
   "csv": "generated/vape_send_ready_final_2026-04-15_1201.csv",
   "xlsx": "generated/vape_send_ready_final_2026-04-15_1201.xlsx",
+  "pool_file": "generated/vape_pool_phones_1201_2026-04-15.txt",
+  "missing_rows_filled_from_pool_only": 0,
   "inputs_used": [
     "generated/vape_send_ready_final_2026-04-15_1001.csv",
+    "generated/vape_1200_session1_additions_2026-04-15.csv",
     "generated/vape_1200_naver_additions_2026-04-15.csv",
     "generated/vape_1200_hidden_locator_v3_additions_2026-04-15.csv",
     "generated/vape_1200_naver_v2_final_additions_2026-04-15.csv",
-    "generated/vape_1200_browser_js_ALL_additions_2026-04-15.csv"
+    "generated/vape_1200_browser_js_ALL_additions_2026-04-15.csv",
+    "generated/vape_1200_naver_v3_lowcov_clean_additions_2026-04-15.csv"
   ]
 }
