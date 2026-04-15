@@ -1,0 +1,7 @@
+{
+  "final_unique_send_ready": 1323,
+  "csv": "generated/vape_send_ready_final_2026-04-15_1323.csv",
+  "xlsx": "generated/vape_send_ready_final_2026-04-15_1323.xlsx",
+  "pool": "generated/vape_pool_phones_1323_2026-04-15.txt",
+  "missing_rows_filled_from_pool_only": 49
+}
