@@ -45,6 +45,7 @@ Manager는 상태를 보고서에 명시적으로 남긴다.
 - 20m silence: watchdog report
 - 2 consecutive underperform lanes: source-family switch
 - stale goal_state: sync before trust
+- every major lane switch should leave a fresh manager block artifact for the next wake
 
 ## Operating preference
 - default active workers: 1
@@ -72,3 +73,4 @@ action_now: <report|relaunch|reconcile|stop>
 - if lane underperformed twice, switch source family
 - if overlap risk is high, reconcile before spawning
 - if handoff is missing, patch template before next spawn
+- if a worker is already running and healthy, manager action should be `continue`, not unnecessary respawn
