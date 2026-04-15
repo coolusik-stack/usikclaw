@@ -23,7 +23,7 @@
     "litmuskorea_locator_sweep",
     "vera_locator_sweep"
   ],
-  "lastUpdatedAt": "2026-04-15T21:05:30+09:00",
+  "lastUpdatedAt": "2026-04-15T21:10:30+09:00",
   "goalMet": false,
   "relaunchNeeded": false,
   "orchestratorMode": "continuous_single_run",
@@ -60,5 +60,32 @@
     "silenceMinutes": 20,
     "reportBeforeTrustingStaleState": true,
     "sameTurnRelaunchOnZero": true
+  },
+  "managerMode": "tight_supervisor",
+  "managerProtocol": "generated/tight_worker_manager_protocol_2026-04-15.md",
+  "managerReportFields": [
+    "manager_state",
+    "current_total",
+    "target",
+    "gap",
+    "active_workers",
+    "latest_lane_result",
+    "next_best_lane",
+    "spawn_ready_task_brief",
+    "confidence",
+    "overlap_risk",
+    "action_now"
+  ],
+  "managerState": "running",
+  "managerTemplates": {
+    "protocol": "generated/tight_worker_manager_protocol_2026-04-15.md",
+    "managerPrompt": "generated/tight_worker_manager_prompt_template_2026-04-15.md",
+    "workerPrompt": "generated/continuous_goal_worker_prompt_template_2026-04-15.md"
+  },
+  "managerOperatingRules": {
+    "defaultActiveWorkers": 1,
+    "allowTwoOnlyIfOrthogonal": true,
+    "syncStateBeforeTrust": true,
+    "shortReportFirst": true
   }
 }

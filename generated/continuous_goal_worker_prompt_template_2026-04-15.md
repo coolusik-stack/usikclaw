@@ -19,6 +19,8 @@ At the end, always include:
 - `continue_if_goal_open`: true or false
 - `global_count_confidence`: high / medium / low
 - `known_overlap_risk`: short note
+- `manager_state_recommendation`: running / awaiting_handoff / relaunch_required / reconciling / exhausted
+- `action_now`: relaunch / reconcile / stop / switch_family
 
 ## End-of-run example
 - next_best_lane: blog_cafe_masked_phone_recovery
@@ -26,3 +28,5 @@ At the end, always include:
 - continue_if_goal_open: true
 - global_count_confidence: medium
 - known_overlap_risk: 2 phones may overlap with prior naver_variant lane
+- manager_state_recommendation: relaunch_required
+- action_now: switch_family
