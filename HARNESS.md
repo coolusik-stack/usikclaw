@@ -189,6 +189,22 @@ Evaluator가 아래 중 하나를 판정한다.
 - 02/070은 후순위
 - 억지로 번호를 만들지 않는다
 
+#### 장기 수집 목표 전용 확장 규칙
+전자담배점처럼 목표 숫자까지 계속 밀어야 하는 작업은 아래 운영을 추가한다.
+
+- 메인 세션은 **감독자** 역할만 맡는다.
+- 실제 수집은 항상 워커에 위임한다.
+- 목표가 열려 있는데 `active worker = 0` 이면 **idle이 아니라 failure**다.
+- 워커 완료 이벤트가 오면 같은 턴에 아래 3개를 함께 처리한다.
+  1. 사용자에게 짧게 결과 보고
+  2. active worker 수 확인
+  3. 목표 미달 + active 0이면 즉시 다음 워커 재발사
+- 동시 active worker 기본값은 **1개**, 필요할 때만 **2개**까지 허용한다.
+- 20분 이상 사용자 메시지 없이 지나가면, 큰 변화가 없더라도 한 줄 상태 보고를 우선한다.
+- 워커 산출물 정리보다 **사용자 직접 메시지 즉답**이 항상 먼저다.
+- lane 수율이 0~2에 머무르면 과감히 exhausted 처리하고 다음 소스로 전환한다.
+- 워커 프롬프트는 항상 `baseline / target / strict rule / dedupe file / checkpoint cadence / stop rule`을 포함한다.
+
 ### D. 디자인 하네스
 용도:
 - 브리핑 페이지
@@ -302,6 +318,14 @@ Evaluator가 아래 중 하나를 판정한다.
    - 전날 새 소식만
    - 과장 금지
    - 실무 연결 필수
+6. 사용자가 직접 말을 걸면
+   - 워커 결과 정리보다 **즉답이 먼저**다
+7. 메인 세션은
+   - worker operator가 아니라 **supervisor + communicator**여야 한다
+8. 느려질 조짐이 보이면
+   - active worker 수를 줄이고, 답장은 더 짧게 먼저 보낸다
+9. 장기 목표 작업은
+   - `goal-state file + relay rule + relaunch trigger + exhausted-lane memo`를 세트로 유지한다
 
 ---
 
@@ -358,4 +382,19 @@ Operator:
 
 ---
 
-마지막 업데이트: 2026-04-07
+## 9. Continuous Goal Harness 체크리스트
+
+장기 목표 작업을 다시 시작할 때는 아래 체크리스트를 먼저 맞춘다.
+
+- goal state 파일이 최신 baseline / target / next lanes 를 담고 있는가
+- dedupe 기준 파일이 명확한가
+- active worker 목표치가 1 또는 2로 정해졌는가
+- worker 프롬프트에 checkpoint cadence 가 들어갔는가
+- 완료 이벤트 수신 시 relay action 이 정해져 있는가
+- exhausted lane 을 문서화할 파일이 있는가
+- 메인 세션 답장 우선 규칙이 분명한가
+
+권장 relay 문구:
+- "결과 보고 → active 확인 → goal open + 0이면 즉시 재발사"
+
+마지막 업데이트: 2026-04-15
