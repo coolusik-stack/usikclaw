@@ -1,13 +1,15 @@
 {
   "activeGoal": "vape_send_ready_1300",
   "baselineAccepted": 1201,
-  "currentAccepted": 1201,
+  "currentAccepted": 1249,
   "targetAccepted": 1300,
-  "activeLanes": [],
+  "activeLanes": [
+    "coordinate_grid_scan_relaunch"
+  ],
   "nextLanes": [
-    "naver_variant_v4",
-    "embedded_townconnect_v2",
-    "low_coverage_followup_v2"
+    "blog_cafe_masked_phone_recovery",
+    "delivery_platform_crawl",
+    "public_retail_license_data"
   ],
   "exhaustedLanes": [
     "dense_core_redux",
@@ -21,11 +23,11 @@
     "litmuskorea_locator_sweep",
     "vera_locator_sweep"
   ],
-  "lastUpdatedAt": "2026-04-15T17:56:30+09:00",
+  "lastUpdatedAt": "2026-04-15T21:05:30+09:00",
   "goalMet": false,
   "relaunchNeeded": false,
   "orchestratorMode": "continuous_single_run",
-  "sessionNote": "1300 목표로 전환. baseline 1201, normalized pool 기준 유지.",
+  "sessionNote": "1249 confirmed. Coordinate-grid relaunch running. Silence watchdog + pre-handoff required.",
   "netAddedThisSession": 5,
   "poolSize": 832,
   "strategyShift": "post_831",
@@ -49,5 +51,14 @@
     "global_count_confidence",
     "known_overlap_risk"
   ],
-  "supervisorRule": "prefer spawning successor from worker handoff before or immediately at completion"
+  "supervisorRule": "prefer spawning successor from worker handoff before or immediately at completion",
+  "gap": 51,
+  "phonePoolFile": "generated/vape_pool_phones_1249_2026-04-15.txt",
+  "masterCsvFile": "generated/vape_send_ready_final_2026-04-15_1201.csv",
+  "watchdog": {
+    "enabled": true,
+    "silenceMinutes": 20,
+    "reportBeforeTrustingStaleState": true,
+    "sameTurnRelaunchOnZero": true
+  }
 }

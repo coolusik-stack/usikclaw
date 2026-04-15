@@ -48,3 +48,10 @@
 - If two consecutive lanes underperform, switch source family instead of retrying blindly
 - If counts conflict, freeze export and reconcile before reporting a final file
 - If a worker finishes without handoff fields, treat that as harness-quality failure and patch the next worker prompt
+- If no worker event arrives for too long, do not assume progress. Run a silence check and report the gap.
+
+## Silence watchdog
+- If an open goal has no active worker, report failure immediately and relaunch.
+- If an open goal has no worker event for ~20 minutes, send a short status check update even without a completion event.
+- If goal-state numbers lag behind confirmed conversation totals, sync the state file before trusting it.
+- Treat `active worker 0 + stale goal_state + no user update` as a supervisor failure, not a normal pause.

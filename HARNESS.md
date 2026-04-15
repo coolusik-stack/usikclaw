@@ -207,6 +207,8 @@ Evaluator가 아래 중 하나를 판정한다.
 - 메인 세션은 완료 수신 시 요약 전에 `spawn_ready_task_brief`를 보고 바로 후속 워커를 붙일 수 있어야 한다.
 - 동시 active worker 기본값은 **1개**, 필요할 때만 **2개**까지 허용한다.
 - 20분 이상 사용자 메시지 없이 지나가면, 큰 변화가 없더라도 한 줄 상태 보고를 우선한다.
+- 20분 이상 워커 이벤트가 없으면 `silence watchdog` 을 발동해 active worker / goal state / 최신 총계를 먼저 점검한다.
+- silence watchdog 결과 `active worker 0` 이면 사용자에게 즉시 보고하고, 그 same turn 에 relaunch 한다.
 - 워커 산출물 정리보다 **사용자 직접 메시지 즉답**이 항상 먼저다.
 - lane 수율이 0~2에 머무르면 과감히 exhausted 처리하고 다음 소스로 전환한다.
 - 워커 프롬프트는 항상 `baseline / target / strict rule / dedupe file / checkpoint cadence / stop rule / next-lane handoff fields`를 포함한다.
