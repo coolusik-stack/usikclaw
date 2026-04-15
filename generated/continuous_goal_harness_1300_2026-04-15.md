@@ -12,6 +12,8 @@
 - open goal + active worker 0 = failure
 - worker completion event = relay trigger
 - same turn action: result report -> active check -> relaunch if needed
+- pre-handoff is preferred over post-completion recovery
+- every worker must end with a spawn-ready recommendation block
 - default active worker count: 1
 - only raise to 2 when throughput gain is clear
 
@@ -24,6 +26,9 @@
 - checkpoint cadence
 - exhausted criteria
 - expected net-new target
+- next_best_lane
+- spawn_ready_task_brief
+- continue_if_goal_open
 
 ## Lane order for 1300
 1. m.map.naver.com/search2 driven low-coverage sweep
@@ -42,3 +47,4 @@
 - If worker fails or vanishes, relaunch within the same turn
 - If two consecutive lanes underperform, switch source family instead of retrying blindly
 - If counts conflict, freeze export and reconcile before reporting a final file
+- If a worker finishes without handoff fields, treat that as harness-quality failure and patch the next worker prompt

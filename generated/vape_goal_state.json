@@ -1,18 +1,13 @@
 {
-  "activeGoal": "vape_send_ready_900",
-  "baselineAccepted": 831,
-  "currentAccepted": 899,
-  "targetAccepted": 900,
-  "activeLanes": [
-    {
-      "id": "last_one_strict",
-      "label": "Strict closer",
-      "launchedAt": "2026-04-15T08:14:00+09:00"
-    }
-  ],
+  "activeGoal": "vape_send_ready_1300",
+  "baselineAccepted": 1201,
+  "currentAccepted": 1201,
+  "targetAccepted": 1300,
+  "activeLanes": [],
   "nextLanes": [
-    "strict_review_recheck",
-    "hyperlocal_last_gap"
+    "naver_variant_v4",
+    "embedded_townconnect_v2",
+    "low_coverage_followup_v2"
   ],
   "exhaustedLanes": [
     "dense_core_redux",
@@ -26,15 +21,33 @@
     "litmuskorea_locator_sweep",
     "vera_locator_sweep"
   ],
-  "lastUpdatedAt": "2026-04-15T08:14:00+09:00",
+  "lastUpdatedAt": "2026-04-15T17:56:30+09:00",
+  "goalMet": false,
   "relaunchNeeded": false,
   "orchestratorMode": "continuous_single_run",
-  "sessionNote": "All major locator pages exhausted. Web search unavailable. Net +5 added (4 from end-puff, 1 from martha-vape). Pool at 832. Gap: 69 to reach 900. Requires web search quota reset for new_open_monitor lane.",
+  "sessionNote": "1300 목표로 전환. baseline 1201, normalized pool 기준 유지.",
   "netAddedThisSession": 5,
   "poolSize": 832,
   "strategyShift": "post_831",
   "openGoalHardRule": "active worker 0 before goal completion = failure",
   "enforcementFile": "generated/open_goal_enforcement_2026-04-15.md",
   "failureDefinition": "open goal + active worker 0",
-  "relayRule": "on worker completion, report and relaunch in same turn if goal still open"
+  "relayRule": "on worker completion, report and relaunch in same turn if goal still open",
+  "mainReplyPriority": "highest",
+  "responseDiscipline": {
+    "replyUserImmediately": true,
+    "workerResultsAfterUserReply": true,
+    "maxActiveWorkers": 1,
+    "sendShortHeartbeatStyleUpdates": true,
+    "reportCadenceMinutes": 20
+  },
+  "handoffMode": "pre_completion_preferred",
+  "requiredWorkerHandoffFields": [
+    "next_best_lane",
+    "spawn_ready_task_brief",
+    "continue_if_goal_open",
+    "global_count_confidence",
+    "known_overlap_risk"
+  ],
+  "supervisorRule": "prefer spawning successor from worker handoff before or immediately at completion"
 }

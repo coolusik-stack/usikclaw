@@ -199,11 +199,17 @@ Evaluator가 아래 중 하나를 판정한다.
   1. 사용자에게 짧게 결과 보고
   2. active worker 수 확인
   3. 목표 미달 + active 0이면 즉시 다음 워커 재발사
+- **가능하면 완료 후 relay가 아니라 완료 전 pre-handoff**를 기본값으로 삼는다.
+- 워커는 끝나기 전에 반드시 아래를 남긴다.
+  1. `next_best_lane`
+  2. `spawn_ready_task_brief`
+  3. `continue_if_goal_open: true|false`
+- 메인 세션은 완료 수신 시 요약 전에 `spawn_ready_task_brief`를 보고 바로 후속 워커를 붙일 수 있어야 한다.
 - 동시 active worker 기본값은 **1개**, 필요할 때만 **2개**까지 허용한다.
 - 20분 이상 사용자 메시지 없이 지나가면, 큰 변화가 없더라도 한 줄 상태 보고를 우선한다.
 - 워커 산출물 정리보다 **사용자 직접 메시지 즉답**이 항상 먼저다.
 - lane 수율이 0~2에 머무르면 과감히 exhausted 처리하고 다음 소스로 전환한다.
-- 워커 프롬프트는 항상 `baseline / target / strict rule / dedupe file / checkpoint cadence / stop rule`을 포함한다.
+- 워커 프롬프트는 항상 `baseline / target / strict rule / dedupe file / checkpoint cadence / stop rule / next-lane handoff fields`를 포함한다.
 
 ### D. 디자인 하네스
 용도:
@@ -396,5 +402,8 @@ Operator:
 
 권장 relay 문구:
 - "결과 보고 → active 확인 → goal open + 0이면 즉시 재발사"
+
+권장 pre-handoff 문구:
+- "종료 전 next_best_lane / spawn_ready_task_brief / continue_if_goal_open 을 반드시 남겨라"
 
 마지막 업데이트: 2026-04-15
