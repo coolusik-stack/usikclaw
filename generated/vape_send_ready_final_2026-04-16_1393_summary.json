@@ -1,0 +1,11 @@
+{
+  "final_total": 1393,
+  "strict_closeout": true,
+  "source_pool_base": "generated/vape_pool_phones_1390_2026-04-16.txt",
+  "added_phones": [
+    "010-8199-1399",
+    "0507-1366-7963",
+    "0507-1317-7429"
+  ],
+  "csv": "generated/vape_send_ready_final_2026-04-16_1393.csv"
+}
