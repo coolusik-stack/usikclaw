@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "task": "서울 전자담배 DB 1279 전수 재검증",
+    "source_file": "vape_send_ready_final_2026-04-16_1279_trusted.csv",
+    "reverified_output": "vape_send_ready_final_2026-04-16_1279_full_reverified.csv",
+    "fully_verified_output": "vape_send_ready_final_2026-04-16_1126_fully_verified.csv",
+    "date": "2026-04-16",
+    "methodology": "전수조사 — 전화/주소/상호/출처/URL 기반 규칙 기반 재분류"
+  },
+  "counts": {
+    "total_input": 1279,
+    "verified_keep": 1126,
+    "drop": 65,
+    "needs_review": 88,
+    "fully_verified_final": 1126
+  },
+  "drop_breakdown": {
+    "IQOS/HNB 공식판매점 (편의점/마트 코너)": 25,
+    "동일 매장 0507 secondary": 15,
+    "비전문/비전자담배 업종": 15,
+    "HNB 전용 브랜드 (플룸, GLO)": 4,
+    "일반마트 (IGA 등)": 3,
+    "기타 (주소불명, 수리점 등)": 3
+  },
+  "needs_review_breakdown": {
+    "Naver 블로그 출처 + URL 없음": 22,
+    "약한 출처 (daum/instagram/coord_grid)": 21,
+    "상호명 모호": 27,
+    "신뢰 출처이나 URL/노트 없음": 4,
+    "고릴라파이프": 4,
+    "기타": 10
+  },
+  "key_drop_rules_applied": [
+    "IQOS/HNB 공식판매점 (아이코스공식매장/판매처/서비스센터) — 편의점·마트 내 코너 제외",
+    "동일 매장 secondary — 동일 상호+주소에 010 번호와 0507 번호 중복시 0507 제거",
+    "비전문/비전자담배 업종 — 법률사무소, 시니어클럽, 릴버거, 복권판매점, 스포츠베팅, 핸드폰샵, 맥주창고 등",
+    "HNB 전용 브랜드 — 더플룸, 플룸폴, GLO뷰티, GLO/HNB only 상호",
+    "일반마트 (IGA마트, 아이지에이마트) — 전담 전문점 아님",
+    "주소 불명확 (주소가 '서울'만 기재)",
+    "수리점 (Repair Shop) — 비전문 업종"
+  ],
+  "verified_keep_criteria": [
+    "Naver Place pcmap 직접 URL",
+    "공식 로케이터 URL (litmuskorea.co.kr, martha-vape.com, end-puff.com, hakakorea.com 등)",
+    "공식 로케이터 출처 파일 (litmuskorea, martha-vape, vera, bewell, endpuff 등)",
+    "804 메인 baseline + 전담 관련 상호명",
+    "KakaoMap 스윕 + 전담 관련 상호명",
+    "신뢰 출처 파일 + Naver URL + 전담 상호명",
+    "전담 명시 상호명 (전자담배/베이프 등 명시) + 신뢰 출처"
+  ],
+  "representative_drops": [
+    {
+      "no": 134,
+      "store": "아이코스공식매장 오렌지마트점",
+      "reason": "IQOS 공식판매점"
+    },
+    {
+      "no": 654,
+      "store": "수연법률사무소",
+      "reason": "법률사무소"
+    },
+    {
+      "no": 664,
+      "store": "목동전자담배(0507)",
+      "reason": "0507 secondary"
+    },
+    {
+      "no": 696,
+      "store": "릴버거",
+      "reason": "비전문 업종"
+    },
+    {
+      "no": 711,
+      "store": "노원시니어클럽",
+      "reason": "시니어클럽"
+    },
+    {
+      "no": 715,
+      "store": "IGA마트가일점",
+      "reason": "일반마트"
+    },
+    {
+      "no": 728,
+      "store": "플룸 폴 스튜디오",
+      "reason": "HNB/비전담"
+    },
+    {
+      "no": 753,
+      "store": "스포츠베팅샵",
+      "reason": "비전문 업종"
+    },
+    {
+      "no": 889,
+      "store": "더플룸",
+      "reason": "HNB 전용"
+    },
+    {
+      "no": 980,
+      "store": "더윌 변호사법률상담사무소",
+      "reason": "변호사/법률"
+    }
+  ],
+  "handoff": {
+    "next_best_lane": "needs_review_direct_verification",
+    "spawn_ready_task_brief": "NEEDS_REVIEW 88건 Naver Place API/web_fetch로 상호·주소·전담 여부 직접 조회 후 재판정. 특히 naver_blog 출처 22건과 약한 출처(daum/instagram) 그룹 우선 처리.",
+    "continue_if_goal_open": true,
+    "global_count_confidence": "HIGH for 1126 (VERIFIED_KEEP), LOW-MEDIUM for 88 NEEDS_REVIEW",
+    "known_overlap_risk": "LOW — 0507 same-store 15건 이미 제거, 1126 기준 중복 거의 없음",
+    "manager_state_recommendation": "1126 = 바로 배포 가능한 안전한 최종본. 1279 trusted 사용 비권장 (65건 확정 DROP 포함). NEEDS_REVIEW 88건 별도 스프린트.",
+    "action_now": "(1) 1126 fully_verified 파일 즉시 배포 사용. (2) NEEDS_REVIEW 88건 별도 검증 태스크 스폰. (3) DROP 65건 영구 제외 목록 기록."
+  }
+}
