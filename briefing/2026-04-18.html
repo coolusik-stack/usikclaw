@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Briefing / 2026-04-18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#f6f6f4;
+      --panel:#ffffff;
+      --panel2:#fbfbfa;
+      --line:#e8e8e3;
+      --line2:#ddddD6;
+      --text:#111111;
+      --muted:#44443e;
+      --soft:#1f1f1b;
+      --accent:#0f7a2f;
+      --radius:22px;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(0,0,0,.03), transparent 38%),
+        linear-gradient(180deg, #fafaf8 0%, #f4f4f1 100%);
+      color:var(--text);
+      min-height:100vh;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{text-decoration:none;color:inherit}
+    .wrap{
+      width:min(1400px, calc(100vw - 32px));
+      margin:18px auto 56px;
+    }
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      padding:12px 14px;
+      color:var(--muted);
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .shell{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.88);
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:0 12px 40px rgba(0,0,0,.06);
+      backdrop-filter: blur(10px);
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 300px;
+      gap:32px;
+      padding:46px 34px 34px;
+      border-bottom:1px solid var(--line);
+    }
+    .hero-kicker,
+    .section-kicker,
+    .label{
+      font-family:"JetBrains Mono", monospace;
+      font-size:10px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+    .hero-kicker{color:var(--muted);margin-bottom:16px}
+    h1{
+      font-size:clamp(52px, 8vw, 96px);
+      line-height:.9;
+      letter-spacing:-.08em;
+      font-weight:800;
+      max-width:8ch;
+      margin-bottom:18px;
+    }
+    .hero-intro{
+      font-size:16px;
+      color:#2d2d29;
+      max-width:64ch;
+      line-height:1.75;
+    }
+    .hero-side{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      padding-left:12px;
+    }
+    .hero-panel{
+      border:1px solid var(--line2);
+      background:linear-gradient(180deg,#ffffff 0%,#f7f7f4 100%);
+      border-radius:20px;
+      padding:16px;
+    }
+    .hero-panel .title{
+      color:var(--muted);
+      font-family:"JetBrains Mono", monospace;
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .hero-panel .value{
+      font-size:22px;
+      font-weight:700;
+      letter-spacing:-.04em;
+      line-height:1.15;
+    }
+    .hero-panel .sub{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:6px;
+      line-height:1.5;
+    }
+    .content{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 300px;
+      gap:32px;
+      padding:28px 34px 34px;
+    }
+    .section-kicker{color:var(--muted);margin-bottom:16px}
+    .big-picture{
+      margin-bottom:26px;
+      padding:0 0 26px;
+      border-bottom:1px solid var(--line);
+    }
+    .big-picture h3{
+      font-size:28px;
+      line-height:1.06;
+      letter-spacing:-.06em;
+      max-width:18ch;
+      margin-bottom:12px;
+      font-weight:700;
+    }
+    .big-picture p{
+      color:#33332f;
+      font-size:15px;
+      line-height:1.8;
+      max-width:68ch;
+    }
+    .card{
+      border:1px solid var(--line2);
+      background:linear-gradient(180deg,#ffffff 0%,#fafaf8 100%);
+      border-radius:var(--radius);
+      padding:20px;
+      margin-bottom:14px;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{
+      transform:translateY(-2px);
+      border-color:#cfcfc8;
+      background:linear-gradient(180deg,#ffffff 0%,#f7f7f3 100%);
+      box-shadow:0 10px 28px rgba(0,0,0,.05);
+    }
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      height:24px;
+      padding:0 10px;
+      border:1px solid currentColor;
+      border-radius:999px;
+      font-family:"JetBrains Mono", monospace;
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    .date{
+      color:var(--muted);
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+    }
+    .card h2{
+      font-size:clamp(26px, 3vw, 38px);
+      line-height:.98;
+      letter-spacing:-.06em;
+      font-weight:750;
+      margin-bottom:10px;
+      max-width:19ch;
+    }
+    .meta{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      margin-bottom:16px;
+      max-width:70ch;
+    }
+    .body-grid{
+      display:grid;
+      grid-template-columns:120px minmax(0,1fr);
+      gap:10px 22px;
+      align-items:start;
+    }
+    .label{color:var(--muted);padding-top:3px}
+    .label.insight{color:var(--accent)}
+    .body{font-size:15px;color:#1f1f1c;line-height:1.78}
+    .insight-body{color:#145728}
+    .source-link{
+      display:inline-block;
+      margin-top:14px;
+      color:var(--soft);
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .source-link:hover{color:var(--accent)}
+    .sidebar-panel{
+      border:1px solid #1f1f1f;
+      background:linear-gradient(180deg,#0f0f0f 0%,#0b0b0b 100%);
+      border-radius:20px;
+      padding:18px;
+      margin-bottom:14px;
+    }
+    .sidebar-panel .section-kicker{
+      color:#b9b9b2;
+    }
+    .toc-row{
+      display:grid;
+      grid-template-columns:34px 1fr;
+      gap:12px;
+      padding:10px 0;
+      border-top:1px solid rgba(255,255,255,.04);
+    }
+    .toc-no{
+      color:#9f9f97;
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      font-weight:600;
+    }
+    .toc-title{
+      color:#f1f1eb;
+      font-size:13px;
+      line-height:1.5;
+      font-weight:500;
+    }
+    .stat-row{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      padding:10px 0;
+      border-top:1px solid rgba(255,255,255,.05);
+      color:#dfdfdf;
+      font-size:13px;
+    }
+    .stat-row strong{
+      font-weight:700;
+      letter-spacing:-.02em;
+    }
+    .note-body{
+      color:#ededE7;
+      font-size:14px;
+      line-height:1.8;
+      font-weight:450;
+    }
+    .footer{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      padding:16px 34px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    @media (max-width: 980px){
+      .hero,.content{grid-template-columns:1fr}
+      .hero-side{padding-left:0}
+      .body-grid{grid-template-columns:1fr}
+      .wrap{width:min(100vw - 16px, 1400px)}
+      .topbar,.footer{padding-left:18px;padding-right:18px}
+      .hero,.content{padding-left:18px;padding-right:18px}
+      h1{max-width:none}
+    }
+    </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <span>MORNING BRIEFING / 2026-04-18</span>
+      <span>토요일</span>
+    </div>
+
+    <div class="shell">
+      <section class="hero">
+        <div>
+          <div class="hero-kicker">Daily Intelligence / Vercel-Leaning Mono Precision</div>
+          <h1>Morning<br>Briefing</h1>
+          <div class="hero-intro">오늘 먼저 볼 것
+
+오늘 수집된 소식들은 기업 환경에서 실질적 가치 창출과 효율성 확보의 중요성이 한층 강조되고 있음을 시사합니다. 이는 우석이 진행하는 모든 프로젝트와 투자 결정에서 실질적인 성과와 비용 효율성을 최우선으로 고려해야 함을 의미합니다.</div>
+        </div>
+        <div class="hero-side">
+          <div class="hero-panel">
+            <div class="title">Date</div>
+            <div class="value">2026-04-18</div>
+            <div class="sub">토요일</div>
+          </div>
+          <div class="hero-panel">
+            <div class="title">Exchange</div>
+            <div class="sub">전날 기준 참고 지표</div>
+            <div class="stat-row"><span>USD/KRW</span><strong>1,478.1원</strong></div><div class="stat-row"><span>100JPY/KRW</span><strong>928.9원</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content">
+        <main>
+          <div class="section-kicker">Big Picture</div>
+          <div class="big-picture">
+            <h3>오늘 먼저 볼 것
+
+오늘 수집된 소식들은 기업 환경에서 실질적 가치 창출과 효율성 확보의 중요성이 한층 강조되고 있음을 시사합니다. 이는 우석이 진행하는 모든 프로젝트와 투자 결정에서 실질적인 성과와 비용 효율성을 최우선으로 고려해야 함을 의미합니다.</h3>
+            <p>오늘 먼저 볼 것
+
+오늘 수집된 소식들은 기업 환경에서 실질적 가치 창출과 효율성 확보의 중요성이 한층 강조되고 있음을 시사합니다. 이는 우석이 진행하는 모든 프로젝트와 투자 결정에서 실질적인 성과와 비용 효율성을 최우선으로 고려해야 함을 의미합니다. 따라서 오늘 업무는 현재 진행 중인 서비스나 솔루션이 시장의 이러한 요구에 어떻게 더 명확하게 부응할 수 있는지 재점검하는 데 집중해야 합니다.</p>
+          </div>
+
+          <div class="section-kicker">Entries</div>
+          
+        <article class="card">
+          <div class="card-top">
+            <span class="chip" style="color:#8BE26A;border-color:#8BE26A33;background:#8BE26A10">Anthropic 뉴스</span>
+            <span class="date">2026.04.17</span>
+          </div>
+          <h2>클로드 4.7: 성능 개선 및 기업 AI 강화</h2>
+          <div class="meta">Anthropic Unveils Claude Opus 4.7, Reclaims Top Spot While Doubling Down on Enterprise AI - kmjournal.net</div>
+          <div class="body-grid">
+            <div class="label">SUMMARY</div>
+            <div class="body">Anthropic이 최신 모델인 Claude Opus 4.7을 공식 발표했습니다. 이 버전은 기존 대비 성능을 크게 개선하여 AI 모델 경쟁에서 선두 위치를 재확보했으며, 특히 기업용 AI 시장에 대한 전략적 집중을 강화하고 있습니다. 이는 고성능 AI 모델을 기반으로 한 엔터프라이즈 솔루션 확대를 주요 목표로 삼고 있음을 의미합니다.</div>
+            <div class="label">WHY IT MATTERS</div>
+            <div class="body">이번 클로드 4.7 출시는 기업용 AI 솔루션 시장의 경쟁 구도에 중요한 변화를 가져올 것입니다. Anthropic의 고성능 모델과 엔터프라이즈 집중 전략은 기존 시장 선두 주자들과의 경쟁을 심화시키고, 기업들의 AI 도입 결정에 새로운 고려 사항을 추가할 수 있습니다.</div>
+            <div class="label insight">INSIGHT</div>
+            <div class="body insight-body">OpenClaw 자동화 관점에서, 클로드 4.7의 개선된 성능은 더욱 복잡하고 정교한 업무 자동화 시나리오를 구현할 수 있는 잠재력을 제공합니다. 그러나 도입 전에 비용 대비 효과를 면밀히 분석하여, 실제 비즈니스 가치 창출과 운영 효율성 향상에 기여할 수 있는지 신중하게 판단해야 합니다.</div>
+          </div>
+          <a class="source-link" href="https://news.google.com/rss/articles/CBMia0FVX3lxTFB4QlhvS0FVTERPNjBINWFCQmxYRm1KenhQSU1pQUpYUjFyZ2xhN21UUGNTa2tVbVpLNHpOYThBbGtncm5VNjdRc3d2TVFBQmlkT1pOYUhqcE9DX0lwcXU4dUpyWm5EQzlTY2t3?oc=5" target="_blank" rel="noopener">Open source ↗</a>
+        </article>
+        
+        </main>
+
+        <aside>
+          <div class="sidebar-panel">
+            <div class="section-kicker">Index</div>
+            <div class="toc-row"><span class="toc-no">01</span><span class="toc-title">클로드 4.7: 성능 개선 및 기업 AI 강화</span></div>
+          </div>
+          <div class="sidebar-panel">
+            <div class="section-kicker">Source Status</div>
+            <div class="toc-row"><span class="toc-no">○</span><span class="toc-title">OpenAI 뉴스 / 업데이트 없음</span></div><div class="toc-row"><span class="toc-no">●</span><span class="toc-title">Anthropic 뉴스 / 업데이트</span></div><div class="toc-row"><span class="toc-no">○</span><span class="toc-title">AI 테크 트렌드 / 업데이트 없음</span></div><div class="toc-row"><span class="toc-no">○</span><span class="toc-title">경제 매크로 / 업데이트 없음</span></div><div class="toc-row"><span class="toc-no">○</span><span class="toc-title">Lenny's / 업데이트 없음</span></div><div class="toc-row"><span class="toc-no">○</span><span class="toc-title">Sandhill / 업데이트 없음</span></div><div class="toc-row"><span class="toc-no">○</span><span class="toc-title">Chamath / 업데이트 없음</span></div>
+          </div>
+          <div class="sidebar-panel">
+            <div class="section-kicker">Notes</div>
+            <div class="note-body">
+              전날 공개된 소식만 기준으로 정리합니다.<br><br>
+              업데이트가 없는 소스는 오른쪽에 별도로 표시합니다.<br><br>
+              우석 기준에선 새 기능보다 실제 운영과 비용 판단에 어떤 영향을 주는지가 더 중요합니다.
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <footer class="footer">
+        <span>USIKCLAW</span>
+        <span>VERCEL-LEANING BRIEFING SURFACE</span>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
