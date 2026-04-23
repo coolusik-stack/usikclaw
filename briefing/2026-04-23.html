@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Briefing / 2026-04-23</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#f6f6f4;
+      --panel:#ffffff;
+      --panel2:#fbfbfa;
+      --line:#e8e8e3;
+      --line2:#ddddD6;
+      --text:#111111;
+      --muted:#44443e;
+      --soft:#1f1f1b;
+      --accent:#0f7a2f;
+      --radius:22px;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(0,0,0,.03), transparent 38%),
+        linear-gradient(180deg, #fafaf8 0%, #f4f4f1 100%);
+      color:var(--text);
+      min-height:100vh;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{text-decoration:none;color:inherit}
+    .wrap{
+      width:min(1400px, calc(100vw - 32px));
+      margin:18px auto 56px;
+    }
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      padding:12px 14px;
+      color:var(--muted);
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .shell{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.88);
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:0 12px 40px rgba(0,0,0,.06);
+      backdrop-filter: blur(10px);
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 300px;
+      gap:32px;
+      padding:46px 34px 34px;
+      border-bottom:1px solid var(--line);
+    }
+    .hero-kicker,
+    .section-kicker,
+    .label{
+      font-family:"JetBrains Mono", monospace;
+      font-size:10px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+    .hero-kicker{color:var(--muted);margin-bottom:16px}
+    h1{
+      font-size:clamp(52px, 8vw, 96px);
+      line-height:.9;
+      letter-spacing:-.08em;
+      font-weight:800;
+      max-width:8ch;
+      margin-bottom:18px;
+    }
+    .hero-intro{
+      font-size:16px;
+      color:#2d2d29;
+      max-width:64ch;
+      line-height:1.75;
+    }
+    .hero-side{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      padding-left:12px;
+    }
+    .hero-panel{
+      border:1px solid var(--line2);
+      background:linear-gradient(180deg,#ffffff 0%,#f7f7f4 100%);
+      border-radius:20px;
+      padding:16px;
+    }
+    .hero-panel .title{
+      color:var(--muted);
+      font-family:"JetBrains Mono", monospace;
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .hero-panel .value{
+      font-size:22px;
+      font-weight:700;
+      letter-spacing:-.04em;
+      line-height:1.15;
+    }
+    .hero-panel .sub{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:6px;
+      line-height:1.5;
+    }
+    .content{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 300px;
+      gap:32px;
+      padding:28px 34px 34px;
+    }
+    .section-kicker{color:var(--muted);margin-bottom:16px}
+    .big-picture{
+      margin-bottom:26px;
+      padding:0 0 26px;
+      border-bottom:1px solid var(--line);
+    }
+    .big-picture h3{
+      font-size:28px;
+      line-height:1.06;
+      letter-spacing:-.06em;
+      max-width:18ch;
+      margin-bottom:12px;
+      font-weight:700;
+    }
+    .big-picture p{
+      color:#33332f;
+      font-size:15px;
+      line-height:1.8;
+      max-width:68ch;
+    }
+    .card{
+      border:1px solid var(--line2);
+      background:linear-gradient(180deg,#ffffff 0%,#fafaf8 100%);
+      border-radius:var(--radius);
+      padding:20px;
+      margin-bottom:14px;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{
+      transform:translateY(-2px);
+      border-color:#cfcfc8;
+      background:linear-gradient(180deg,#ffffff 0%,#f7f7f3 100%);
+      box-shadow:0 10px 28px rgba(0,0,0,.05);
+    }
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      height:24px;
+      padding:0 10px;
+      border:1px solid currentColor;
+      border-radius:999px;
+      font-family:"JetBrains Mono", monospace;
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    .date{
+      color:var(--muted);
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+    }
+    .card h2{
+      font-size:clamp(26px, 3vw, 38px);
+      line-height:.98;
+      letter-spacing:-.06em;
+      font-weight:750;
+      margin-bottom:10px;
+      max-width:19ch;
+    }
+    .meta{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      margin-bottom:16px;
+      max-width:70ch;
+    }
+    .body-grid{
+      display:grid;
+      grid-template-columns:120px minmax(0,1fr);
+      gap:10px 22px;
+      align-items:start;
+    }
+    .label{color:var(--muted);padding-top:3px}
+    .label.insight{color:var(--accent)}
+    .body{font-size:15px;color:#1f1f1c;line-height:1.78}
+    .insight-body{color:#145728}
+    .source-link{
+      display:inline-block;
+      margin-top:14px;
+      color:var(--soft);
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .source-link:hover{color:var(--accent)}
+    .sidebar-panel{
+      border:1px solid #1f1f1f;
+      background:linear-gradient(180deg,#0f0f0f 0%,#0b0b0b 100%);
+      border-radius:20px;
+      padding:18px;
+      margin-bottom:14px;
+    }
+    .sidebar-panel .section-kicker{
+      color:#b9b9b2;
+    }
+    .toc-row{
+      display:grid;
+      grid-template-columns:34px 1fr;
+      gap:12px;
+      padding:10px 0;
+      border-top:1px solid rgba(255,255,255,.04);
+    }
+    .toc-no{
+      color:#9f9f97;
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      font-weight:600;
+    }
+    .toc-title{
+      color:#f1f1eb;
+      font-size:13px;
+      line-height:1.5;
+      font-weight:500;
+    }
+    .stat-row{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      padding:10px 0;
+      border-top:1px solid rgba(255,255,255,.05);
+      color:#dfdfdf;
+      font-size:13px;
+    }
+    .stat-row strong{
+      font-weight:700;
+      letter-spacing:-.02em;
+    }
+    .note-body{
+      color:#ededE7;
+      font-size:14px;
+      line-height:1.8;
+      font-weight:450;
+    }
+    .footer{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      padding:16px 34px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    @media (max-width: 980px){
+      .hero,.content{grid-template-columns:1fr}
+      .hero-side{padding-left:0}
+      .body-grid{grid-template-columns:1fr}
+      .wrap{width:min(100vw - 16px, 1400px)}
+      .topbar,.footer{padding-left:18px;padding-right:18px}
+      .hero,.content{padding-left:18px;padding-right:18px}
+      h1{max-width:none}
+    }
+    </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <span>MORNING BRIEFING / 2026-04-23</span>
+      <span>목요일</span>
+    </div>
+
+    <div class="shell">
+      <section class="hero">
+        <div>
+          <div class="hero-kicker">Daily Intelligence / Vercel-Leaning Mono Precision</div>
+          <h1>Morning<br>Briefing</h1>
+          <div class="hero-intro">오늘 수집된 소식들은 변화하는 외부 환경 속에서 운영 효율성 확보와 자원 관리의 중요성이 더욱 커지고 있음을 시사합니다. 특히 레니스의 소프트웨어 확대 제공은 새로운 생산성 도구의 필요성을, 고환율은 비용 효율적 운영의 당위성을 강조합니다.</div>
+        </div>
+        <div class="hero-side">
+          <div class="hero-panel">
+            <div class="title">Date</div>
+            <div class="value">2026-04-23</div>
+            <div class="sub">목요일</div>
+          </div>
+          <div class="hero-panel">
+            <div class="title">Exchange</div>
+            <div class="sub">전날 기준 참고 지표</div>
+            <div class="stat-row"><span>USD/KRW</span><strong>1,475.3원</strong></div><div class="stat-row"><span>100JPY/KRW</span><strong>926.3원</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content">
+        <main>
+          <div class="section-kicker">Big Picture</div>
+          <div class="big-picture">
+            <h3>오늘 수집된 소식들은 변화하는 외부 환경 속에서 운영 효율성 확보와 자원 관리의 중요성이 더욱 커지고 있음을 시사합니다. 특히 레니스의 소프트웨어 확대 제공은 새로운 생산성 도구의 필요성을, 고환율은 비용 효율적 운영의 당위성을 강조합니다.</h3>
+            <p>오늘 수집된 소식들은 변화하는 외부 환경 속에서 운영 효율성 확보와 자원 관리의 중요성이 더욱 커지고 있음을 시사합니다. 특히 레니스의 소프트웨어 확대 제공은 새로운 생산성 도구의 필요성을, 고환율은 비용 효율적 운영의 당위성을 강조합니다. 오늘 하루, 진행 중인 프로젝트의 효율 개선 방안과 주요 예산 지출의 재검토를 우선순위에 두시기 바랍니다.</p>
+          </div>
+
+          <div class="section-kicker">Entries</div>
+          
+        <article class="card">
+          <div class="card-top">
+            <span class="chip" style="color:#8BE26A;border-color:#8BE26A33;background:#8BE26A10">Lenny's</span>
+            <span class="date">2026.04.22</span>
+          </div>
+          <h2>레니스, Cursor 포함 6종 소프트웨어 추가 제공</h2>
+          <div class="meta">New: A free year of Cursor, Google AI Pro, Notion, Supabase, Gumloop, and Fin for subscribers</div>
+          <div class="body-grid">
+            <div class="label">SUMMARY</div>
+            <div class="body">Lenny's Newsletter가 유료 구독자를 위해 AI 코드 에디터 Cursor, Google AI Pro, Notion 등 6종의 프리미엄 소프트웨어 1년 구독권을 새로 추가했습니다. 이로써 제공되는 총 제품 수는 25개로 늘어났으며, 전체 혜택 가치는 30,000달러 이상에 달합니다. 이번 추가는 개발, 생산성, AI 분야의 주요 도구들을 포함하여 구독자들에게 실질적인 가치를 높이는 데 초점을 맞추고 있습니다.</div>
+            <div class="label">WHY IT MATTERS</div>
+            <div class="body">이번 업데이트는 뉴스레터 플랫폼이 단순 콘텐츠 제공을 넘어 고가치 소프트웨어 번들을 통해 구독 경쟁력을 강화하는 추세를 보여줍니다. 특히 AI 개발 및 생산성 도구의 추가는 기술 산업 종사자들을 주 타겟으로 하여 구독 유인책을 높이는 전략으로 해석될 수 있습니다.</div>
+            <div class="label insight">INSIGHT</div>
+            <div class="body insight-body">OpenClaw 자동화 시스템 구축 및 개선을 위해 필수적인 AI 코드 에디터(Cursor)나 개발 백엔드(Supabase) 같은 도구를 무료로 활용할 기회입니다. 이는 기존 라이선스 비용 절감은 물론, 새로운 기술 도입을 통한 개발 및 운영 효율성을 높이는 측면에서 실질적인 이점을 제공할 것입니다.</div>
+          </div>
+          <a class="source-link" href="https://www.lennysnewsletter.com/p/new-a-free-year-of-cursor-google" target="_blank" rel="noopener">Open source ↗</a>
+        </article>
+        
+        </main>
+
+        <aside>
+          <div class="sidebar-panel">
+            <div class="section-kicker">Index</div>
+            <div class="toc-row"><span class="toc-no">01</span><span class="toc-title">레니스, Cursor 포함 6종 소프트웨어 추가 제공</span></div>
+          </div>
+          <div class="sidebar-panel">
+            <div class="section-kicker">Source Status</div>
+            <div class="toc-row"><span class="toc-no">○</span><span class="toc-title">OpenAI 뉴스 / 업데이트 없음</span></div><div class="toc-row"><span class="toc-no">○</span><span class="toc-title">Anthropic 뉴스 / 업데이트 없음</span></div><div class="toc-row"><span class="toc-no">○</span><span class="toc-title">AI 테크 트렌드 / 업데이트 없음</span></div><div class="toc-row"><span class="toc-no">○</span><span class="toc-title">경제 매크로 / 업데이트 없음</span></div><div class="toc-row"><span class="toc-no">●</span><span class="toc-title">Lenny's / 업데이트</span></div><div class="toc-row"><span class="toc-no">○</span><span class="toc-title">Sandhill / 업데이트 없음</span></div><div class="toc-row"><span class="toc-no">○</span><span class="toc-title">Chamath / 업데이트 없음</span></div>
+          </div>
+          <div class="sidebar-panel">
+            <div class="section-kicker">Notes</div>
+            <div class="note-body">
+              전날 공개된 소식만 기준으로 정리합니다.<br><br>
+              업데이트가 없는 소스는 오른쪽에 별도로 표시합니다.<br><br>
+              우석 기준에선 새 기능보다 실제 운영과 비용 판단에 어떤 영향을 주는지가 더 중요합니다.
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <footer class="footer">
+        <span>USIKCLAW</span>
+        <span>VERCEL-LEANING BRIEFING SURFACE</span>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
