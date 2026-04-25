@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Briefing / 2026-04-25</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#f6f6f4;
+      --panel:#ffffff;
+      --panel2:#fbfbfa;
+      --line:#e8e8e3;
+      --line2:#ddddD6;
+      --text:#111111;
+      --muted:#44443e;
+      --soft:#1f1f1b;
+      --accent:#0f7a2f;
+      --radius:22px;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(0,0,0,.03), transparent 38%),
+        linear-gradient(180deg, #fafaf8 0%, #f4f4f1 100%);
+      color:var(--text);
+      min-height:100vh;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{text-decoration:none;color:inherit}
+    .wrap{
+      width:min(1400px, calc(100vw - 32px));
+      margin:18px auto 56px;
+    }
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      padding:12px 14px;
+      color:var(--muted);
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .shell{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.88);
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:0 12px 40px rgba(0,0,0,.06);
+      backdrop-filter: blur(10px);
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 300px;
+      gap:32px;
+      padding:46px 34px 34px;
+      border-bottom:1px solid var(--line);
+    }
+    .hero-kicker,
+    .section-kicker,
+    .label{
+      font-family:"JetBrains Mono", monospace;
+      font-size:10px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+    .hero-kicker{color:var(--muted);margin-bottom:16px}
+    h1{
+      font-size:clamp(52px, 8vw, 96px);
+      line-height:.9;
+      letter-spacing:-.08em;
+      font-weight:800;
+      max-width:8ch;
+      margin-bottom:18px;
+    }
+    .hero-intro{
+      font-size:16px;
+      color:#2d2d29;
+      max-width:64ch;
+      line-height:1.75;
+    }
+    .hero-side{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      padding-left:12px;
+    }
+    .hero-panel{
+      border:1px solid var(--line2);
+      background:linear-gradient(180deg,#ffffff 0%,#f7f7f4 100%);
+      border-radius:20px;
+      padding:16px;
+    }
+    .hero-panel .title{
+      color:var(--muted);
+      font-family:"JetBrains Mono", monospace;
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .hero-panel .value{
+      font-size:22px;
+      font-weight:700;
+      letter-spacing:-.04em;
+      line-height:1.15;
+    }
+    .hero-panel .sub{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:6px;
+      line-height:1.5;
+    }
+    .content{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 300px;
+      gap:32px;
+      padding:28px 34px 34px;
+    }
+    .section-kicker{color:var(--muted);margin-bottom:16px}
+    .big-picture{
+      margin-bottom:26px;
+      padding:0 0 26px;
+      border-bottom:1px solid var(--line);
+    }
+    .big-picture h3{
+      font-size:28px;
+      line-height:1.06;
+      letter-spacing:-.06em;
+      max-width:18ch;
+      margin-bottom:12px;
+      font-weight:700;
+    }
+    .big-picture p{
+      color:#33332f;
+      font-size:15px;
+      line-height:1.8;
+      max-width:68ch;
+    }
+    .card{
+      border:1px solid var(--line2);
+      background:linear-gradient(180deg,#ffffff 0%,#fafaf8 100%);
+      border-radius:var(--radius);
+      padding:20px;
+      margin-bottom:14px;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{
+      transform:translateY(-2px);
+      border-color:#cfcfc8;
+      background:linear-gradient(180deg,#ffffff 0%,#f7f7f3 100%);
+      box-shadow:0 10px 28px rgba(0,0,0,.05);
+    }
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      height:24px;
+      padding:0 10px;
+      border:1px solid currentColor;
+      border-radius:999px;
+      font-family:"JetBrains Mono", monospace;
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    .date{
+      color:var(--muted);
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+    }
+    .card h2{
+      font-size:clamp(26px, 3vw, 38px);
+      line-height:.98;
+      letter-spacing:-.06em;
+      font-weight:750;
+      margin-bottom:10px;
+      max-width:19ch;
+    }
+    .meta{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+      margin-bottom:16px;
+      max-width:70ch;
+    }
+    .body-grid{
+      display:grid;
+      grid-template-columns:120px minmax(0,1fr);
+      gap:10px 22px;
+      align-items:start;
+    }
+    .label{color:var(--muted);padding-top:3px}
+    .label.insight{color:var(--accent)}
+    .body{font-size:15px;color:#1f1f1c;line-height:1.78}
+    .insight-body{color:#145728}
+    .source-link{
+      display:inline-block;
+      margin-top:14px;
+      color:var(--soft);
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .source-link:hover{color:var(--accent)}
+    .sidebar-panel{
+      border:1px solid #1f1f1f;
+      background:linear-gradient(180deg,#0f0f0f 0%,#0b0b0b 100%);
+      border-radius:20px;
+      padding:18px;
+      margin-bottom:14px;
+    }
+    .sidebar-panel .section-kicker{
+      color:#b9b9b2;
+    }
+    .toc-row{
+      display:grid;
+      grid-template-columns:34px 1fr;
+      gap:12px;
+      padding:10px 0;
+      border-top:1px solid rgba(255,255,255,.04);
+    }
+    .toc-no{
+      color:#9f9f97;
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      font-weight:600;
+    }
+    .toc-title{
+      color:#f1f1eb;
+      font-size:13px;
+      line-height:1.5;
+      font-weight:500;
+    }
+    .stat-row{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      padding:10px 0;
+      border-top:1px solid rgba(255,255,255,.05);
+      color:#dfdfdf;
+      font-size:13px;
+    }
+    .stat-row strong{
+      font-weight:700;
+      letter-spacing:-.02em;
+    }
+    .note-body{
+      color:#ededE7;
+      font-size:14px;
+      line-height:1.8;
+      font-weight:450;
+    }
+    .footer{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      padding:16px 34px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-family:"JetBrains Mono", monospace;
+      font-size:11px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    @media (max-width: 980px){
+      .hero,.content{grid-template-columns:1fr}
+      .hero-side{padding-left:0}
+      .body-grid{grid-template-columns:1fr}
+      .wrap{width:min(100vw - 16px, 1400px)}
+      .topbar,.footer{padding-left:18px;padding-right:18px}
+      .hero,.content{padding-left:18px;padding-right:18px}
+      h1{max-width:none}
+    }
+    </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <span>MORNING BRIEFING / 2026-04-25</span>
+      <span>토요일</span>
+    </div>
+
+    <div class="shell">
+      <section class="hero">
+        <div>
+          <div class="hero-kicker">Daily Intelligence / Vercel-Leaning Mono Precision</div>
+          <h1>Morning<br>Briefing</h1>
+          <div class="hero-intro">오늘 주목할 변화는 AI 모델 성능 경쟁이 가속화되며 기업들이 제품 개발 속도와 전략에 집중하고 있다는 점입니다. 이는 시장의 변화 속도가 예상보다 빠르다는 신호이며, 우리의 제품 및 기술 전략에도 즉각적인 반영이 필요합니다.</div>
+        </div>
+        <div class="hero-side">
+          <div class="hero-panel">
+            <div class="title">Date</div>
+            <div class="value">2026-04-25</div>
+            <div class="sub">토요일</div>
+          </div>
+          <div class="hero-panel">
+            <div class="title">Exchange</div>
+            <div class="sub">전날 기준 참고 지표</div>
+            <div class="stat-row"><span>USD/KRW</span><strong>1,481.5원</strong></div><div class="stat-row"><span>100JPY/KRW</span><strong>928.1원</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content">
+        <main>
+          <div class="section-kicker">Big Picture</div>
+          <div class="big-picture">
+            <h3>오늘 주목할 변화는 AI 모델 성능 경쟁이 가속화되며 기업들이 제품 개발 속도와 전략에 집중하고 있다는 점입니다. 이는 시장의 변화 속도가 예상보다 빠르다는 신호이며, 우리의 제품 및 기술 전략에도 즉각적인 반영이 필요합니다.</h3>
+            <p>오늘 주목할 변화는 AI 모델 성능 경쟁이 가속화되며 기업들이 제품 개발 속도와 전략에 집중하고 있다는 점입니다. 이는 시장의 변화 속도가 예상보다 빠르다는 신호이며, 우리의 제품 및 기술 전략에도 즉각적인 반영이 필요합니다. 따라서 당분간 주요 AI 모델들의 최신 성능 지표와 경쟁사 동향을 면밀히 분석하고, 이를 바탕으로 단기 전략 업데이트를 우선순위에 두어야 합니다.</p>
+          </div>
+
+          <div class="section-kicker">Entries</div>
+          
+        <article class="card">
+          <div class="card-top">
+            <span class="chip" style="color:#8BE26A;border-color:#8BE26A33;background:#8BE26A10">OpenAI 뉴스</span>
+            <span class="date">2026.04.24</span>
+          </div>
+          <h2>OpenAI, 차세대 AI 모델 GPT-5.5 공식 선보여</h2>
+          <div class="meta">OpenAI가 새로운 ChatGPT AI 모델인 GPT-5.5를 공식 출시했습니다 - Cryptopolitan</div>
+          <div class="body-grid">
+            <div class="label">SUMMARY</div>
+            <div class="body">OpenAI가 최신 AI 언어 모델인 GPT-5.5를 공식적으로 출시했습니다. 이는 ChatGPT의 기반 기술이 한 단계 발전했음을 의미하며, 향후 AI 서비스의 성능 향상에 영향을 미칠 것으로 예상됩니다. 이번 발표에서는 구체적인 성능 개선 내용이나 새로운 기능에 대한 상세 정보는 포함되지 않았습니다.</div>
+            <div class="label">WHY IT MATTERS</div>
+            <div class="body">새로운 GPT 모델의 출시는 AI 기술 경쟁이 심화되고 있음을 보여주며, 다양한 산업 분야에서 AI 활용의 새로운 가능성을 제시합니다. 기업들은 이 업데이트를 통해 기존 AI 솔루션의 성능 개선 기회를 모색하거나, 새로운 AI 기반 서비스를 개발할 전략적 필요성에 직면하게 될 것입니다.</div>
+            <div class="label insight">INSIGHT</div>
+            <div class="body insight-body">BOOL 비즈니스 관점에서, 우리는 새로운 GPT-5.5 모델의 공식 출시를 주시하며, 추후 공개될 구체적인 성능 개선 사항과 활용 가능성을 면밀히 검토해야 합니다. 특히 OpenClaw 자동화나 비용 효율성 측면에서 우리에게 어떤 이점을 제공할지 분석하고, 잠재적 도입을 위한 사전 검토를 시작하는 것이 중요합니다.</div>
+          </div>
+          <a class="source-link" href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQVUVHa3lubGxFc1F4X18zN0trREliRHBqeEVkVWZ3X01yQmJnU1docWxLbkk0UDFFRVZaS05GaFEydFlLS2U5Yzl6VElQWkVSWkp1UU1QUWFXczRWY1R5UDlIZmNqYld1X1BjckVsTGEwZmg4dzlwdk9NRExGQ25McQ?oc=5" target="_blank" rel="noopener">Open source ↗</a>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <span class="chip" style="color:#8BE26A;border-color:#8BE26A33;background:#8BE26A10">Anthropic 뉴스</span>
+            <span class="date">2026.04.24</span>
+          </div>
+          <h2>Anthropic 클로드 미토스, 핵심 벤치마크서 GPT-5.5에 우위</h2>
+          <div class="meta">Claude Mythos vs. GPT-5.5: 제한된 접근 Anthropic 모델, 9개 테스트 중 6개 승리 - Yellow.com</div>
+          <div class="body-grid">
+            <div class="label">SUMMARY</div>
+            <div class="body">Anthropic의 차세대 모델인 클로드 미토스(Claude Mythos)가 내부 벤치마크 테스트에서 GPT-5.5를 뛰어넘는 성능을 보였다. 총 9개 테스트 중 6개 영역에서 우위를 점했으며, 이는 Anthropic이 향후 공개할 모델의 높은 경쟁력을 시사한다.</div>
+            <div class="label">WHY IT MATTERS</div>
+            <div class="body">이번 결과는 Anthropic이 거대언어모델 시장에서 OpenAI의 GPT 시리즈와 대등하거나 우위를 점할 수 있는 기술력을 확보했음을 시사한다. 이는 AI 기술 개발 경쟁이 특정 기업 독점이 아닌 다자간 구도로 더욱 치열해질 것임을 보여주는 중요한 지표다.</div>
+            <div class="label insight">INSIGHT</div>
+            <div class="body insight-body">OpenClaw 자동화 솔루션 측면에서, Anthropic 모델의 향상된 성능은 활용 가능한 LLM의 선택 폭을 넓히는 중요한 변화다. 장기적인 관점에서 OpenClaw의 LLM 통합 및 운영 전략을 재검토하여 성능과 비용 효율성을 모두 최적화할 방안을 모색해야 한다.</div>
+          </div>
+          <a class="source-link" href="https://news.google.com/rss/articles/CBMiuAJBVV95cUxPMDBFdDFnSkpwc0hGNmhmSzhPaDA5VEQ0Sm83LW9LWDF1cHJTVTM0dUF4YXA4ZWlWblB6R2RFZ3g1c3phRjN2RUxIaHBTcG53RE9ZRkdRZXEydnRwT3NKU1VDSS1wbnByczhScEQ5TDFFZF82dnV5NTM4elZNS3UzS3MyekVsWllmU205eGlTbi1ZckJWdEYzNFhzN2V0SEI4NnE2WUdLVUFZSHE3VmxQeVJQM21nN1RsUG5GSEdNXzc2elAxUnhVQ1ZFbTV5TTliUTdGVUwtdjFmb0QwbnhfLTBVRDFpQWMwUURac25qZkRmekRJZHdOTVRkc0FlQ1RBQWh5NXZHWW52Vnc3QjdfUjVhQ0xlYnVEcFVsM3Ftd3dEaHB3NzFmZEF5Y3lnU3pCeHUyY0tQLUw?oc=5" target="_blank" rel="noopener">Open source ↗</a>
+        </article>
+        
+        <article class="card">
+          <div class="card-top">
+            <span class="chip" style="color:#8BE26A;border-color:#8BE26A33;background:#8BE26A10">Lenny's</span>
+            <span class="date">2026.04.24</span>
+          </div>
+          <h2>Anthropic: 속도 우선 제품 개발과 PM 역할 재정의</h2>
+          <div class="meta">How Anthropic’s product team moves faster than anyone else | Cat Wu (Head of Product, Claude Code)</div>
+          <div class="body-grid">
+            <div class="label">SUMMARY</div>
+            <div class="body">Anthropic의 Claude Code 제품팀은 AI 시대에 발맞춰 제품 개발 방식을 근본적으로 변화시키고 있습니다. 모델 완성 전부터 제품을 구축하는 병렬 개발 접근 방식을 통해 출시 속도를 극대화하며, 이는 PM의 역할 변화와 함께 빠른 실행이 장기 전략보다 중요해지는 흐름을 반영합니다. 특히, 효율적인 런치룸 프로세스를 통해 이러한 속도 중심의 개발 문화를 뒷받침하고 있습니다.</div>
+            <div class="label">WHY IT MATTERS</div>
+            <div class="body">Anthropic의 이러한 접근 방식은 AI 제품 개발의 표준 속도를 높이고 있으며, 경쟁사들에게도 더 빠른 시장 진입과 피드백 반영의 중요성을 시사합니다. 모델 개발과 제품 출시를 동시에 진행하는 방식은 급변하는 AI 기술 환경에서 제품 유효성을 조기에 검증하고 시장 요구에 민첩하게 대응하는 새로운 성공 방정식을 제시합니다.</div>
+            <div class="label insight">INSIGHT</div>
+            <div class="body insight-body">Anthropic의 '모델 미완성 전 제품 구축' 접근 방식은 OpenClaw 자동화 개발 프로세스에 대한 중요성을 부각합니다. 핵심 기능 테스트와 사용자 인터페이스 개발을 자동화하여 모델 완성도와 별개로 제품 가치를 조기에 검증하고 시장에 빠르게 선보이는 방안을 검토해야 합니다.</div>
+          </div>
+          <a class="source-link" href="https://www.lennysnewsletter.com/p/how-anthropics-product-team-moves" target="_blank" rel="noopener">Open source ↗</a>
+        </article>
+        
+        </main>
+
+        <aside>
+          <div class="sidebar-panel">
+            <div class="section-kicker">Index</div>
+            <div class="toc-row"><span class="toc-no">01</span><span class="toc-title">OpenAI, 차세대 AI 모델 GPT-5.5 공식 선보여</span></div><div class="toc-row"><span class="toc-no">02</span><span class="toc-title">Anthropic 클로드 미토스, 핵심 벤치마크서 GPT-5.5에 우위</span></div><div class="toc-row"><span class="toc-no">03</span><span class="toc-title">Anthropic: 속도 우선 제품 개발과 PM 역할 재정의</span></div>
+          </div>
+          <div class="sidebar-panel">
+            <div class="section-kicker">Source Status</div>
+            <div class="toc-row"><span class="toc-no">●</span><span class="toc-title">OpenAI 뉴스 / 업데이트</span></div><div class="toc-row"><span class="toc-no">●</span><span class="toc-title">Anthropic 뉴스 / 업데이트</span></div><div class="toc-row"><span class="toc-no">○</span><span class="toc-title">AI 테크 트렌드 / 업데이트 없음</span></div><div class="toc-row"><span class="toc-no">○</span><span class="toc-title">경제 매크로 / 업데이트 없음</span></div><div class="toc-row"><span class="toc-no">●</span><span class="toc-title">Lenny's / 업데이트</span></div><div class="toc-row"><span class="toc-no">○</span><span class="toc-title">Sandhill / 업데이트 없음</span></div><div class="toc-row"><span class="toc-no">○</span><span class="toc-title">Chamath / 업데이트 없음</span></div>
+          </div>
+          <div class="sidebar-panel">
+            <div class="section-kicker">Notes</div>
+            <div class="note-body">
+              전날 공개된 소식만 기준으로 정리합니다.<br><br>
+              업데이트가 없는 소스는 오른쪽에 별도로 표시합니다.<br><br>
+              우석 기준에선 새 기능보다 실제 운영과 비용 판단에 어떤 영향을 주는지가 더 중요합니다.
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <footer class="footer">
+        <span>USIKCLAW</span>
+        <span>VERCEL-LEANING BRIEFING SURFACE</span>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
